@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "dev": "mercy-b94dd",
+    "staging": "mercy-b94dd",
+    "prod": "mercy-b94dd"
+  }
+}

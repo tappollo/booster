@@ -1,0 +1,23 @@
+{
+  "firestore": {
+    "rules": "firebase/firestore.rules",
+    "indexes": "firebase/firestore.indexes.json"
+  },
+  "functions": {
+    "predeploy": ["yarn workspace @mercy/functions build"]
+  },
+  "hosting": {
+    "predeploy": ["yarn workspace @mercy/web build"],
+    "public": "web/build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "storage": {
+    "rules": "firebase/storage.rules"
+  }
+}

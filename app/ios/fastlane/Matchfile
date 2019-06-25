@@ -1,0 +1,6 @@
+git_url("PHARAH_APPLE_MATCH_CERT_REPO")
+
+type("development")
+
+app_identifier("com.mercy")
+username("PHARAH_APPLE_DEV_ID")
