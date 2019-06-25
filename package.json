@@ -13,7 +13,7 @@
   "scripts": {
     "postinstall": "yarn workspace @mercy/app postinstall",
     "ci": "yarn workspace @mercy/app ci && yarn workspace @mercy/web ci && yarn workspace @mercy/functions ci && yarn workspace @mercy/scripts ci",
-    "deploy:dev": "./scripts/use.ts dev && firebase deploy --force",
+    "deploy:dev": "ts-node ./scripts/use.ts dev && firebase deploy --force",
     "xcode": "open app/ios/mercy.xcworkspace",
     "studio": "open -a /Applications/Android\\ Studio.app app/android/"
   },
