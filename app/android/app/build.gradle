@@ -178,5 +178,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply plugin: 'com.google.gms.google-services'
-apply plugin: "com.google.firebase.firebase-perf"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
