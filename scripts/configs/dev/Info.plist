@@ -68,7 +68,11 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Need Location Access</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Need PhotoLibrary Access</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To upload photo</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
