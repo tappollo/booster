@@ -36,6 +36,7 @@ import java.util.List;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
 import io.invertase.firebase.functions.RNFirebaseFunctionsPackage;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import io.invertase.firebase.storage.RNFirebaseStoragePackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -71,6 +72,7 @@ public class MainApplication extends Application implements ReactApplication {
         new RNFirebaseStoragePackage(),
         new RNFirebaseFunctionsPackage(),
         new RNFirebaseFirestorePackage(),
+        new RNFirebaseMessagingPackage(),
         new FBSDKPackage(mCallbackManager)
       );
     }
