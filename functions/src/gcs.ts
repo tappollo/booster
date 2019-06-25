@@ -4,10 +4,11 @@ import * as path from "path";
 import * as sizeOf from "image-size";
 import * as sharp from "sharp";
 import { ImageFile } from "./images";
+import * as adminSDK from "./adminsdk.json";
+
 const gcs = new Storage({
-  keyFilename: "adminsdk.json"
+  credentials: adminSDK
 });
-// mercy-b94dd.appspot.com
 
 const store = admin.firestore();
 
