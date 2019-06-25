@@ -157,14 +157,12 @@ dependencies {
 
     implementation "com.google.android.gms:play-services-base:16.1.0"
 
-    implementation 'com.google.firebase:firebase-core:16.0.7'
-    implementation "com.google.firebase:firebase-auth:16.1.0"
-    // Staying on 17.1.5 for null date issue
-    // https://github.com/invertase/react-native-firebase/issues/1869
-    implementation 'com.google.firebase:firebase-firestore:17.1.5'
-    implementation "com.google.firebase:firebase-functions:16.2.0"
-    implementation "com.google.firebase:firebase-storage:16.1.0"
-
+    implementation "com.google.firebase:firebase-core:16.0.9"
+    implementation "com.google.firebase:firebase-auth:17.0.0"
+    implementation "com.google.firebase:firebase-firestore:19.0.0"
+    implementation "com.google.firebase:firebase-functions:17.0.0"
+    implementation "com.google.firebase:firebase-storage:17.0.0"
+    implementation "com.crashlytics.sdk.android:crashlytics:2.9.9"
 
     implementation 'com.facebook.android:facebook-android-sdk:4.34.0'
     implementation 'com.facebook.android:facebook-login:4.40.0'
@@ -180,4 +178,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply plugin: 'com.google.gms.google-services'
+apply plugin: "com.google.firebase.firebase-perf"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

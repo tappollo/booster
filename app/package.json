@@ -30,7 +30,7 @@
     "react": "^16.8.6",
     "react-native": "^0.59.3",
     "react-native-fbsdk": "^0.8.0",
-    "react-native-firebase": "^5.2.3",
+    "react-native-firebase": "^5.5.3",
     "react-native-gesture-handler": "^1.0.16",
     "react-native-google-signin": "^1.2.1",
     "react-native-image-picker": "^0.28.1",
