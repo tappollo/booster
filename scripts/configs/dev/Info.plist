@@ -25,7 +25,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb533663173791857</string>
+				<string>PHARAH_FACEBOOK_SCHEME</string>
 			</array>
 		</dict>
 		<dict>
@@ -35,16 +35,16 @@
 			<string>google</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.771295960232-h3f958nup01g530b85547ct7665n397q</string>
+				<string>PHARAH_GOOGLE_REVERSE_DOMAIN</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>533663173791857</string>
+	<string>PHARAH_FACEBOOK_APP_ID</string>
 	<key>FacebookDisplayName</key>
-	<string>Mercy</string>
+	<string>PHARAH_FACEBOOK_APP_DISPLAY_NAME</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
