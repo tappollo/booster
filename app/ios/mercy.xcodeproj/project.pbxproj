@@ -758,9 +758,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tappollo.mercy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mercy;
 				PRODUCT_NAME = mercy;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tappollo.mercy";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.mercy";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -782,9 +782,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tappollo.mercy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mercy;
 				PRODUCT_NAME = mercy;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tappollo.mercy";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.mercy";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
