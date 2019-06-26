@@ -537,7 +537,7 @@
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
@@ -562,7 +562,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Cpp.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -758,9 +758,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tappollo.mercy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mercy;
 				PRODUCT_NAME = mercy;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tappollo.mercy";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.mercy";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -782,9 +782,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tappollo.mercy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mercy;
 				PRODUCT_NAME = mercy;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tappollo.mercy";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.mercy";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

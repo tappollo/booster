@@ -1,4 +1,4 @@
-package com.mercy;
+package com.goboost;
 
 import android.app.Application;
 import android.content.Context;
@@ -13,11 +13,17 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 import com.swmansion.reanimated.ReanimatedPackage;
 import com.rnprogresshud.RNProgressHUDPackage;
+
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
+
 import com.imagepicker.ImagePickerPackage;
+
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
+
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+
 import io.invertase.firebase.RNFirebasePackage;
+
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -30,6 +36,7 @@ import java.util.List;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
 import io.invertase.firebase.functions.RNFirebaseFunctionsPackage;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import io.invertase.firebase.storage.RNFirebaseStoragePackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -49,27 +56,24 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new AsyncStoragePackage(),
-            new ReactVideoPackage(),
-            new VectorIconsPackage(),
-            new RNScreensPackage(),
-            new ReanimatedPackage(),
-            new RNProgressHUDPackage(),
-            new ImageResizerPackage(),
-            new ImagePickerPackage(),
-            new RNGoogleSigninPackage(),
-            new RNGestureHandlerPackage(),
-            new RNFirebasePackage(),
-            new FBSDKPackage(),
-          new RNFirebasePackage(),
-          new RNFirebaseAuthPackage(),
-          new RNFirebaseStoragePackage(),
-          new RNFirebaseFunctionsPackage(),
-          new RNFirebaseFirestorePackage(),
-          new RNGestureHandlerPackage(),
-          new ImageResizerPackage(),
-          new FBSDKPackage(mCallbackManager)
+        new MainReactPackage(),
+        new AsyncStoragePackage(),
+        new ReactVideoPackage(),
+        new VectorIconsPackage(),
+        new RNScreensPackage(),
+        new ReanimatedPackage(),
+        new RNProgressHUDPackage(),
+        new ImageResizerPackage(),
+        new ImagePickerPackage(),
+        new RNGoogleSigninPackage(),
+        new RNGestureHandlerPackage(),
+        new RNFirebasePackage(),
+        new RNFirebaseAuthPackage(),
+        new RNFirebaseStoragePackage(),
+        new RNFirebaseFunctionsPackage(),
+        new RNFirebaseFirestorePackage(),
+        new RNFirebaseMessagingPackage(),
+        new FBSDKPackage(mCallbackManager)
       );
     }
 

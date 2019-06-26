@@ -32,18 +32,18 @@ target 'mercy' do
   shared_pods
   pod 'IQKeyboardManager'
 
-  pod 'Fabric'
-  pod 'Crashlytics'
+  # Crashlytics
+  pod 'Fabric', '~> 1.10.1'
+  pod 'Crashlytics', '~> 3.13.1'
 
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Functions'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/RemoteConfig'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Performance'
-
+  pod 'Firebase/Core', '~> 6.2.0'
+  pod 'Firebase/Auth', '~> 6.2.0'
+  pod 'Firebase/Firestore', '~> 6.2.0'
+  pod 'Firebase/Functions', '~> 6.2.0'
+  pod 'Firebase/Messaging', '~> 6.2.0'
+  pod 'Firebase/RemoteConfig', '~> 6.2.0'
+  pod 'Firebase/Storage', '~> 6.2.0'
+  pod 'Firebase/Performance', '~> 6.2.0'
 
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
