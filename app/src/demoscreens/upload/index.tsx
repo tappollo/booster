@@ -1,22 +1,16 @@
 import React, { useState } from "react";
-import { Dimensions, ActivityIndicator } from "react-native";
+import { ActivityIndicator, Dimensions } from "react-native";
 import {
-  createStackNavigator,
   NavigationScreenComponent as NSC,
   NavigationScreenOptions as NSO
 } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
 import { Button, Column, Row } from "../../components";
-import { margins, colors, fonts } from "../../styles";
-import { firestore } from "react-native-firebase";
-import { currentUserRef } from "../../functions/auth";
-import { useDocument, useCollection } from "../../functions/firestore";
-import { DocumentReference } from "../../functions/types";
-import { FireImageRef, ImageData } from "../../components/FireImage";
-import { requirePermissions, pickImage } from "../../functions/images";
 import { auth } from "react-native-firebase";
+import { useCurrentUserProfile } from "../../functions/auth";
+import { FireImageRef } from "../../components/FireImage";
+import { pickImage, requirePermissions } from "../../functions/images";
 import resizer from "react-native-image-resizer";
-import { useCurrentUser } from "../../functions/auth";
 
 const { width } = Dimensions.get("window");
 
@@ -44,7 +38,7 @@ const upload = async () => {
     type: "image/jpeg"
   });
   const token = await user.getIdToken();
-  const response = await fetch(
+  return await fetch(
     "https://us-central1-mercy-b94dd.cloudfunctions.net/api/avatar",
     {
       method: "POST",
@@ -54,11 +48,10 @@ const upload = async () => {
       body: data
     }
   );
-  return response;
 };
 
 const ImageUpload: NSC<{}, NSO> = () => {
-  const user = useCurrentUser();
+  const user = useCurrentUserProfile();
   const [loading, setLoading] = useState(false);
   return (
     <Column expand scroll>
@@ -92,10 +85,10 @@ const ImageUpload: NSC<{}, NSO> = () => {
         onPress={() => {
           setLoading(true);
           upload()
-            .then(_ => {
+            .then(() => {
               setLoading(false);
             })
-            .catch(_ => {
+            .catch(() => {
               console.error("===========");
               setLoading(false);
             });
@@ -112,34 +105,4 @@ ImageUpload.navigationOptions = {
   )
 };
 
-const Navigator = createStackNavigator(
-  {
-    ImageUpload
-  },
-  {
-    initialRouteName: "ImageUpload",
-    headerBackTitleVisible: false,
-    defaultNavigationOptions: {
-      headerTintColor: colors.white,
-      headerStyle: {
-        height: 45,
-        backgroundColor: colors.blue,
-        borderBottomWidth: 0,
-        elevation: 0
-      },
-      headerTitleStyle: {
-        ...fonts.heading3,
-        color: colors.white
-      }
-    }
-  }
-);
-
-Navigator.navigationOptions = {
-  title: "Upload",
-  tabBarIcon: ({ tintColor }: { tintColor: string }) => (
-    <Icon name="md-checkbox-outline" size={17} color={tintColor} />
-  )
-};
-
-export default Navigator;
+export default ImageUpload;

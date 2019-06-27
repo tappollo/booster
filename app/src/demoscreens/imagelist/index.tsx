@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, Animated } from "react-native";
+import { Dimensions, Animated, TouchableOpacity } from "react-native";
 import {
   createStackNavigator,
   NavigationScreenComponent as NSC,
@@ -15,8 +15,10 @@ import { CollectionReference, DocumentReference } from "../../functions/types";
 import { FireImageRef } from "../../components/FireImage";
 import { useRadioButtons } from "../../components/RadioButton";
 import { useShrinkHeader } from "../../components/NavHeader";
+import Upload from "../upload";
 
 const { width } = Dimensions.get("window");
+
 interface ImageData {
   base64: string;
   width: number;
@@ -27,6 +29,7 @@ interface ImageData {
   xl: string;
   original: string;
 }
+
 const store = firestore();
 
 const Title = styled(Animated.Text)`
@@ -46,7 +49,25 @@ const Segments = styled(Row)`
   justify-content: space-evenly;
 `;
 
-const ImageList: NSC<{}, NSO> = () => {
+const UploadButton = (props: { onPress: () => void }) => (
+  <UploadButton.Container onPress={props.onPress}>
+    <Icon name="ios-cloud-upload" color="white" size={25} />
+  </UploadButton.Container>
+);
+
+UploadButton.Container = styled(TouchableOpacity)`
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: blue;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ImageList: NSC<{}, NSO> = ({ navigation }) => {
   const ref = store.collection("testList") as CollectionReference<{
     image: DocumentReference<ImageData>;
   }>;
@@ -83,6 +104,11 @@ const ImageList: NSC<{}, NSO> = () => {
         <Title style={{ opacity: getHeight([1, 0]) }}>Booster</Title>
         <Segments>{buttons}</Segments>
       </Header>
+      <UploadButton
+        onPress={() => {
+          navigation.push("Upload");
+        }}
+      />
     </Column>
   );
 };
@@ -97,7 +123,8 @@ ImageList.navigationOptions = {
 
 const Navigator = createStackNavigator(
   {
-    ImageList
+    ImageList,
+    Upload
   },
   {
     initialRouteName: "ImageList",

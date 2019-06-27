@@ -1,22 +1,31 @@
-import { createContext, useContext, Context } from "react";
 import { auth, firestore } from "react-native-firebase";
 import { AccessToken, LoginManager } from "react-native-fbsdk";
 import { GoogleSignin } from "react-native-google-signin";
 import { DocumentReference, ImageData } from "./types";
 import { withHud } from "./async";
-import { async } from "q";
+import { useDocument } from "./firestore";
 
 const store = firestore();
 
 export type User = import("react-native-firebase").RNFirebase.User;
 export type ConfirmationResult = import("react-native-firebase").RNFirebase.ConfirmationResult;
 type UserInfo_ = import("react-native-firebase").RNFirebase.UserInfo;
-interface UserInfo extends UserInfo_ {
+export interface UserInfo extends UserInfo_ {
   avatar?: DocumentReference<ImageData>;
 }
 
-export const AuthContext = createContext<UserInfo | undefined>(undefined);
-export const useCurrentUser = () => useContext(AuthContext);
+export const currentUser = () => {
+  const user = auth().currentUser;
+  if (user == null) {
+    throw new Error("User has not logged in yet");
+  }
+  return user;
+};
+
+export const useCurrentUserProfile = () =>
+  useDocument(store
+    .collection("users")
+    .doc(currentUser().uid) as DocumentReference<UserInfo>)[0];
 
 export const userRef = (user: User) =>
   store.collection("users").doc(user.uid) as DocumentReference<UserInfo>;
@@ -37,7 +46,7 @@ const createUserRefIfNotExists = async (user: User) => {
       providerId: user.providerId,
       uid: user.uid
     };
-    userRef(user).set(userInfo);
+    await userRef(user).set(userInfo);
   }
   return user;
 };
@@ -58,8 +67,7 @@ export const activateWithCode = async (
   return user;
 };
 export const signInWithPhone = async (phone: string) => {
-  const result = await auth().signInWithPhoneNumber(phone);
-  return result;
+  return await auth().signInWithPhoneNumber(phone);
 };
 
 export const signIn = async ({ email, password }: EmailCredential) => {
