@@ -1,10 +1,4 @@
 PODS:
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
   - boost-for-react-native (1.63.0)
   - BoringSSL-GRPC (0.0.3):
     - BoringSSL-GRPC/Implementation (= 0.0.3)
@@ -16,12 +10,16 @@ PODS:
     - Fabric (~> 1.10.2)
   - DoubleConversion (1.1.6)
   - Fabric (1.10.2)
-  - FBSDKCoreKit (4.42.0):
-    - Bolts (~> 1.9)
-  - FBSDKLoginKit (4.42.0):
-    - FBSDKCoreKit
-  - FBSDKShareKit (4.42.0):
-    - FBSDKCoreKit
+  - FBSDKCoreKit (5.0.2):
+    - FBSDKCoreKit/Basics (= 5.0.2)
+    - FBSDKCoreKit/Core (= 5.0.2)
+  - FBSDKCoreKit/Basics (5.0.2)
+  - FBSDKCoreKit/Core (5.0.2):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.0.2):
+    - FBSDKCoreKit (~> 5.0)
+  - FBSDKShareKit (5.0.2):
+    - FBSDKCoreKit (~> 5.0)
   - Firebase/Auth (6.2.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.1.1)
@@ -30,6 +28,9 @@ PODS:
     - FirebaseAnalytics (= 6.0.1)
   - Firebase/CoreOnly (6.2.0):
     - FirebaseCore (= 6.0.2)
+  - Firebase/Database (6.2.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 6.0.0)
   - Firebase/Firestore (6.2.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 1.3.2)
@@ -71,6 +72,10 @@ PODS:
   - FirebaseCore (6.0.2):
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/Logger (~> 6.0)
+  - FirebaseDatabase (6.0.0):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 6.0)
+    - leveldb-library (~> 1.18)
   - FirebaseFirestore (1.3.2):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 6.0)
@@ -140,18 +145,18 @@ PODS:
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleToolboxForMac/DebugUtils (2.2.0):
-    - GoogleToolboxForMac/Defines (= 2.2.0)
-  - GoogleToolboxForMac/Defines (2.2.0)
-  - GoogleToolboxForMac/Logger (2.2.0):
-    - GoogleToolboxForMac/Defines (= 2.2.0)
-  - "GoogleToolboxForMac/NSData+zlib (2.2.0)":
-    - GoogleToolboxForMac/Defines (= 2.2.0)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.0)":
-    - GoogleToolboxForMac/DebugUtils (= 2.2.0)
-    - GoogleToolboxForMac/Defines (= 2.2.0)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.0)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.2.0)"
+  - GoogleToolboxForMac/DebugUtils (2.2.1):
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - GoogleToolboxForMac/Defines (2.2.1)
+  - GoogleToolboxForMac/Logger (2.2.1):
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - "GoogleToolboxForMac/NSData+zlib (2.2.1)":
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.1)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.1)
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
   - GoogleUtilities/AppDelegateSwizzler (6.2.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -188,7 +193,7 @@ PODS:
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.21.0)
   - GTMSessionFetcher/Core (1.2.2)
-  - IQKeyboardManager (6.2.0)
+  - IQKeyboardManager (6.4.0)
   - leveldb-library (1.20)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -198,28 +203,31 @@ PODS:
   - Protobuf (3.8.0)
   - React (0.59.9):
     - React/Core (= 0.59.9)
-  - react-native-fbsdk (0.8.0):
+  - react-native-fast-image (6.0.4):
     - React
-    - react-native-fbsdk/Core (= 0.8.0)
-    - react-native-fbsdk/Login (= 0.8.0)
-    - react-native-fbsdk/Share (= 0.8.0)
-  - react-native-fbsdk/Core (0.8.0):
-    - FBSDKCoreKit
+    - SDWebImage (~> 5.0)
+  - react-native-fbsdk (0.10.1):
     - React
-  - react-native-fbsdk/Login (0.8.0):
-    - FBSDKLoginKit
+    - react-native-fbsdk/Core (= 0.10.1)
+    - react-native-fbsdk/Login (= 0.10.1)
+    - react-native-fbsdk/Share (= 0.10.1)
+  - react-native-fbsdk/Core (0.10.1):
+    - FBSDKCoreKit (~> 5.0.0)
     - React
-  - react-native-fbsdk/Share (0.8.0):
-    - FBSDKShareKit
+  - react-native-fbsdk/Login (0.10.1):
+    - FBSDKLoginKit (~> 5.0.0)
+    - React
+  - react-native-fbsdk/Share (0.10.1):
+    - FBSDKShareKit (~> 5.0.0)
     - React
   - react-native-image-picker (0.28.1):
     - React
   - react-native-image-resizer (1.0.1):
     - React
-  - react-native-video (4.4.1):
+  - react-native-video (4.4.2):
     - React
-    - react-native-video/Video (= 4.4.1)
-  - react-native-video/Video (4.4.1):
+    - react-native-video/Video (= 4.4.2)
+  - react-native-video/Video (4.4.2):
     - React
   - React/Core (0.59.9):
     - yoga (= 0.59.9.React)
@@ -275,7 +283,9 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - RNCAsyncStorage (1.4.2):
+  - RNCAsyncStorage (1.5.0):
+    - React
+  - RNDeviceInfo (2.1.3):
     - React
   - RNFirebase (5.5.3):
     - Firebase/Core
@@ -286,19 +296,22 @@ PODS:
     - Fabric
     - Firebase/Core
     - React
-  - RNGestureHandler (1.2.1):
+  - RNGestureHandler (1.3.0):
     - React
-  - RNGoogleSignin (1.2.3):
+  - RNGoogleSignin (2.0.0):
     - GoogleSignIn (~> 4.4.0)
     - React
   - RNProgressHud (1.0.0):
     - React
-  - RNReanimated (1.0.1):
+  - RNReanimated (1.1.0):
     - React
   - RNScreens (1.0.0-alpha.22):
     - React
-  - RNVectorIcons (6.4.2):
+  - RNVectorIcons (6.5.0):
     - React
+  - SDWebImage (5.0.6):
+    - SDWebImage/Core (= 5.0.6)
+  - SDWebImage/Core (5.0.6)
   - SVProgressHUD (2.2.5)
   - yoga (0.59.9.React)
 
@@ -311,6 +324,7 @@ DEPENDENCIES:
   - FBSDKShareKit
   - Firebase/Auth (~> 6.2.0)
   - Firebase/Core (~> 6.2.0)
+  - Firebase/Database (~> 6.2.0)
   - Firebase/Firestore (~> 6.2.0)
   - Firebase/Functions (~> 6.2.0)
   - Firebase/Messaging (~> 6.2.0)
@@ -321,6 +335,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleSignIn
   - IQKeyboardManager
+  - react-native-fast-image (from `../node_modules/react-native-fast-image`)
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-image-resizer (from `../node_modules/react-native-image-resizer`)
@@ -339,6 +354,7 @@ DEPENDENCIES:
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFirebase (from `../node_modules/react-native-firebase/ios/RNFirebase.podspec`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNGoogleSignin (from `../node_modules/react-native-google-signin`)
@@ -351,7 +367,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Bolts
     - boost-for-react-native
     - BoringSSL-GRPC
     - Crashlytics
@@ -366,6 +381,7 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
+    - FirebaseDatabase
     - FirebaseFirestore
     - FirebaseFunctions
     - FirebaseInstanceID
@@ -384,6 +400,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - Protobuf
+    - SDWebImage
     - SVProgressHUD
 
 EXTERNAL SOURCES:
@@ -395,6 +412,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
+  react-native-fast-image:
+    :path: "../node_modules/react-native-fast-image"
   react-native-fbsdk:
     :path: "../node_modules/react-native-fbsdk"
   react-native-image-picker:
@@ -405,6 +424,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-video"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNFirebase:
     :path: "../node_modules/react-native-firebase/ios/RNFirebase.podspec"
   RNGestureHandler:
@@ -423,15 +444,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   Crashlytics: 611738c7847f8291a1a51084e35987b86ba6b3ee
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FBSDKCoreKit: aa42f1c384775f8b075f53a43080474278e9701d
-  FBSDKLoginKit: 373830c68aa48c9e8f0bfed93a3e32d2ca8963a0
-  FBSDKShareKit: 387749259d79e4070ebb304b3fd256e4b4bc4298
+  FBSDKCoreKit: 3e41c402eb64ea7799c71833ff9e5690f27b9c42
+  FBSDKLoginKit: a88f36da648e4c5d60eb261c63eac067abb97130
+  FBSDKShareKit: 8695bbb97c18a381bbf2851a3f24f95a59121b82
   Firebase: 5965bac23e7fcb5fa6d926ed429c9ecef8a2014e
   FirebaseABTesting: a32c488eb75089a61eb3d86db061dfb909d765db
   FirebaseAnalytics: 629301c2b9925f3537d4093a17a72751ae5b7084
@@ -439,6 +459,7 @@ SPEC CHECKSUMS:
   FirebaseAuth: 7fa2cc010b93770831a4e7a60651b52c3b8d111a
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: b0f0262acebfa540e5f97b3832dbb13186980822
+  FirebaseDatabase: f48e067716864be2b855cf716b927ef375d6cfa0
   FirebaseFirestore: d9c55dfd0cd648f420cc8340c4940dc3eab2d860
   FirebaseFunctions: 5af7c35d1c5e41608fecbb667eb6c4e672e318d0
   FirebaseInstanceID: f20243a1d828e0e9a3798b995174dedc16f1b32a
@@ -450,31 +471,34 @@ SPEC CHECKSUMS:
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   GoogleAppMeasurement: 51d8d9ea48f0ca44484d29cfbdef976fbd4fc336
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
-  GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
+  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
   "gRPC-C++": 9dfe7b44821e7b3e44aacad2af29d2c21f7cde83
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
+  IQKeyboardManager: fcef267266379c003181fc3592f6bdb8bf4db839
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
   React: a86b92f00edbe1873a63e4a212c29b7a7ad5224f
-  react-native-fbsdk: 5c3ff4dda057e17d3b4b5491033fc653d423e71d
+  react-native-fast-image: a5c845e01f8435a4ae74401587971e3316c4a8fb
+  react-native-fbsdk: 38ee580e77319d03f8ed0bf4a020cbfd70dc4d2d
   react-native-image-picker: fd93361c666f397bdf72f9c6c23f13d2685b9173
   react-native-image-resizer: 48eb06a18a6d0a632ffa162a51ca61a68fb5322f
-  react-native-video: 9aecbfc4628128838187df9d9c9f630670cfb1d1
-  RNCAsyncStorage: 0d2b0cf659d2def90d8ed7de76f502d335268156
+  react-native-video: aed899073f5572418696ba6af3f31e4d371fd2f1
+  RNCAsyncStorage: 9436928b444c5f5361960a7eea051a697c244b68
+  RNDeviceInfo: a67eef80ee1e68e1824f3ed3dc0ccf9e2d4fdc59
   RNFirebase: 59efea4666efb0a268bc50d77f2498387e962915
-  RNGestureHandler: aea90f0ad8e35fec23438db6fc3ad79be58bb734
-  RNGoogleSignin: ca4746b76a9d58fb68408d3a120a0ce7120e2eda
+  RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
+  RNGoogleSignin: d030c6c6591db24c3cee649f64c7babf0a1699a0
   RNProgressHud: 08a7091d59eafbdbaced8775e9e0f873dee59c42
-  RNReanimated: c8dd490ca98a4edcba229bfa49f2516c95a43afb
+  RNReanimated: 7a52c90473b5e81c13408d40d797b98387eaddde
   RNScreens: 720a9e6968beb73e8196239801e887d8401f86ed
-  RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
+  RNVectorIcons: f6cf608dee5b2cb5726ff3b629a5258586d5677b
+  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   yoga: 03ff42a6f223fb88deeaed60249020d80c3091ee
 
-PODFILE CHECKSUM: dad9ad0abfa4cbd394387825e631d238c5efd924
+PODFILE CHECKSUM: 0cdcfe44865300261acc9fb796ff5c1ba45ba1ee
 
 COCOAPODS: 1.6.0
