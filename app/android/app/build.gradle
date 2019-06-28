@@ -99,7 +99,7 @@ android {
         signing {
             keyAlias 'key'
             keyPassword 'PHARAH_ANDROID_KEY_PASSWORD'
-            storeFile file('../keystores/keystore')
+            storeFile file('../keystores/release.keystore')
             storePassword 'PHARAH_ANDROID_STORE_PASSWORD'
         }
     }
@@ -130,9 +130,6 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.signing
-        }
-        debug {
             signingConfig signingConfigs.signing
         }
     }
