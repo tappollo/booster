@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { Alert, StyleSheet, TouchableOpacity } from "react-native";
 import {
   NavigationScreenComponent as NSC,
   NavigationScreenOptions as NSO
 } from "react-navigation";
-import { Column, Button, Body } from "../../components";
+import { Body, Button, Column } from "../../components";
 import { colors, margins } from "../../styles";
 import { signInFacebook, signInGoogle } from "../../functions/auth";
 
@@ -32,7 +32,7 @@ const OnBoarding: NSC<{}, NSO> = ({ navigation }) => (
         title="Continue with Facebook"
         onPress={() =>
           signInFacebook()
-            .then(() => navigation.navigate("Home"))
+            .then(() => navigation.navigate("Dispatcher"))
             .catch(error => Alert.alert("Login Failed", error.code))
         }
       />
@@ -43,7 +43,7 @@ const OnBoarding: NSC<{}, NSO> = ({ navigation }) => (
         title="Continue with Google"
         onPress={() =>
           signInGoogle()
-            .then(() => navigation.navigate("Home"))
+            .then(() => navigation.navigate("Dispatcher"))
             .catch(error => Alert.alert("Login Failed", error.code))
         }
       />

@@ -54,7 +54,7 @@ const Login: NSC<{}, NSO> = ({ navigation }) => {
               e => e.code,
               () =>
                 signIn({ email, password }).then(() =>
-                  navigation.navigate("Home")
+                  navigation.navigate("Dispatcher")
                 )
             )
           )}

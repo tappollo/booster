@@ -89,17 +89,16 @@ export const signInFacebook = async () => {
     const { user } = await auth().signInWithCredential(credential);
     await createUserRefIfNotExists(user);
     return user;
-  });
+  })(null);
 };
 
 GoogleSignin.configure();
 export const signInGoogle = async () => {
   const result = await GoogleSignin.signIn();
-  console.log(result);
   return await withHud("Loading", async () => {
     const credential = auth.GoogleAuthProvider.credential(result.idToken);
     const { user } = await auth().signInWithCredential(credential);
     await createUserRefIfNotExists(user);
     return user;
-  });
+  })(null);
 };
