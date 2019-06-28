@@ -95,6 +95,14 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
+    signingConfigs {
+        signing {
+            keyAlias 'key'
+            keyPassword 'PHARAH_ANDROID_KEY_PASSWORD'
+            storeFile file('../keystores/keystore')
+            storePassword 'PHARAH_ANDROID_STORE_PASSWORD'
+        }
+    }
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
@@ -122,6 +130,10 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.signing
+        }
+        debug {
+            signingConfig signingConfigs.signing
         }
     }
     // applicationVariants are e.g. debug, release
