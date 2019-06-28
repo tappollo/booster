@@ -20,7 +20,7 @@ service cloud.firestore {
         allow read: if userLoggedIn() && request.auth.uid in resource.data.userIds
         function isListedInChat() {
           return userLoggedIn()
-            && request.auth.uid in get(/databases/$(database)/documents/conversationId/$(conversationId)).data.userIds
+            && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.userIds
         }
         match /messages/{messageId} {
             allow read, create: if isListedInChat()

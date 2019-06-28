@@ -1,10 +1,4 @@
-import Firestore, {
-  DocumentReference as DR,
-  DocumentSnapshot as DS,
-  CollectionReference as CR,
-  QuerySnapshot as QS,
-  SnapshotError
-} from "react-native-firebase/firestore";
+import { AppDate } from "./envTypes";
 
 export interface ImageData {
   base64: string;
@@ -17,73 +11,41 @@ export interface ImageData {
   original?: string;
 }
 
-interface CObserver<T> {
-  next: CObserverOnNext<T>;
-  error?: CObserverOnError;
-}
-type CObserverOnNext<T> = (querySnapshot: QuerySnapshot<T>) => void;
-type CObserverOnError = (err: SnapshotError) => void;
-
-export interface CollectionReference<T extends {}> extends CR {
-  onSnapshot(
-    onNext: CObserverOnNext<T>,
-    onError?: CObserverOnError
-  ): () => void;
-
-  onSnapshot(observer: CObserver<T>): () => void;
-
-  onSnapshot(
-    metadataChanges: MetadataChanges,
-    onNext: CObserverOnNext<T>,
-    onError?: CObserverOnError
-  ): () => void;
-
-  onSnapshot(
-    metadataChanges: MetadataChanges,
-    observer: CObserver<T>
-  ): () => void;
+export interface UserInfo {
+  displayName?: string;
+  email?: string;
+  phoneNumber?: string;
+  photoURL?: string;
+  providerId: string;
+  uid: string;
 }
 
-interface QuerySnapshot<T extends {}> extends QS {
-  readonly docs: Array<DocumentSnapshot<T>>;
+export interface Conversation {
+  _duplicateLookup: string;
+  userIds: string[];
+  userDetails: {
+    [key: string]: UserInfo;
+  };
+  updatedAt: AppDate;
+  latestMessage?: Message;
 }
 
-interface GetOptions {
-  source: "default" | "server" | "cache";
-}
-type ObserverOnNext<T> = (documentSnapshot: DocumentSnapshot<T>) => void;
-type ObserverOnError = (err: Firestore.SnapshotError) => void;
-interface Observer<T> {
-  next: ObserverOnNext<T>;
-  error?: ObserverOnError;
-}
-interface MetadataChanges {
-  includeMetadataChanges: boolean;
+export interface Message {
+  text: string;
+  createdBy: string;
+  createdAt?: AppDate;
+  image?: string;
+  system?: boolean;
 }
 
-export interface DocumentReference<T extends {}> extends DR {
-  get(options?: GetOptions): Promise<DocumentSnapshot<T>>;
-  update(obj: Partial<T>): Promise<void>;
-  onSnapshot(
-    onNext: (documentSnapshot: DocumentSnapshot<T>) => void,
-    onError?: (err: Firestore.SnapshotError) => void
-  ): () => void;
-
-  onSnapshot(observer: Observer<T>): () => void;
-
-  onSnapshot(
-    metadataChanges: MetadataChanges,
-    onNext: ObserverOnNext<T>,
-    onError?: ObserverOnError
-  ): () => void;
-
-  onSnapshot(
-    metadataChanges: MetadataChanges,
-    observer: Observer<T>
-  ): () => void;
+export interface UserStatus {
+  online?: boolean;
+  disconnectedAt?: Date;
+  conversationId?: string;
+  isTyping?: boolean;
 }
 
-interface DocumentSnapshot<T extends {}> extends DS {
-  readonly ref: DocumentReference<T>;
-  data(): T | void;
+export interface Doc<T> {
+  id: string;
+  doc: T;
 }

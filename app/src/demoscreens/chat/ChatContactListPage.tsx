@@ -5,16 +5,18 @@ import {
 import styled from "styled-components";
 import {
   ActivityIndicator,
+  Alert,
   FlatList,
   Text,
-  TouchableOpacity,
-  View
+  TouchableOpacity
 } from "react-native";
 import * as React from "react";
 import { UserInfo } from "../../functions/auth";
 import FastImage from "react-native-fast-image";
 import { useNewContacts } from "../../functions/chat";
-import { ChatDetailPageParams } from "./ChatDetailPage";
+import { functions } from "react-native-firebase";
+import RNProgressHud from "react-native-progress-display";
+import { Center } from "../../components";
 
 const Cell = (props: UserInfo & { onPress: () => void }) => {
   return (
@@ -51,21 +53,17 @@ Cell.Container = styled(TouchableOpacity)`
 `;
 
 const EmptyText = styled(Text)`
+  text-align: center;
   align-self: center;
+  padding: 0 20px;
   color: gray;
-`;
-
-const Center = styled(View)`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
 `;
 
 const ChatContactListPage: NavigationScreenComponent<
   {},
   NavigationStackScreenOptions
 > = ({ navigation }) => {
-  const { items: contact, loading } = useNewContacts();
+  const { items: contact, loading, error } = useNewContacts();
   if (loading) {
     return (
       <Center>
@@ -76,7 +74,14 @@ const ChatContactListPage: NavigationScreenComponent<
   if (contact.length === 0) {
     return (
       <Center>
-        <EmptyText>There is no new contacts</EmptyText>
+        <EmptyText>There is no contacts</EmptyText>
+      </Center>
+    );
+  }
+  if (error != null) {
+    return (
+      <Center>
+        <EmptyText>{error.message}</EmptyText>
       </Center>
     );
   }
@@ -84,17 +89,32 @@ const ChatContactListPage: NavigationScreenComponent<
   return (
     <FlatList
       data={contact}
-      keyExtractor={item => item.id}
+      keyExtractor={item => item.user.id}
       renderItem={({ item }) => (
         <Cell
-          {...item.doc}
-          onPress={() => {
-            const params: ChatDetailPageParams = {
-              title: item.doc.displayName || "Chat",
-              conversationId: item.conversationId,
-              target: item
-            };
-            navigation.push("ChatDetailPage", params);
+          {...item.user.doc}
+          onPress={async () => {
+            if (item.conversation == null) {
+              try {
+                RNProgressHud.showWithStatus("Creating...");
+                const conversation = (await functions().httpsCallable(
+                  "chat-newChat"
+                )({
+                  target: item.user.id
+                })).data;
+                RNProgressHud.dismiss();
+                navigation.push("ChatDetailPage", {
+                  conversation
+                });
+              } catch (e) {
+                RNProgressHud.dismiss();
+                Alert.alert(e.message);
+              }
+            } else {
+              navigation.push("ChatDetailPage", {
+                conversation: item.conversation
+              });
+            }
           }}
         />
       )}

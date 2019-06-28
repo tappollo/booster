@@ -1,17 +1,17 @@
 import { auth, firestore } from "react-native-firebase";
 import { AccessToken, LoginManager } from "react-native-fbsdk";
 import { GoogleSignin } from "react-native-google-signin";
-import { DocumentReference, ImageData } from "./types";
 import { withHud } from "./async";
 import { useDocument } from "./firestore";
+import { DocumentReference } from "react-native-firebase/firestore";
 
 const store = firestore();
 
 export type User = import("react-native-firebase").RNFirebase.User;
 export type ConfirmationResult = import("react-native-firebase").RNFirebase.ConfirmationResult;
-type UserInfo_ = import("react-native-firebase").RNFirebase.UserInfo;
+type UserInfo_ = import("./types").UserInfo;
 export interface UserInfo extends UserInfo_ {
-  avatar?: DocumentReference<ImageData>;
+  avatar?: DocumentReference;
 }
 
 export const currentUser = () => {
@@ -23,18 +23,10 @@ export const currentUser = () => {
 };
 
 export const useCurrentUserProfile = () =>
-  useDocument(store
-    .collection("users")
-    .doc(currentUser().uid) as DocumentReference<UserInfo>)[0];
+  useDocument<UserInfo>(store.collection("users").doc(currentUser().uid)).value;
 
-export const userRef = (user: User) =>
-  store.collection("users").doc(user.uid) as DocumentReference<UserInfo>;
-export const currentUserRef = () => {
-  const user = auth().currentUser;
-  return user ? userRef(user) : undefined;
-};
+export const userRef = (user: User) => store.collection("users").doc(user.uid);
 
-// TODO: move this to Firebase Cloud Functions triger by User creation
 const createUserRefIfNotExists = async (user: User) => {
   const { exists } = await userRef(user).get();
   if (!exists) {

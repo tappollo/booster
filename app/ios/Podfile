@@ -39,6 +39,7 @@ target 'mercy' do
   pod 'Firebase/Core', '~> 6.2.0'
   pod 'Firebase/Auth', '~> 6.2.0'
   pod 'Firebase/Firestore', '~> 6.2.0'
+  pod 'Firebase/Database', '~> 6.2.0'
   pod 'Firebase/Functions', '~> 6.2.0'
   pod 'Firebase/Messaging', '~> 6.2.0'
   pod 'Firebase/RemoteConfig', '~> 6.2.0'

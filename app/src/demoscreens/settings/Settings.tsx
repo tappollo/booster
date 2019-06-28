@@ -7,6 +7,7 @@ import styled from "styled-components/native";
 import { auth } from "react-native-firebase";
 import { Avatar, Body, Cell, Column, Secondary } from "../../components";
 import { colors, margins } from "../../styles";
+import { useCurrentUserProfile } from "../../functions/auth";
 
 const Divider = styled.View`
   height: ${margins.base};
@@ -17,23 +18,28 @@ const Content = styled(Column)`
 const PAvatar = styled(Avatar)`
   margin-left: ${margins.base};
 `;
-const img =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAOCAIAAACU32q7AAAACXBIWXMAAArrAAAK6wGCiw1aAAABUUlEQVQoz22RbU/CMBDH+fxqNLzyhUGDGpSZYTRDEH0hCiiM4cAMNnSYSHjYgwmTta7rOu2GrjHx0l7v0l+v/15TX/8Z8iOjQRhGaSrZwBhBuKABcN0Cx6XT247zEXNhKl4I9eP5k6wKNLNM86bEC9zBhVCKj8fQJ4DI8z3PpYOmtmWK1eJEE4+yu5PJ9Oc65CEP0umTICo5GvZvheOryiV/kgdg+asplod9pCk9TR1oPalxzu3tZK4rJaaJEIIQMmZz4bQg1Wt6d1A8zKU31yRRZBB9jmVYrVqTz3HS3cNbXz87yG9trMsdmUHYx+bUGKlDpd1tVZv9ushnsvuZbEeUAxywPkEAbcMcj14Vqas0WrVy+fG+bRsWibvDmuku3XfDMqYzXdOf1RfbtEkQrLYYROVDAGhJZ+Gs/iQxBlGBlMMYUx+lJFzZHyhBkyCBvgHMYM2xE0nQHQAAAABJRU5ErkJggg==";
 
-const ProfileCell = styled(props => (
-  <Cell
-    {...props}
-    leftView={<PAvatar name="Jane Doe" image={{ uri: img }} />}
-    disclosure
-  >
-    <Column expand>
-      <Body>Jane Doe</Body>
-      <Secondary color={colors.darkGrey}>email@email.com</Secondary>
-    </Column>
-  </Cell>
-))`
-  height: 72px;
-`;
+const ProfileCell = (props: { onPress: () => void }) => {
+  const user = useCurrentUserProfile();
+  return (
+    <Cell
+      onPress={props.onPress}
+      leftView={
+        <PAvatar
+          name={user && user.displayName}
+          image={{ uri: user && user.photoURL }}
+        />
+      }
+      disclosure
+      style={{ height: 72 }}
+    >
+      <Column expand>
+        <Body>{user && user.displayName}</Body>
+        <Secondary color={colors.darkGrey}>{user && user.email}</Secondary>
+      </Column>
+    </Cell>
+  );
+};
 
 const Settings: NSC<{}, NSO> = ({ navigation }) => {
   return (

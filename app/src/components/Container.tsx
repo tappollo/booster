@@ -1,12 +1,12 @@
 import React, { FunctionComponent as SFC } from "react";
 import {
-  StyleSheet,
-  View,
+  SafeAreaView,
   ScrollView,
   ScrollViewProps,
-  TouchableOpacity,
-  SafeAreaView
+  StyleSheet,
+  View
 } from "react-native";
+import styled from "styled-components";
 
 interface ContainerProps extends ScrollViewProps {
   expand?: boolean;
@@ -53,6 +53,12 @@ export const Column: SFC<ContainerProps> = props =>
   Container({ ...props, direction: "column" });
 export const Row: SFC<ContainerProps> = props =>
   Container({ ...props, direction: "row" });
+
+export const Center = styled(View)`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
 
 const styles = StyleSheet.create({
   expand: {

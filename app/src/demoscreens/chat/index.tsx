@@ -31,10 +31,11 @@ const Navigator = createStackNavigator(
   }
 );
 
-Navigator.navigationOptions = {
+Navigator.navigationOptions = ({ navigation }: any) => ({
   title: "Chat",
   tabBarIcon: ({ tintColor }: { tintColor: string }) => (
     <Icon name="ios-chatbubbles" size={17} color={tintColor} />
-  )
-};
+  ),
+  tabBarVisible: navigation.state.index === 0
+});
 export default Navigator;

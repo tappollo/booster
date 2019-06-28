@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import {
   NavigationScreenComponent as NSC,
   NavigationScreenOptions as NSO
@@ -7,16 +7,16 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import { signIn } from "../../functions/auth";
 import {
-  Column,
-  Button,
-  Heading2,
   Body,
+  Button,
+  Column,
+  Heading2,
   Tertiary,
   TextField
 } from "../../components";
 import { colors, margins } from "../../styles";
-import DisableIQKeyboardWhenFocused from "../../utils/DisableIQKeyboardWhenFocused";
 import { withAlert, withHud } from "../../functions/async";
+import DisableIQKeyboardWhenFocused from "../chat/components/DisableIQKeyboardWhenFocused";
 
 const Login: NSC<{}, NSO> = ({ navigation }) => {
   const [email, setEmail] = useState("");

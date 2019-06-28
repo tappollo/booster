@@ -1,17 +1,16 @@
 import React from "react";
-import { Dimensions, Animated, TouchableOpacity } from "react-native";
+import { Animated, Dimensions, TouchableOpacity } from "react-native";
 import {
   createStackNavigator,
   NavigationScreenComponent as NSC,
   NavigationScreenOptions as NSO
 } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
-import { Column, Row } from "../../components/Container";
+import { Column, Row } from "../../components";
 import { colors, fonts } from "../../styles";
 import { firestore } from "react-native-firebase";
 import styled from "styled-components/native";
 import { useCollection } from "../../functions/firestore";
-import { CollectionReference, DocumentReference } from "../../functions/types";
 import { FireImageRef } from "../../components/FireImage";
 import { useRadioButtons } from "../../components/RadioButton";
 import { useShrinkHeader } from "../../components/NavHeader";
@@ -36,7 +35,7 @@ const Title = styled(Animated.Text)`
   font: 500 17px System;
   color: ${colors.white};
   position: absolute;
-  top: 56;
+  top: 56px;
   left: 0;
   right: 0;
   text-align: center;
@@ -68,10 +67,7 @@ UploadButton.Container = styled(TouchableOpacity)`
 `;
 
 const ImageList: NSC<{}, NSO> = ({ navigation }) => {
-  const ref = store.collection("testList") as CollectionReference<{
-    image: DocumentReference<ImageData>;
-  }>;
-  const [items] = useCollection(ref);
+  const { items } = useCollection<ImageData>(store.collection("testList"));
   const [Header, scrollHook, getHeight] = useShrinkHeader();
   const [currentLabel, buttons] = useRadioButtons([
     "Label One",
