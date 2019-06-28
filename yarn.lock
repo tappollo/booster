@@ -11754,9 +11754,9 @@ react-native-parsed-text@^0.0.20:
     prop-types "^15.5.10"
 
 "react-native-progress-display@npm:@zhigang1992/react-native-progress-display@latest":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@zhigang1992/react-native-progress-display/-/react-native-progress-display-1.0.1.tgz#1c17945deb1dd3763e44818ad8c0dcb039724284"
-  integrity sha512-doMjk6EtbyWcu3pBCTzE3RzAewk17Y/XPpRfQiW3ATdmmFlXxeqPyLvcgoFDDi8aa1oW1LjJcqB8NPrl7Dx6fg==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@zhigang1992/react-native-progress-display/-/react-native-progress-display-1.0.2.tgz#af961047e5a6c8d60b09bec10b2d141cb25048e1"
+  integrity sha512-RGtLNvXioGZ92BiiDNcW4cQmKSzPbnjiQA2FQLqoTUj80GTFNvnmqmrrGk40pVwci6mLdsQG2v8+vqvmHn9qhg==
 
 react-native-reanimated@^1.1.0:
   version "1.1.0"
