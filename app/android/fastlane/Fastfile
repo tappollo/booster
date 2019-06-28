@@ -36,7 +36,7 @@ platform :android do
       api_token: "PHARAH_APPCENTER_API_TOKEN",
       owner_name: "PHARAH_APPCENTER_OWN_NAME",
       app_name: "PHARAH_APPCENTER_APP_NAME",
-      ipa: "./app/build/outputs/apk/release/app-release.apk",
+      apk: "./app/build/outputs/apk/release/app-release.apk",
       release_notes: changelog
     )
     url = lane_context[SharedValues::APPCENTER_DOWNLOAD_LINK]
