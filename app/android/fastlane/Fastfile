@@ -37,7 +37,9 @@ platform :android do
       owner_name: "PHARAH_APPCENTER_OWN_NAME",
       app_name: "PHARAH_APPCENTER_APP_NAME",
       apk: "./app/build/outputs/apk/release/app-release.apk",
-      release_notes: changelog
+      release_notes: changelog,
+      destination_type: 'group',
+      destinations: 'Public'
     )
     url = lane_context[SharedValues::APPCENTER_DOWNLOAD_LINK]
     ENV["SLACK_URL"] = "PHARAH_SLACK_URL"
