@@ -32,14 +32,14 @@ platform :android do
     set_version(tag: options[:tag])
     gradle(task: "clean assembleRelease")
     changelog = options[:changelog].gsub('\r\n', "\n").gsub('\n', "\n").gsub('\r', "\n")
-    hockey(
-      api_token: "PHARAH_HOCKEY_APP_API",
+    appcenter_upload(
+      api_token: "PHARAH_APPCENTER_API_TOKEN",
+      owner_name: "PHARAH_APPCENTER_OWN_NAME",
+      app_name: "PHARAH_APPCENTER_APP_NAME",
       ipa: "./app/build/outputs/apk/release/app-release.apk",
-      notify: "0",
-      public_identifier: "PHARAH_HOCKEY_APP_ID",
-      notes: changelog
+      release_notes: changelog
     )
-    url = lane_context[SharedValues::HOCKEY_DOWNLOAD_LINK]
+    url = lane_context[SharedValues::APPCENTER_DOWNLOAD_LINK]
     ENV["SLACK_URL"] = "PHARAH_SLACK_URL"
     slack(message: "Released android app to HockeyApp", payload: {
         'url' => url,
