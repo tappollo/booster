@@ -23,7 +23,8 @@ export const authGoogle = async () => {
   const result = await GoogleSignin.signIn();
   console.log(result);
   const credential = firebase.auth.GoogleAuthProvider.credential(
-    result.idToken
+    result.idToken,
+    result.serverAuthCode || undefined
   );
   return await firebase.auth().signInWithCredential(credential);
 };
