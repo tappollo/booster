@@ -1,9 +1,10 @@
 # Quick Start
 
-You need have node and [yarn](https://yarnpkg.com/en/) install first, because we are use monorepo in our app.
+You need to have node and [yarn](https://yarnpkg.com/en/) install first, because we are use monorepo in our app.
 
 ```bash
 git clone git@github.com:tappollo/booster.git goboost
+cd goboost
 yarn install
 ```
 

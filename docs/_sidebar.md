@@ -10,6 +10,7 @@
   - [AppStore release](wip.md)
   - [PlayStore release](wip.md)
   - [OTA update via CodePush](wip.md)
+  - [Multiple env setup](wip.md)
   - [CI/CD with Github Actions](wip.md)
   - [React Native Web](wip.md)
 

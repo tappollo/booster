@@ -1,6 +1,6 @@
 # Run the app
 
-Switch to dev env
+Switch to dev env and deploy firebase rules, indexes and functions
 
 ```bash
 yarn deploy:dev
@@ -16,7 +16,7 @@ yarn start
 ## Run iOS app
 
 To run iOS app, you'd need ruby for both [CocoaPods](https://cocoapods.org/) and [fastlane](https://fastlane.tools/),
-we recommend setup [rbenv](https://github.com/rbenv/rbenv) since it respects our `.ruby-version` on project root.
+we recommend setup [rbenv](https://github.com/rbenv/rbenv) or [rvm](https://rvm.io/).
 
 After which you need to run
 
@@ -43,6 +43,6 @@ Or manually from https://www.oracle.com/technetwork/java/javase/downloads/jdk8-d
 
 After which, run `yarn studio` to open up Android Studio. and use all the default options to setup project.
 
-Then it's best to [Configure signing for android](internal-distribution.md#android-signing)
+To have Phone Auth working, go [Configure signing for android](internal-distribution.md#android-signing)
 
-Then start up the app in Android Studio.
+Start up the app in Android Studio.

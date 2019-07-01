@@ -16,29 +16,29 @@ Replace `PHARAH_FIREBASE_PROJECT` in `.firebaserc` with the **Project ID** from 
 }
 ```
 
-For starter, you can only replace the `dev` one.
+For starter, you only need to replace the `dev` one.
 
 ## Create iOS app
 
-Go to your firebase project's Dashboard, can click on **Add App**, add an iOS app.
+Go to your firebase project's Dashboard, can click on **Add App**, add an **iOS app**.
 
 In iOS bundle ID, put in `com.goboost` with `goboost` replaced with your own project name.
 
-All the setup has already been done for you, skip the last step.
+All the setup has already been done for you, click skip on the last step.
 
-Place the downloaded `GoogleService-Info.plist` under `scripts/configs/dev/`
+Place downloaded `GoogleService-Info.plist` under `scripts/configs/dev/`
 
 Open `scripts/configs/dev/GoogleService-Info.plist` and copy the value of key `REVERSED_CLIENT_ID`
 
-Open `scripts/configs/dev/Info.plist` and replace `PHARAH_GOOGLE_REVERSE_DOMAIN` in with the value your copied
+Open `scripts/configs/dev/Info.plist`, replace `PHARAH_GOOGLE_REVERSE_DOMAIN` with the value your just copied
 
 ![Edit Info Plist](_images/edit-google-client-id-in-infoplist.png)
 
-!> Never edit the Info.plist in Xcode project directly, that’s just a temporary file
+!> Never edit the Info.plist in Xcode project directly, that’s just a temporary file.
 
 ## Create android app
 
-Go to your firebase project's Dashboard, can click on **Add App**, add an android app.
+Go to your firebase project's Dashboard, can click on **Add App**, add an **android app**.
 
 In Android package name, put in `com.goboost` with `goboost` replaced with your own project name.
 
