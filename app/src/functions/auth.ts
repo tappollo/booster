@@ -92,7 +92,10 @@ export const signInFacebook = async () => {
   })(null);
 };
 
-GoogleSignin.configure();
+GoogleSignin.configure({
+  webClientId: "PHARAH_FIREBASE_GOOGLE_SIGN_IN_WEB_CLIENT_ID"
+});
+
 export const signInGoogle = async () => {
   const result = await GoogleSignin.signIn();
   return await withHud("Loading", async () => {
