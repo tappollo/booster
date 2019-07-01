@@ -1,0 +1,22 @@
+{
+  "rules": {
+    "userStatus": {
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        ".read": true
+      }
+    },
+    "conversationCounts": {
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        ".read": "$uid === auth.uid"
+      }
+    },
+    "myUnreadCount": {
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        ".read": "$uid === auth.uid"
+      }
+    }
+  }
+}

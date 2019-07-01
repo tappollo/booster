@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity, Modal } from "react-native";
+import { Modal, StyleSheet, TouchableOpacity } from "react-native";
 import {
+  createStackNavigator,
   NavigationScreenComponent as NSC,
   NavigationScreenOptions as NSO
 } from "react-navigation";
-import { createStackNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
 import { withAlert } from "../../functions/async";
 import { signInWithPhone } from "../../functions/auth";
-import { Column, Button, Heading2, Body, Tertiary } from "../../components";
-import DisableIQKeyboardWhenFocused from "../../utils/DisableIQKeyboardWhenFocused";
+import { Body, Button, Column, Heading2, Tertiary } from "../../components";
 import PhoneNumberInput from "./components/PhoneNumberInput";
 import { colors, margins } from "../../styles";
 import Countries from "./Countries";
 import Confirm from "./Confirm";
+import DisableIQKeyboardWhenFocused from "../chat/components/DisableIQKeyboardWhenFocused";
 
 const US = {
   name: "United States",

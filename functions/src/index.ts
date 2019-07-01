@@ -3,11 +3,13 @@ import * as admin from "firebase-admin";
 import * as express from "express";
 import * as cookieParser from "cookie-parser";
 import * as cors from "cors";
-admin.initializeApp();
+import * as chat from "./chat";
 import { auth } from "./auth";
 import { bodyFiles } from "./bodyfiles";
 import { gcsUpload } from "./gcs";
-import { imageResize, ImageFile } from "./images";
+import { ImageFile, imageResize } from "./images";
+
+admin.initializeApp();
 
 const store = admin.firestore();
 const expApp = express();
@@ -61,4 +63,6 @@ expApp.post(
   }
 );
 
-export const api = functions.https.onRequest(expApp);
+const api = functions.https.onRequest(expApp);
+
+export { api, chat };

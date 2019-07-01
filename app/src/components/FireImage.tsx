@@ -1,15 +1,16 @@
-import React, { useEffect, useState, FunctionComponent as SFC } from "react";
+import React, { FunctionComponent as SFC, useEffect, useState } from "react";
 import {
-  View,
-  ViewProps,
-  Image,
-  StyleSheet,
-  PixelRatio,
+  ActivityIndicator,
   Animated,
-  ActivityIndicator
+  Image,
+  PixelRatio,
+  StyleSheet,
+  View,
+  ViewProps
 } from "react-native";
-import { DocumentReference } from "../functions/types";
 import { useDocument } from "../functions/firestore";
+import { DocumentReference } from "react-native-firebase/firestore";
+
 export interface ImageData {
   base64: string;
   width: number;
@@ -22,7 +23,7 @@ export interface ImageData {
 }
 
 interface FireImageRefProps extends ViewProps {
-  imageRef?: DocumentReference<ImageData>;
+  imageRef?: DocumentReference;
   width: number;
   height?: number;
 }
@@ -55,11 +56,7 @@ export const FireImageRef: SFC<FireImageRefProps> = ({
   height,
   ...props
 }) => {
-  const [image] = useDocument(imageRef, (img, lastImg) => {
-    const uri = img && getImgURL(img, width);
-    const lastUri = lastImg && getImgURL(lastImg, width);
-    return uri !== lastUri;
-  });
+  const { value: image } = useDocument<ImageData>(imageRef, [imageRef]);
   return image ? (
     <FireImage
       imageData={image}
@@ -72,55 +69,50 @@ export const FireImageRef: SFC<FireImageRefProps> = ({
   );
 };
 
-export const FireImage: SFC<FireImageProps> = ({
-  imageData,
-  width,
-  height,
-  style,
-  path,
-  ...rest
-}) => {
-  const sizeStyle = {
-    width,
-    height: height || (width * imageData.height) / imageData.width
-  };
-  const [opacity] = useState(new Animated.Value(0));
-  const [loaded, setLoaded] = useState(false);
-  const [completed, setCompleted] = useState(false);
-  useEffect(() => {
-    setLoaded(false);
-    setCompleted(false);
-    opacity.setValue(0);
-  }, [path]);
-  const uri = getImgURL(imageData, width);
-  return (
-    <View style={[style, sizeStyle]} {...rest}>
-      {completed ? null : (
-        <Image
-          style={StyleSheet.absoluteFill}
-          blurRadius={1}
-          source={{ uri: `data:image/png;base64,${imageData.base64}`, width }}
+export const FireImage: SFC<FireImageProps> = React.memo(
+  ({ imageData, width, height, style, path, ...rest }) => {
+    const sizeStyle = {
+      width,
+      height: height || (width * imageData.height) / imageData.width
+    };
+    const [opacity] = useState(new Animated.Value(0));
+    const [loaded, setLoaded] = useState(false);
+    const [completed, setCompleted] = useState(false);
+    useEffect(() => {
+      setLoaded(false);
+      setCompleted(false);
+      opacity.setValue(0);
+    }, [path]);
+    const uri = getImgURL(imageData, width);
+    return (
+      <View style={[style, sizeStyle]} {...rest}>
+        {completed ? null : (
+          <Image
+            style={StyleSheet.absoluteFill}
+            blurRadius={1}
+            source={{ uri: `data:image/png;base64,${imageData.base64}`, width }}
+          />
+        )}
+        <Animated.Image
+          style={[StyleSheet.absoluteFill, { opacity }]}
+          onLoad={() => {
+            Animated.timing(opacity, {
+              toValue: 1,
+              duration: 500,
+              useNativeDriver: true
+            }).start(() => setCompleted(true));
+            setLoaded(true);
+          }}
+          source={{ uri, width, cache: "reload" }}
         />
-      )}
-      <Animated.Image
-        style={[StyleSheet.absoluteFill, { opacity }]}
-        onLoad={() => {
-          Animated.timing(opacity, {
-            toValue: 1,
-            duration: 500,
-            useNativeDriver: true
-          }).start(() => setCompleted(true));
-          setLoaded(true);
-        }}
-        source={{ uri, width, cache: "reload" }}
-      />
-      <ActivityIndicator
-        animating={!loaded}
-        style={StyleSheet.absoluteFill}
-        color={"white"}
-      />
-    </View>
-  );
-};
+        <ActivityIndicator
+          animating={!loaded}
+          style={StyleSheet.absoluteFill}
+          color={"white"}
+        />
+      </View>
+    );
+  }
+);
 
 export default FireImage;

@@ -1,7 +1,7 @@
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import {
-  createSwitchNavigator,
   createBottomTabNavigator,
+  createSwitchNavigator,
   NavigationScreenComponent as NSC,
   NavigationScreenOptions as NSO
 } from "react-navigation";
@@ -10,23 +10,19 @@ import OnBoarding from "./onboarding";
 import Settings from "./settings";
 import StyleGuide from "./styleguide";
 import ImageList from "./imagelist";
-import Upload from "./upload";
 import Video from "./video";
-import { AuthContext } from "../functions/auth";
+import ChatTab from "./chat";
 
 const Home = createBottomTabNavigator({
+  ChatTab,
   Video,
-  Upload,
   ImageList,
   StyleGuide,
   Settings
 });
 
 const Dispatcher: NSC<{}, NSO> = ({ navigation }) => {
-  // const user = useContext(AuthContext);
   useEffect(() => {
-    // navigation.navigate(user ? "Home" : "OnBoarding");
-    // HELP NEEDED: does not work while using above line with context, why?
     return auth().onAuthStateChanged(user => {
       navigation.navigate(user ? "Home" : "OnBoarding");
     });

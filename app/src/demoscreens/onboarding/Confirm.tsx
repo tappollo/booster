@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { Alert, StyleSheet, TouchableOpacity } from "react-native";
 import {
   NavigationScreenComponent as NSC,
   NavigationScreenOptions as NSO
@@ -7,15 +7,15 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import RNProgressHud from "react-native-progress-display";
 import {
-  Column,
-  Button,
-  Heading2,
   Body,
+  Button,
+  Column,
+  Heading2,
   Tertiary,
   TextField
 } from "../../components";
 import { colors, margins } from "../../styles";
-import { ConfirmationResult, activateWithCode } from "../../functions/auth";
+import { activateWithCode, ConfirmationResult } from "../../functions/auth";
 
 const Confirm: NSC<{ result: ConfirmationResult }, NSO> = ({ navigation }) => {
   const [code, setCode] = useState("");
@@ -43,7 +43,7 @@ const Confirm: NSC<{ result: ConfirmationResult }, NSO> = ({ navigation }) => {
             activateWithCode(code, result)
               .then(() => {
                 RNProgressHud.dismiss();
-                navigation.navigate("Home");
+                navigation.navigate("Dispatcher");
               })
               .catch(error => {
                 RNProgressHud.dismiss();

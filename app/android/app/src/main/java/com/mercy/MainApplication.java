@@ -7,6 +7,8 @@ import android.support.multidex.MultiDex;
 import com.facebook.CallbackManager;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.react.ReactApplication;
+import com.dylanvann.fastimage.FastImageViewPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -36,6 +38,7 @@ import java.util.List;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
 import io.invertase.firebase.functions.RNFirebaseFunctionsPackage;
+import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import io.invertase.firebase.storage.RNFirebaseStoragePackage;
 
@@ -57,6 +60,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+            new FastImageViewPackage(),
+            new RNDeviceInfo(),
         new AsyncStoragePackage(),
         new ReactVideoPackage(),
         new VectorIconsPackage(),
@@ -73,6 +78,7 @@ public class MainApplication extends Application implements ReactApplication {
         new RNFirebaseFunctionsPackage(),
         new RNFirebaseFirestorePackage(),
         new RNFirebaseMessagingPackage(),
+        new RNFirebaseDatabasePackage(),
         new FBSDKPackage(mCallbackManager)
       );
     }

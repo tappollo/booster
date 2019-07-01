@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import {
   NavigationScreenComponent as NSC,
   NavigationScreenOptions as NSO
 } from "react-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
 import {
-  Column,
   Button,
+  Column,
   Heading2,
   Tertiary,
   TextField
@@ -56,7 +56,7 @@ const SignUp: NSC<{}, NSO> = ({ navigation }) => {
               e => e.code,
               () =>
                 signUp({ email, password }).then(() =>
-                  navigation.navigate("Home")
+                  navigation.navigate("Dispatcher")
                 )
             )
           )}

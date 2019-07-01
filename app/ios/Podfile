@@ -39,6 +39,7 @@ target 'mercy' do
   pod 'Firebase/Core', '~> 6.2.0'
   pod 'Firebase/Auth', '~> 6.2.0'
   pod 'Firebase/Firestore', '~> 6.2.0'
+  pod 'Firebase/Database', '~> 6.2.0'
   pod 'Firebase/Functions', '~> 6.2.0'
   pod 'Firebase/Messaging', '~> 6.2.0'
   pod 'Firebase/RemoteConfig', '~> 6.2.0'
@@ -74,6 +75,10 @@ target 'mercy' do
   pod 'RNProgressHud', :path => '../node_modules/react-native-progress-display/ios/RNProgressHud.podspec'
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
+  pod 'react-native-fast-image', :path => '../node_modules/react-native-fast-image'
 
 end
 
