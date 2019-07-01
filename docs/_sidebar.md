@@ -7,21 +7,21 @@
 - Guides
 
   - [Internal distribution](internal-distribution.md)
-  - [Themes](themes.md)
-  - [List of Plugins](plugins.md)
-  - [Write a Plugin](write-a-plugin.md)
-  - [Markdown configuration](markdown.md)
-  - [Language highlighting](language-highlight.md)
+  - [AppStore release](wip.md)
+  - [PlayStore release](wip.md)
+  - [OTA update via CodePush](wip.md)
+  - [CI/CD with Github Actions](wip.md)
+  - [React Native Web](wip.md)
 
 - Features
 
-  - [Deploy](deploy.md)
-  - [Helpers](helpers.md)
-  - [Vue compatibility](vue.md)
-  - [CDN](cdn.md)
-  - [Offline Mode(PWA)](pwa.md)
-  - [Server-Side Rendering(SSR)](ssr.md)
-  - [Embed Files](embed-files.md)
+  - [SignUp / Login w/ Social Media](wip.md)
+  - [In app Chat](wip.md)
+  - [Notification and DeepLink](wip.md)
+  - [Build in Settings](wip.md)
+  - [Image upload and download](wip.md)
+  - [Video Player](wip.md)
+  - [Live Streaming](wip.md)
+  - [Payment Integration](wip.md)
 
-- [Awesome docsify](awesome.md)
-- [Changelog](changelog.md)
+- [Changelog](wip.md)
