@@ -1,6 +1,6 @@
 # Setup Firebase
 
-### Create project
+## Create project
 
 Go to firebase console: https://console.firebase.google.com/ and click on **Add Project**
 
@@ -18,7 +18,7 @@ Replace `PHARAH_FIREBASE_PROJECT` in `.firebaserc` with the **Project ID** from 
 
 For starter, you can only replace the `dev` one.
 
-### Create iOS app
+## Create iOS app
 
 Go to your firebase project's Dashboard, can click on **Add App**, add an iOS app.
 
@@ -35,3 +35,44 @@ Open `scripts/configs/dev/Info.plist` and replace `PHARAH_GOOGLE_REVERSE_DOMAIN`
 ![Edit Info Plist](_images/edit-google-client-id-in-infoplist.png)
 
 !> Never edit the Info.plist in Xcode project directly, that’s just a temporary file
+
+## Create android app
+
+Go to your firebase project's Dashboard, can click on **Add App**, add an android app.
+
+In Android package name, put in `com.goboost` with `goboost` replaced with your own project name.
+
+Place the `google-service.json` under `scripts/configs/dev/`
+
+## Create admin service account
+
+Go to firebase project settings, under **Service Account**
+
+Generate new private key for Node.js, download and rename it to `adminsdk.json`.
+
+Place it in `scripts/configs/dev/`
+
+!> Remember to NEVER push this file to a public repo
+
+## Enable firebase services
+
+On firebase console, go to **Authentication**
+
+- Enable Email / Password
+- Enable Phone
+
+Go to **Database**
+
+- Enable firestore database in lock mode
+- Enable Realtime database in lock mode
+
+Go to **Storage**, **Hosting** and **Functions**
+
+- Click Get Started with default options
+
+## Optional: Upgrade to pay as you go plan
+
+With default free tier, you might run into some issues with when billing not enabled.
+It won't really cost anything, (unless you leaked your `adminsdk.json`).
+
+> After all these, it's a good time to do another commit

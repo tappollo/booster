@@ -2,19 +2,18 @@
 
   - [Quick start](quickstart.md)
   - [Create firebase project](firebase-configure.md)
-  - [Custom navbar](custom-navbar.md)
-  - [Cover page](cover.md)
+  - [Run the app](run-the-app.md)
 
-- Customization
+- Guides
 
-  - [Configuration](configuration.md)
+  - [Internal distribution](internal-distribution.md)
   - [Themes](themes.md)
   - [List of Plugins](plugins.md)
   - [Write a Plugin](write-a-plugin.md)
   - [Markdown configuration](markdown.md)
   - [Language highlighting](language-highlight.md)
 
-- Guide
+- Features
 
   - [Deploy](deploy.md)
   - [Helpers](helpers.md)
