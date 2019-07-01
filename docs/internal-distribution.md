@@ -2,30 +2,30 @@
 
 When it comes distribute our builds to QAs, there are usually two options.
 
-- Internal build distribution with AppCenter, Hockey apps
-- Official channels like Apple Test Flight and Google Play store's internal trackop
+1. Internal build distribution with AppCenter, Hockey apps
+1. Official channels like Apple Test Flight and Google Play store's internal track.
 
 Where often the official channel takes longer
 whether it's because their is a review process or simply because they need to
-extra processing on the build you've uploaded.
+do extra processing on the build you've uploaded.
 
-So for faster feedback loop, we usually opt-in for options with internal distributions.
+So for faster feedback loop, we usually opt-in for the first option with internal distributions.
 
 And since HockeyApp will be deprecated soon, we switched to uses AppCenter instead.
 
-Beside, we can also use CodePush from AppCenter later in the project.
+Beside, we are also use CodePush from AppCenter later in the project.
 
 ## AppCenter
 
 Go to https://appcenter.ms/apps and create two apps, `goboost-ios` and `goboost-android`.
 
 For both iOS and android project, go to distribution tab and create a Distribution groups called **Public**. Select `is_public`,
-This way we don't need our QAs to sign up in AppCenter just to access the builds. Since build provisioning is all done by ourselves.
+This way we don't need our QAs to sign up in AppCenter just to access the builds. The build provisioning is all done by ourselves.
 
-Then replace
+Replace
 
-- PHARAH_APPCENTER_API_TOKEN obtained from https://appcenter.ms/settings/apitokens
-- PHARAH_APPCENTER_OWN_NAME
+- PHARAH_APPCENTER_API_TOKEN (obtained from https://appcenter.ms/settings/apitokens)
+- PHARAH_APPCENTER_OWN_NAME (e.g. zhigang1992-4byv)
 - PHARAH_APPCENTER_APP_NAME
 
 In
@@ -33,15 +33,13 @@ In
 - app/ios/fastlane/Fastfile
 - app/android/fastlane/Fastfile
 
-Which appropriate settings
-
 ## iOS signing
 
 To distribute iOS app, you would need to apply for **Apple Developer Program** https://developer.apple.com/programs/
 
-We use fastlane match to manage our dev certs, you need to first set it up following https://docs.fastlane.tools/actions/match/
+We use `fastlane match` to manage our dev certs, go set it up with https://docs.fastlane.tools/actions/match/
 
-After which, you can replace
+Afterwards, replace
 
 - PHARAH_APPLE_DEV_ID e.g. `team@tappollo.com`
 - PHARAH_APPLE_DEV_ITC_TEAM e.g. `118131407` from AppStore Connect
@@ -53,7 +51,7 @@ In
 - app/ios/fastlane/Appfile
 - app/ios/fastlane/Matchfile
 
-### Create app in develop portal
+### Create app in Apple develop portal
 
 ```bash
 bundle exec fastlane produce -u team@tappollo.com -a com.goboost --skip_itc
@@ -67,7 +65,7 @@ bundle exec fastlane pem
 bundle exec fastlane pem --development
 ```
 
-Upload these two set of cert to firebase console under project settings, Cloud message
+Upload these two set of cert to firebase console under project settings, Cloud Messages
 
 ## android signing
 
@@ -89,9 +87,9 @@ keytool -list -v -keystore ./keystores/release.keystore
 
 And copy the value after SHA1, go to firestore console,
 in project settings under **Your apps**, **Add fingerprint**
-and paste in the SHA1 value you just copied.
+paste in the SHA1 value you just copied.
 
-This step is required for accessing some firebase feature in the app like Phone Auth and Google SignIn.
+This step is required for accessing some firebase feature like Phone Auth and Google SignIn.
 
 ## Release build
 
@@ -103,4 +101,4 @@ bundle exec internal tag:0.0.1 changelog:"Initial Release"
 
 With `tag` being the build name and `changelog` for what's changed.
 
-The number is always calculated by current [number_of_commits](https://docs.fastlane.tools/actions/number_of_commits/)
+The build number is always calculated by current [number_of_commits](https://docs.fastlane.tools/actions/number_of_commits/)

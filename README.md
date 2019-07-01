@@ -16,3 +16,11 @@ See the [Documentation](https://tappollo.github.io/booster/) guide for more deta
 - Prebuilt components
 - CI/CD integrations
 - Scalability, analytics, A/B testing, crash reporting from day one
+
+## Examples
+
+TBD
+
+## Community
+
+TBD
