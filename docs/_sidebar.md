@@ -7,22 +7,22 @@
 - Guides
 
   - [Internal distribution](internal-distribution.md)
-  - [AppStore release](wip.md)
-  - [PlayStore release](wip.md)
-  - [OTA update via CodePush](wip.md)
-  - [Multiple env setup](wip.md)
-  - [CI/CD with Github Actions](wip.md)
-  - [React Native Web](wip.md)
+  - [:construction: AppStore release](wip.md)
+  - [:construction: PlayStore release](wip.md)
+  - [:construction: OTA update via CodePush](wip.md)
+  - [:construction: Multiple env setup](wip.md)
+  - [:construction: CI/CD with Github Actions](wip.md)
+  - [:construction: React Native Web](wip.md)
 
 - Features
 
-  - [SignUp / Login w/ Social Media](wip.md)
-  - [In app Chat](wip.md)
-  - [Notification and DeepLink](wip.md)
-  - [Build in Settings](wip.md)
-  - [Image upload and download](wip.md)
-  - [Video Player](wip.md)
-  - [Live Streaming](wip.md)
-  - [Payment Integration](wip.md)
+  - [:construction: SignUp / Login w/ Social Media](wip.md)
+  - [:construction: In app Chat](wip.md)
+  - [:construction: Notification and DeepLink](wip.md)
+  - [:construction: Build in Settings](wip.md)
+  - [:construction: Image upload and download](wip.md)
+  - [:construction: Video Player](wip.md)
+  - [:construction: Live Streaming](wip.md)
+  - [:construction: Payment Integration](wip.md)
 
-- [Changelog](wip.md)
+- [:construction: Changelog](wip.md)
