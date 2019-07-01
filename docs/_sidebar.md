@@ -16,7 +16,7 @@
 
 - Features
 
-  - [:construction: SignUp / Login w/ Social Media](wip.md)
+  - [:construction: User auth and Social Login](wip.md)
   - [:construction: In app Chat](wip.md)
   - [:construction: Notification and DeepLink](wip.md)
   - [:construction: Build in Settings](wip.md)
