@@ -7,8 +7,7 @@
 - Guides
 
   - [Internal distribution](internal-distribution.md)
-  - [:construction: AppStore release](wip.md)
-  - [:construction: PlayStore release](wip.md)
+  - [AppStore & PlayStore release](stores-release.md)
   - [:construction: OTA update via CodePush](wip.md)
   - [:construction: Multiple env setup](wip.md)
   - [:construction: CI/CD with Github Actions](wip.md)
