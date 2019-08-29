@@ -8,7 +8,7 @@
 
   - [Internal distribution](internal-distribution.md)
   - [AppStore & PlayStore release](stores-release.md)
-  - [:construction: OTA update via CodePush](wip.md)
+  - [OTA update via CodePush](codepush.md)
   - [:construction: Multiple env setup](wip.md)
   - [:construction: CI/CD with Github Actions](wip.md)
   - [:construction: React Native Web](wip.md)
