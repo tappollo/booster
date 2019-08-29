@@ -1,11 +1,11 @@
-## Code Push Integration
+# Code Push Integration
 
-### AppCenter
+## AppCenter
 
 Go create two project on https://appcenter.ms if you haven't done it already in [internal distribution](internal-distribution.md#appcenter)
 Then go to distribute, code-push and `Create standard deployments`
 
-### Terminal
+## Terminal
 
 ```bash
 yarn global add appcenter-cli
