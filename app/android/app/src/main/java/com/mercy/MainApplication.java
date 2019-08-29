@@ -7,6 +7,7 @@ import android.support.multidex.MultiDex;
 import com.facebook.CallbackManager;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.react.ReactApplication;
+import com.microsoft.codepush.react.CodePush;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
@@ -52,6 +53,11 @@ public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
+    protected String getJSBundleFile(){
+      return CodePush.getJSBundleFile();
+    }
+
+    @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
     }
@@ -60,8 +66,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-            new FastImageViewPackage(),
-            new RNDeviceInfo(),
+        new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG, R.string.CodePushPublicKey),
+        new FastImageViewPackage(),
+        new RNDeviceInfo(),
         new AsyncStoragePackage(),
         new ReactVideoPackage(),
         new VectorIconsPackage(),

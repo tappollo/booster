@@ -9,7 +9,9 @@
     "xcode": "open ios/mercy.xcworkspace",
     "studio": "open -a /Applications/Android\\ Studio.app ./android/",
     "ci": "yarn lint && yarn build",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "codepush:ios": "appcenter codepush release-react -a PHARAH_IOS_APPCENTER_PROJECT --plist-file ios/mercy/Info.plist -k codepushsign.pem",
+    "codepush:android": "appcenter codepush release-react -a PHARAH_ANDROID_APPCENTER_PROJECT -k codepushsign.pem"
   },
   "workspaces": {
     "nohoist": [
@@ -30,6 +32,7 @@
     "ramda": "^0.26.1",
     "react": "16.8.6",
     "react-native": "0.59.9",
+    "react-native-code-push": "^5.7.0",
     "react-native-device-info": "^2.1.3",
     "react-native-fast-image": "^6.0.3",
     "react-native-fbsdk": "^0.10.1",
