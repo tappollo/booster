@@ -3,8 +3,9 @@
 You need to have node and [yarn](https://yarnpkg.com/en/) install first, because we are use monorepo in our app.
 
 ```bash
-git clone git@github.com:tappollo/booster.git goboost
+git clone --origin booster --single-branch --branch release git@github.com:tappollo/booster.git goboost
 cd goboost
+git branch -m master
 yarn install
 ```
 
