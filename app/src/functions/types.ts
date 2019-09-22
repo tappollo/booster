@@ -1,16 +1,5 @@
 import { AppDate } from "./envTypes";
 
-export interface ImageData {
-  base64: string;
-  width: number;
-  height: number;
-  sm?: string;
-  md?: string;
-  lg?: string;
-  xl?: string;
-  original?: string;
-}
-
 export interface UserInfo {
   displayName?: string;
   email?: string;

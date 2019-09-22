@@ -9,14 +9,12 @@ import { auth } from "react-native-firebase";
 import OnBoarding from "./onboarding";
 import Settings from "./settings";
 import StyleGuide from "./styleguide";
-import ImageList from "./imagelist";
 import Video from "./video";
 import ChatTab from "./chat";
 
 const Home = createBottomTabNavigator({
   ChatTab,
   Video,
-  ImageList,
   StyleGuide,
   Settings
 });
