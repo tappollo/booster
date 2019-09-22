@@ -1,4 +1,4 @@
-package com.goboost;
+package com.mercy;
 
 import android.app.Application;
 import android.content.Context;
