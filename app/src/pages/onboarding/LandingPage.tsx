@@ -1,11 +1,11 @@
 import { BigButton } from "../../components/Button";
 import styled from "styled-components";
-import { View } from "react-native";
+import { SafeAreaView } from "react-native";
 import React from "react";
 import { NavigationScreenComponent } from "react-navigation";
 import { NavigationStackOptions } from "react-navigation-stack";
 
-const Container = styled(View)`
+const Container = styled(SafeAreaView)`
   flex: 1;
   justify-content: center;
   padding: 20px;
