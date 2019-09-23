@@ -5,4 +5,4 @@ import { useScreens } from "react-native-screens";
 
 useScreens();
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent("booster", () => App);
