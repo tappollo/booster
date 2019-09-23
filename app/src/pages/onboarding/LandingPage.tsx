@@ -2,6 +2,8 @@ import { BigButton } from "../../components/Button";
 import styled from "styled-components";
 import { View } from "react-native";
 import React from "react";
+import { NavigationScreenComponent } from "react-navigation";
+import { NavigationStackOptions } from "react-navigation-stack";
 
 const Container = styled(View)`
   flex: 1;
@@ -9,12 +11,19 @@ const Container = styled(View)`
   padding: 20px;
 `;
 
-const LandingPage = () => {
+const LandingPage: NavigationScreenComponent<
+  {},
+  NavigationStackOptions
+> = () => {
   return (
     <Container>
-      <BigButton>Hello World</BigButton>
+      <BigButton>Get Started</BigButton>
     </Container>
   );
+};
+
+LandingPage.navigationOptions = {
+  header: null
 };
 
 export default LandingPage;
