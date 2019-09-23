@@ -1,3 +1,5 @@
+package_name("com.mercy")
+
 app_identifier("com.mercy")
 apple_id("PHARAH_APPLE_DEV_ID")
 

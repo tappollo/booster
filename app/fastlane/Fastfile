@@ -1,0 +1,101 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Upload to app center"
+  lane :appcenter do |options|
+    setup_ci(force: true)
+    # need appstore cert for buildibg
+    sync_code_signing(type: "appstore", readonly: true)
+    sync_code_signing(type: "development", readonly: true)
+    increment_build_number(
+      build_number: number_of_commits,
+      xcodeproj: "ios/mercy.xcodeproj"
+    )
+    cocoapods(
+      clean: true,
+      podfile: "./ios/",
+      repo_update: true,
+      silent: true
+    )
+    build_app(
+      workspace: "ios/mercy.xcworkspace",
+      clean: true,
+      scheme: "mercy",
+      output_directory: "build",
+      output_name: "mercy-appcenter.ipa",
+      export_method: "development",
+      export_options: {
+        method: "development",
+        provisioningProfiles: {
+          "com.mercy.ios" => "match Development com.mercy.ios"
+        }
+      },
+      silent: true
+    )
+    upload_symbols_to_crashlytics(
+      gsp_path: "./ios/GoogleService-Info.plist",
+      dsym_path: "./build/mercy-appcenter.dSYM.zip"
+    )
+    # https://github.com/microsoft/fastlane-plugin-appcenter/issues/93
+    sh('rm ./build/mercy-appcenter.dSYM.zip')
+    appcenter_upload(
+      api_token: "PHARAH_APPCENTER_API_TOKEN",
+      owner_name: "PHARAH_APPCENTER_OWN_NAME",
+      app_name: "PHARAH_APPCENTER_APP_NAME",
+      ipa: "./build/mercy.ipa",
+      destination_type: 'group',
+      destinations: 'Public'
+    )
+  end
+
+  desc "Upload to AppStore"
+  lane :store do |options|
+    setup_ci()
+    sync_code_signing(type: "appstore", readonly: true)
+    increment_build_number(build_number: number_of_commits)
+    build_app(
+      workspace: "ios/mercy.xcworkspace",
+      clean: true, 
+      scheme: "mercy",
+      output_directory: "build", 
+      output_name: "mercy-appstore.ipa",
+      silent: true
+    )
+    upload_symbols_to_crashlytics(
+      gsp_path: "./ios/GoogleService-Info.plist",
+      dsym_path: "./build/mercy-appstore.dSYM.zip"
+    )
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true
+    )
+  end
+end
+
+platform :android do
+  desc "Upload android to hockey app"
+  lane :appcenter do |options|
+    android_set_version_code(
+      version_code: number_of_commits,
+      gradle_file:"android/app/build.gradle"
+    )
+    gradle(gradle_path: "gradlew", project_dir: "android", task: "clean")
+    gradle(gradle_path: "gradlew", project_dir: "android", build_type: "Release", task: "assemble")
+    appcenter_upload(
+      api_token: "PHARAH_APPCENTER_API_TOKEN",
+      owner_name: "PHARAH_APPCENTER_OWN_NAME",
+      app_name: "PHARAH_APPCENTER_APP_NAME",
+      apk: "./android/app/build/outputs/apk/release/app-release.apk",
+      destination_type: 'group',
+      destinations: 'Public'
+    )
+  end
+
+  desc "Upload to Playstore"
+  lane :store do |options|
+    bump_version_code
+    set_version(tag: options[:tag])
+    gradle(task: "clean bundleRelease")
+    # TODO
+  end
+end
+
