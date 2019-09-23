@@ -1,10 +1,10 @@
-import { Button as PaperButton } from "react-native-paper";
 import React from "react";
+import { Button, ButtonProps } from "react-native-paper";
 
-export const BigButton: typeof PaperButton = props => {
+export const BigButton = (props: ButtonProps) => {
   return (
-    <PaperButton {...props} contentStyle={{ height: 50 }}>
+    <Button {...props} contentStyle={{ height: 58 }}>
       {props.children}
-    </PaperButton>
+    </Button>
   );
 };
