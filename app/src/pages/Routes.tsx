@@ -6,8 +6,9 @@ import HomePage from "./home/HomePage";
 import ContinueWithPhonePage from "./onboarding/ContinueWithPhonePage";
 import VerifySMSCodePage from "./onboarding/VerifySMSCodePage";
 import { Platform } from "react-native";
+import SelectCountryPage from "./onboarding/SelectCountryPage";
 
-const Onboarding = createStackNavigator(
+const OnboardingNav = createStackNavigator(
   {
     LandingPage,
     ContinueWithPhonePage,
@@ -27,6 +28,17 @@ const Onboarding = createStackNavigator(
         })
       }
     }
+  }
+);
+
+const Onboarding = createStackNavigator(
+  {
+    OnboardingNav,
+    SelectCountryPage
+  },
+  {
+    mode: "modal",
+    headerMode: "none"
   }
 );
 

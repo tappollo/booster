@@ -18,6 +18,9 @@ const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({
     <PageContainer>
       <BigTitle>Enter your{"\n"}mobile number</BigTitle>
       <PhoneNumberInputBox
+        onSelectCountry={() => {
+          navigation.push("SelectCountryPage");
+        }}
         country={country}
         phone={phone}
         onPhoneChange={setPhone}
