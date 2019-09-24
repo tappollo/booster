@@ -1,24 +1,25 @@
 import { BigButton } from "../../components/Button";
-import styled from "styled-components";
-import { SafeAreaView } from "react-native";
 import React from "react";
 import { NavigationScreenComponent } from "react-navigation";
-import { NavigationStackOptions } from "react-navigation-stack";
+import {
+  NavigationStackOptions,
+  NavigationStackScreenComponent
+} from "react-navigation-stack";
+import { PageContainer } from "../../components/Page";
+import { View } from "react-native";
 
-const Container = styled(SafeAreaView)`
-  flex: 1;
-  justify-content: center;
-  padding: 20px;
-`;
-
-const LandingPage: NavigationScreenComponent<
-  {},
-  NavigationStackOptions
-> = () => {
+const LandingPage: NavigationStackScreenComponent<{}> = ({ navigation }) => {
   return (
-    <Container>
-      <BigButton>Get Started</BigButton>
-    </Container>
+    <PageContainer>
+      <View style={{ flex: 1 }} />
+      <BigButton
+        onPress={() => {
+          navigation.push("ContinueWithPhonePage");
+        }}
+      >
+        Continue with Phone
+      </BigButton>
+    </PageContainer>
   );
 };
 
