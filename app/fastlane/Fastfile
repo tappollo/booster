@@ -34,10 +34,11 @@ platform :ios do
     )
     upload_symbols_to_crashlytics(
       gsp_path: "./ios/GoogleService-Info.plist",
-      dsym_path: "./build/mercy-appcenter.dSYM.zip"
+      dsym_path: "./build/mercy-appcenter.app.dSYM.zip",
+      binary_path: './ios/Pods/Fabric/upload-symbols'
     )
     # https://github.com/microsoft/fastlane-plugin-appcenter/issues/93
-    sh('rm ./build/mercy-appcenter.dSYM.zip')
+    sh('rm ../build/mercy-appcenter.app.dSYM.zip')
     appcenter_upload(
       api_token: "PHARAH_APPCENTER_API_TOKEN",
       owner_name: "PHARAH_APPCENTER_OWN_NAME",
