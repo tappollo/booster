@@ -4,16 +4,18 @@ import { BigButton } from "../../components/Button";
 import { Caption } from "react-native-paper";
 import { PageContainer } from "../../components/Page";
 import { NavigationStackScreenComponent } from "react-navigation-stack";
-import { Text } from "react-native";
+import { Alert, Text } from "react-native";
 import PhoneNumberInputBox, {
   defaultCountry
 } from "./components/PhoneNumberInput";
+import { auth } from "react-native-firebase";
 
 const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({
   navigation
 }) => {
   const [country, setCountry] = useState(defaultCountry);
   const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
   return (
     <PageContainer>
       <BigTitle>Enter your{"\n"}mobile number</BigTitle>
@@ -26,8 +28,24 @@ const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({
         onPhoneChange={setPhone}
       />
       <BigButton
-        onPress={() => {
-          navigation.push("VerifySMSCodePage");
+        loading={loading}
+        disabled={phone.length === 0}
+        onPress={async () => {
+          try {
+            setLoading(true);
+            const confirmation = await auth().signInWithPhoneNumber(
+              country.dial_code + phone
+            );
+            navigation.push("VerifySMSCodePage", {
+              confirmation
+            });
+          } catch (e) {
+            if (e.code !== "auth/popup-closed-by-user") {
+              Alert.alert("Error", e.message);
+            }
+          } finally {
+            setLoading(false);
+          }
         }}
       >
         Send Verification Code
