@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
+    "@react-native-community/geolocation": "^1.4.2",
+    "react-native-geolocation-service": "^3.1.0",
     "@types/react": "^16.9.2",
     "@types/react-native": "^0.60.15",
     "@types/react-native-fbsdk": "^1.0.0",
@@ -40,6 +42,7 @@
     "react-native-google-signin": "^2.0.0",
     "react-native-image-picker": "^0.28.1",
     "react-native-image-resizer": "^1.0.1",
+    "react-native-inappbrowser-reborn": "^3.1.0",
     "react-native-iphone-x-helper": "^1.2.1",
     "react-native-paper": "^2.16.0",
     "react-native-reanimated": "^1.2.0",
