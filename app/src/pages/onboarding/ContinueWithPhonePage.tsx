@@ -9,6 +9,7 @@ import PhoneNumberInputBox, {
   defaultCountry
 } from "./components/PhoneNumberInput";
 import { auth } from "react-native-firebase";
+import { VerifySMSCodePageParams } from "./VerifySMSCodePage";
 
 const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({
   navigation
@@ -40,8 +41,8 @@ const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({
               country.dial_code + phone
             );
             navigation.push("VerifySMSCodePage", {
-              confirmation
-            });
+              confirmation: confirmation.confirm
+            } as VerifySMSCodePageParams);
           } catch (e) {
             if (e.code !== "auth/popup-closed-by-user") {
               Alert.alert("Error", e.message);
