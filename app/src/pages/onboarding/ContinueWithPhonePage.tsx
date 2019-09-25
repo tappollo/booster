@@ -15,7 +15,9 @@ const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({
   navigation
 }) => {
   useEffect(() => {
-    auth().settings.appVerificationDisabledForTesting = true;
+    if (__DEV__) {
+      auth().settings.appVerificationDisabledForTesting = true;
+    }
   }, []);
   const [country, setCountry] = useState(defaultCountry);
   const [phone, setPhone] = useState("");
