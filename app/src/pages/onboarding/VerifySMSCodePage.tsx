@@ -23,7 +23,7 @@ const VerifySMSCodePage: NavigationStackScreenComponent<
     }
     return auth().onAuthStateChanged(user => {
       if (user != null) {
-        navigation.push("ChooseAddressPage");
+        navigation.push("Dispatcher");
       }
     });
   }, [focused, navigation]);

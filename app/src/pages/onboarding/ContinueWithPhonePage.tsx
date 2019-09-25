@@ -41,7 +41,7 @@ const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({
               country.dial_code + phone
             );
             navigation.push("VerifySMSCodePage", {
-              confirmation: confirmation.confirm
+              confirmation: confirmation.confirm.bind(confirmation)
             } as VerifySMSCodePageParams);
           } catch (e) {
             if (e.code !== "auth/popup-closed-by-user") {
