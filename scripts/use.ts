@@ -37,6 +37,7 @@ import * as process from "process";
       await fs.remove("../app/ios/GoogleService-Info.plist");
       await fs.remove("../app/android/app/google-services.json");
       await fs.remove("../app/ios/mercy/Info.plist");
+      await fs.remove("../app/android/app/src/main/res/values/strings.xml");
       await fs.remove("../functions/src/adminsdk.json");
       await fs.ensureSymlink(
         `./configs/${env}/GoogleService-Info.plist`,
@@ -49,6 +50,10 @@ import * as process from "process";
       await fs.ensureSymlink(
         `./configs/${env}/Info.plist`,
         `../app/ios/mercy/Info.plist`
+      );
+      await fs.ensureSymlink(
+        `./configs/${env}/strings.xml`,
+        "../app/android/app/src/main/res/values/strings.xml"
       );
       await fs.ensureSymlink(
         `./configs/${env}/adminsdk.json`,

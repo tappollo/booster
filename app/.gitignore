@@ -62,3 +62,4 @@ buck-out/
 ios/GoogleService-Info.plist
 android/app/google-services.json
 ios/mercy/Info.plist
+android/app/src/main/res/values/strings.xml
