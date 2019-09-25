@@ -3,9 +3,7 @@ default_platform(:ios)
 platform :ios do
   desc "Upload to app center"
   lane :appcenter do |options|
-    setup_ci(force: true, provider: 'travis')
-    # need appstore cert for buildibg
-    sync_code_signing(type: "appstore", readonly: true)
+    setup_ci(force: ENV.has_key?('GITHUB_WORKFLOW'), provider: "travis")
     sync_code_signing(type: "development", readonly: true)
     increment_build_number(
       build_number: number_of_commits,
@@ -51,9 +49,13 @@ platform :ios do
 
   desc "Upload to AppStore"
   lane :store do |options|
-    setup_ci()
+    xcversion(version: "11.0")
+    setup_ci(force: ENV.has_key?('GITHUB_WORKFLOW'), provider: "travis")
     sync_code_signing(type: "appstore", readonly: true)
-    increment_build_number(build_number: number_of_commits)
+    increment_build_number(
+      build_number: number_of_commits,
+      xcodeproj: "ios/mercy.xcodeproj"
+    )
     build_app(
       workspace: "ios/mercy.xcworkspace",
       clean: true, 
@@ -64,7 +66,7 @@ platform :ios do
     )
     upload_symbols_to_crashlytics(
       gsp_path: "./ios/GoogleService-Info.plist",
-      dsym_path: "./build/mercy-appstore.dSYM.zip"
+      dsym_path: "./build/mercy-appstore.app.dSYM.zip"
     )
     upload_to_testflight(
       skip_waiting_for_build_processing: true
