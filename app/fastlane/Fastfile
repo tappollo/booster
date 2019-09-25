@@ -100,10 +100,12 @@ platform :android do
 
   desc "Upload to Playstore"
   lane :store do |options|
-    bump_version_code
-    set_version(tag: options[:tag])
-    gradle(task: "clean bundleRelease")
-    # TODO
+    android_set_version_code(
+      version_code: number_of_commits,
+      gradle_file:"android/app/build.gradle"
+    )
+    gradle(gradle_path: "gradlew", project_dir: "android", task: "clean")
+    gradle(gradle_path: "gradlew", project_dir: "android", build_type: "Release", task: "bundle")
   end
 end
 
