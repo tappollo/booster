@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BigTitle } from "../../components/Title";
 import { BigButton } from "../../components/Button";
 import { Caption } from "react-native-paper";
@@ -13,6 +13,9 @@ import { auth } from "react-native-firebase";
 const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({
   navigation
 }) => {
+  useEffect(() => {
+    auth().settings.appVerificationDisabledForTesting = true;
+  }, []);
   const [country, setCountry] = useState(defaultCountry);
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);

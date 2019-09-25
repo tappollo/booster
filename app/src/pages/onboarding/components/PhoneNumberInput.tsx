@@ -10,6 +10,7 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import React, { useState } from "react";
 import theme from "../../../styles/theme";
+import color from "color";
 
 export const defaultCountry: Country = {
   name: "United States",
@@ -27,6 +28,7 @@ export interface Country {
 
 const Container = styled(View)`
   flex-direction: row;
+  border-bottom-width: 1px;
 `;
 
 const CountryFlag = styled(Text)`
@@ -36,8 +38,11 @@ const CountryFlag = styled(Text)`
 const Input = styled(TextInput).attrs({
   maxLength: 16,
   keyboardType: "phone-pad",
-  placeholder: "(123) 456-7890"
-})``;
+  placeholder: "(123) 456-7890",
+  placeholderTextColor: theme.colors.placeholder
+})`
+  color: ${theme.colors.text};
+`;
 
 interface PhoneNumberInputBoxProps {
   country: Country;
@@ -69,7 +74,9 @@ const PhoneNumberInputBox = (props: PhoneNumberInputBoxProps) => {
       style={{
         borderBottomColor: focus
           ? theme.colors.primary
-          : theme.colors.placeholder
+          : color(theme.colors.placeholder)
+              .alpha(0.3)
+              .string()
       }}
     >
       <TouchableOpacity

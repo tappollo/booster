@@ -15,6 +15,8 @@ const OnboardingNav = createStackNavigator(
     VerifySMSCodePage
   },
   {
+    // initialRouteName: 'LandingPage',
+    initialRouteName: "ContinueWithPhonePage",
     defaultNavigationOptions: {
       headerBackTitle: null,
       headerTintColor: "#585858",
