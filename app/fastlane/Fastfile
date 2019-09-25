@@ -43,7 +43,7 @@ platform :ios do
       api_token: "PHARAH_APPCENTER_API_TOKEN",
       owner_name: "PHARAH_APPCENTER_OWN_NAME",
       app_name: "PHARAH_APPCENTER_APP_NAME",
-      ipa: "./build/mercy.ipa",
+      ipa: "./build/mercy-appcenter.ipa",
       destination_type: 'group',
       destinations: 'Public'
     )
