@@ -17,7 +17,7 @@
     "xcode": "open app/ios/mercy.xcworkspace",
     "studio": "open -a /Applications/Android\\ Studio.app app/android/",
     "bootstrap": "yarn install && cd app && bundle install && cd ios && bundle exec pod install --repo-update",
-    "use": "yarn workspace @hiki/scripts use"
+    "use": "yarn workspace @mercy/scripts use"
   },
   "devDependencies": {
     "firebase-tools": "^7.0.1",
