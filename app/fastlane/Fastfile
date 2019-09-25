@@ -28,7 +28,9 @@ platform :ios do
           "com.mercy.ios" => "match Development com.mercy.ios"
         }
       },
-      silent: true
+      silent: true,
+      buildlog_path: "build",
+      suppress_xcode_output: true
     )
     upload_symbols_to_crashlytics(
       gsp_path: "./ios/GoogleService-Info.plist",
@@ -62,7 +64,9 @@ platform :ios do
       scheme: "mercy",
       output_directory: "build", 
       output_name: "mercy-appstore.ipa",
-      silent: true
+      silent: true,
+      buildlog_path: "build",
+      suppress_xcode_output: true
     )
     upload_symbols_to_crashlytics(
       gsp_path: "./ios/GoogleService-Info.plist",
@@ -70,7 +74,8 @@ platform :ios do
       binary_path: './ios/Pods/Fabric/upload-symbols'
     )
     upload_to_testflight(
-      skip_waiting_for_build_processing: true
+      skip_waiting_for_build_processing: true,
+      ipa: "./build/mercy-appstore.ipa"
     )
   end
 end
