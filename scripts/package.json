@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "tslint -p .",
     "build": "tsc",
+    "use": "ts-node ./use.ts",
     "ci": "yarn lint && yarn build"
   },
   "dependencies": {
