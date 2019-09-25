@@ -3,7 +3,7 @@ default_platform(:ios)
 platform :ios do
   desc "Upload to app center"
   lane :appcenter do |options|
-    setup_ci(force: true)
+    setup_ci(force: true, provider: 'travis')
     # need appstore cert for buildibg
     sync_code_signing(type: "appstore", readonly: true)
     sync_code_signing(type: "development", readonly: true)
