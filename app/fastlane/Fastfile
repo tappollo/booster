@@ -39,7 +39,8 @@ platform :ios do
       app_name: "PHARAH_APPCENTER_APP_NAME",
       ipa: "./build/mercy-appcenter.ipa",
       destination_type: 'group',
-      destinations: 'Public'
+      destinations: 'Public',
+      notify_testers: true
     )
     upload_symbols_to_crashlytics(
       gsp_path: "./ios/GoogleService-Info.plist",
@@ -94,7 +95,8 @@ platform :android do
       app_name: "PHARAH_APPCENTER_APP_NAME",
       apk: "./android/app/build/outputs/apk/release/app-release.apk",
       destination_type: 'group',
-      destinations: 'Public'
+      destinations: 'Public',
+      notify_testers: true
     )
   end
 
