@@ -9,19 +9,25 @@ service cloud.firestore {
     function isAdmin() {
       return false
     }
-    match /users/{userId} {
+
+    match /profile/{userId} {
       allow read;
       allow write: if isMe(userId)
-      match /devicesToken/{deviceId} {
-        allow read, write: if isMe(userId)
-      }
     }
+    match /private/{userId} {
+      allow read, write: if isMe(userId)
+    }
+    match /readonly/{userId} {
+      allow read: if isMe(userId)
+    }
+
+
     match /conversations/{conversationId} {
-        allow read: if userLoggedIn() && request.auth.uid in resource.data.userIds
         function isListedInChat() {
           return userLoggedIn()
             && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.userIds
         }
+        allow read: if userLoggedIn() && request.auth.uid in resource.data.userIds
         match /messages/{messageId} {
             allow read, create: if isListedInChat()
         }
