@@ -32,6 +32,7 @@ Read more here https://github.com/Microsoft/code-push/tree/master/cli#code-signi
 
 ```bash
 cd app
+openssl genrsa -out codepushsign.pem
 openssl rsa -pubout -in codepushsign.pem -out codepushsignpublic.pem
 cat codepushsignpublic.pem | pbcopy
 ```
