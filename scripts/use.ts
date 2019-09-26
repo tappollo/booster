@@ -40,8 +40,7 @@ import * as process from "process";
         "google-services.json": "../app/android/app/google-services.json",
         "Info.plist": "../app/ios/mercy/Info.plist",
         "strings.xml": "../app/android/app/src/main/res/values/strings.xml",
-        "adminsdk.json": "../functions/src/adminsdk.json",
-        "app.json": "../app/src/app.json"
+        "adminsdk.json": "../functions/src/adminsdk.json"
       };
 
       for (const key of Object.keys(fileMappings) as Array<
@@ -50,6 +49,13 @@ import * as process from "process";
         await fs.remove(fileMappings[key]);
         await fs.ensureSymlink(`./configs/${env}/${key}`, fileMappings[key]);
       }
+
+      // metro on react native doesn't support fs link
+      // So we copied it and set it to ready only
+      // "app.json": "../app/src/app.json"
+      await fs.remove("../app/src/app.json");
+      await fs.copy(`./configs/${env}/app.json`, "../app/src/app.json");
+      await fs.chmod("../app/src/app.json", "444");
 
       await run(
         `echo ${env} > ${path.resolve(__dirname, "./.current_project")}`
