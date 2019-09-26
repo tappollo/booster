@@ -1,8 +1,7 @@
-import { Text, FlatList, SafeAreaView } from "react-native";
-import { useMemo, useRef, useState } from "react";
-import { Searchbar, List } from "react-native-paper";
+import { FlatList, SafeAreaView, Text } from "react-native";
+import React, { useRef, useState } from "react";
+import { List, Searchbar } from "react-native-paper";
 import { NavigationStackScreenComponent } from "react-navigation-stack";
-import React from "react";
 import DisableIQKeyboardWhenFocused from "../../components/DisableIQKeyboardWhenFocused";
 import styled from "styled-components";
 import { Country } from "./components/PhoneNumberInput";

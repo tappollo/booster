@@ -1,5 +1,4 @@
 import { NativeModules, Platform } from "react-native";
-import React from "react";
 import { useEffect } from "react";
 
 let numberOfConversationsOnScreen = 0;

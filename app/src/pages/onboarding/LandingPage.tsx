@@ -1,10 +1,6 @@
 import { BigButton } from "../../components/Button";
 import React from "react";
-import { NavigationScreenComponent } from "react-navigation";
-import {
-  NavigationStackOptions,
-  NavigationStackScreenComponent
-} from "react-navigation-stack";
+import { NavigationStackScreenComponent } from "react-navigation-stack";
 import { PageContainer } from "../../components/Page";
 import { View } from "react-native";
 
