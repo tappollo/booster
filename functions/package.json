@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "lint": "eslint **/*.ts",
+    "lint": "eslint --ext js,ts,tsx src",
     "ci": "yarn lint && yarn build",
     "serve": "yarn build && firebase serve --only functions",
     "shell": "yarn build && firebase functions:shell"
@@ -19,10 +19,8 @@
     "firebase-functions": "^3.0.1"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.3.1",
-    "@typescript-eslint/parser": "^2.3.1",
     "eslint": "^6.4.0",
-    "eslint-config-prettier": "^6.3.0",
+    "eslint-config-typescript": "^3.0.0",
     "typescript": "^3.6.3"
   },
   "engines": {

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "build": "tsc",
-    "lint": "eslint .",
+    "lint": "eslint --ext js,ts,tsx src",
     "xcode": "open ios/mercy.xcworkspace",
     "studio": "open -a /Applications/Android\\ Studio.app ./android/",
     "ci": "yarn lint && yarn build",
