@@ -6,7 +6,7 @@
 // Definitions by: Charles Kenney <https://github.com/charliekenney23>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-declare module "tipsi-strip" {
+declare module "tipsi-stripe" {
   import * as React from "react";
   import * as ReactNative from "react-native";
 
