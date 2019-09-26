@@ -4,7 +4,7 @@ platform :ios do
   desc "Upload to app center"
   lane :appcenter do |options|
     xcversion(version: "10.3")
-    setup_ci(force: ENV.has_key?('GITHUB_WORKFLOW'), provider: "travis")
+    setup_ci(provider: "travis")
     sync_code_signing(type: "development", readonly: true)
     increment_build_number(
       build_number: number_of_commits,
@@ -52,7 +52,7 @@ platform :ios do
   desc "Upload to AppStore"
   lane :store do |options|
     xcversion(version: "10.3")
-    setup_ci(force: ENV.has_key?('GITHUB_WORKFLOW'), provider: "travis")
+    setup_ci(provider: "travis")
     sync_code_signing(type: "appstore", readonly: true)
     increment_build_number(
       build_number: number_of_commits,

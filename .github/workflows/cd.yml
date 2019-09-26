@@ -27,10 +27,13 @@ jobs:
       - run: pushd app && bundle exec fastlane ios appcenter && popd
         if: github.event.deployment.task != 'android'
         env:
+          CI: true
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
       - run: pushd app && bundle exec fastlane android appcenter && popd
         if: github.event.deployment.task != 'ios'
+        env:
+          CI: true
       - uses: deliverybot/deployment-status@master
         if: success()
         with:
