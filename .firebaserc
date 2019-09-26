@@ -1,7 +1,7 @@
 {
   "projects": {
-    "dev": "mercy-b94dd",
-    "staging": "mercy-b94dd",
-    "prod": "mercy-b94dd"
+    "dev": "PHARAH_FIREBASE_PROJECT",
+    "staging": "PHARAH_FIREBASE_PROJECT",
+    "prod": "PHARAH_FIREBASE_PROJECT"
   }
 }

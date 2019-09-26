@@ -16,7 +16,7 @@ public class MainActivity extends ReactFragmentActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "mercy";
+        return "booster";
     }
 
     @Override

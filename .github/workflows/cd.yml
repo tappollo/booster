@@ -1,0 +1,46 @@
+name: CD
+on: [deployment]
+
+jobs:
+  build:
+    name: Building
+    runs-on: macOS-10.14
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - uses: webfactory/ssh-agent@v0.1.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - uses: deliverybot/deployment-status@master
+        with:
+          state: pending
+          token: ${{ github.token }}
+      - run: |
+          gem install bundler
+          yarn bootstrap
+      - run: yarn use $TARGET_ENV
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          TARGET_ENV: ${{ github.event.deployment.environment }}
+      - run: pushd app && bundle exec fastlane ios appcenter && popd
+        if: github.event.deployment.task != 'android'
+        env:
+          CI: true
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+      - run: pushd app && bundle exec fastlane android appcenter && popd
+        if: github.event.deployment.task != 'ios'
+        env:
+          CI: true
+      - uses: deliverybot/deployment-status@master
+        if: success()
+        with:
+          state: success
+          token: ${{ github.token }}
+      - uses: deliverybot/deployment-status@master
+        if: failure()
+        with:
+          state: failure
+          token: ${{ github.token }}

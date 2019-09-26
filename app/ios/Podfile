@@ -1,80 +1,56 @@
 platform :ios, '9.0'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-def shared_pods
-  pod 'React', path: '../node_modules/react-native', subspecs: [
-      'Core',
-      'CxxBridge', # Include this for RN >= 0.47
-      'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
-      'RCTText',
-      'RCTImage',
-      'RCTNetwork',
-      'RCTWebSocket', # Needed for debugging
-      'RCTAnimation', # Needed for FlatList and animations running on native UI thread
-      'RCTActionSheet',
-      'RCTCameraRoll',
-      'RCTVibration',
-      'RCTWebSocket',
-      'RCTLinkingIOS',
-      'RCTSettings'
-  ]
-  pod 'yoga', path: '../node_modules/react-native/ReactCommon/yoga'
+def react_pods
+  pod 'React', :path => '../node_modules/react-native/'
+  pod 'React-Core', :path => '../node_modules/react-native/React'
+  pod 'React-DevSupport', :path => '../node_modules/react-native/React'
+  pod 'React-RCTActionSheet', :path => '../node_modules/react-native/Libraries/ActionSheetIOS'
+  pod 'React-RCTAnimation', :path => '../node_modules/react-native/Libraries/NativeAnimation'
+  pod 'React-RCTBlob', :path => '../node_modules/react-native/Libraries/Blob'
+  pod 'React-RCTImage', :path => '../node_modules/react-native/Libraries/Image'
+  pod 'React-RCTLinking', :path => '../node_modules/react-native/Libraries/LinkingIOS'
+  pod 'React-RCTNetwork', :path => '../node_modules/react-native/Libraries/Network'
+  pod 'React-RCTSettings', :path => '../node_modules/react-native/Libraries/Settings'
+  pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
+  pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
+  pod 'React-RCTWebSocket', :path => '../node_modules/react-native/Libraries/WebSocket'
+  pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
+  pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
+  pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
+  pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-
-end
-
-target 'mercyTests' do
-  shared_pods
 end
 
 target 'mercy' do
-  shared_pods
+  react_pods
+
+  pod 'Fabric', '~> 1.10.1'
+  pod 'Crashlytics', '~> 3.13.1'
+
+  firebase_version = '~> 6.2.0'
+
+  pod 'Firebase/Core', firebase_version
+  pod 'Firebase/Auth', firebase_version
+  pod 'Firebase/Firestore', firebase_version
+  pod 'Firebase/Functions', firebase_version
+  pod 'Firebase/Messaging', firebase_version
+  pod 'Firebase/RemoteConfig', firebase_version
+  pod 'Firebase/Storage', firebase_version
+  pod 'Firebase/Performance', firebase_version
+  pod 'Firebase/Database', firebase_version
+
   pod 'IQKeyboardManager'
 
-  pod 'Fabric'
-  pod 'Crashlytics'
+  pod 'FBSDKCoreKit', '~> 5.0'
+  pod 'FBSDKLoginKit', '~> 5.0'
+  pod 'FBSDKShareKit', '~> 5.0'
+  pod 'GoogleSignIn', '~> 4.4.0'
 
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Functions'
-  pod 'Firebase/Messaging'
-  pod 'Firebase/RemoteConfig'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Performance'
-
-
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKLoginKit'
-  pod 'FBSDKShareKit'
-  pod 'GoogleSignIn'
-  pod 'SVProgressHUD'
-
-  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
-
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
-
-  pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
-
-  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
-
-  pod 'react-native-image-resizer', :path => '../node_modules/react-native-image-resizer'
-
-  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
-
-  pod 'RNScreens', :path => '../node_modules/react-native-screens'
-
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-
-  pod 'react-native-video', :path => '../node_modules/react-native-video'
-
-  pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios/RNFirebase.podspec'
-
-  pod 'RNProgressHud', :path => '../node_modules/react-native-progress-display/ios/RNProgressHud.podspec'
-
-  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
-
+  use_native_modules!
 end
 
 
