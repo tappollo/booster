@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "tslint -p .",
     "build": "tsc",
+    "use": "ts-node ./use.ts",
     "ci": "yarn lint && yarn build"
   },
   "dependencies": {
@@ -20,6 +21,6 @@
     "ts-node": "^8.3.0",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "3.5.2"
+    "typescript": "^3.6.3"
   }
 }

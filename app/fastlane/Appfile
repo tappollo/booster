@@ -1,0 +1,7 @@
+package_name("com.mercy")
+
+app_identifier("com.mercy")
+apple_id("PHARAH_APPLE_DEV_ID")
+
+itc_team_id("PHARAH_APPLE_DEV_ITC_TEAM")
+team_id("PHARAH_APPLE_DEV_TEAM")

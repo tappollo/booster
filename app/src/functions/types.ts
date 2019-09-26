@@ -1,40 +1,28 @@
+// We are using AppDate as a why to customize date
+// Since it's different type on client vs on server
 import { AppDate } from "./envTypes";
 
-export interface UserInfo {
-  displayName?: string;
-  email?: string;
-  phoneNumber?: string;
-  photoURL?: string;
-  providerId: string;
-  uid: string;
-}
-
-export interface Conversation {
-  _duplicateLookup: string;
-  userIds: string[];
-  userDetails: {
-    [key: string]: UserInfo;
-  };
-  updatedAt: AppDate;
-  latestMessage?: Message;
-}
-
-export interface Message {
-  text: string;
-  createdBy: string;
-  createdAt?: AppDate;
-  image?: string;
-  system?: boolean;
-}
-
-export interface UserStatus {
-  online?: boolean;
-  disconnectedAt?: Date;
-  conversationId?: string;
-  isTyping?: boolean;
-}
-
+// This would be the data type we return from firestore calls
 export interface Doc<T> {
   id: string;
   doc: T;
+}
+
+// Public profile that's visible to everyone
+export interface Profile {
+  name: string;
+  email: string;
+  avatar: string;
+}
+
+// Private profile only you can see or update
+export interface PrivateProfile {
+  address: string;
+  preference: AppDate;
+}
+
+// System record only you can see, but not mutate
+export interface ReadonlyProfile {
+  accountBalance: number;
+  behaviorScore: number;
 }

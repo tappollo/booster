@@ -11,9 +11,9 @@
     "noEmit": true,
     "strict": true,
     "target": "esnext",
-    "skipLibCheck": true
-  },
-  "typeRoots": ["./src/types"],
-  "include": ["src", "__tests__"],
-  "exclude": ["../node_modules/"]
+    "skipLibCheck": true,
+    "sourceRoot": "src",
+    "sourceMap": true,
+    "typeRoots": ["./typings", "node_modules/@types"]
+  }
 }
