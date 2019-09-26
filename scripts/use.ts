@@ -40,7 +40,8 @@ import * as process from "process";
         "google-services.json": "../app/android/app/google-services.json",
         "Info.plist": "../app/ios/mercy/Info.plist",
         "strings.xml": "../app/android/app/src/main/res/values/strings.xml",
-        "adminsdk.json": "../functions/src/adminsdk.json"
+        "adminsdk.json": "../functions/src/adminsdk.json",
+        "server.json": "../functions/src/server.json"
       };
 
       for (const key of Object.keys(fileMappings) as Array<
