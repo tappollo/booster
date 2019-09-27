@@ -45,4 +45,6 @@ All the step for [native library](https://github.com/microsoft/react-native-code
 
 When you need to distribute OTA updates, just do `yarn codepush:ios` and `yarn codepush:android` in `app` folder.
 
-> P.S. OTA updates need to be apply to same build version and build numbers.
+> P.S. OTA updates apply to matching build version. e.g. `1.0` will match `1.0.*`
+> more detail here https://github.com/Microsoft/code-push/tree/master/cli#target-binary-version-parameter
+> to push mandatory updates use `yarn codepush:ios -m`

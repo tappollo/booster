@@ -10,4 +10,6 @@ const App = () => (
   </PaperProvider>
 );
 
-export default codePush()(App);
+export default codePush({
+  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME
+})(App);
