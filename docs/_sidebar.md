@@ -10,7 +10,7 @@
   - [AppStore & PlayStore release](stores-release.md)
   - [OTA update via CodePush](codepush.md)
   - [:construction: Multiple env setup](wip.md)
-  - [:construction: CI/CD with Github Actions](wip.md)
+  - [:construction: CI/CD with Github Actions](cicd.md)
   - [:construction: React Native Web](wip.md)
 
 - Features

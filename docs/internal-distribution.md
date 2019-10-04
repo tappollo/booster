@@ -96,9 +96,8 @@ This step is required for accessing some firebase feature like Phone Auth and Go
 In `app/ios` or `app/android`
 
 ```bash
-bundle exec internal tag:0.0.1 changelog:"Initial Release"
+bundle exec fastlane ios appcenter
+bundle exec fastlane android appcenter
 ```
-
-With `tag` being the build name and `changelog` for what's changed.
 
 The build number is always calculated by current [number_of_commits](https://docs.fastlane.tools/actions/number_of_commits/)
