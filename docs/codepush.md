@@ -23,8 +23,8 @@ Do it for both android and iOS app
 
 Then replace
 
-- `PHARAH_IOS_CODEPUSH_KEY` in `/scripts/config/dev/Info.plist'
-- `PHARAH_ANDROID_CODEPUSH_KEY` in `app/android/app/src/main/res/values/strings.xml`
+- `PHARAH_IOS_CODEPUSH_KEY` in `/scripts/configs/dev/Info.plist`
+- `PHARAH_ANDROID_CODEPUSH_KEY` in `/scripts/configs/dev/strings.xml`
 
 Generate code signing
 
@@ -37,9 +37,9 @@ openssl rsa -pubout -in codepushsign.pem -out codepushsignpublic.pem
 cat codepushsignpublic.pem | pbcopy
 ```
 
-Then replace `PHARAH_CODE_PUSH_CERT_PEM` in `/scripts/config/dev/Info.plist' and`app/android/app/src/main/res/values/strings.xml`.
+Then replace `PHARAH_CODE_PUSH_CERT_PEM` in `/scripts/configs/dev/Info.plist' and`/scripts/configs/dev/strings.xml`.
 
-Finally replace `PHARAH_IOS_APPCENTER_PROJECT` and `PHARAH_ANDROID_APPCENTER_PROJECT` in `app/package.json` and you're good to go.
+Finally replace `PHARAH_IOS_APPCENTER_PROJECT` and `PHARAH_ANDROID_APPCENTER_PROJECT` in `app/package.json` run `yarn use dev` and you're good to go.
 
 All the step for [native library](https://github.com/microsoft/react-native-code-push#getting-started) has been setup for you.
 

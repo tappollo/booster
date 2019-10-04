@@ -4,6 +4,8 @@
 
 Go to firebase console: https://console.firebase.google.com/ and click on **Add Project**
 
+> e.g. `goboost-dev` where goboost if your project name, reason of have `-dev` suffix is for [multi env setup](multiple-env.md) later on.
+
 Replace `PHARAH_FIREBASE_PROJECT` in `.firebaserc` with the **Project ID** from that new project.
 
 ```json
