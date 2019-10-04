@@ -69,20 +69,23 @@ Upload these two set of cert to firebase console under project settings, Cloud M
 
 ## android signing
 
-In folder `app/android` run
+In project root
 
 ```bash
-keytool -genkey -v -keystore ./keystores/release.keystore -alias key -keyalg RSA -keysize 2048 -validity 10000
+rm scripts/configs/dev/release.keystore
+keytool -genkey -v -keystore ./scripts/configs/dev/release.keystore -alias key -keyalg RSA -keysize 2048 -validity 10000
+# Apply the new release.keystore
+yarn use dev
 ```
 
-Then edit `app/android/app/build.gradle`
+Then edit `app/android/app/android/app/build.gradle`
 
 Replace the `PHARAH_ANDROID_STORE_PASSWORD` and `PHARAH_ANDROID_KEY_PASSWORD` with the ones you input in the step above
 
 To get SHA1 from this newly generated keystore, run
 
 ```bash
-keytool -list -v -keystore ./keystores/release.keystore
+keytool -list -v -keystore ./scripts/configs/dev/keystores/release.keystore
 ```
 
 And copy the value after SHA1, go to firestore console,
