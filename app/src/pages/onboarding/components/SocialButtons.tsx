@@ -44,11 +44,11 @@ export const LoginWithFacebook = () => {
         try {
           setLoading(true);
           await authFacebook();
+          navigation.navigate("Dispatcher");
         } catch (e) {
           if (e) {
             Alert.alert("Error", e.message);
           }
-          navigation.navigate("Dispatcher");
         } finally {
           setLoading(false);
         }
