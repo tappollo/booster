@@ -23,6 +23,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FIRApp configure];
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+    didFinishLaunchingWithOptions:launchOptions];
   [[IQKeyboardManager sharedManager] setEnable:YES];
   [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
   UNAuthorizationOptions authOptions = UNAuthorizationOptionAlert |
@@ -77,15 +79,6 @@
 //  NSLog(@"%@", error);
 //  
 //}
-
-- (BOOL)application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-  [[FBSDKApplicationDelegate sharedInstance] application:application
-    didFinishLaunchingWithOptions:launchOptions];
-  // Add any custom logic here.
-  return YES;
-}
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
