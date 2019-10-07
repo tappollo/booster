@@ -18,11 +18,25 @@ export interface Profile {
 // Private profile only you can see or update
 export interface PrivateProfile {
   address: string;
-  preference: AppDate;
+  phone?: string;
+  createdAt?: AppDate;
+  deviceInfo: {
+    [deviceId: string]: any;
+  };
+  pushTokens: {
+    [deviceId: string]: string;
+  };
 }
 
 // System record only you can see, but not mutate
 export interface ReadonlyProfile {
   accountBalance: number;
   behaviorScore: number;
+}
+
+// Firestore collection mapping
+export interface FirestoreCollectionTypes {
+  profile: Profile;
+  private: PrivateProfile;
+  readonly: ReadonlyProfile;
 }
