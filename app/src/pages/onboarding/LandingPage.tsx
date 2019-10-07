@@ -3,13 +3,14 @@ import React from "react";
 import { NavigationStackScreenComponent } from "react-navigation-stack";
 import { PageContainer } from "../../components/Page";
 import { View } from "react-native";
-import { LoginWithFacebook } from "./components/SocialButtons";
+import { LoginWithFacebook, LoginWithGoogle } from "./components/SocialButtons";
 
 const LandingPage: NavigationStackScreenComponent<{}> = ({ navigation }) => {
   return (
     <PageContainer>
       <View style={{ flex: 1 }} />
       <LoginWithFacebook />
+      <LoginWithGoogle />
       <BigButton
         onPress={() => {
           navigation.push("ContinueWithPhonePage");
