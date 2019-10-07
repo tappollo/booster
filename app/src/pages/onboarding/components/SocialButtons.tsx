@@ -1,9 +1,10 @@
 import { BigButton } from "../../../components/Button";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Alert } from "react-native";
 import firebase from "react-native-firebase";
 import { AccessToken, LoginManager } from "react-native-fbsdk";
 import { profileRef } from "../../../functions/user";
+import { NavigationContext } from "react-navigation";
 
 export const authFacebook = async () => {
   LoginManager.logOut();
@@ -35,6 +36,7 @@ export const authFacebook = async () => {
 
 export const LoginWithFacebook = () => {
   const [loading, setLoading] = useState(false);
+  const navigation = useContext(NavigationContext);
   return (
     <BigButton
       loading={loading}
@@ -46,6 +48,7 @@ export const LoginWithFacebook = () => {
           if (e) {
             Alert.alert("Error", e.message);
           }
+          navigation.navigate("Dispatcher");
         } finally {
           setLoading(false);
         }
