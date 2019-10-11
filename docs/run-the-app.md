@@ -36,6 +36,7 @@ To run android app, you need java 1.8.
 You can install it with
 
 ```bash
+brew tap homebrew/cask-versions
 brew cask install java8
 ```
 
