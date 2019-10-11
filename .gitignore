@@ -3,5 +3,3 @@ node_modules
 firebase-debug.log
 app/src/app.json
 app/src/version.json
-.version
-functions/src/version.json
