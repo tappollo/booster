@@ -3,6 +3,7 @@
 Switch to dev env and deploy firebase rules, indexes and functions
 
 ```bash
+yarn firebase login
 yarn deploy:dev
 ```
 
@@ -36,7 +37,8 @@ To run android app, you need java 1.8.
 You can install it with
 
 ```bash
-brew cask install java8
+brew tap homebrew/cask-versions
+brew cask install adoptopenjdk8
 ```
 
 Or manually from https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
