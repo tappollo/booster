@@ -14,7 +14,6 @@
     "postinstall": "yarn workspace @mercy/app postinstall && yarn updateVersion",
     "updateVersion": "echo \"{\\\"current\\\":\\\"`git rev-parse HEAD`\\\",\\\"code\\\":`git rev-list --count HEAD`}\" > .version",
     "ci": "yarn workspace @mercy/app ci && yarn workspace @mercy/web ci && yarn workspace @mercy/functions ci && yarn workspace @mercy/scripts ci",
-    "deploy:dev": "ts-node ./scripts/use.ts dev && firebase deploy --force",
     "start": "yarn workspace @mercy/app start",
     "xcode": "open app/ios/mercy.xcworkspace",
     "studio": "open -a /Applications/Android\\ Studio.app app/android/",
