@@ -16,7 +16,7 @@ yarn install
 To customize our project with our own project name,
 
 ```bash
-./scripts/Starting_over_from_the_beginning.ts goboost
+./scripts/rename.ts goboost
 ```
 
 > It would be a good time to commit since there were a lot of changes.

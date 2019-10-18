@@ -1,6 +1,5 @@
 #!./node_modules/.bin/ts-node
 
-import chalk from "chalk";
 import * as meow from "meow";
 import ora from "ora";
 import * as fs from "fs-extra";
@@ -10,12 +9,10 @@ import * as path from "path";
 const cli = meow(
   `
 	Usage
-	  $ ./Starting_over_from_the_beginning.ts
+	  $ ./rename.ts
 
 	Examples
-	  $ ./Starting_over_from_the_beginning.ts awesome
-	  
-  ${chalk.bold("Heroes never die!")}
+	  $ ./rename.ts awesome
 `
 );
 
@@ -30,7 +27,7 @@ const replaceInFiles = async (to: string) => {
       relative("../node_modules/**"),
       relative("../*/node_modules/**"),
       relative("../app/ios/Pods/**"),
-      relative("./Starting_over_from_the_beginning.ts")
+      relative("./rename.ts")
     ]
   });
 };
