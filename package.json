@@ -21,9 +21,9 @@
     "use": "yarn workspace @mercy/scripts use"
   },
   "devDependencies": {
-    "firebase-tools": "^7.0.1",
-    "husky": "^2.5.0",
-    "lint-staged": "^8.2.1",
+    "firebase-tools": "^7.6.1",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
     "prettier": "^1.18.2"
   },
   "husky": {
