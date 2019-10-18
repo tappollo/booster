@@ -1,17 +1,15 @@
 import { BigButton } from "../../../components/Button";
 import React, { useContext, useState } from "react";
 import { Alert } from "react-native";
-import firebase, { AuthCredential } from "react-native-firebase";
+import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { AccessToken, LoginManager } from "react-native-fbsdk";
 import { profileRef } from "../../../functions/user";
 import { NavigationContext } from "react-navigation";
 import { GoogleSignin } from "react-native-google-signin";
+type AuthCredential = FirebaseAuthTypes.AuthCredential;
 
 const signIn = async (cred: AuthCredential) => {
-  const {
-    user,
-    additionalUserInfo
-  } = await firebase.auth().signInWithCredential(cred);
+  const { user, additionalUserInfo } = await auth().signInWithCredential(cred);
   if (additionalUserInfo && additionalUserInfo.isNewUser) {
     const name = user.displayName || "";
     const email = user.email || "unknown@example.com";
@@ -33,9 +31,7 @@ export const authFacebook = async () => {
   if (!token) {
     throw Error("failed to get token");
   }
-  const credential = firebase.auth.FacebookAuthProvider.credential(
-    token.accessToken
-  );
+  const credential = auth.FacebookAuthProvider.credential(token.accessToken);
   await signIn(credential);
 };
 
@@ -44,9 +40,7 @@ GoogleSignin.configure();
 export const authGoogle = async () => {
   const result = await GoogleSignin.signIn();
   console.log(result);
-  const credential = firebase.auth.GoogleAuthProvider.credential(
-    result.idToken
-  );
+  const credential = auth.GoogleAuthProvider.credential(result.idToken);
   await signIn(credential);
 };
 

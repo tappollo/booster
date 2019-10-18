@@ -200,23 +200,8 @@ dependencies {
       implementation jscFlavor
     }
 
-    implementation "com.google.android.gms:play-services-base:16.1.0"
-
-    implementation 'com.google.firebase:firebase-core:16.0.9'
-    implementation "com.google.firebase:firebase-auth:17.0.0"
-    implementation 'com.google.firebase:firebase-firestore:19.0.0'
-    implementation 'com.google.firebase:firebase-database:17.0.0'
-    implementation "com.google.firebase:firebase-functions:17.0.0"
-    implementation "com.google.firebase:firebase-storage:17.0.0"
-    implementation "com.google.firebase:firebase-messaging:18.0.0"
-    implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
-
     implementation 'com.facebook.android:facebook-android-sdk:5.0.3'
     implementation 'com.facebook.android:facebook-login:5.0.3'
-
-    implementation('com.crashlytics.sdk.android:crashlytics:2.9.9@aar') {
-        transitive = true
-    }
 
     implementation 'androidx.multidex:multidex:2.0.0'
 }

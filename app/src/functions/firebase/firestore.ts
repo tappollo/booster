@@ -1,8 +1,7 @@
-import {
-  CollectionReference,
-  DocumentReference,
-  Query
-} from "react-native-firebase/firestore";
+import { FirebaseFirestoreTypes } from "@react-native-firebase/firestore";
+type CollectionReference = FirebaseFirestoreTypes.CollectionReference;
+type DocumentReference = FirebaseFirestoreTypes.DocumentReference;
+type Query = FirebaseFirestoreTypes.Query;
 import {
   MutableRefObject,
   useCallback,
@@ -109,8 +108,6 @@ export const useGetDocument = <T>(docRef: TypedDocumentReference<T>) => {
   return state;
 };
 
-type QueryOperator = "=" | "==" | ">" | ">=" | "<" | "<=" | "array-contains";
-
 export interface TypedQuery<T> extends Query {}
 export interface TypedDocumentReference<T> extends DocumentReference {
   update(partial: Partial<T>): Promise<void>;
@@ -118,11 +115,6 @@ export interface TypedDocumentReference<T> extends DocumentReference {
 }
 export interface TypedCollectionReference<T> extends CollectionReference {
   doc(documentPath?: string): TypedDocumentReference<T>;
-  where<K extends keyof T>(
-    fieldPath: K,
-    op: QueryOperator,
-    value: T[K]
-  ): TypedQuery<T>;
 }
 
 export const useQuery = <T>(query: TypedQuery<T>) => {

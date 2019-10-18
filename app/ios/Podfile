@@ -28,21 +28,6 @@ end
 target 'mercy' do
   react_pods
 
-  pod 'Fabric', '~> 1.10.1'
-  pod 'Crashlytics', '~> 3.13.1'
-
-  firebase_version = '~> 6.2.0'
-
-  pod 'Firebase/Core', firebase_version
-  pod 'Firebase/Auth', firebase_version
-  pod 'Firebase/Firestore', firebase_version
-  pod 'Firebase/Functions', firebase_version
-  pod 'Firebase/Messaging', firebase_version
-  pod 'Firebase/RemoteConfig', firebase_version
-  pod 'Firebase/Storage', firebase_version
-  pod 'Firebase/Performance', firebase_version
-  pod 'Firebase/Database', firebase_version
-
   pod 'IQKeyboardManager'
 
   pod 'FBSDKCoreKit', '~> 5.0'

@@ -1,4 +1,6 @@
-import { auth, firestore, messaging } from "react-native-firebase";
+import auth from "@react-native-firebase/auth";
+import firestore from "@react-native-firebase/firestore";
+import messaging from "@react-native-firebase/messaging";
 import { TypedCollectionReference } from "./firebase/firestore";
 import { FirestoreCollectionTypes, PrivateProfile } from "./types";
 import DeviceInfo from "react-native-device-info";

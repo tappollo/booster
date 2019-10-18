@@ -7,7 +7,7 @@ import { Caption } from "react-native-paper";
 import { Alert, Text } from "react-native";
 import SMSCodeInput from "./components/SMSCodeInput";
 import { useFocusedHook } from "../../functions/navigations";
-import { auth } from "react-native-firebase";
+import auth from "@react-native-firebase/auth";
 
 export interface VerifySMSCodePageParams {
   confirmation: (code: string) => Promise<any>;

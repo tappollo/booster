@@ -3,7 +3,7 @@ import {
   SwitchNavigatorConfig
 } from "react-navigation";
 import { useEffect } from "react";
-import { auth } from "react-native-firebase";
+import auth from "@react-native-firebase/auth";
 
 const Dispatcher: NavigationScreenComponent<SwitchNavigatorConfig, {}> = ({
   navigation

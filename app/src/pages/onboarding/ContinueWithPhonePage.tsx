@@ -8,7 +8,7 @@ import { Alert, Text } from "react-native";
 import PhoneNumberInputBox, {
   defaultCountry
 } from "./components/PhoneNumberInput";
-import { auth } from "react-native-firebase";
+import auth from "@react-native-firebase/auth";
 import { VerifySMSCodePageParams } from "./VerifySMSCodePage";
 
 const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({

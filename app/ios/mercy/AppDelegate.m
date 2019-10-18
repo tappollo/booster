@@ -14,8 +14,6 @@
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import <Firebase/Firebase.h>
 #import <UserNotifications/UserNotifications.h>
-#import "RNFirebaseNotifications.h"
-#import "RNFirebaseMessaging.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @implementation AppDelegate
@@ -35,8 +33,8 @@
    completionHandler:^(BOOL granted, NSError * _Nullable error) {
      if (error) {NSLog(@"%@", error);}
    }];
-  [RNFirebaseNotifications configure];
-  [RNFirebaseMessaging instance];
+//  [RNFirebaseNotifications configure];
+//  [RNFirebaseMessaging instance];
 //  [[UIApplication sharedApplication] registerForRemoteNotifications];
   [application registerForRemoteNotifications];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
