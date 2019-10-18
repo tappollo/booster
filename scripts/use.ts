@@ -2,7 +2,7 @@
 
 import chalk from "chalk";
 import * as meow from "meow";
-import ora from "ora";
+import ora = require("ora");
 import * as path from "path";
 import { run } from "./utils/run";
 import * as fs from "fs-extra";
