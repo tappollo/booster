@@ -6,7 +6,7 @@
     "nohoist": []
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf lib && tsc",
     "lint": "eslint --ext js,ts,tsx src",
     "ci": "yarn lint && yarn build",
     "serve": "yarn build && firebase serve --only functions",
