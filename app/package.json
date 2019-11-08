@@ -72,6 +72,6 @@
     "metro-react-native-babel-preset": "^0.56.0",
     "patch-package": "^6.1.2",
     "postinstall-postinstall": "^2.0.0",
-    "typescript": "^3.7.0-beta"
+    "typescript": "^3.7.2"
   }
 }
