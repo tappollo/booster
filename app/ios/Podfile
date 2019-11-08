@@ -39,9 +39,6 @@ target 'mercy' do
 
   pod 'IQKeyboardManager'
 
-  pod 'FBSDKCoreKit', '~> 5.0'
-  pod 'FBSDKLoginKit', '~> 5.0'
-  pod 'FBSDKShareKit', '~> 5.0'
   pod 'Reveal-SDK', :configurations => ['Debug']
 
   use_native_modules!
