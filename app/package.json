@@ -24,7 +24,7 @@
     "@types/color": "^3.0.0",
     "@types/react": "^16.9.9",
     "@types/react-native": "^0.60.21",
-    "@types/react-native-fbsdk": "^1.0.0",
+    "@types/react-native-fbsdk": "^1.1.1",
     "@types/react-native-vector-icons": "^6.4.4",
     "@types/react-navigation": "^3.0.8",
     "@types/styled-components": "^4.1.19",
