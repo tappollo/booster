@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, ButtonProps } from "react-native-paper";
+import { Button } from "react-native-paper";
 import { Text } from "react-native";
 
-export const BigButton = (props: ButtonProps) => {
+export const BigButton: typeof Button = props => {
   return (
     <Button
       dark={true}

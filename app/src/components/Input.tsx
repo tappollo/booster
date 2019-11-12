@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TextInput, TextInputProps } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 import { View } from "react-native";
 import React from "react";
 
@@ -12,7 +12,7 @@ const Clip = styled(View)`
   overflow: hidden;
 `;
 
-export const ClippedInput = (props: TextInputProps) => {
+export const ClippedInput: typeof TextInput = props => {
   return (
     <Clip>
       <Input {...props} />
