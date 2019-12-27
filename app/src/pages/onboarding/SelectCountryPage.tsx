@@ -4,6 +4,9 @@ import { List, Searchbar } from "react-native-paper";
 import styled from "styled-components";
 import { Country } from "./components/PhoneNumberInput";
 import Fuse from "fuse.js";
+import { RouteProp } from "@react-navigation/core";
+import { OnBoardingParams } from "../Routes";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 const useFuse = () => {
   const fuseOptions = {
@@ -28,19 +31,27 @@ const SearchInput = styled(Searchbar).attrs({
   margin: 4px 15px;
 `;
 
-const SelectCountryPage: NavigationStackScreenComponent<{
+export interface SelectCountryPageParams {
   onSelect: (country: Country) => void;
-}> = ({ navigation }) => {
+}
+
+const SelectCountryPage = ({
+  route,
+  navigation
+}: {
+  route: RouteProp<OnBoardingParams, "SelectCountryPage">;
+  navigation: StackNavigationProp<OnBoardingParams>;
+}) => {
   const fuse = useFuse();
   const [query, setQuery] = useState("");
   const dataSource = query ? fuse.search(query) : countries;
-  const onSelect = navigation.getParam("onSelect");
+  const onSelect = route.params.onSelect;
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <SearchInput
         onChangeText={setQuery}
         value={query}
-        onIconPress={() => navigation.goBack()}
+        onIconPress={() => navigation.pop()}
         style={{ margin: 4 }}
       />
       <FlatList

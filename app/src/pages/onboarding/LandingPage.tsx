@@ -3,10 +3,14 @@ import React from "react";
 import { PageContainer } from "../../components/Page";
 import { View } from "react-native";
 import { LoginWithFacebook, LoginWithGoogle } from "./components/SocialButtons";
-import { useNavigation } from "@react-navigation/core";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { OnboardingStackParams } from "../Routes";
 
-const LandingPage = () => {
-  const navigation = useNavigation();
+const LandingPage = ({
+  navigation
+}: {
+  navigation: StackNavigationProp<OnboardingStackParams>;
+}) => {
   return (
     <PageContainer>
       <View style={{ flex: 1 }} />
@@ -14,7 +18,7 @@ const LandingPage = () => {
       <LoginWithGoogle />
       <BigButton
         onPress={() => {
-          navigation.navigate("ContinueWithPhonePage");
+          navigation.push("ContinueWithPhonePage");
         }}
       >
         Continue with Phone
