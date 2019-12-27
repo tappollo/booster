@@ -23,7 +23,6 @@
   [FIRApp configure];
   [[FBSDKApplicationDelegate sharedInstance] application:application
     didFinishLaunchingWithOptions:launchOptions];
-  [[IQKeyboardManager sharedManager] setEnable:YES];
   [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
   UNAuthorizationOptions authOptions = UNAuthorizationOptionAlert |
   UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
@@ -61,7 +60,7 @@
 #endif
 }
 //-(void) userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
-//  
+//
 //  [[RNFirebaseMessaging instance] didReceiveRemoteNotification:response.notification.request.content.userInfo];
 //  completionHandler();
 //}
@@ -75,7 +74,7 @@
 //}
 //- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
 //  NSLog(@"%@", error);
-//  
+//
 //}
 
 - (BOOL)application:(UIApplication *)application
