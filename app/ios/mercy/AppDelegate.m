@@ -21,6 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FIRApp configure];
+  [[IQKeyboardManager sharedManager] setEnable:NO];
   [[FBSDKApplicationDelegate sharedInstance] application:application
     didFinishLaunchingWithOptions:launchOptions];
   [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
