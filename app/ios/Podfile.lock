@@ -12,6 +12,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.3):
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
+  - CocoaAsyncSocket (7.6.3)
   - CodePush (5.7.0):
     - Base64 (~> 1.1)
     - JWT (~> 3.0.0-beta.7)
@@ -229,6 +230,10 @@ PODS:
   - IQKeyboardManager (6.5.0)
   - JWT (3.0.0-beta.11):
     - Base64 (~> 1.1.2)
+  - KTVCocoaHTTPServer (1.0.0):
+    - CocoaAsyncSocket
+  - KTVHTTPCache (2.0.1):
+    - KTVCocoaHTTPServer
   - leveldb-library (1.22)
   - libwebp (1.0.3):
     - libwebp/demux (= 1.0.3)
@@ -246,6 +251,8 @@ PODS:
   - nanopb/encode (0.3.901)
   - Protobuf (3.10.0)
   - RCTRequired (0.61.2)
+  - RCTSystemSetting (1.7.3):
+    - React
   - RCTTypeSafety (0.61.2):
     - FBLazyVector (= 0.61.2)
     - Folly (= 2018.10.22.00)
@@ -408,25 +415,33 @@ PODS:
     - React-cxxreact (= 0.61.2)
     - React-jsi (= 0.61.2)
   - React-jsinspector (0.61.2)
-  - react-native-fbsdk (1.0.4):
+  - react-native-fbsdk (1.1.1):
     - React
-    - react-native-fbsdk/Core (= 1.0.4)
-    - react-native-fbsdk/Login (= 1.0.4)
-    - react-native-fbsdk/Share (= 1.0.4)
-  - react-native-fbsdk/Core (1.0.4):
-    - FBSDKCoreKit (~> 5.5)
+    - react-native-fbsdk/Core (= 1.1.1)
+    - react-native-fbsdk/Login (= 1.1.1)
+    - react-native-fbsdk/Share (= 1.1.1)
+  - react-native-fbsdk/Core (1.1.1):
+    - FBSDKCoreKit (= 5.8)
     - React
-  - react-native-fbsdk/Login (1.0.4):
-    - FBSDKLoginKit (~> 5.5)
+  - react-native-fbsdk/Login (1.1.1):
+    - FBSDKLoginKit (= 5.8)
     - React
-  - react-native-fbsdk/Share (1.0.4):
-    - FBSDKShareKit (~> 5.5)
+  - react-native-fbsdk/Share (1.1.1):
+    - FBSDKShareKit (= 5.8)
     - React
   - react-native-geolocation (2.0.2):
     - React
   - react-native-image-picker (1.1.0):
     - React
   - react-native-image-resizer (1.0.1):
+    - React
+  - react-native-video (5.0.2):
+    - React
+    - react-native-video/Video (= 5.0.2)
+  - react-native-video-cache (1.0.0):
+    - KTVHTTPCache (~> 2.0.0)
+    - React
+  - react-native-video/Video (5.0.2):
     - React
   - React-RCTActionSheet (0.61.2):
     - React-Core/RCTActionSheetHeaders (= 0.61.2)
@@ -463,6 +478,7 @@ PODS:
     - React-cxxreact (= 0.61.2)
     - React-jsi (= 0.61.2)
     - ReactCommon/jscallinvoker (= 0.61.2)
+  - Reveal-SDK (24)
   - RNCAsyncStorage (1.6.2):
     - React
   - RNDeviceInfo (4.0.1):
@@ -512,16 +528,20 @@ PODS:
     - Firebase/Storage (~> 6.8.1)
     - React
     - RNFBApp
-  - RNGestureHandler (1.4.1):
+  - RNFS (2.16.2):
+    - React
+  - RNGestureHandler (1.5.2):
     - React
   - RNGoogleSignin (2.1.0):
     - GoogleSignIn (~> 5.0.0)
     - React
-  - RNInAppBrowser (3.1.0):
+  - RNInAppBrowser (3.3.3):
     - React
   - RNReanimated (1.3.0):
     - React
-  - RNScreens (2.0.0-alpha.4):
+  - RNScreens (1.0.0-alpha.23):
+    - React
+  - RNSVG (9.13.6):
     - React
   - RNVectorIcons (6.6.0):
     - React
@@ -543,13 +563,11 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
-  - FBSDKCoreKit (~> 5.0)
-  - FBSDKLoginKit (~> 5.0)
-  - FBSDKShareKit (~> 5.0)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - IQKeyboardManager
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
+  - RCTSystemSetting (from `../node_modules/react-native-system-setting`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
   - React-Core (from `../node_modules/react-native/`)
@@ -564,6 +582,8 @@ DEPENDENCIES:
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-image-resizer (from `../node_modules/react-native-image-resizer`)
+  - react-native-video (from `../node_modules/react-native-video`)
+  - react-native-video-cache (from `../node_modules/react-native-video-cache`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -575,6 +595,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - Reveal-SDK
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
@@ -587,11 +608,13 @@ DEPENDENCIES:
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - "RNFBPerf (from `../node_modules/@react-native-firebase/perf`)"
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
+  - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNGoogleSignin (from `../node_modules/react-native-google-signin`)
   - RNInAppBrowser (from `../node_modules/react-native-inappbrowser-reborn`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - tipsi-stripe (from `../node_modules/tipsi-stripe`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -602,6 +625,7 @@ SPEC REPOS:
     - Base64
     - boost-for-react-native
     - BoringSSL-GRPC
+    - CocoaAsyncSocket
     - Crashlytics
     - Fabric
     - FBSDKCoreKit
@@ -635,10 +659,13 @@ SPEC REPOS:
     - GTMSessionFetcher
     - IQKeyboardManager
     - JWT
+    - KTVCocoaHTTPServer
+    - KTVHTTPCache
     - leveldb-library
     - libwebp
     - nanopb
     - Protobuf
+    - Reveal-SDK
     - SDWebImage
     - SDWebImageWebPCoder
     - SSZipArchive
@@ -659,6 +686,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
+  RCTSystemSetting:
+    :path: "../node_modules/react-native-system-setting"
   RCTTypeSafety:
     :path: "../node_modules/react-native/Libraries/TypeSafety"
   React:
@@ -683,6 +712,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-picker"
   react-native-image-resizer:
     :path: "../node_modules/react-native-image-resizer"
+  react-native-video:
+    :path: "../node_modules/react-native-video"
+  react-native-video-cache:
+    :path: "../node_modules/react-native-video-cache"
   React-RCTActionSheet:
     :path: "../node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
@@ -727,6 +760,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/perf"
   RNFBStorage:
     :path: "../node_modules/@react-native-firebase/storage"
+  RNFS:
+    :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNGoogleSignin:
@@ -737,6 +772,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   tipsi-stripe:
@@ -749,6 +786,7 @@ SPEC CHECKSUMS:
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
+  CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CodePush: d2e54ad42df82a8db65b2d23d8191b950ba945e1
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
@@ -788,11 +826,14 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   IQKeyboardManager: 700e5155d6a292383b54e8678aec769e14fc78fc
   JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
+  KTVCocoaHTTPServer: df8d7b861e603ff8037e9b2138aca2563a6b768d
+  KTVHTTPCache: 588c3eb16f6bd1e6fde1e230dabfb7bd4e490a4d
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   libwebp: 057912d6d0abfb6357d8bb05c0ea470301f5d61e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
   RCTRequired: c639d59ed389cfb1f1203f65c2ea946d8ec586e2
+  RCTSystemSetting: 2870be06565f2398a8786bfe8486ff6880a4326a
   RCTTypeSafety: dc23fb655d6c77667c78e327bf661bc11e3b8aec
   React: 7e586e5d7bec12b91c1a096826b0fc9ab1da7865
   React-Core: 8ddb9770b4a30a6ab4a754e6ed5ec76454e3d699
@@ -801,10 +842,12 @@ SPEC CHECKSUMS:
   React-jsi: 32285a21b1b24c36060493ed3057a34677d58d09
   React-jsiexecutor: 8909917ff7d8f21a57e443a866fd8d4560e50c65
   React-jsinspector: 111d7d342b07a904c400592e02a2b958f1098b60
-  react-native-fbsdk: 45e28bbab3e905cbc635c0bdd3444b372e933ae9
+  react-native-fbsdk: b94a83971c496a35803f38b921aec6d637ba07b5
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
   react-native-image-picker: 7a85cf7b0a53845f03ae52fb4592a2748ded069b
   react-native-image-resizer: 48eb06a18a6d0a632ffa162a51ca61a68fb5322f
+  react-native-video: d01ed7ff1e38fa7dcc6c15c94cf505e661b7bfd0
+  react-native-video-cache: 90b8857673151d2618fc61030f14d755d1e92d4e
   React-RCTActionSheet: 89b037c0fb7d2671607cb645760164e7e0c013f6
   React-RCTAnimation: e3cefa93c38c004c318f7ec04b883eb14b8b8235
   React-RCTBlob: d26ac0e313fbf14e7203473fd593ccaaeee8329e
@@ -815,6 +858,7 @@ SPEC CHECKSUMS:
   React-RCTText: e3ef6191cdb627855ff7fe8fa0c1e14094967fb8
   React-RCTVibration: fb54c732fd20405a76598e431aa2f8c2bf527de9
   ReactCommon: 5848032ed2f274fcb40f6b9ec24067787c42d479
+  Reveal-SDK: 5d7e56b8f018c0a88b3a2c10bf68d598bbd3b071
   RNCAsyncStorage: 60a80e72d95bf02a01cace55d3697d9724f0d77f
   RNDeviceInfo: 687c1b2ab6d86ff1ca1208783320cd144138c7f2
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
@@ -827,11 +871,13 @@ SPEC CHECKSUMS:
   RNFBMessaging: f47ff44a2d40958fecdb19f113a7f9d1985799d2
   RNFBPerf: da917556988c0200e15bf7c2af1b67f5be1dabf9
   RNFBStorage: 7bde147a5039116d1c419c0eb609c36a0d259066
-  RNGestureHandler: 4cb47a93019c1a201df2644413a0a1569a51c8aa
+  RNFS: 0d4191b1052bef9ce70deff00a5b4169c62bbd9b
+  RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
   RNGoogleSignin: bb1393dec8541d997fd12b7b8f43481868a34e93
-  RNInAppBrowser: 9d1ffb9db0d0cbdf03f528f1f0624b2c533b93fd
+  RNInAppBrowser: 0800f17fd7ed9fc503eb68e427befebb41ee719b
   RNReanimated: 6abbbae2e5e72609d85aabd92a982a94566885f1
-  RNScreens: 84be1a2369a580beb2fea0755cc62ef16b83fffe
+  RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
+  RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   SDWebImage: 46a7f73228f84ce80990c786e4372cf4db5875ce
   SDWebImageWebPCoder: 947093edd1349d820c40afbd9f42acb6cdecd987
@@ -840,6 +886,6 @@ SPEC CHECKSUMS:
   tipsi-stripe: 61c247493a58d7e8e0bf6ee6b014271f473d2b11
   Yoga: 14927e37bd25376d216b150ab2a561773d57911f
 
-PODFILE CHECKSUM: 6344976fb260e75b27cdb3bb658486b363f7ac44
+PODFILE CHECKSUM: 1a248d4f5a1ff9121569c78faf683a52711c2939
 
 COCOAPODS: 1.8.4

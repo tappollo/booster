@@ -39,7 +39,7 @@
     "lodash": "^4.17.15",
     "react": "16.9.0",
     "react-native": "^0.61.2",
-    "react-native-code-push": "^5.7.0",
+    "react-native-code-push": "^6.0.0",
     "react-native-device-info": "^4.0.1",
     "react-native-fast-image": "^7.0.2",
     "react-native-fbsdk": "^1.1.1",

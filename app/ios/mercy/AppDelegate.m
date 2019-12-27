@@ -24,19 +24,7 @@
   [[IQKeyboardManager sharedManager] setEnable:NO];
   [[FBSDKApplicationDelegate sharedInstance] application:application
     didFinishLaunchingWithOptions:launchOptions];
-  [[UNUserNotificationCenter currentNotificationCenter] setDelegate:self];
-  UNAuthorizationOptions authOptions = UNAuthorizationOptionAlert |
-  UNAuthorizationOptionSound | UNAuthorizationOptionBadge;
-  [FIRMessaging messaging].delegate = self;
-  [[UNUserNotificationCenter currentNotificationCenter]
-   requestAuthorizationWithOptions:authOptions
-   completionHandler:^(BOOL granted, NSError * _Nullable error) {
-     if (error) {NSLog(@"%@", error);}
-   }];
-//  [RNFirebaseNotifications configure];
-//  [RNFirebaseMessaging instance];
-//  [[UIApplication sharedApplication] registerForRemoteNotifications];
-  [application registerForRemoteNotifications];
+
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"booster"
@@ -60,23 +48,6 @@
   return [CodePush bundleURL];
 #endif
 }
-//-(void) userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
-//
-//  [[RNFirebaseMessaging instance] didReceiveRemoteNotification:response.notification.request.content.userInfo];
-//  completionHandler();
-//}
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo
-//fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler{
-//  [[RNFirebaseNotifications instance] didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
-//}
-//
-//- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
-//  [[RNFirebaseMessaging instance] didRegisterUserNotificationSettings:notificationSettings];
-//}
-//- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
-//  NSLog(@"%@", error);
-//
-//}
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
