@@ -25,7 +25,7 @@ const countries: Country[] = require("./assets/countries.json");
 const SearchInput = styled(Searchbar).attrs({
   autoFocus: true,
   placeholder: "Search",
-  icon: { source: "arrow-back", direction: "auto" }
+  icon: { source: "arrow-left", direction: "auto" }
 })`
   margin: 4px 15px;
 `;
