@@ -63,6 +63,9 @@ On firebase console, go to **Authentication**
 - Enable Email / Password
 - Enable Phone
 
+> Add your test phone number to the test number section
+> By default, we only allow test phones in `__DEV__` mode
+
 Go to **Database**
 
 - Enable firestore database in lock mode

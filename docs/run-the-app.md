@@ -4,7 +4,8 @@ Switch to dev env and deploy firebase rules, indexes and functions
 
 ```bash
 yarn firebase login
-yarn deploy:dev
+yarn use dev
+yarn firebase deploy
 ```
 
 ## Run react-native packager
