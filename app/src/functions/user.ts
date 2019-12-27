@@ -41,10 +41,10 @@ export const registerDeviceInfo = async () => {
   await privateProfileRef().update(
     (("deviceInfo" as keyof PrivateProfile) +
       "." +
-      DeviceInfo.getDeviceIdSync()) as any,
+      DeviceInfo.getDeviceId()) as any,
     {
       deviceName: DeviceInfo.getDeviceNameSync(),
-      binaryVersion: DeviceInfo.getVersionSync(),
+      binaryVersion: DeviceInfo.getVersion(),
       os: DeviceInfo.getBaseOsSync(),
       lastOpen: new Date()
     }
@@ -59,7 +59,7 @@ export const updateToken = async () => {
   await privateProfileRef().update(
     (("pushTokens" as keyof PrivateProfile) +
       "." +
-      DeviceInfo.getDeviceIdSync()) as any,
+      DeviceInfo.getDeviceId()) as any,
     token
   );
 };

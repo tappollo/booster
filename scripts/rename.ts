@@ -1,8 +1,9 @@
 #!./node_modules/.bin/ts-node
 
 import * as meow from "meow";
-import ora from "ora";
+import ora = require("ora");
 import * as fs from "fs-extra";
+
 import replace = require("replace-in-file");
 import * as path from "path";
 
