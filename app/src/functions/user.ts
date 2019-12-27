@@ -4,6 +4,17 @@ import messaging from "@react-native-firebase/messaging";
 import { TypedCollectionReference } from "./firebase/firestore";
 import { FirestoreCollectionTypes, PrivateProfile } from "./types";
 import DeviceInfo from "react-native-device-info";
+import { useEffect, useState } from "react";
+
+export const useIsLoggedIn = () => {
+  const [state, setState] = useState<boolean>();
+  useEffect(() => {
+    return auth().onAuthStateChanged(async user => {
+      setState(user != null);
+    });
+  }, [setState]);
+  return state;
+};
 
 const currentUser = () => {
   const user = auth().currentUser;

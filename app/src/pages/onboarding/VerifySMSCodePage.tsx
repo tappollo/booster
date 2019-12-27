@@ -1,33 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { NavigationStackScreenComponent } from "react-navigation-stack";
+import React, { useState } from "react";
 import { BigButton } from "../../components/Button";
 import { PageContainer } from "../../components/Page";
 import { BigTitle } from "../../components/Title";
 import { Caption } from "react-native-paper";
 import { Alert, Text } from "react-native";
 import SMSCodeInput from "./components/SMSCodeInput";
-import { useFocusedHook } from "../../functions/navigations";
-import auth from "@react-native-firebase/auth";
+import { RouteProp } from "@react-navigation/core";
+import { OnboardingStackParams } from "../Routes";
 
 export interface VerifySMSCodePageParams {
   confirmation: (code: string) => Promise<any>;
 }
 
-const VerifySMSCodePage: NavigationStackScreenComponent<
-  VerifySMSCodePageParams
-> = ({ navigation }) => {
-  const focused = useFocusedHook();
-  useEffect(() => {
-    if (!focused) {
-      return;
-    }
-    return auth().onAuthStateChanged(user => {
-      if (user != null) {
-        navigation.navigate("Dispatcher");
-      }
-    });
-  }, [focused, navigation]);
-  const confirmation = navigation.getParam("confirmation");
+const VerifySMSCodePage = ({
+  route
+}: {
+  route: RouteProp<OnboardingStackParams, "VerifySMSCodePage">;
+}) => {
+  const confirmation = route.params.confirmation;
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   return (

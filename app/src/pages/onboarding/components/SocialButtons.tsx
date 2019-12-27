@@ -1,11 +1,12 @@
 import { BigButton } from "../../../components/Button";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Alert } from "react-native";
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { AccessToken, LoginManager } from "react-native-fbsdk";
 import { profileRef } from "../../../functions/user";
-import { NavigationContext } from "react-navigation";
 import { GoogleSignin } from "react-native-google-signin";
+import { useNavigation } from "@react-navigation/core";
+
 type AuthCredential = FirebaseAuthTypes.AuthCredential;
 
 const signIn = async (cred: AuthCredential) => {
@@ -49,7 +50,7 @@ export const generateSocialButton = (props: {
   onAction: () => Promise<void>;
 }) => () => {
   const [loading, setLoading] = useState(false);
-  const navigation = useContext(NavigationContext);
+  const navigation = useNavigation();
   return (
     <BigButton
       loading={loading}

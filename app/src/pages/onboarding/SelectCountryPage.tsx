@@ -1,7 +1,6 @@
 import { FlatList, SafeAreaView, Text } from "react-native";
 import React, { useRef, useState } from "react";
 import { List, Searchbar } from "react-native-paper";
-import { NavigationStackScreenComponent } from "react-navigation-stack";
 import styled from "styled-components";
 import { Country } from "./components/PhoneNumberInput";
 import Fuse from "fuse.js";

@@ -1,8 +1,7 @@
-import { NavigationScreenComponent } from "react-navigation";
 import { useEffect } from "react";
 import auth from "@react-native-firebase/auth";
 
-const Dispatcher: NavigationScreenComponent<{}, {}> = ({ navigation }) => {
+const Dispatcher = () => {
   useEffect(() => {
     return auth().onAuthStateChanged(async user => {
       if (user == null) {

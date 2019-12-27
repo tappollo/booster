@@ -3,17 +3,16 @@ import { BigTitle } from "../../components/Title";
 import { BigButton } from "../../components/Button";
 import { Caption } from "react-native-paper";
 import { PageContainer } from "../../components/Page";
-import { NavigationStackScreenComponent } from "react-navigation-stack";
 import { Alert, Text } from "react-native";
 import PhoneNumberInputBox, {
   defaultCountry
 } from "./components/PhoneNumberInput";
 import auth from "@react-native-firebase/auth";
 import { VerifySMSCodePageParams } from "./VerifySMSCodePage";
+import { useNavigation } from "@react-navigation/core";
 
-const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({
-  navigation
-}) => {
+const ContinueWithPhonePage = () => {
+  const navigation = useNavigation();
   useEffect(() => {
     if (__DEV__) {
       auth().settings.appVerificationDisabledForTesting = true;
@@ -27,7 +26,7 @@ const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({
       <BigTitle>Enter your{"\n"}mobile number</BigTitle>
       <PhoneNumberInputBox
         onSelectCountry={() => {
-          navigation.push("SelectCountryPage", { onSelect: setCountry });
+          navigation.navigate("SelectCountryPage", { onSelect: setCountry });
         }}
         country={country}
         phone={phone}
@@ -42,7 +41,7 @@ const ContinueWithPhonePage: NavigationStackScreenComponent<{}> = ({
             const confirmation = await auth().signInWithPhoneNumber(
               country.dial_code + phone
             );
-            navigation.push("VerifySMSCodePage", {
+            navigation.navigate("VerifySMSCodePage", {
               confirmation: confirmation.confirm.bind(confirmation)
             } as VerifySMSCodePageParams);
           } catch (e) {

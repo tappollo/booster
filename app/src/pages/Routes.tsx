@@ -1,98 +1,66 @@
-import { createSwitchNavigator, createAppContainer } from "react-navigation";
-import Dispatcher from "./Dispatcher";
-import { createStackNavigator } from "react-navigation-stack";
-import LandingPage from "./onboarding/LandingPage";
 import HomePage from "./home/HomePage";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationNativeContainer } from "@react-navigation/native";
+import React from "react";
+import { useIsLoggedIn } from "../functions/user";
+import LandingPage from "./onboarding/LandingPage";
 import ContinueWithPhonePage from "./onboarding/ContinueWithPhonePage";
-import VerifySMSCodePage from "./onboarding/VerifySMSCodePage";
-import { Platform } from "react-native";
+import VerifySMSCodePage, {
+  VerifySMSCodePageParams
+} from "./onboarding/VerifySMSCodePage";
 import SelectCountryPage from "./onboarding/SelectCountryPage";
-
-// const OnboardingNav = createStackNavigator(
-//   {
-//     LandingPage,
-//     ContinueWithPhonePage,
-//     VerifySMSCodePage
-//   },
-//   {
-//     initialRouteName: "LandingPage",
-//     // initialRouteName: "ContinueWithPhonePage",
-//     defaultNavigationOptions: {
-//       headerBackTitle: null,
-//       headerTintColor: "#585858",
-//       headerStyle: {
-//         borderBottomWidth: 0
-//       },
-//       headerLeftContainerStyle: {
-//         marginLeft: Platform.select({
-//           ios: 20,
-//           default: 5
-//         })
-//       }
-//     }
-//   }
-// );
-//
-// const Onboarding = createStackNavigator(
-//   {
-//     OnboardingNav,
-//     SelectCountryPage
-//   },
-//   {
-//     mode: "modal",
-//     headerMode: "none"
-//   }
-// );
-//
-// const Home = createStackNavigator({
-//   HomePage
-// });
-//
-// const Root = createSwitchNavigator(
-//   {
-//     Dispatcher,
-//     Onboarding,
-//     Home
-//   },
-//   {
-//     initialRouteName: "Dispatcher"
-//   }
-// );
-//
-// export default createAppContainer(Root);
 
 const Stack = createStackNavigator();
 
+export type OnboardingStackParams = {
+  VerifySMSCodePage: VerifySMSCodePageParams;
+  LandingPage: undefined;
+  ContinueWithPhonePage: undefined;
+};
+
+const OnboardingStack = createStackNavigator<OnboardingStackParams>();
+
+const OnboardingNav = () => {
+  return (
+    <OnboardingStack.Navigator>
+      <OnboardingStack.Screen name="LandingPage" component={LandingPage} />
+      <OnboardingStack.Screen
+        name="ContinueWithPhonePage"
+        component={ContinueWithPhonePage}
+      />
+      <OnboardingStack.Screen
+        name="VerifySMSCodePage"
+        component={VerifySMSCodePage}
+      />
+    </OnboardingStack.Navigator>
+  );
+};
+
+const OnBoarding = () => {
+  return (
+    <Stack.Navigator mode="modal">
+      <Stack.Screen name="SelectCountryPage" component={SelectCountryPage} />
+      <Stack.Screen name="OnboardingNav" component={OnboardingNav} />
+    </Stack.Navigator>
+  );
+};
+
+const Home = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="HomePage" component={HomePage} />
+    </Stack.Navigator>
+  );
+};
+
 const Routes = () => {
+  const isLoggedIn = useIsLoggedIn();
+  if (isLoggedIn == null) {
+    return null;
+  }
   return (
     <NavigationNativeContainer>
-      <Stack.Navigator mode="modal" initialRouteName={init}>
-        <Stack.Screen
-          name="Storybook"
-          component={StorybookUIRoot as any}
-          options={{
-            header: () => null
-          }}
-        />
-        <Stack.Screen name="Playground" component={PlaygroundPage} />
-        <Stack.Screen name="Home" component={HomePage} />
-        <Stack.Screen
-          name="VideoPlayer"
-          component={VideoPlayerPage}
-          options={{
-            header: () => null,
-            gestureEnabled: false
-          }}
-        />
-        <Stack.Screen
-          name="Zink"
-          component={ZinkPage}
-          options={{
-            header: () => null,
-            gestureEnabled: false
-          }}
-        />
-      </Stack.Navigator>
+      {isLoggedIn ? <Home /> : <OnBoarding />}
     </NavigationNativeContainer>
   );
 };
