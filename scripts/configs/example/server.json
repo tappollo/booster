@@ -1,0 +1,6 @@
+{
+  "name": "Development",
+  "stripeKey": "*",
+  "slackWebHook": "*",
+  "elasticSearchULR": "*"
+}
