@@ -7,7 +7,7 @@ import { trackScreenNavigation } from "./functions/analytics";
 
 const App = () => (
   <PaperProvider theme={theme}>
-    <Routes onNavigationStateChange={trackScreenNavigation} />
+    <Routes onStateChange={trackScreenNavigation} />
   </PaperProvider>
 );
 

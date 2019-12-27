@@ -1,6 +1,9 @@
 import HomePage from "./home/HomePage";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationNativeContainer } from "@react-navigation/native";
+import {
+  NavigationNativeContainer,
+  NavigationState
+} from "@react-navigation/native";
 import React from "react";
 import { useIsLoggedIn } from "../functions/user";
 import LandingPage from "./onboarding/LandingPage";
@@ -73,9 +76,11 @@ export type OnBoardingParams = {
 
 const OnboardingStack = createStackNavigator<OnBoardingParams>();
 
-const OnBoarding = () => {
+const OnBoarding = (props: {
+  onStateChange?: (state: NavigationState | undefined) => void;
+}) => {
   return (
-    <NavigationNativeContainer>
+    <NavigationNativeContainer onStateChange={props.onStateChange}>
       <OnboardingStack.Navigator
         mode="modal"
         initialRouteName="OnboardingNav"
@@ -95,9 +100,11 @@ const OnBoarding = () => {
 };
 
 const Stack = createStackNavigator();
-const Home = () => {
+const Home = (props: {
+  onStateChange?: (state: NavigationState | undefined) => void;
+}) => {
   return (
-    <NavigationNativeContainer>
+    <NavigationNativeContainer onStateChange={props.onStateChange}>
       <Stack.Navigator>
         <Stack.Screen name="HomePage" component={HomePage} />
       </Stack.Navigator>
@@ -105,12 +112,18 @@ const Home = () => {
   );
 };
 
-const Routes = () => {
+const Routes = (props: {
+  onStateChange?: (state: NavigationState | undefined) => void;
+}) => {
   const isLoggedIn = useIsLoggedIn();
   if (isLoggedIn == null) {
     return null;
   }
-  return isLoggedIn ? <Home /> : <OnBoarding />;
+  return isLoggedIn ? (
+    <Home onStateChange={props.onStateChange} />
+  ) : (
+    <OnBoarding onStateChange={props.onStateChange} />
+  );
 };
 
 export default Routes;

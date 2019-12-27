@@ -1,36 +1,30 @@
-import { NavigationRoute } from "react-navigation";
 import analytics from "@react-native-firebase/analytics";
 import _ from "lodash";
+import { NavigationState, Route } from "@react-navigation/core";
 
-function getActiveRouteName(navigationState: any): NavigationRoute | null {
-  if (!navigationState) {
+function getActiveRouteName(
+  navigationState: NavigationState | undefined
+): Route<string> | null {
+  if (navigationState == null) {
     return null;
   }
   const route = navigationState.routes[navigationState.index];
   // dive into nested navigators
-  if (route.routes) {
-    return getActiveRouteName(route);
+  if (route.state != null) {
+    return getActiveRouteName(route.state as NavigationState);
   }
   return route;
 }
 
-export const trackScreenNavigation = (prevState: any, currentState: any) => {
-  const currentScreen = getActiveRouteName(currentState);
-  const prevScreen = getActiveRouteName(prevState);
-
-  if (currentScreen == null) {
-    return;
-  }
-
-  if ((prevScreen && prevScreen.routeName) !== currentScreen.routeName) {
-    analytics().setCurrentScreen(currentScreen.routeName);
-    if (currentScreen.params != null) {
-      analytics().logEvent(
-        `${currentScreen.routeName}_screenParams`,
-        _.pickBy(currentScreen.params, value => {
-          return _.isNumber(value) || _.isBoolean(value) || _.isString(value);
-        })
-      );
-    }
+export const trackScreenNavigation = (state: NavigationState | undefined) => {
+  const route = getActiveRouteName(state);
+  if (route) {
+    analytics().setCurrentScreen(route.name);
+    analytics().logEvent(`${route.name}_screenParams`, _.pickBy(
+      route.params,
+      value => {
+        return _.isNumber(value) || _.isBoolean(value) || _.isString(value);
+      }
+    ) as any);
   }
 };

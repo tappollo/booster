@@ -1,16 +1,14 @@
 import { PageContainer } from "../../components/Page";
 import { BigButton } from "../../components/Button";
 import auth from "@react-native-firebase/auth";
-import { NavigationStackScreenComponent } from "react-navigation-stack";
 import React from "react";
 
-const HomePage: NavigationStackScreenComponent = ({ navigation }) => {
+const HomePage = () => {
   return (
     <PageContainer>
       <BigButton
         onPress={async () => {
           await auth().signOut();
-          navigation.navigate("Dispatcher");
         }}
       >
         Logout
