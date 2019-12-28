@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ae933042-aa46-4834-8e7f-0384b6764784" name="Default Changelist" comment="chore: add tailwind.css" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsbtTreeLayoutManager">
+    <layout place="tools.popupnpm">
+      <scroll-view-position x="0" y="0" />
+      <selected-paths>
+        <path>
+          <id value="$PROJECT_DIR$/package.json" />
+          <id value="start" />
+        </path>
+      </selected-paths>
+    </layout>
+  </component>
+  <component name="ProjectId" id="1S9NIeIoL333p8Urv2dLGKuuK7F" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="settings.css.dialects" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/web/node_modules/typescript/lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web" />
+      <recent name="$PROJECT_DIR$/web/src" />
+      <recent name="$PROJECT_DIR$/scripts/configs" />
+      <recent name="$PROJECT_DIR$/scripts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scripts/configs/example" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start (1)">
+    <configuration name="build:css:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/web/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build:css:dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/web/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start (1)" />
+        <item itemvalue="npm.build:css:dev" />
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ae933042-aa46-4834-8e7f-0384b6764784" name="Default Changelist" comment="" />
+      <created>1570971772888</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570971772888</updated>
+      <workItem from="1570971774051" duration="55000" />
+      <workItem from="1571045374988" duration="476000" />
+      <workItem from="1571371489300" duration="6527000" />
+      <workItem from="1571895686069" duration="106000" />
+      <workItem from="1571967715188" duration="58000" />
+      <workItem from="1571967787947" duration="277000" />
+      <workItem from="1571981102461" duration="129000" />
+      <workItem from="1571983249077" duration="223000" />
+      <workItem from="1577428056271" duration="3000" />
+      <workItem from="1577440010344" duration="3290000" />
+      <workItem from="1577446276996" duration="3761000" />
+      <workItem from="1577454738695" duration="640000" />
+      <workItem from="1577514864744" duration="3588000" />
+    </task>
+    <task id="LOCAL-00001" summary="chore: change script to rename">
+      <created>1571371555047</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1571371555047</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: add Reveal for Debug">
+      <created>1571983368891</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1571983368891</updated>
+    </task>
+    <task id="LOCAL-00003" summary="upgrade react navigation to v5&#10;&#10;still broken">
+      <created>1577445787457</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1577445787457</updated>
+    </task>
+    <task id="LOCAL-00004" summary="upgrade react navigation to v5">
+      <created>1577447642295</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1577447642295</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: upgrade rn version">
+      <created>1577515131209</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1577515131209</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat: upgrade rn version">
+      <created>1577517392761</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1577517392761</updated>
+    </task>
+    <task id="LOCAL-00007" summary="chore: disable codepush on __DEV__">
+      <created>1577517403645</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1577517403645</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix: web version">
+      <created>1577518026831</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1577518026831</updated>
+    </task>
+    <task id="LOCAL-00009" summary="refactor: route">
+      <created>1577519128818</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1577519128818</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="chore: change script to rename" />
+    <MESSAGE value="feat: add Reveal for Debug" />
+    <MESSAGE value="upgrade react navigation to v5&#10;&#10;still broken" />
+    <MESSAGE value="upgrade react navigation to v5" />
+    <MESSAGE value="feat: upgrade rn version" />
+    <MESSAGE value="chore: disable codepush on __DEV__" />
+    <MESSAGE value="fix: web version" />
+    <MESSAGE value="refactor: route" />
+    <MESSAGE value="chore: add tailwind.css" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add tailwind.css" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="698" y="305" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1577443898986">
+      <screen x="0" y="23" width="1920" height="1057" />
+    </state>
+    <state x="698" y="305" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1920.1057@0.23.1920.1057" timestamp="1577443898986" />
+    <state x="569" y="41" key="CommitChangelistDialog2" timestamp="1577519816799">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="569" y="41" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1577519816799" />
+    <state x="569" y="63" key="CommitChangelistDialog2/0.23.1920.1057@0.23.1920.1057" timestamp="1577445785444" />
+    <state width="1920" height="292" key="GridCell.Tab.0.bottom" timestamp="1577519575506">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1577519575506" />
+    <state width="1920" height="292" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1577452867084" />
+    <state width="1920" height="292" key="GridCell.Tab.0.center" timestamp="1577519575505">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="292" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1577519575505" />
+    <state width="1920" height="292" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1577452867083" />
+    <state width="1920" height="292" key="GridCell.Tab.0.left" timestamp="1577519575504">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="292" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1577519575504" />
+    <state width="1920" height="292" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1577452867082" />
+    <state width="1920" height="292" key="GridCell.Tab.0.right" timestamp="1577519575505">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="292" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1577519575505" />
+    <state width="1920" height="292" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1577452867084" />
+    <state x="469" y="179" key="SettingsEditor" timestamp="1577519348059">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="469" y="179" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1577519348059" />
+    <state width="500" height="455" key="SwitcherDM" timestamp="1577520608270">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="500" height="455" key="SwitcherDM/0.0.1920.1080@0.0.1920.1080" timestamp="1577520608270" />
+    <state width="500" height="445" key="SwitcherDM/0.23.1920.1057@0.23.1920.1057" timestamp="1577444698694" />
+    <state x="560" y="276" key="Vcs.Push.Dialog.v2" timestamp="1577518028988">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="560" y="276" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1577518028988" />
+    <state x="100" y="100" width="1720" height="880" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1577447245587">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="100" y="100" width="1720" height="880" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1577447245587" />
+    <state x="630" y="281" width="659" height="518" key="find.popup" timestamp="1577447384421">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="630" y="281" width="659" height="518" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1577447384421" />
+    <state x="835" y="401" width="250" height="285" key="jetbrains.javascript.buildTools.run-task-popup" timestamp="1577518517446">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="835" y="401" width="250" height="285" key="jetbrains.javascript.buildTools.run-task-popup/0.0.1920.1080@0.0.1920.1080" timestamp="1577518517446" />
+    <state x="835" y="415" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup/0.23.1920.1057@0.23.1920.1057" timestamp="1577442721056" />
+    <state x="625" y="240" width="670" height="691" key="search.everywhere.popup" timestamp="1577520795015">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="625" y="240" width="670" height="691" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1577520795015" />
+    <state x="625" y="258" width="670" height="676" key="search.everywhere.popup/0.23.1920.1057@0.23.1920.1057" timestamp="1577445640736" />
+    <state x="690" y="443" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1577517566592">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="690" y="443" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1577517566592" />
+  </component>
+</project>
