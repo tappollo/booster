@@ -76,39 +76,29 @@ export type OnBoardingParams = {
 
 const OnboardingStack = createStackNavigator<OnBoardingParams>();
 
-const OnBoarding = (props: {
-  onStateChange?: (state: NavigationState | undefined) => void;
-}) => {
+const OnBoarding = () => {
   return (
-    <NavigationNativeContainer onStateChange={props.onStateChange}>
-      <OnboardingStack.Navigator
-        mode="modal"
-        initialRouteName="OnboardingNav"
-        headerMode="none"
-      >
-        <OnboardingStack.Screen
-          name="SelectCountryPage"
-          component={SelectCountryPage}
-        />
-        <OnboardingStack.Screen
-          name="OnboardingNav"
-          component={OnboardingNav}
-        />
-      </OnboardingStack.Navigator>
-    </NavigationNativeContainer>
+    <OnboardingStack.Navigator
+      mode="modal"
+      initialRouteName="OnboardingNav"
+      headerMode="none"
+    >
+      <OnboardingStack.Screen
+        name="SelectCountryPage"
+        component={SelectCountryPage}
+      />
+      <OnboardingStack.Screen name="OnboardingNav" component={OnboardingNav} />
+    </OnboardingStack.Navigator>
   );
 };
 
 const Stack = createStackNavigator();
-const Home = (props: {
-  onStateChange?: (state: NavigationState | undefined) => void;
-}) => {
+
+const Home = () => {
   return (
-    <NavigationNativeContainer onStateChange={props.onStateChange}>
-      <Stack.Navigator>
-        <Stack.Screen name="HomePage" component={HomePage} />
-      </Stack.Navigator>
-    </NavigationNativeContainer>
+    <Stack.Navigator initialRouteName="HomePage">
+      <Stack.Screen name="HomePage" component={HomePage} />
+    </Stack.Navigator>
   );
 };
 
@@ -119,10 +109,13 @@ const Routes = (props: {
   if (isLoggedIn == null) {
     return null;
   }
-  return isLoggedIn ? (
-    <Home onStateChange={props.onStateChange} />
-  ) : (
-    <OnBoarding onStateChange={props.onStateChange} />
+  return (
+    <NavigationNativeContainer
+      key={isLoggedIn ? "Home" : "Onboarding"}
+      onStateChange={props.onStateChange}
+    >
+      {isLoggedIn ? <Home /> : <OnBoarding />}
+    </NavigationNativeContainer>
   );
 };
 
