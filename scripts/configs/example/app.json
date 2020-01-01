@@ -1,5 +1,6 @@
 {
   "name": "mercy",
   "displayName": "mercy",
-  "stripePublishKeys": "*"
+  "stripePublishKeys": "*",
+  "tos": "https://mercy"
 }

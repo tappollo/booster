@@ -24,7 +24,7 @@
     "build:css:dev": "postcss src/tailwind/tailwind.css -o src/tailwind/tailwind.development.css",
     "build:css:prod": "NODE_ENV=production postcss src/tailwind/tailwind.css -o src/tailwind/tailwind.production.css",
     "start": "react-app-rewired start",
-    "build": "yarn build:css:prod react-app-rewired --max_old_space_size=4096 build",
+    "build": "yarn build:css:prod && react-app-rewired --max_old_space_size=4096 build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "ci": "eslint --ext js,ts,tsx src"
