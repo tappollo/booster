@@ -15,6 +15,7 @@ import SelectCountryPage, {
   SelectCountryPageParams
 } from "./onboarding/SelectCountryPage";
 import { Platform } from "react-native";
+import StorybookUIRoot from "../../storybook";
 
 export type OnboardingStackParams = {
   VerifySMSCodePage: VerifySMSCodePageParams;
@@ -96,8 +97,13 @@ const Stack = createStackNavigator();
 
 const Home = () => {
   return (
-    <Stack.Navigator initialRouteName="HomePage">
+    <Stack.Navigator initialRouteName="Storybook">
       <Stack.Screen name="HomePage" component={HomePage} />
+      <Stack.Screen
+        name="Storybook"
+        options={{ header: () => null }}
+        component={() => <StorybookUIRoot />}
+      />
     </Stack.Navigator>
   );
 };

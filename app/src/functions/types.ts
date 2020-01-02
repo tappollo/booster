@@ -1,3 +1,5 @@
+// This file is shared across client, server, website and scripts
+
 // We are using AppDate as a why to customize date
 // Since it's different type on client vs on server
 import { AppDate } from "./envTypes";
@@ -32,11 +34,4 @@ export interface PrivateProfile {
 export interface ReadonlyProfile {
   accountBalance: number;
   behaviorScore: number;
-}
-
-// Firestore collection mapping
-export interface FirestoreCollectionTypes {
-  profile: Profile;
-  private: PrivateProfile;
-  readonly: ReadonlyProfile;
 }

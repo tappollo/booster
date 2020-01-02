@@ -1,7 +1,4 @@
 import { FirebaseFirestoreTypes } from "@react-native-firebase/firestore";
-type CollectionReference = FirebaseFirestoreTypes.CollectionReference;
-type DocumentReference = FirebaseFirestoreTypes.DocumentReference;
-type Query = FirebaseFirestoreTypes.Query;
 import {
   MutableRefObject,
   useCallback,
@@ -10,6 +7,9 @@ import {
   useState
 } from "react";
 import { Doc } from "../types";
+
+type DocumentReference = FirebaseFirestoreTypes.DocumentReference;
+type Query = FirebaseFirestoreTypes.Query;
 
 export const useEqual = <T extends { isEqual: (another: T) => boolean }>(
   value: T
@@ -27,24 +27,7 @@ type LoadingErrorState<T> = {
   value?: T;
 };
 
-export const useDocumentField = <T, K extends keyof T>(
-  docRef: TypedDocumentReference<T>,
-  key: K
-): [T[K] | undefined, (newValue: T[K]) => void] => {
-  const { value, update } = useDocument<T>(docRef);
-  const fieldValue = value == null ? undefined : value[key];
-  const updateField = useCallback(
-    (newValue: T[K]) => {
-      const partial: Partial<T> = {};
-      partial[key] = newValue;
-      update(partial).catch();
-    },
-    [key, update]
-  );
-  return [fieldValue, updateField];
-};
-
-export const useDocument = <T>(docRef: TypedDocumentReference<T>) => {
+export const useListenDocument = <T>(docRef: DocumentReference) => {
   const [state, setState] = useState<LoadingErrorState<T>>({
     loading: true
   });
@@ -81,7 +64,7 @@ export const useDocument = <T>(docRef: TypedDocumentReference<T>) => {
   };
 };
 
-export const useGetDocument = <T>(docRef: TypedDocumentReference<T>) => {
+export const useGetDocument = <T>(docRef: DocumentReference) => {
   const [state, setState] = useState<LoadingErrorState<T>>({
     loading: true
   });
@@ -108,16 +91,7 @@ export const useGetDocument = <T>(docRef: TypedDocumentReference<T>) => {
   return state;
 };
 
-export interface TypedQuery<T> extends Query {}
-export interface TypedDocumentReference<T> extends DocumentReference {
-  update(partial: Partial<T>): Promise<void>;
-  update<K extends keyof T>(k: K, v: T[K]): Promise<void>;
-}
-export interface TypedCollectionReference<T> extends CollectionReference {
-  doc(documentPath?: string): TypedDocumentReference<T>;
-}
-
-export const useQuery = <T>(query: TypedQuery<T>) => {
+export const useListenQuery = <T>(query: Query) => {
   const [state, setState] = useState<LoadingErrorState<Array<Doc<T>>>>({
     loading: true
   });
