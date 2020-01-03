@@ -2,7 +2,7 @@
 
 import chalk from "chalk";
 import * as meow from "meow";
-import ora from "ora";
+import ora = require("ora");
 import * as path from "path";
 import { run } from "./utils/run";
 import * as fs from "fs-extra";
@@ -40,6 +40,7 @@ import * as process from "process";
         "google-services.json": "../app/android/app/google-services.json",
         "Info.plist": "../app/ios/mercy/Info.plist",
         "strings.xml": "../app/android/app/src/main/res/values/strings.xml",
+        "release.keystore": "../app/android/keystores/release.keystore",
         "adminsdk.json": "../functions/src/adminsdk.json",
         "server.json": "../functions/src/server.json"
       };

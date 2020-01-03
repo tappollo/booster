@@ -17,17 +17,6 @@ import com.microsoft.codepush.react.CodePush;
 import java.util.Arrays;
 import java.util.List;
 
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
-import io.invertase.firebase.auth.RNFirebaseAuthPackage;
-import io.invertase.firebase.database.RNFirebaseDatabasePackage;
-import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage;
-import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
-import io.invertase.firebase.functions.RNFirebaseFunctionsPackage;
-import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
-import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
-import io.invertase.firebase.storage.RNFirebaseStoragePackage;
-
 public class MainApplication extends Application implements ReactApplication {
 
   private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
@@ -51,17 +40,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       List<ReactPackage> packages = new PackageList(this).getPackages();
 
-      packages.addAll(Arrays.<ReactPackage>asList(
-        new RNFirebaseAuthPackage(),
-        new RNFirebaseStoragePackage(),
-        new RNFirebaseFunctionsPackage(),
-        new RNFirebaseFirestorePackage(),
-        new RNFirebaseDatabasePackage(),
-        new RNFirebaseCrashlyticsPackage(),
-        new RNFirebaseAnalyticsPackage(),
-        new RNFirebaseMessagingPackage(),
-        new RNFirebaseNotificationsPackage()
-      ));
+      packages.addAll(Arrays.<ReactPackage>asList());
 
       return packages;
     }

@@ -2,6 +2,11 @@
   "name": "@mercy/scripts",
   "version": "0.0.1",
   "private": true,
+  "workspaces": {
+    "nohoist": [
+      "**"
+    ]
+  },
   "scripts": {
     "lint": "tslint -p .",
     "build": "tsc",
@@ -9,18 +14,18 @@
     "ci": "yarn lint && yarn build"
   },
   "dependencies": {
-    "@types/fs-extra": "^7.0.0",
+    "@types/fs-extra": "^8.0.1",
     "@types/meow": "^5.0.0",
     "@types/ora": "^3.2.0",
     "chalk": "^2.4.2",
-    "firebase-admin": "^8.2.0",
-    "fs-extra": "^8.0.1",
+    "firebase-admin": "^8.6.1",
+    "fs-extra": "^8.1.0",
     "meow": "^5.0.0",
-    "ora": "^3.1.0",
-    "replace-in-file": "^3.4.4",
-    "ts-node": "^8.3.0",
-    "tslint": "^5.18.0",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.6.3"
+    "ora": "^4.0.2",
+    "replace-in-file": "npm:@zhigang1992/replace-in-file@latest",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.7.2",
+    "eslint": "^6.5.1",
+    "eslint-config-typescript": "^3.0.0"
   }
 }

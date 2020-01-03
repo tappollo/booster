@@ -1,4 +1,5 @@
 {
   "name": "mercy",
-  "displayName": "mercy"
+  "displayName": "mercy",
+  "stripePublishKeys": "*"
 }

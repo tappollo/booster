@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "workspaces": {
-    "nohoist": []
+    "nohoist": [
+      "**"
+    ]
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf lib && tsc",
     "lint": "eslint --ext js,ts,tsx src",
     "ci": "yarn lint && yarn build",
     "serve": "yarn build && firebase serve --only functions",
@@ -14,14 +16,13 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "@google-cloud/storage": "^2.5.0",
-    "firebase-admin": "^8.2.0",
-    "firebase-functions": "^3.0.1"
+    "firebase-admin": "^8.6.1",
+    "firebase-functions": "^3.3.0"
   },
   "devDependencies": {
-    "eslint": "^6.4.0",
+    "eslint": "^6.5.1",
     "eslint-config-typescript": "^3.0.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.7.2"
   },
   "engines": {
     "node": "10"

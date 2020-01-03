@@ -20,17 +20,5 @@ service cloud.firestore {
     match /readonly/{userId} {
       allow read: if isMe(userId)
     }
-
-
-    match /conversations/{conversationId} {
-        function isListedInChat() {
-          return userLoggedIn()
-            && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.userIds
-        }
-        allow read: if userLoggedIn() && request.auth.uid in resource.data.userIds
-        match /messages/{messageId} {
-            allow read, create: if isListedInChat()
-        }
-    }
   }
 }

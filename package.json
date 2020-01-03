@@ -11,24 +11,25 @@
     ]
   },
   "scripts": {
-    "postinstall": "yarn workspace @mercy/app postinstall",
+    "postinstall": "yarn workspace @mercy/app postinstall && yarn updateVersion",
+    "updateVersion": "echo \"{\\\"current\\\":\\\"`git rev-parse HEAD`\\\",\\\"code\\\":`git rev-list --count HEAD`}\" > .version",
     "ci": "yarn workspace @mercy/app ci && yarn workspace @mercy/web ci && yarn workspace @mercy/functions ci && yarn workspace @mercy/scripts ci",
-    "deploy:dev": "ts-node ./scripts/use.ts dev && firebase deploy --force",
+    "start": "yarn workspace @mercy/app start",
     "xcode": "open app/ios/mercy.xcworkspace",
     "studio": "open -a /Applications/Android\\ Studio.app app/android/",
     "bootstrap": "yarn install && cd app && bundle install && cd ios && bundle exec pod install --repo-update",
     "use": "yarn workspace @mercy/scripts use"
   },
   "devDependencies": {
-    "firebase-tools": "^7.0.1",
-    "husky": "^2.5.0",
-    "lint-staged": "^8.2.1",
-    "prettier": "^1.18.2"
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "post-commit": "git update-index -g"
+      "post-commit": "yarn updateVersion",
+      "post-checkout": "yarn updateVersion"
     }
   },
   "lint-staged": {
@@ -36,5 +37,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "resolutions": {
+    "prettier": "1.19.1"
   }
 }

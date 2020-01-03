@@ -1,21 +1,20 @@
 - Getting started
 
-  - [Quick start](quickstart.md)
-  - [Create firebase project](firebase-configure.md)
-  - [Run the app](run-the-app.md)
+  - [Quick start](start/quickstart.md)
+  - [Create firebase project](start/firebase-configure.md)
+  - [Run the app](start/run-the-app.md)
 
 - Guides
 
-  - [Internal distribution](internal-distribution.md)
-  - [AppStore & PlayStore release](stores-release.md)
-  - [OTA update via CodePush](codepush.md)
-  - [:construction: Multiple env setup](wip.md)
-  - [:construction: CI/CD with Github Actions](wip.md)
-  - [:construction: React Native Web](wip.md)
+  - [Internal distribution](guides/internal-distribution.md)
+  - [AppStore & PlayStore release](guides/stores-release.md)
+  - [OTA update via CodePush](guides/codepush.md)
+  - [Multiple env setup](guides/multiple-env.md)
+  - [CI/CD with Github Actions](guides/cicd.md)
 
 - Features
 
-  - [:construction: User auth and Social Login](wip.md)
+  - [User auth and Social Login](features/social.md)
   - [:construction: In app Chat](wip.md)
   - [:construction: Notification and DeepLink](wip.md)
   - [:construction: Build in Settings](wip.md)
@@ -23,5 +22,10 @@
   - [:construction: Video Player](wip.md)
   - [:construction: Live Streaming](wip.md)
   - [:construction: Payment Integration](wip.md)
+
+- Tips
+
+  - [Images Related](tips/image.md)
+  - [Update booster](tips/booster-release.md)
 
 - [:construction: Changelog](wip.md)
