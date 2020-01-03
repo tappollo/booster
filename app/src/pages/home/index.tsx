@@ -3,18 +3,31 @@ import HomePage from "./HomePage";
 import StorybookUIRoot from "../../../storybook";
 import React from "react";
 
-const Stack = createStackNavigator();
+const HomeNavStack = createStackNavigator();
 
+const HomeNav = () => {
+  return (
+    <HomeNavStack.Navigator mode="card">
+      <HomeNavStack.Screen name="home" component={HomePage} />
+    </HomeNavStack.Navigator>
+  );
+};
+
+const HomeModelStack = createStackNavigator();
 const Home = () => {
   return (
-    <Stack.Navigator initialRouteName="HomePage">
-      <Stack.Screen name="HomePage" component={HomePage} />
-      <Stack.Screen
+    <HomeModelStack.Navigator initialRouteName="homeNav" mode="modal">
+      <HomeModelStack.Screen
+        name="homeNav"
+        component={HomeNav}
+        options={{ header: () => null }}
+      />
+      <HomeModelStack.Screen
         name="Storybook"
         options={{ header: () => null }}
         component={() => <StorybookUIRoot />}
       />
-    </Stack.Navigator>
+    </HomeModelStack.Navigator>
   );
 };
 
