@@ -1,8 +1,8 @@
 import React from "react";
 import codePush from "react-native-code-push";
 import { Provider as PaperProvider } from "react-native-paper";
-import Routes from "./pages/Routes";
-import theme from "./styles/theme";
+import Routes from "./booster/pages/Routes";
+import theme from "./booster/styles/theme";
 
 const App = () => (
   <PaperProvider theme={theme}>
