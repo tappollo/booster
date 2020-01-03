@@ -20,11 +20,11 @@ export const trackScreenNavigation = (state: NavigationState | undefined) => {
   const route = getActiveRouteName(state);
   if (route) {
     analytics().setCurrentScreen(route.name);
-    analytics().logEvent(`${route.name}_screenParams`, _.pickBy(
-      route.params,
-      value => {
+    analytics().logEvent(
+      `${route.name}_screenParams`,
+      _.pickBy(route.params, value => {
         return _.isNumber(value) || _.isBoolean(value) || _.isString(value);
-      }
-    ) as any);
+      }) as any
+    );
   }
 };

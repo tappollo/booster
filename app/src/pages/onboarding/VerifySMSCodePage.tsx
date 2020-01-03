@@ -6,7 +6,7 @@ import { Caption } from "react-native-paper";
 import { Alert, Text } from "react-native";
 import SMSCodeInput from "./components/SMSCodeInput";
 import { RouteProp } from "@react-navigation/core";
-import { OnboardingStackParams } from "../Routes";
+import { OnboardingStackParams } from "./index";
 
 export interface VerifySMSCodePageParams {
   confirmation: (code: string) => Promise<any>;

@@ -1,127 +1,37 @@
-import HomePage from "./home/HomePage";
-import { createStackNavigator } from "@react-navigation/stack";
-import {
-  NavigationNativeContainer,
-  NavigationState
-} from "@react-navigation/native";
-import React from "react";
-import { useIsLoggedIn } from "../functions/user";
-import LandingPage from "./onboarding/LandingPage";
-import ContinueWithPhonePage from "./onboarding/ContinueWithPhonePage";
-import VerifySMSCodePage, {
-  VerifySMSCodePageParams
-} from "./onboarding/VerifySMSCodePage";
-import SelectCountryPage, {
-  SelectCountryPageParams
-} from "./onboarding/SelectCountryPage";
-import { Platform } from "react-native";
-import StorybookUIRoot from "../../storybook";
+import { NavigationNativeContainer } from "@react-navigation/native";
+import React, { createContext, useCallback, useEffect, useState } from "react";
+import OnBoarding from "./onboarding";
+import Home from "./home";
+import { trackScreenNavigation } from "../functions/analytics";
+import auth from "@react-native-firebase/auth";
 
-export type OnboardingStackParams = {
-  VerifySMSCodePage: VerifySMSCodePageParams;
-  LandingPage: undefined;
-  ContinueWithPhonePage: undefined;
-};
+export const AppRouteContext = createContext<{ resetRoute?: () => void }>({});
 
-const OnboardingNavStack = createStackNavigator<OnboardingStackParams>();
-
-const OnboardingNav = () => {
-  return (
-    <OnboardingNavStack.Navigator
-      initialRouteName="LandingPage"
-      screenOptions={{
-        headerTintColor: "#585858",
-        headerStyle: {
-          borderBottomWidth: 0,
-          backgroundColor: "transparent"
-        },
-        headerLeftContainerStyle: {
-          marginLeft: Platform.select({
-            ios: 20,
-            default: 5
-          })
-        }
-      }}
-    >
-      <OnboardingNavStack.Screen
-        name="LandingPage"
-        component={LandingPage}
-        options={{
-          header: () => null
-        }}
-      />
-      <OnboardingNavStack.Screen
-        name="ContinueWithPhonePage"
-        component={ContinueWithPhonePage}
-        options={{
-          headerBackTitle: " ",
-          title: " "
-        }}
-      />
-      <OnboardingNavStack.Screen
-        name="VerifySMSCodePage"
-        component={VerifySMSCodePage}
-        options={{
-          headerBackTitle: " ",
-          title: " "
-        }}
-      />
-    </OnboardingNavStack.Navigator>
-  );
-};
-
-export type OnBoardingParams = {
-  SelectCountryPage: SelectCountryPageParams;
-  OnboardingNav: undefined;
-};
-
-const OnboardingStack = createStackNavigator<OnBoardingParams>();
-
-const OnBoarding = () => {
-  return (
-    <OnboardingStack.Navigator
-      mode="modal"
-      initialRouteName="OnboardingNav"
-      headerMode="none"
-    >
-      <OnboardingStack.Screen
-        name="SelectCountryPage"
-        component={SelectCountryPage}
-      />
-      <OnboardingStack.Screen name="OnboardingNav" component={OnboardingNav} />
-    </OnboardingStack.Navigator>
-  );
-};
-
-const Stack = createStackNavigator();
-
-const Home = () => {
-  return (
-    <Stack.Navigator initialRouteName="Storybook">
-      <Stack.Screen name="HomePage" component={HomePage} />
-      <Stack.Screen
-        name="Storybook"
-        options={{ header: () => null }}
-        component={() => <StorybookUIRoot />}
-      />
-    </Stack.Navigator>
-  );
-};
-
-const Routes = (props: {
-  onStateChange?: (state: NavigationState | undefined) => void;
-}) => {
-  const isLoggedIn = useIsLoggedIn();
+const Routes = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
+  useEffect(() => {
+    if (isLoggedIn != null) {
+      return;
+    }
+    return auth().onAuthStateChanged(user => {
+      setIsLoggedIn(user != null);
+    });
+  }, [isLoggedIn]);
+  const resetRoute = useCallback(() => {
+    setIsLoggedIn(null);
+  }, [setIsLoggedIn]);
   if (isLoggedIn == null) {
     return null;
   }
   return (
-    <NavigationNativeContainer
-      key={isLoggedIn ? "Home" : "Onboarding"}
-      onStateChange={props.onStateChange}
-    >
-      {isLoggedIn ? <Home /> : <OnBoarding />}
-    </NavigationNativeContainer>
+    <AppRouteContext.Provider value={{ resetRoute }}>
+      <NavigationNativeContainer
+        key={isLoggedIn ? "Home" : "Onboarding"}
+        onStateChange={trackScreenNavigation}
+      >
+        {isLoggedIn ? <Home /> : <OnBoarding />}
+      </NavigationNativeContainer>
+    </AppRouteContext.Provider>
   );
 };
 

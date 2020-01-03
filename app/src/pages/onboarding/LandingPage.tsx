@@ -4,7 +4,7 @@ import { PageContainer } from "../../components/Page";
 import { View } from "react-native";
 import { LoginWithFacebook, LoginWithGoogle } from "./components/SocialButtons";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { OnboardingStackParams } from "../Routes";
+import { OnboardingStackParams } from "./index";
 
 const LandingPage = ({
   navigation

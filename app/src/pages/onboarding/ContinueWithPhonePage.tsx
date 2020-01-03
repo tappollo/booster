@@ -10,8 +10,8 @@ import PhoneNumberInputBox, {
 import auth from "@react-native-firebase/auth";
 import { VerifySMSCodePageParams } from "./VerifySMSCodePage";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { OnBoardingParams, OnboardingStackParams } from "../Routes";
 import { CompositeNavigationProp } from "@react-navigation/core";
+import { OnBoardingParams, OnboardingStackParams } from "./index";
 
 const ContinueWithPhonePage = ({
   navigation

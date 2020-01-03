@@ -32,6 +32,7 @@
     "@react-native-firebase/messaging": "^6.0.1",
     "@react-native-firebase/perf": "^6.0.1",
     "@react-native-firebase/storage": "^6.0.1",
+    "@react-navigation/bottom-tabs": "^5.0.0-alpha.29",
     "@react-navigation/core": "^5.0.0-alpha.29",
     "@react-navigation/native": "^5.0.0-alpha.21",
     "@react-navigation/stack": "^5.0.0-alpha.46",

@@ -5,8 +5,8 @@ import styled from "styled-components";
 import { Country } from "./components/PhoneNumberInput";
 import Fuse from "fuse.js";
 import { RouteProp } from "@react-navigation/core";
-import { OnBoardingParams } from "../Routes";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { OnBoardingParams } from "./index";
 
 const useFuse = () => {
   const fuseOptions = {
