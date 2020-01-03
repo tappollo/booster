@@ -38,7 +38,7 @@ This is useful when you want to cap user upload image to a certain size.
 Its always a good idea to load small thumbnails over origin image.
 
 - It's faster to download
-- It consumes less message in the app
+- It consumes less memory in the app
 
 Booster comes with a image flexible thumbnail service out of the box, in the form of a firebase cloud function.
 
