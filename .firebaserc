@@ -1,5 +1,6 @@
 {
   "projects": {
+    "example": "mercy-f16ad",
     "dev": "PHARAH_FIREBASE_PROJECT",
     "staging": "PHARAH_FIREBASE_PROJECT",
     "prod": "PHARAH_FIREBASE_PROJECT"

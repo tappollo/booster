@@ -4,6 +4,7 @@ module.exports = {
   rules: {
     quotes: ["error", "double"],
     "comma-dangle": "off",
-    "react-native/no-inline-styles": "off"
+    "react-native/no-inline-styles": "off",
+    "no-spaced-func": "off"
   }
 };

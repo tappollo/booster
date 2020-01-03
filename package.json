@@ -21,10 +21,9 @@
     "use": "yarn workspace @mercy/scripts use"
   },
   "devDependencies": {
-    "firebase-tools": "^7.6.1",
-    "husky": "^3.0.9",
-    "lint-staged": "^9.4.2",
-    "prettier": "^1.18.2"
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1"
   },
   "husky": {
     "hooks": {
@@ -38,5 +37,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "resolutions": {
+    "prettier": "1.19.1"
   }
 }

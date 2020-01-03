@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "127334071631",
+    "firebase_url": "https://mercy-f16ad.firebaseio.com",
+    "project_id": "mercy-f16ad",
+    "storage_bucket": "mercy-f16ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127334071631:android:5c3de05af5a3804efad93a",
+        "android_client_info": {
+          "package_name": "com.mercy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127334071631-3pfq6pfk4c67ueq3uakgmvpc0g0ru16b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDLnzllEkafhxR22Aam7jm_EmAaphlieI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127334071631-3pfq6pfk4c67ueq3uakgmvpc0g0ru16b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "127334071631-lt3coqvcg7ejlvqbddn22ifpc94q4r03.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mercy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

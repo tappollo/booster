@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "workspaces": {
-    "nohoist": []
+    "nohoist": [
+      "**"
+    ]
   },
   "scripts": {
     "build": "rm -rf lib && tsc",

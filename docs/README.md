@@ -6,7 +6,7 @@
 
 Scaffolding code, prebuilt UI components and integrated Cl/CD (continuous integration/continuous delivery) for rapid development in iOS, Android and web. Booster helps you develop native apps for all platforms in half the time and half the manpower.
 
-See the [Quick start](quickstart.md) guide for more details.
+See the [Quick start](start/quickstart.md) guide for more details.
 
 ## Features
 
