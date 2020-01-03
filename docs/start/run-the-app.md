@@ -46,6 +46,6 @@ Or manually from https://www.oracle.com/technetwork/java/javase/downloads/jdk8-d
 
 After which, run `yarn studio` to open up Android Studio. and use all the default options to setup project.
 
-To have Phone Auth working, go [Configure signing for android](internal-distribution.md#android-signing)
+To have Phone Auth working, go [Configure signing for android](../guides/internal-distribution.md#android-signing)
 
 Start up the app in Android Studio.

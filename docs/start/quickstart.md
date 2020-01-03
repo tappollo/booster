@@ -27,4 +27,4 @@ To customize our project with our own project name,
 
 ## Next
 
-Go to [Create new firebase project](firebase-configure.md).
+Go to [Create new firebase project](../firebase-configure.md).

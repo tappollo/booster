@@ -11,7 +11,7 @@ To get started, we usually duplicate whatever we have in `scripts/configs/dev` t
 Go to https://console.firebase.google.com and add a new project, we recommend name it `goboost-prod`
 (where goboost is your project name).
 
-Do everything in [Setup firebase](firebase-configure.md) but replace `dev` with `prod`.
+Do everything in [Setup firebase](../firebase-configure.md) but replace `dev` with `prod`.
 
 And don't forget to upload the same [APNs keys](internal-distribution.md#enable-push-notifications) to this project as well.
 
