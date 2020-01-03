@@ -26,5 +26,6 @@
 - Tips
 
   - [Images Related](tips/image.md)
+  - [Update booster](tips/booster-release.md)
 
 - [:construction: Changelog](wip.md)
