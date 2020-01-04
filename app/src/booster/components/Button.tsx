@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-native-paper";
-import { Text } from "react-native";
+import { StyleProp, StyleSheet, Text, ViewStyle } from "react-native";
 
 export const BigButton: typeof Button = props => {
   return (
@@ -8,10 +8,25 @@ export const BigButton: typeof Button = props => {
       dark={true}
       mode="contained"
       {...props}
-      contentStyle={[{ height: 58 }, props.contentStyle]}
-      style={[{ marginVertical: 12 }, props.style]}
+      contentStyle={
+        [styles.content, props.contentStyle] as StyleProp<ViewStyle>
+      }
+      style={[styles.container, props.style] as StyleProp<ViewStyle>}
     >
-      <Text style={{ fontSize: 17, fontWeight: "bold" }}>{props.children}</Text>
+      <Text style={styles.text}>{props.children}</Text>
     </Button>
   );
 };
+
+const styles = StyleSheet.create({
+  content: {
+    height: 58
+  },
+  container: {
+    marginVertical: 12
+  },
+  text: {
+    fontSize: 17,
+    fontWeight: "bold"
+  }
+});

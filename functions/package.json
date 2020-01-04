@@ -16,12 +16,20 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "node-fetch": "^2.6.0",
+    "sharp": "^0.23.1",
     "firebase-admin": "^8.6.1",
     "firebase-functions": "^3.3.0"
   },
   "devDependencies": {
+    "@types/node": "^13.1.4",
+    "@types/node-fetch": "^2.5.4",
+    "@types/md5": "^2.1.33",
+    "@types/sharp": "^0.23.0",
     "eslint": "^6.5.1",
     "eslint-config-typescript": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
     "typescript": "^3.7.2"
   },
   "engines": {
