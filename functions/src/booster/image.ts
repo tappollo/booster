@@ -9,14 +9,19 @@ const resizeFn = async (props: {
   width: number;
   height: number;
 }) => {
+  console.log(
+    `resize image at ${props.url} to ${props.width} x ${props.height}`
+  );
   const key = md5(JSON.stringify(props));
   const file = admin
     .storage()
     .bucket()
     .file(`imageCache/${key}`);
   if ((await file.exists())[0]) {
+    console.log("cache hit");
     return (await file.download())[0];
   }
+  console.log("No cache available, resizing...");
   const { url, width, height } = props;
   const response = await fetch(url);
   const downloaded = await response.buffer();
@@ -31,6 +36,7 @@ const resizeFn = async (props: {
       contentType: "image/jpeg"
     }
   });
+  console.log("Image resized...");
   return resized;
 };
 

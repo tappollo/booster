@@ -6,7 +6,8 @@ admin.initializeApp(functions.config().firebase);
 // Using lazy functions to improve cold boot speed
 
 const lazyFunctions = {
-  status: () => require("./status").statusCheck
+  status: () => require("./booster/status").statusCheck,
+  image: () => require("./booster/image")
   // profile: () => require("./profile"),
   // chat: () => require("./chat"),
   // user: () => require("./user"),
