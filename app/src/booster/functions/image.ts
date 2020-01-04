@@ -6,6 +6,7 @@ import ImagePicker from "react-native-image-picker";
 import analytics from "@react-native-firebase/analytics";
 import crashlytics from "@react-native-firebase/crashlytics";
 import ImageResizer from "react-native-image-resizer";
+import config from "../../app.json";
 
 export const uploadFile = async (
   filePath: string,
@@ -47,7 +48,7 @@ const pickImage = async () => {
         if (res.error) {
           analytics().logEvent("selected_image_failed");
           crashlytics().recordError(new Error(res.error));
-          reject(res.error);
+          reject(new Error(res.error));
         } else {
           analytics().logEvent("selected_image");
           resolve(res.uri);
@@ -57,7 +58,7 @@ const pickImage = async () => {
   });
 };
 
-export const resizeImage = async (image: string) => {
+export const resizeLocalImage = async (image: string) => {
   const { uri } = await ImageResizer.createResizedImage(
     image,
     2000,
@@ -70,5 +71,11 @@ export const resizeImage = async (image: string) => {
 
 export const selectImage = async (): Promise<string> => {
   await assertImagePermissions();
-  return await uploadFile(await resizeImage(await pickImage()));
+  return await resizeLocalImage(await pickImage());
+};
+
+export const thumbnailImage = (uri: string, width: number, height: number) => {
+  return `${config.imageAPI}?url=${encodeURIComponent(
+    uri
+  )}&width=${width}&height=${height}`;
 };
