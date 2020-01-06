@@ -1,11 +1,10 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 import {
   StyleProp,
   Text,
   TextInput,
   TouchableOpacity,
-  ViewStyle,
-  View
+  ViewStyle
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import React, { useState } from "react";
@@ -26,21 +25,22 @@ export interface Country {
   flag: string;
 }
 
-const Container = styled(View)`
+const Container = styled.View`
   flex-direction: row;
   border-bottom-width: 1px;
 `;
 
-const CountryFlag = styled(Text)`
+const CountryFlag = styled.Text`
   font-size: 27px;
 `;
 
-const Input = styled(TextInput).attrs({
+const Input: typeof TextInput = styled.TextInput.attrs({
   maxLength: 16,
   keyboardType: "phone-pad",
   placeholder: "(123) 456-7890",
   placeholderTextColor: theme.colors.placeholder
 })`
+  flex: 1;
   color: ${theme.colors.text};
 `;
 
@@ -80,8 +80,11 @@ const PhoneNumberInputBox = (props: PhoneNumberInputBoxProps) => {
       }}
     >
       <TouchableOpacity
+        css={`
+          flex-direction: row;
+          align-items: center;
+        `}
         onPress={props.onSelectCountry}
-        style={{ flexDirection: "row", alignItems: "center" }}
       >
         <CountryFlag>{props.country.flag}</CountryFlag>
         <Icon
@@ -89,12 +92,16 @@ const PhoneNumberInputBox = (props: PhoneNumberInputBoxProps) => {
           color={theme.colors.placeholder}
           size={18}
         />
-        <Text style={{ marginHorizontal: 8, textAlignVertical: "bottom" }}>
+        <Text
+          css={`
+            margin: 0 8px;
+            text-align-vertical: bottom;
+          `}
+        >
           {props.country.dial_code}
         </Text>
       </TouchableOpacity>
       <Input
-        style={{ flex: 1 }}
         value={
           props.country.code === "US"
             ? formatPhoneNumber(props.phone || "")
