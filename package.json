@@ -19,6 +19,7 @@
     "studio": "open -a /Applications/Android\\ Studio.app app/android/",
     "bootstrap": "yarn install && cd app && bundle install && cd ios && bundle exec pod install --repo-update",
     "use": "yarn workspace @mercy/scripts use",
+    "rename": "yarn workspace @mercy/scripts rename",
     "deploy": "firebase deploy"
   },
   "devDependencies": {

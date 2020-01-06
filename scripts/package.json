@@ -11,6 +11,7 @@
     "lint": "eslint --ext js,ts,tsx .",
     "build": "tsc",
     "use": "ts-node ./use.ts",
+    "rename": "ts-node ./rename.ts",
     "ci": "yarn lint && yarn build"
   },
   "dependencies": {
