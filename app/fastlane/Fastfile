@@ -26,7 +26,7 @@ platform :ios do
       export_options: {
         method: "development",
         provisioningProfiles: {
-          "com.mercy.ios" => "match Development com.mercy.ios"
+          "com.mercy" => "match Development com.mercy"
         }
       },
       silent: true,
@@ -60,9 +60,9 @@ platform :ios do
     )
     build_app(
       workspace: "ios/mercy.xcworkspace",
-      clean: true, 
+      clean: true,
       scheme: "mercy",
-      output_directory: "build", 
+      output_directory: "build",
       output_name: "mercy-appstore.ipa",
       silent: true,
       buildlog_path: "build",
