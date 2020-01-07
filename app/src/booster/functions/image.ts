@@ -43,7 +43,7 @@ const pickImage = async () => {
       res => {
         if (res.didCancel) {
           analytics().logEvent("cancel_select_image");
-          throw null;
+          reject(null);
         }
         if (res.error) {
           analytics().logEvent("selected_image_failed");
