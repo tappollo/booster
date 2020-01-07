@@ -110,6 +110,7 @@ GEM
       xcpretty (~> 0.3.0)
       xcpretty-travis-formatter (>= 0.0.3)
     fastlane-plugin-appcenter (1.7.1)
+    fastlane-plugin-load_json (0.0.1)
     fastlane-plugin-versioning_android (0.1.0)
     fourflusher (2.3.1)
     fuzzy_match (2.0.4)
@@ -218,8 +219,9 @@ DEPENDENCIES
   cocoapods
   fastlane
   fastlane-plugin-appcenter
+  fastlane-plugin-load_json
   fastlane-plugin-versioning_android
   xcode-install
 
 BUNDLED WITH
-   2.0.2
+   2.1.2
