@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "react",
-    "lib": ["es2016"],
+    "lib": ["es2019"],
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,

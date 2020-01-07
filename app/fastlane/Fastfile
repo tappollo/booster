@@ -1,5 +1,18 @@
 default_platform(:ios)
 
+lane :sync_package_version do
+  version = load_json(json_path: "./package.json")['version']
+
+  increment_version_number(
+    xcodeproj: "ios/mercy.xcodeproj",
+    version_number: version
+  )
+  android_set_version_name(
+    gradle_file:"android/app/build.gradle",
+    version_name: version
+  )
+end
+
 platform :ios do
   desc "Upload to app center"
   lane :appcenter do |options|
