@@ -67,7 +67,13 @@ const HomeNav = () => {
   );
 };
 
-const HomeModelStack = createStackNavigator();
+export type HomeModelStackParams = {
+  homeNav: undefined;
+  storybook: undefined;
+};
+
+const HomeModelStack = createStackNavigator<HomeModelStackParams>();
+
 const Home = () => {
   return (
     <HomeModelStack.Navigator initialRouteName="homeNav" mode="modal">
@@ -77,7 +83,7 @@ const Home = () => {
         options={{ header: () => null }}
       />
       <HomeModelStack.Screen
-        name="Storybook"
+        name="storybook"
         options={{ header: () => null }}
         component={StorybookUIRoot as any}
       />
