@@ -24,6 +24,7 @@ export const assertPermission = async ({
     throw new Error(message);
   }
 };
+
 export const assertImagePermissions = async () => {
   await assertPermission({
     ios: PERMISSIONS.IOS.CAMERA,

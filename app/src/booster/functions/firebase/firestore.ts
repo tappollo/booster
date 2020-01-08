@@ -8,8 +8,8 @@ import {
 } from "react";
 import { Doc } from "../types";
 
-type DocumentReference = FirebaseFirestoreTypes.DocumentReference;
-type Query = FirebaseFirestoreTypes.Query;
+export type DocumentReference = FirebaseFirestoreTypes.DocumentReference;
+export type Query = FirebaseFirestoreTypes.Query;
 
 export const useEqual = <T extends { isEqual: (another: T) => boolean }>(
   value: T
@@ -120,4 +120,16 @@ export const useListenQuery = <T>(query: Query) => {
     };
   }, [queryRef]);
   return state;
+};
+
+/*
+  We want to properly type check the keys we use
+  in .where('userId', '==', userId)
+  So instead it would be
+  .where(keyOf<Conversation>('userId', '==', userId)
+  This way if we misspelled 'userId' typescript will catch it
+  It also provides really go autocompletes
+ */
+export const keyOf = <T>(key: keyof T): keyof T => {
+  return key;
 };

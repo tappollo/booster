@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import HomePage from "./HomePage";
 import StorybookUIRoot from "../../../../storybook";
-import React from "react";
+import React, { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TabIconHome from "./assets/tabIconHome.svg";
 import TabIconImage from "./assets/tabIconImage.svg";
@@ -11,6 +11,7 @@ import { SvgProps } from "react-native-svg";
 import ImagePage from "../image/ImagePage";
 import ChatPage from "../chat/ChatPage";
 import UserPage from "../user/UserPage";
+import { useAppLaunchAfterLogin } from "../../functions/app";
 
 type BottomTabParams = {
   homePage: undefined;
@@ -75,8 +76,9 @@ export type HomeModelStackParams = {
 const HomeModelStack = createStackNavigator<HomeModelStackParams>();
 
 const Home = () => {
+  useAppLaunchAfterLogin();
   return (
-    <HomeModelStack.Navigator initialRouteName="storybook" mode="modal">
+    <HomeModelStack.Navigator initialRouteName="homeNav" mode="modal">
       <HomeModelStack.Screen
         name="homeNav"
         component={HomeNav}

@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import styled from "styled-components/native";
 import { Alert } from "react-native";
 import { useSafeArea } from "react-native-safe-area-context";
-import { selectImage, thumbnailImage, uploadFile } from "../../functions/image";
+import { selectImage, thumbnailImage } from "../../functions/image";
 import FastImage from "react-native-fast-image";
+import { uploadFile } from "../../functions/firebase/storage";
 
 const Container = styled.ScrollView<{ marginTop: number }>`
   flex: 1;
