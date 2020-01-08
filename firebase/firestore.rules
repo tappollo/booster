@@ -1,24 +1,41 @@
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Util functions
     function userLoggedIn() {
       return request.auth != null
     }
     function isMe(userId) {
       return userLoggedIn() && request.auth.uid == userId
     }
+    function includingMe(userIds) {
+      return userLoggedIn() && request.auth.uid in userIds
+    }
     function isAdmin() {
       return false
     }
 
-    match /profile/{userId} {
+    // User profiles
+    match /userProfiles/{userId} {
       allow read;
       allow write: if isMe(userId)
     }
-    match /private/{userId} {
+    match /userPrivateProfiles/{userId} {
       allow read, write: if isMe(userId)
     }
-    match /readonly/{userId} {
+    match /userReadonlyProfiles/{userId} {
       allow read: if isMe(userId)
+    }
+
+    // Chat functions
+    match /chats/{chatId} {
+      allow read: if includingMe(resource.data.userIds)
+      function isListedInChat() {
+        return includingMe(get(/databases/$(database)/documents/chats/$(chatId)).data.userIds)
+      }
+      match /messages/{messageId} {
+        allow create: if isListedInChat() && isMe(request.resource.data.createdBy)
+        allow read: if isListedInChat()
+      }
     }
   }
 }

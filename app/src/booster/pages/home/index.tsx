@@ -76,7 +76,7 @@ const HomeModelStack = createStackNavigator<HomeModelStackParams>();
 
 const Home = () => {
   return (
-    <HomeModelStack.Navigator initialRouteName="homeNav" mode="modal">
+    <HomeModelStack.Navigator initialRouteName="storybook" mode="modal">
       <HomeModelStack.Screen
         name="homeNav"
         component={HomeNav}

@@ -13,8 +13,8 @@ export interface Doc<T> {
 // Public profile that's visible to everyone
 export interface Profile {
   name: string;
-  email: string;
   avatar: string;
+  email?: string;
 }
 
 // Private profile only you can see or update
@@ -34,4 +34,32 @@ export interface PrivateProfile {
 export interface ReadonlyProfile {
   accountBalance: number;
   behaviorScore: number;
+}
+
+// Chat Related
+export interface Conversation {
+  createdBy: string;
+  userIds: string[];
+  users: { [key: string]: Profile };
+  createdAt: AppDate;
+  updatedAt: AppDate;
+  lastMessage?: Message;
+  available: boolean;
+}
+
+// Chat Message
+export interface Message {
+  type: "text" | "image" | "system";
+  content: string;
+  createdBy: string;
+  user: Profile;
+  createdAt: AppDate;
+}
+
+// User online status
+export interface UserStatus {
+  online?: boolean;
+  disconnectedAt?: AppDate;
+  conversationId?: string;
+  isTyping?: boolean;
 }

@@ -22,14 +22,14 @@ const generateCurrentUserRef = <T>(key: string) => () => {
     .doc(currentUser().uid);
 };
 
-export const profileRef = generateCurrentUserRef<Profile>("profile");
+export const profileRef = generateCurrentUserRef<Profile>("userProfiles");
 
 export const privateProfileRef = generateCurrentUserRef<PrivateProfile>(
-  "private"
+  "userPrivateProfiles"
 );
 
 export const readonlyProfileRef = generateCurrentUserRef<PrivateProfile>(
-  "readonly"
+  "userReadonlyProfiles"
 );
 
 export const registerDeviceInfo = async () => {

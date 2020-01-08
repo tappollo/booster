@@ -7,9 +7,9 @@ admin.initializeApp(functions.config().firebase);
 
 const lazyFunctions = {
   status: () => require("./booster/status").statusCheck,
-  image: () => require("./booster/image")
+  image: () => require("./booster/image"),
   // profile: () => require("./profile"),
-  // chat: () => require("./chat"),
+  chat: () => require("./booster/chat")
   // user: () => require("./user"),
   // exp: () => require("./exports"),
   // search: () => require("./search")
