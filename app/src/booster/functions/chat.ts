@@ -6,10 +6,14 @@ import { AppState, AppStateStatus } from "react-native";
 export const useUpdatePing = () => {
   useEffect(() => {
     const ref = database().ref(`userStatus/${currentUserId()}`);
-    ref.update({ online: true }).catch();
     ref
-      .onDisconnect()
-      .update({ disconnectedAt: database.ServerValue.TIMESTAMP, online: false })
+      .update({ online: true })
+      .then(() => {
+        return ref.onDisconnect().update({
+          disconnectedAt: database.ServerValue.TIMESTAMP,
+          online: false
+        });
+      })
       .catch();
     const onAppStateChange = (status: AppStateStatus) => {
       if (status === "active") {
