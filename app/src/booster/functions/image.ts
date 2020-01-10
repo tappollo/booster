@@ -66,11 +66,13 @@ export const usePickAndUploadImage = () => {
       const remoteUri = await uploadFile(selectedImage);
       setCurrent(remoteUri);
       setIsUploading(false);
+      return remoteUri;
     } catch (e) {
       setIsUploading(false);
       if (e != null) {
         Alert.alert(e.message);
       }
+      return null;
     }
   }, []);
   return {

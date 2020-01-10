@@ -116,7 +116,7 @@ export const useListenQuery = <T>(query: Query) => {
       }
     );
     return () => {
-      setState({ loading: true });
+      setState({ loading: true, error: undefined, value: undefined });
       subscription();
     };
   }, [queryRef]);

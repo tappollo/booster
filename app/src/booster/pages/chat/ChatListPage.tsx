@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useConversations } from "../../functions/chat";
 import ConversationCell from "./components/ConversationCell";
-import { FlatList, SafeAreaView, TouchableOpacity } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 import { ChatDetailPageParams } from "./ChatDetailPage";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
@@ -12,12 +12,12 @@ import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import SearchIcon from "./assets/search.svg";
 
 const Header = styled.View`
-  margin-top: ${getStatusBarHeight(true)}px;
-  height: 44px;
+  height: ${getStatusBarHeight(true) + 44}px;
   flex-direction: row;
   align-items: center;
-  padding: 0 24px;
+  padding: ${getStatusBarHeight(true)}px 24px 0;
   justify-content: space-between;
+  background-color: white;
 `;
 
 const Title = styled.Text`
