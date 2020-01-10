@@ -1,0 +1,46 @@
+diff --git a/node_modules/react-native-gifted-chat/lib/GiftedAvatar.js b/node_modules/react-native-gifted-chat/lib/GiftedAvatar.js
+index a68af9d..bf2b58b 100644
+--- a/node_modules/react-native-gifted-chat/lib/GiftedAvatar.js
++++ b/node_modules/react-native-gifted-chat/lib/GiftedAvatar.js
+@@ -1,6 +1,7 @@
+ import PropTypes from 'prop-types';
+ import React from 'react';
+ import { Image, Text, TouchableOpacity, View, StyleSheet, } from 'react-native';
++import FastImage from 'react-native-fast-image';
+ import Color from './Color';
+ const { carrot, emerald, peterRiver, wisteria, alizarin, turquoise, midnightBlue, } = Color;
+ const styles = StyleSheet.create({
+@@ -70,10 +71,10 @@ export default class GiftedAvatar extends React.Component {
+                 return user.avatar([styles.avatarStyle, this.props.avatarStyle]);
+             }
+             else if (typeof user.avatar === 'string') {
+-                return (<Image source={{ uri: user.avatar }} style={[styles.avatarStyle, this.props.avatarStyle]}/>);
++                return (<FastImage source={{ uri: user.avatar }} style={[styles.avatarStyle, this.props.avatarStyle]}/>);
+             }
+             else if (typeof user.avatar === 'number') {
+-                return (<Image source={user.avatar} style={[styles.avatarStyle, this.props.avatarStyle]}/>);
++                return (<FastImage source={user.avatar} style={[styles.avatarStyle, this.props.avatarStyle]}/>);
+             }
+         }
+         return null;
+diff --git a/node_modules/react-native-gifted-chat/lib/MessageImage.js b/node_modules/react-native-gifted-chat/lib/MessageImage.js
+index 3e449b5..e194606 100644
+--- a/node_modules/react-native-gifted-chat/lib/MessageImage.js
++++ b/node_modules/react-native-gifted-chat/lib/MessageImage.js
+@@ -1,6 +1,7 @@
+ import PropTypes from 'prop-types';
+ import React, { Component } from 'react';
+ import { Image, StyleSheet, View, ViewPropTypes, } from 'react-native';
++import FastImage from 'react-native-fast-image';
+ // TODO: support web
+ // @ts-ignore
+ import Lightbox from 'react-native-lightbox';
+@@ -26,7 +27,7 @@ export default class MessageImage extends Component {
+           <Lightbox activeProps={{
+                 style: styles.imageActive,
+             }} {...lightboxProps}>
+-            <Image {...imageProps} style={[styles.image, imageStyle]} source={{ uri: currentMessage.image }}/>
++            <FastImage {...imageProps} style={[styles.image, imageStyle]} source={{ uri: currentMessage.image }}/>
+           </Lightbox>
+         </View>);
+         }
