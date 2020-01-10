@@ -1,6 +1,5 @@
 import * as admin from "firebase-admin";
-import { PrivateProfile } from "@mercy/app/src/booster/functions/types";
-import { Profile } from "../types";
+import { PrivateProfile, Profile } from "../types";
 
 export const getUserProfile = async (uid: string) => {
   const snapshot = await admin
