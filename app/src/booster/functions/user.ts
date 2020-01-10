@@ -1,5 +1,10 @@
 import auth from "@react-native-firebase/auth";
-import firestore from "@react-native-firebase/firestore";
+import firestore, {
+  FirebaseFirestoreTypes
+} from "@react-native-firebase/firestore";
+import { keyOf } from "./firebase/firestore";
+import { Profile } from "./types";
+type DocumentSnapshot = FirebaseFirestoreTypes.DocumentSnapshot;
 
 export const currentUser = () => {
   const user = auth().currentUser;
@@ -26,3 +31,19 @@ export const privateProfileRef = generateCurrentUserRef("userPrivateProfiles");
 export const readonlyProfileRef = generateCurrentUserRef(
   "userReadonlyProfiles"
 );
+
+export const userFinishedSignUp = async () => {
+  const valid = (snapshot: DocumentSnapshot) => {
+    return (
+      snapshot.exists &&
+      snapshot.get(keyOf<Profile>("name")) &&
+      snapshot.get(keyOf<Profile>("avatar"))
+    );
+  };
+  const cached = await profileRef().get({ source: "cache" });
+  if (valid(cached)) {
+    return true;
+  }
+  const server = await profileRef().get({ source: "server" });
+  return valid(server);
+};

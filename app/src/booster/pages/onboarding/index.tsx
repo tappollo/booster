@@ -2,7 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SelectCountryPage, {
   SelectCountryPageParams
 } from "./SelectCountryPage";
-import React from "react";
+import React, { useContext } from "react";
 import VerifySMSCodePage, {
   VerifySMSCodePageParams
 } from "./VerifySMSCodePage";
@@ -10,6 +10,7 @@ import { Platform } from "react-native";
 import LandingPage from "./LandingPage";
 import ContinueWithPhonePage from "./ContinueWithPhonePage";
 import OnboardingProfile from "./OnboardingProfile";
+import { AppRouteContext } from "../Routes";
 
 export type OnboardingStackParams = {
   landing: undefined;
@@ -21,9 +22,10 @@ export type OnboardingStackParams = {
 const OnboardingNavStack = createStackNavigator<OnboardingStackParams>();
 
 const OnboardingNav = () => {
+  const { isLoggedIn } = useContext(AppRouteContext);
   return (
     <OnboardingNavStack.Navigator
-      initialRouteName="landing"
+      initialRouteName={isLoggedIn === "signUp" ? "profile" : "landing"}
       screenOptions={{
         title: " ",
         headerBackTitle: " ",
