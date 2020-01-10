@@ -2,12 +2,12 @@ import React, { useContext, useState } from "react";
 import { BigButton } from "../../components/Button";
 import { PageContainer } from "../../components/Page";
 import { BigTitle } from "../../components/Title";
-import { Caption } from "react-native-paper";
-import { Alert, Text } from "react-native";
+import { Alert } from "react-native";
 import SMSCodeInput from "./components/SMSCodeInput";
 import { RouteProp } from "@react-navigation/core";
 import { OnboardingStackParams } from "./index";
 import { AppRouteContext } from "../Routes";
+import TOSAndPrivacyRow from "./components/TOSAndPrivacyRow";
 
 export interface VerifySMSCodePageParams {
   confirmation: (code: string) => Promise<any>;
@@ -16,7 +16,7 @@ export interface VerifySMSCodePageParams {
 const VerifySMSCodePage = ({
   route
 }: {
-  route: RouteProp<OnboardingStackParams, "VerifySMSCodePage">;
+  route: RouteProp<OnboardingStackParams, "verifySMS">;
 }) => {
   const confirmation = route.params.confirmation;
   const [code, setCode] = useState("");
@@ -42,11 +42,7 @@ const VerifySMSCodePage = ({
       >
         Next
       </BigButton>
-      <Caption>
-        By signing up or logging in, you agree to our{" "}
-        <Text style={{ fontWeight: "bold" }}>Terms & Conditions</Text> and{" "}
-        <Text style={{ fontWeight: "bold" }}>Privacy Policy</Text>.
-      </Caption>
+      <TOSAndPrivacyRow />
     </PageContainer>
   );
 };

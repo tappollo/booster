@@ -9,11 +9,13 @@ import VerifySMSCodePage, {
 import { Platform } from "react-native";
 import LandingPage from "./LandingPage";
 import ContinueWithPhonePage from "./ContinueWithPhonePage";
+import OnboardingProfile from "./OnboardingProfile";
 
 export type OnboardingStackParams = {
-  VerifySMSCodePage: VerifySMSCodePageParams;
-  LandingPage: undefined;
-  ContinueWithPhonePage: undefined;
+  landing: undefined;
+  continueWithPhone: undefined;
+  verifySMS: VerifySMSCodePageParams;
+  profile: undefined;
 };
 
 const OnboardingNavStack = createStackNavigator<OnboardingStackParams>();
@@ -21,7 +23,7 @@ const OnboardingNavStack = createStackNavigator<OnboardingStackParams>();
 const OnboardingNav = () => {
   return (
     <OnboardingNavStack.Navigator
-      initialRouteName="LandingPage"
+      initialRouteName="landing"
       screenOptions={{
         title: " ",
         headerBackTitle: " ",
@@ -39,18 +41,19 @@ const OnboardingNav = () => {
       }}
     >
       <OnboardingNavStack.Screen
-        name="LandingPage"
+        name="landing"
         component={LandingPage}
         options={{
           header: () => null
         }}
       />
       <OnboardingNavStack.Screen
-        name="ContinueWithPhonePage"
+        name="continueWithPhone"
         component={ContinueWithPhonePage}
       />
+      <OnboardingNavStack.Screen name="profile" component={OnboardingProfile} />
       <OnboardingNavStack.Screen
-        name="VerifySMSCodePage"
+        name="verifySMS"
         component={VerifySMSCodePage}
       />
     </OnboardingNavStack.Navigator>

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BigTitle } from "../../components/Title";
 import { BigButton } from "../../components/Button";
-import { Caption } from "react-native-paper";
 import { PageContainer } from "../../components/Page";
-import { Alert, Text } from "react-native";
+import { Alert } from "react-native";
 import PhoneNumberInputBox, {
   defaultCountry
 } from "./components/PhoneNumberInput";
@@ -12,6 +11,7 @@ import { VerifySMSCodePageParams } from "./VerifySMSCodePage";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { CompositeNavigationProp } from "@react-navigation/core";
 import { OnBoardingParams, OnboardingStackParams } from "./index";
+import TOSAndPrivacyRow from "./components/TOSAndPrivacyRow";
 
 const ContinueWithPhonePage = ({
   navigation
@@ -49,7 +49,7 @@ const ContinueWithPhonePage = ({
             const confirmation = await auth().signInWithPhoneNumber(
               country.dial_code + phone
             );
-            navigation.push("VerifySMSCodePage", {
+            navigation.push("verifySMS", {
               confirmation: confirmation.confirm.bind(confirmation)
             } as VerifySMSCodePageParams);
           } catch (e) {
@@ -63,11 +63,7 @@ const ContinueWithPhonePage = ({
       >
         Send Verification Code
       </BigButton>
-      <Caption>
-        By signing up or logging in, you agree to our{" "}
-        <Text style={{ fontWeight: "bold" }}>Terms & Conditions</Text> and{" "}
-        <Text style={{ fontWeight: "bold" }}>Privacy Policy</Text>.
-      </Caption>
+      <TOSAndPrivacyRow />
     </PageContainer>
   );
 };
