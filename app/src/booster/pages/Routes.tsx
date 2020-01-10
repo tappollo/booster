@@ -29,7 +29,7 @@ const Routes = () => {
         key={isLoggedIn ? "Home" : "Onboarding"}
         onStateChange={trackScreenNavigation}
       >
-        {!isLoggedIn ? <Home /> : <OnBoarding />}
+        {isLoggedIn ? <Home /> : <OnBoarding />}
       </NavigationNativeContainer>
     </AppRouteContext.Provider>
   );

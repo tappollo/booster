@@ -23,7 +23,7 @@ const OnboardingNavStack = createStackNavigator<OnboardingStackParams>();
 const OnboardingNav = () => {
   return (
     <OnboardingNavStack.Navigator
-      initialRouteName="profile"
+      initialRouteName="landing"
       screenOptions={{
         title: " ",
         headerBackTitle: " ",

@@ -67,7 +67,17 @@ const HomeNavStack = createStackNavigator<HomeNavStackParams>();
 
 const HomeNav = () => {
   return (
-    <HomeNavStack.Navigator mode="card">
+    <HomeNavStack.Navigator
+      mode="card"
+      screenOptions={{
+        title: " ",
+        headerBackTitle: " ",
+        headerTintColor: "#585858",
+        headerStyle: {
+          borderBottomWidth: 0
+        }
+      }}
+    >
       <HomeNavStack.Screen
         name="homeTab"
         options={{ header: () => null }}
@@ -77,6 +87,7 @@ const HomeNav = () => {
       <HomeNavStack.Screen
         name="chatContactList"
         component={ChatContactListPage}
+        options={{ title: "Contacts" }}
       />
     </HomeNavStack.Navigator>
   );

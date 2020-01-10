@@ -13,6 +13,7 @@ import { useNewContacts } from "../../functions/chat";
 import { Center } from "./components/Layout";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
+import LoadingErrorStateView from "../../components/LoadingErrorStateView";
 
 const Cell = (props: Profile & { onPress: () => void }) => {
   return (
@@ -58,40 +59,33 @@ const ChatContactListPage = ({
 }: {
   navigation: StackNavigationProp<HomeNavStackParams>;
 }) => {
-  const { value: contact = [], loading } = useNewContacts();
-  if (loading) {
-    return (
-      <Center>
-        <ActivityIndicator />
-      </Center>
-    );
-  }
-  if (contact.length === 0) {
-    return (
-      <Center>
-        <EmptyText>There is no new contacts</EmptyText>
-      </Center>
-    );
-  }
-
+  const contactsState = useNewContacts();
   return (
-    <FlatList
-      data={contact}
-      keyExtractor={item => item.id}
-      renderItem={({ item }) => (
-        <Cell
-          {...item.doc}
-          onPress={() => {
-            const params: ChatDetailPageParams = {
-              title: item.doc.name,
-              conversationId: item.conversationId,
-              target: item
-            };
-            navigation.push("chatDetail", params);
-          }}
+    <LoadingErrorStateView
+      state={contactsState}
+      isEmpty={value => value.length === 0}
+      emptyText="There is no new contacts"
+    >
+      {contacts => (
+        <FlatList
+          data={contacts}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <Cell
+              {...item.doc}
+              onPress={() => {
+                const params: ChatDetailPageParams = {
+                  title: item.doc.name,
+                  conversationId: item.conversationId,
+                  target: item
+                };
+                navigation.push("chatDetail", params);
+              }}
+            />
+          )}
         />
       )}
-    />
+    </LoadingErrorStateView>
   );
 };
 
