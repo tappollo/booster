@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import HomePage from "./HomePage";
 import StorybookUIRoot from "../../../../storybook";
-import React, { useEffect } from "react";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import TabIconHome from "./assets/tabIconHome.svg";
 import TabIconImage from "./assets/tabIconImage.svg";
@@ -9,9 +9,10 @@ import TabIconChat from "./assets/tabIconChat.svg";
 import TabIconUser from "./assets/tabIconUser.svg";
 import { SvgProps } from "react-native-svg";
 import ImagePage from "../image/ImagePage";
-import ChatPage from "../chat/ChatPage";
 import UserPage from "../user/UserPage";
 import { useAppLaunchAfterLogin } from "../../functions/app";
+import ChatDetailPage, { ChatDetailPageParams } from "../chat/ChatDetailPage";
+import ChatListPage from "../chat/ChatListPage";
 
 type BottomTabParams = {
   homePage: undefined;
@@ -44,7 +45,7 @@ const HomeTabPage = () => (
     />
     <HomeTab.Screen
       name="chatPage"
-      component={ChatPage}
+      component={ChatListPage}
       options={{ tabBarIcon: wrapIcon(TabIconChat) }}
     />
     <HomeTab.Screen
@@ -55,7 +56,13 @@ const HomeTabPage = () => (
   </HomeTab.Navigator>
 );
 
-const HomeNavStack = createStackNavigator();
+export type HomeNavStackParams = {
+  homeTab: undefined;
+  chatDetail: ChatDetailPageParams;
+};
+
+const HomeNavStack = createStackNavigator<HomeNavStackParams>();
+
 const HomeNav = () => {
   return (
     <HomeNavStack.Navigator mode="card">
@@ -64,6 +71,7 @@ const HomeNav = () => {
         options={{ header: () => null }}
         component={HomeTabPage}
       />
+      <HomeNavStack.Screen name="chatDetail" component={ChatDetailPage} />
     </HomeNavStack.Navigator>
   );
 };

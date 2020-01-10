@@ -21,7 +21,7 @@ export const useEqual = <T extends { isEqual: (another: T) => boolean }>(
   return ref;
 };
 
-type LoadingErrorState<T> = {
+export type LoadingErrorState<T> = {
   loading: boolean;
   error?: Error;
   value?: T;
