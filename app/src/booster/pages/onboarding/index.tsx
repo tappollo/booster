@@ -23,7 +23,7 @@ const OnboardingNavStack = createStackNavigator<OnboardingStackParams>();
 const OnboardingNav = () => {
   return (
     <OnboardingNavStack.Navigator
-      initialRouteName="landing"
+      initialRouteName="profile"
       screenOptions={{
         title: " ",
         headerBackTitle: " ",
@@ -51,11 +51,11 @@ const OnboardingNav = () => {
         name="continueWithPhone"
         component={ContinueWithPhonePage}
       />
-      <OnboardingNavStack.Screen name="profile" component={OnboardingProfile} />
       <OnboardingNavStack.Screen
         name="verifySMS"
         component={VerifySMSCodePage}
       />
+      <OnboardingNavStack.Screen name="profile" component={OnboardingProfile} />
     </OnboardingNavStack.Navigator>
   );
 };
