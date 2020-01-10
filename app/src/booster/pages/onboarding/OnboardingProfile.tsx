@@ -1,28 +1,25 @@
 import { PageContainer } from "../../components/Page";
 import { BigTitle } from "../../components/Title";
 import { BigButton } from "../../components/Button";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 import FastImage from "react-native-fast-image";
-import { selectImage, usePickAndUploadImage } from "../../functions/image";
-import { uploadFile } from "../../functions/firebase/storage";
+import { usePickAndUploadImage } from "../../functions/image";
 import { Alert } from "react-native";
-import {
-  useGetDocument,
-  useListenDocument
-} from "../../functions/firebase/firestore";
+import { useListenDocument } from "../../functions/firebase/firestore";
 import { currentUser, profileRef } from "../../functions/user";
 import { Profile } from "../../functions/types";
 import { ActivityIndicator, TextInput } from "react-native-paper";
+import { AppRouteContext } from "../Routes";
 
 const AvatarButton = styled.TouchableOpacity`
-  margin-top: 20px;
+  margin-top: 10px;
   width: 120px;
   height: 120px;
   border-radius: 60px;
   align-self: center;
   background-color: #cccccc;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   box-shadow: 0 2px 4px rgba(211, 211, 211, 0.5);
   justify-content: center;
   align-items: center;
@@ -38,10 +35,13 @@ const Avatar = styled(FastImage)`
 `;
 
 const OnboardingProfile = () => {
+  const { resetRoute } = useContext(AppRouteContext);
+  const [nameInput, setNameInput] = useState("");
   const [saving, setSaving] = useState(false);
   const { value, update } = useListenDocument<Profile>(profileRef());
   const { pick, isUploading, current } = usePickAndUploadImage();
   const avatar = current || value?.avatar || currentUser().photoURL;
+  const name = nameInput || value?.name || currentUser().displayName;
   return (
     <PageContainer>
       <BigTitle>Choose your{"\n"}name and avatar</BigTitle>
@@ -55,15 +55,21 @@ const OnboardingProfile = () => {
         )}
         {isUploading && <ActivityIndicator />}
       </AvatarButton>
-      <TextInput mode="outlined" label="Name" />
+      <TextInput
+        mode="outlined"
+        label="Name"
+        value={name || ""}
+        onChangeText={setNameInput}
+      />
       <BigButton
         loading={saving}
-        disabled={isUploading || avatar == null}
+        disabled={isUploading || avatar == null || !name}
         onPress={async () => {
           try {
             setSaving(true);
-            await update({ avatar: avatar! });
+            await update({ avatar: avatar!, name: name! });
             setSaving(false);
+            resetRoute?.();
           } catch (e) {
             Alert.alert(e.message);
             setSaving(false);
