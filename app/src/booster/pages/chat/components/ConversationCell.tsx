@@ -12,6 +12,7 @@ import { formatDistanceStrict, isAfter, subSeconds } from "date-fns";
 import { useUnreadCount, useUserStatus } from "../../../functions/chat";
 import { Conversation, Doc, Message } from "../../../functions/types";
 import { currentUserId } from "../../../functions/user";
+import { thumbnailImage } from "../../../functions/image";
 
 const useCurrentTime = (refreshInterval: number) => {
   const [time, setTime] = useState(new Date());
@@ -63,7 +64,9 @@ const ConversationCell = (
   const user = users[otherUserId];
   return (
     <ConversationCell.Container onPress={props.onPress}>
-      <ConversationCell.Avatar source={{ uri: user.avatar }} />
+      <ConversationCell.Avatar
+        source={{ uri: thumbnailImage(user.avatar, 200, 200) }}
+      />
       <View style={{ flex: 1 }}>
         <ConversationCell.Title>{user.name}</ConversationCell.Title>
         <ConversationCell.LastMessage>

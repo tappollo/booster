@@ -7,11 +7,12 @@ import { useNewContacts } from "../../functions/chat";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
 import LoadingErrorStateView from "../../components/LoadingErrorStateView";
+import { thumbnailImage } from "../../functions/image";
 
 const Cell = (props: Profile & { onPress: () => void }) => {
   return (
     <Cell.Container onPress={props.onPress}>
-      <Cell.Avatar source={{ uri: props.avatar }} />
+      <Cell.Avatar source={{ uri: thumbnailImage(props.avatar, 100, 100) }} />
       <Cell.Title>{props.name}</Cell.Title>
     </Cell.Container>
   );

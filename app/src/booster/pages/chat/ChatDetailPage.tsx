@@ -24,7 +24,7 @@ import {
 } from "../../functions/chat";
 import { currentUserId, profileRef } from "../../functions/user";
 import { useGetDocument } from "../../functions/firebase/firestore";
-import { usePickAndUploadImage } from "../../functions/image";
+import { thumbnailImage, usePickAndUploadImage } from "../../functions/image";
 import { Center } from "./components/Layout";
 
 const IsTypingText = styled(Text)`
@@ -108,7 +108,7 @@ const Content = ({
           user: {
             _id: m.doc.createdBy,
             name: m.doc.user.name,
-            avatar: m.doc.user.avatar
+            avatar: thumbnailImage(m.doc.user.avatar, 200, 200)
           },
           createdAt: m.doc.createdAt?.toDate()
         }))}
