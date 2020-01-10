@@ -42,8 +42,6 @@ end
 target 'mercy' do
   react_pods
 
-  pod 'IQKeyboardManager'
-
   pod 'Reveal-SDK', :configurations => ['Debug']
 
   use_native_modules!

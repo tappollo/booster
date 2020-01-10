@@ -158,11 +158,11 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
-  - AppAuth (1.2.0):
-    - AppAuth/Core (= 1.2.0)
-    - AppAuth/ExternalUserAgent (= 1.2.0)
-  - AppAuth/Core (1.2.0)
-  - AppAuth/ExternalUserAgent (1.2.0)
+  - AppAuth (1.3.0):
+    - AppAuth/Core (= 1.3.0)
+    - AppAuth/ExternalUserAgent (= 1.3.0)
+  - AppAuth/Core (1.3.0)
+  - AppAuth/ExternalUserAgent (1.3.0)
   - Base64 (1.1.2)
   - boost-for-react-native (1.63.0)
   - BoringSSL-GRPC (0.0.3):
@@ -341,7 +341,7 @@ PODS:
   - GoogleDataTransportCCTSupport (1.2.3):
     - GoogleDataTransport (~> 3.2)
     - nanopb (~> 0.3.901)
-  - GoogleSignIn (5.0.1):
+  - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
@@ -388,28 +388,28 @@ PODS:
   - GTMAppAuth (1.0.0):
     - AppAuth/Core (~> 1.0)
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.2.2):
-    - GTMSessionFetcher/Full (= 1.2.2)
-  - GTMSessionFetcher/Core (1.2.2)
-  - GTMSessionFetcher/Full (1.2.2):
-    - GTMSessionFetcher/Core (= 1.2.2)
-  - IQKeyboardManager (6.5.0)
-  - JWT (3.0.0-beta.11):
+  - GTMSessionFetcher (1.3.1):
+    - GTMSessionFetcher/Full (= 1.3.1)
+  - GTMSessionFetcher/Core (1.3.1)
+  - GTMSessionFetcher/Full (1.3.1):
+    - GTMSessionFetcher/Core (= 1.3.1)
+  - IQKeyboardManager (4.0.13)
+  - JWT (3.0.0-beta.12):
     - Base64 (~> 1.1.2)
   - KTVCocoaHTTPServer (1.0.0):
     - CocoaAsyncSocket
   - KTVHTTPCache (2.0.1):
     - KTVCocoaHTTPServer
   - leveldb-library (1.22)
-  - libwebp (1.0.3):
-    - libwebp/demux (= 1.0.3)
-    - libwebp/mux (= 1.0.3)
-    - libwebp/webp (= 1.0.3)
-  - libwebp/demux (1.0.3):
+  - libwebp (1.1.0):
+    - libwebp/demux (= 1.1.0)
+    - libwebp/mux (= 1.1.0)
+    - libwebp/webp (= 1.1.0)
+  - libwebp/demux (1.1.0):
     - libwebp/webp
-  - libwebp/mux (1.0.3):
+  - libwebp/mux (1.1.0):
     - libwebp/demux
-  - libwebp/webp (1.0.3)
+  - libwebp/webp (1.1.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -652,6 +652,10 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/jscallinvoker (= 0.61.5)
+  - ReactNativeKeyboardManager (4.0.13-16):
+    - IQKeyboardManager (= 4.0.13)
+    - React
+    - React-RCTText
   - Reveal-SDK (24)
   - RNCAsyncStorage (1.7.1):
     - React
@@ -728,9 +732,9 @@ PODS:
     - React
   - RNVectorIcons (6.6.0):
     - React
-  - SDWebImage (5.2.3):
-    - SDWebImage/Core (= 5.2.3)
-  - SDWebImage/Core (5.2.3)
+  - SDWebImage (5.4.2):
+    - SDWebImage/Core (= 5.4.2)
+  - SDWebImage/Core (5.4.2)
   - SDWebImageWebPCoder (0.2.5):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.0)
@@ -749,7 +753,6 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - IQKeyboardManager
   - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera.podspec`)
   - Permission-PhotoLibrary (from `../node_modules/react-native-permissions/ios/PhotoLibrary.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -783,6 +786,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - ReactNativeKeyboardManager (from `../node_modules/react-native-keyboard-manager`)
   - Reveal-SDK
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
@@ -939,6 +943,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  ReactNativeKeyboardManager:
+    :path: "../node_modules/react-native-keyboard-manager"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
   RNCMaskedView:
@@ -992,7 +998,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   abseil: 18063d773f5366ff8736a050fe035a28f635fd27
-  AppAuth: bce82c76043657c99d91e7882e8a9e1a93650cd4
+  AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
@@ -1029,19 +1035,19 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: dfe55efa543e899d906309eaaac6ca26d249862f
   GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
   GoogleDataTransportCCTSupport: 202d7cdf9c4a7d81a2bb7f7e7e1ba6faa421b1f2
-  GoogleSignIn: 3a51b9bb8e48b635fd7f4272cee06ca260345b86
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GoogleUtilities: 29bd0d8f850efbd28cff6d99e8b7da1f8d236bcf
   "gRPC-C++": 9dfe7b44821e7b3e44aacad2af29d2c21f7cde83
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
-  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  IQKeyboardManager: 700e5155d6a292383b54e8678aec769e14fc78fc
-  JWT: 05028b9624591bba9681bb57df2c5f95fa258bad
+  GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
+  JWT: 9b5c05abbcc1a0e69c3c91e1655b3387fc7e581d
   KTVCocoaHTTPServer: df8d7b861e603ff8037e9b2138aca2563a6b768d
   KTVHTTPCache: 588c3eb16f6bd1e6fde1e230dabfb7bd4e490a4d
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
-  libwebp: 057912d6d0abfb6357d8bb05c0ea470301f5d61e
+  libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Permission-Camera: f9a7b0b01c71febe320436aa74630f23c9483547
   Permission-PhotoLibrary: c15c7245aeb74aff3ad5edf70ce34adbcf02541b
@@ -1074,6 +1080,7 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
+  ReactNativeKeyboardManager: 6c42da02c08b7eb16440f9fdc1c78f776a11cdca
   Reveal-SDK: 5d7e56b8f018c0a88b3a2c10bf68d598bbd3b071
   RNCAsyncStorage: 44395cb9c7c1523104c2b499eb426ef7aff82bca
   RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
@@ -1098,13 +1105,13 @@ SPEC CHECKSUMS:
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
-  SDWebImage: 46a7f73228f84ce80990c786e4372cf4db5875ce
+  SDWebImage: 4ca2dc4eefae4224bea8f504251cda485a363745
   SDWebImageWebPCoder: 947093edd1349d820c40afbd9f42acb6cdecd987
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Stripe: db29ad197c74aca6fb981e4e8355cf7ebd0fca5a
   tipsi-stripe: 61c247493a58d7e8e0bf6ee6b014271f473d2b11
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: e4c0c5b99b196a1fc5f240f6ae26dd484e88173c
+PODFILE CHECKSUM: f701c744c0cad4098ee95f1ec00f30f8586f8b2f
 
 COCOAPODS: 1.8.4
