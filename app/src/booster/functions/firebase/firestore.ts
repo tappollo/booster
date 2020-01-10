@@ -97,7 +97,7 @@ export const useListenQuery = <T>(query: Query) => {
   });
   const queryRef = useEqual(query).current;
   useEffect(() => {
-    queryRef.onSnapshot(
+    const subscription = queryRef.onSnapshot(
       snapshot => {
         const docs = snapshot.docs.map(doc => ({
           id: doc.id,
@@ -117,6 +117,7 @@ export const useListenQuery = <T>(query: Query) => {
     );
     return () => {
       setState({ loading: true });
+      subscription();
     };
   }, [queryRef]);
   return state;

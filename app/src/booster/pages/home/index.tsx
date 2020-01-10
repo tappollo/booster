@@ -13,6 +13,7 @@ import UserPage from "../user/UserPage";
 import { useAppLaunchAfterLogin } from "../../functions/app";
 import ChatDetailPage, { ChatDetailPageParams } from "../chat/ChatDetailPage";
 import ChatListPage from "../chat/ChatListPage";
+import ChatContactListPage from "../chat/ChatContactListPage";
 
 type BottomTabParams = {
   homePage: undefined;
@@ -59,6 +60,7 @@ const HomeTabPage = () => (
 export type HomeNavStackParams = {
   homeTab: undefined;
   chatDetail: ChatDetailPageParams;
+  chatContactList: undefined;
 };
 
 const HomeNavStack = createStackNavigator<HomeNavStackParams>();
@@ -72,6 +74,10 @@ const HomeNav = () => {
         component={HomeTabPage}
       />
       <HomeNavStack.Screen name="chatDetail" component={ChatDetailPage} />
+      <HomeNavStack.Screen
+        name="chatContactList"
+        component={ChatContactListPage}
+      />
     </HomeNavStack.Navigator>
   );
 };

@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import database from "@react-native-firebase/database";
-import functions from "@react-native-firebase/functions";
 import { currentUserId } from "./user";
-import { Alert, AppState, AppStateStatus } from "react-native";
+import { AppState, AppStateStatus } from "react-native";
 import firestore from "@react-native-firebase/firestore";
 import { keyOf, useListenQuery } from "./firebase/firestore";
 import { Conversation, Doc, Message, Profile, UserStatus } from "./types";

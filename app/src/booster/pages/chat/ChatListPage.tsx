@@ -7,14 +7,14 @@ import { Center } from "./components/Layout";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
 import { currentUserId } from "../../functions/user";
+import { err } from "react-native-svg/lib/typescript/xml";
 
 const ChatListPage = ({
   navigation
 }: {
   navigation: StackNavigationProp<HomeNavStackParams>;
 }) => {
-  useUpdatePing();
-  const { value: conversations, loading } = useConversations();
+  const { value: conversations, loading, error } = useConversations();
   if (loading || conversations == null) {
     return (
       <Center>
@@ -26,6 +26,13 @@ const ChatListPage = ({
     return (
       <Center>
         <Text style={{ color: "#888888" }}>No conversation yet!</Text>
+      </Center>
+    );
+  }
+  if (error != null) {
+    return (
+      <Center>
+        <Text style={{ color: "red" }}>{error.message}</Text>
       </Center>
     );
   }

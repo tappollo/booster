@@ -1,21 +1,20 @@
-import { NavigationScreenComponent } from "react-navigation";
-import { useNewContacts, useConversations } from "./chat";
-import { User } from "./model";
 import styled from "styled-components";
 import {
   ActivityIndicator,
-  Alert,
   FlatList,
   Image,
   Text,
   TouchableOpacity
 } from "react-native";
 import * as React from "react";
-import { Center } from "../components/Utils";
 import { ChatDetailPageParams } from "./ChatDetailPage";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { Profile } from "../../functions/types";
+import { useNewContacts } from "../../functions/chat";
+import { Center } from "./components/Layout";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { HomeNavStackParams } from "../home";
 
-const Cell = (props: User & { onPress: () => void }) => {
+const Cell = (props: Profile & { onPress: () => void }) => {
   return (
     <Cell.Container onPress={props.onPress}>
       <Cell.Avatar source={{ uri: props.avatar }} />
@@ -54,8 +53,12 @@ const EmptyText = styled(Text)`
   color: gray;
 `;
 
-const ChatContactListPage: NavigationScreenComponent = ({ navigation }) => {
-  const { items: contact, loading } = useNewContacts();
+const ChatContactListPage = ({
+  navigation
+}: {
+  navigation: StackNavigationProp<HomeNavStackParams>;
+}) => {
+  const { value: contact = [], loading } = useNewContacts();
   if (loading) {
     return (
       <Center>
@@ -84,19 +87,12 @@ const ChatContactListPage: NavigationScreenComponent = ({ navigation }) => {
               conversationId: item.conversationId,
               target: item
             };
-            navigation.push("ChatDetailPage", params);
+            navigation.push("chatDetail", params);
           }}
         />
       )}
     />
   );
-};
-
-ChatContactListPage.navigationOptions = {
-  title: "Contacts",
-  tabBarIcon: ({ focused, tintColor }: any) => (
-    <Ionicons name="ios-contact" color={tintColor || "gray"} size={25} />
-  )
 };
 
 export default ChatContactListPage;
