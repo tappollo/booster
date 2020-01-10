@@ -4,6 +4,16 @@ import { BigButton } from "../../components/Button";
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import FastImage from "react-native-fast-image";
+import { selectImage, usePickAndUploadImage } from "../../functions/image";
+import { uploadFile } from "../../functions/firebase/storage";
+import { Alert } from "react-native";
+import {
+  useGetDocument,
+  useListenDocument
+} from "../../functions/firebase/firestore";
+import { currentUser, profileRef } from "../../functions/user";
+import { Profile } from "../../functions/types";
+import { ActivityIndicator, TextInput } from "react-native-paper";
 
 const AvatarButton = styled.TouchableOpacity`
   margin-top: 20px;
@@ -14,28 +24,52 @@ const AvatarButton = styled.TouchableOpacity`
   background-color: #cccccc;
   margin-bottom: 20px;
   box-shadow: 0 2px 4px rgba(211, 211, 211, 0.5);
+  justify-content: center;
+  align-items: center;
 `;
 
 const Avatar = styled(FastImage)`
-  width: 120px;
-  height: 120px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   border-radius: 60px;
 `;
 
 const OnboardingProfile = () => {
-  const [loading, setLoading] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const { value, update } = useListenDocument<Profile>(profileRef());
+  const { pick, isUploading, current } = usePickAndUploadImage();
+  const avatar = current || value?.avatar || currentUser().photoURL;
   return (
     <PageContainer>
       <BigTitle>Choose your{"\n"}name and avatar</BigTitle>
-      <AvatarButton>
-        <Avatar
-          source={{
-            uri:
-              "https://images.unsplash.com/photo-1578432132369-36039052d387?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
-          }}
-        />
+      <AvatarButton onPress={pick}>
+        {avatar && (
+          <Avatar
+            source={{
+              uri: avatar
+            }}
+          />
+        )}
+        {isUploading && <ActivityIndicator />}
       </AvatarButton>
-      <BigButton loading={loading} onPress={async () => {}}>
+      <TextInput mode="outlined" label="Name" />
+      <BigButton
+        loading={saving}
+        disabled={isUploading || avatar == null}
+        onPress={async () => {
+          try {
+            setSaving(true);
+            await update({ avatar: avatar! });
+            setSaving(false);
+          } catch (e) {
+            Alert.alert(e.message);
+            setSaving(false);
+          }
+        }}
+      >
         Save Profile
       </BigButton>
     </PageContainer>

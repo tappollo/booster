@@ -8,20 +8,22 @@ import { RouteProp } from "@react-navigation/core";
 import { OnboardingStackParams } from "./index";
 import { AppRouteContext } from "../Routes";
 import TOSAndPrivacyRow from "./components/TOSAndPrivacyRow";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 export interface VerifySMSCodePageParams {
   confirmation: (code: string) => Promise<any>;
 }
 
 const VerifySMSCodePage = ({
-  route
+  route,
+  navigation
 }: {
   route: RouteProp<OnboardingStackParams, "verifySMS">;
+  navigation: StackNavigationProp<OnboardingStackParams>;
 }) => {
   const confirmation = route.params.confirmation;
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
-  const { resetRoute } = useContext(AppRouteContext);
   return (
     <PageContainer>
       <BigTitle>Enter verification code</BigTitle>
@@ -33,7 +35,7 @@ const VerifySMSCodePage = ({
           try {
             setLoading(true);
             await confirmation(code);
-            resetRoute?.();
+            navigation.push("profile");
           } catch (e) {
             setLoading(false);
             Alert.alert("Error", e.message);

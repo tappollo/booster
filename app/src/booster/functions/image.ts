@@ -4,6 +4,9 @@ import analytics from "@react-native-firebase/analytics";
 import crashlytics from "@react-native-firebase/crashlytics";
 import ImageResizer from "react-native-image-resizer";
 import config from "../../app.json";
+import { useCallback, useState } from "react";
+import { uploadFile } from "./firebase/storage";
+import { Alert } from "react-native";
 
 const pickImage = async () => {
   return await new Promise<string>((resolve, reject) => {
@@ -50,4 +53,30 @@ export const thumbnailImage = (uri: string, width: number, height: number) => {
   return `${config.imageAPI}?url=${encodeURIComponent(
     uri
   )}&width=${width}&height=${height}`;
+};
+
+export const usePickAndUploadImage = () => {
+  const [current, setCurrent] = useState<string>();
+  const [isUploading, setIsUploading] = useState(false);
+  const pick = useCallback(async () => {
+    try {
+      const selectedImage = await selectImage();
+      setCurrent(selectedImage);
+      setIsUploading(true);
+      const remoteUri = await uploadFile(selectedImage);
+      setCurrent(remoteUri);
+      setIsUploading(false);
+    } catch (e) {
+      setIsUploading(false);
+      if (e != null) {
+        Alert.alert(e.message);
+      }
+    }
+  }, []);
+  return {
+    current,
+    setCurrent,
+    pick,
+    isUploading
+  };
 };
