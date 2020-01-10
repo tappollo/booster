@@ -1,16 +1,9 @@
 import styled from "styled-components";
-import {
-  ActivityIndicator,
-  FlatList,
-  Image,
-  Text,
-  TouchableOpacity
-} from "react-native";
+import { FlatList, Image, Text, TouchableOpacity } from "react-native";
 import * as React from "react";
 import { ChatDetailPageParams } from "./ChatDetailPage";
 import { Profile } from "../../functions/types";
 import { useNewContacts } from "../../functions/chat";
-import { Center } from "./components/Layout";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
 import LoadingErrorStateView from "../../components/LoadingErrorStateView";
@@ -43,15 +36,10 @@ Cell.Container = styled(TouchableOpacity)`
   background: #ffffff;
   box-shadow: 0 5px 13px rgba(0, 0, 0, 0.14);
   border-radius: 6px;
-  margin: 5px;
-  height: 50px;
+  margin: 15px;
+  height: 60px;
   padding: 10px;
   align-items: center;
-`;
-
-const EmptyText = styled(Text)`
-  align-self: center;
-  color: gray;
 `;
 
 const ChatContactListPage = ({
