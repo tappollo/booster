@@ -92,7 +92,7 @@ SendButton.Container = styled.TouchableOpacity`
 `;
 
 const ChatInputBar = (props: {
-  onContentSizeChange: (size: { width: number; height: number }) => void;
+  onContentSizeChange?: (size: { width: number; height: number }) => void;
   send: (message: Message) => Promise<void>;
 }) => {
   const { value: profile } = useGetDocument(profileRef());
@@ -108,7 +108,7 @@ const ChatInputBar = (props: {
         <Input
           ref={input}
           value={text}
-          onContentSizeChange={e => {
+          onContentSizeChange={(e: any) => {
             const { height, width } = e.nativeEvent.contentSize;
             if (height === 0 || width === 0) {
               return;
@@ -118,7 +118,7 @@ const ChatInputBar = (props: {
               contentSize.current.height !== height
             ) {
               contentSize.current = { width, height };
-              props.onContentSizeChange({ width, height });
+              props.onContentSizeChange?.({ width, height });
             }
           }}
           onChangeText={(newText: string) => {
@@ -131,7 +131,23 @@ const ChatInputBar = (props: {
             setText(newText);
           }}
         />
-        {Boolean(text) && <SendButton onPress={() => Alert.alert("TEST")} />}
+        {Boolean(text) && (
+          <SendButton
+            onPress={async () => {
+              setText("");
+              await props.send({
+                content: text,
+                createdAt: firestore.FieldValue.serverTimestamp() as any,
+                createdBy: currentUserId(),
+                type: "text",
+                user: {
+                  avatar: profile!.avatar,
+                  name: profile!.name
+                }
+              });
+            }}
+          />
+        )}
       </Content>
       {!text && (
         <ImageAction

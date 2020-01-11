@@ -99,20 +99,6 @@ const Content = ({
           },
           createdAt: m.doc.createdAt?.toDate()
         }))}
-        onSend={newMessages =>
-          newMessages.forEach(async message => {
-            // await send({
-            //   content: message.text,
-            //   createdAt: firestore.FieldValue.serverTimestamp() as any,
-            //   createdBy: currentUserId(),
-            //   type: "text",
-            //   user: {
-            //     avatar: profile!.avatar,
-            //     name: profile!.name
-            //   }
-            // });
-          })
-        }
         user={{
           _id: currentUserId()
         }}
