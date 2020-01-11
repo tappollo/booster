@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { GiftedChat } from "react-native-gifted-chat";
-import { getBottomSpace } from "react-native-iphone-x-helper";
-import {
-  ActivityIndicator,
-  Alert,
-  SafeAreaView,
-  Text,
-  TouchableOpacity
-} from "react-native";
-import firestore from "@react-native-firebase/firestore";
+import { Composer, GiftedChat, Send } from "react-native-gifted-chat";
+import { ActivityIndicator, Alert, Text } from "react-native";
 import styled from "styled-components/native";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { Doc, Profile } from "../../functions/types";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
-import { RouteProp } from "@react-navigation/core";
+import { RouteProp, useIsFocused } from "@react-navigation/core";
 import {
   startConversation,
   updateUserStatus,
@@ -22,10 +13,13 @@ import {
   useUpdateStatus,
   useUserStatus
 } from "../../functions/chat";
-import { currentUserId, profileRef } from "../../functions/user";
-import { useGetDocument } from "../../functions/firebase/firestore";
-import { thumbnailImage, usePickAndUploadImage } from "../../functions/image";
+import { currentUserId } from "../../functions/user";
+import { thumbnailImage } from "../../functions/image";
 import { Center } from "./components/Layout";
+import ChatInputBar from "./components/ChatInputBar";
+
+// @ts-ignore
+import KeyboardManager from "react-native-keyboard-manager";
 
 const IsTypingText = styled(Text)`
   margin: 10px;
@@ -38,32 +32,17 @@ export interface ChatDetailPageParams {
   target: Doc<Profile>;
 }
 
-const ImageAction = (props: { selectedImage: (image: string) => void }) => {
-  const { pick, isUploading } = usePickAndUploadImage();
-  return (
-    <TouchableOpacity
-      style={{ alignSelf: "center", paddingLeft: 10 }}
-      onPress={async () => {
-        const image = await pick();
-        if (image != null) {
-          await props.selectedImage(image);
-        }
-      }}
-      disabled={isUploading}
-    >
-      {isUploading ? (
-        <ActivityIndicator />
-      ) : (
-        <MaterialIcons name="camera-alt" size={25} color="black" />
-      )}
-    </TouchableOpacity>
-  );
-};
-
 const Container = styled.View`
   flex: 1;
   background-color: white;
 `;
+
+const useDisableToolbarOnFocus = () => {
+  const isFocused = useIsFocused();
+  useEffect(() => {
+    KeyboardManager.setEnableAutoToolbar(!isFocused);
+  }, [isFocused]);
+};
 
 const Content = ({
   chatId,
@@ -78,11 +57,19 @@ const Content = ({
   useEffect(() => {
     updateUserStatus({ isTyping }).catch();
   }, [isTyping]);
-  const { value: profile } = useGetDocument(profileRef());
   const targetUserStatus = useUserStatus(target.id);
+  useDisableToolbarOnFocus();
   return (
     <Container>
       <GiftedChat
+        minComposerHeight={46}
+        minInputToolbarHeight={78}
+        renderInputToolbar={(toolbar: Composer["props"]) => (
+          <ChatInputBar
+            send={send}
+            onContentSizeChange={toolbar.onInputSizeChanged}
+          />
+        )}
         renderFooter={() => {
           if (!targetUserStatus.value) {
             return null;
@@ -112,35 +99,18 @@ const Content = ({
           },
           createdAt: m.doc.createdAt?.toDate()
         }))}
-        renderActions={() => (
-          <ImageAction
-            selectedImage={async (image: string) => {
-              await send({
-                content: image,
-                createdAt: firestore.FieldValue.serverTimestamp() as any,
-                createdBy: currentUserId(),
-                type: "image",
-                user: {
-                  avatar: profile!.avatar,
-                  name: profile!.name
-                }
-              });
-            }}
-          />
-        )}
-        bottomOffset={getBottomSpace()}
         onSend={newMessages =>
           newMessages.forEach(async message => {
-            await send({
-              content: message.text,
-              createdAt: firestore.FieldValue.serverTimestamp() as any,
-              createdBy: currentUserId(),
-              type: "text",
-              user: {
-                avatar: profile!.avatar,
-                name: profile!.name
-              }
-            });
+            // await send({
+            //   content: message.text,
+            //   createdAt: firestore.FieldValue.serverTimestamp() as any,
+            //   createdBy: currentUserId(),
+            //   type: "text",
+            //   user: {
+            //     avatar: profile!.avatar,
+            //     name: profile!.name
+            //   }
+            // });
           })
         }
         user={{

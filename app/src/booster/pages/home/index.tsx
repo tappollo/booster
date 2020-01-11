@@ -83,7 +83,13 @@ const HomeNav = () => {
         options={{ header: () => null }}
         component={HomeTabPage}
       />
-      <HomeNavStack.Screen name="chatDetail" component={ChatDetailPage} />
+      <HomeNavStack.Screen
+        name="chatDetail"
+        component={ChatDetailPage}
+        options={({ route }) => ({
+          title: route.params.target.doc.name
+        })}
+      />
       <HomeNavStack.Screen
         name="chatContactList"
         component={ChatContactListPage}
