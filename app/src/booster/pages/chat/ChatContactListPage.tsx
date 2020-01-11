@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FlatList, Image, Text, TouchableOpacity } from "react-native";
+import { FlatList, Text, TouchableOpacity } from "react-native";
 import * as React from "react";
 import { ChatDetailPageParams } from "./ChatDetailPage";
 import { Profile } from "../../functions/types";
@@ -8,17 +8,18 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
 import LoadingErrorStateView from "../../components/LoadingErrorStateView";
 import { thumbnailImage } from "../../functions/image";
+import FastImage from "react-native-fast-image";
 
 const Cell = (props: Profile & { onPress: () => void }) => {
   return (
     <Cell.Container onPress={props.onPress}>
-      <Cell.Avatar source={{ uri: thumbnailImage(props.avatar, 100, 100) }} />
+      <Cell.Avatar source={{ uri: thumbnailImage(props.avatar, 200, 200) }} />
       <Cell.Title>{props.name}</Cell.Title>
     </Cell.Container>
   );
 };
 
-Cell.Avatar = styled(Image)`
+Cell.Avatar = styled(FastImage)`
   background: #d8d8d8;
   width: 36px;
   height: 36px;
