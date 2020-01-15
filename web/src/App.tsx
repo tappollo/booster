@@ -10,20 +10,13 @@ const App: React.FC = () => {
   return (
     <div className="">
       <div className="absolute w-full h-screen overflow-hidden">
-        <Background
-          style={{
-            width: 800,
-            height: 672,
-            marginLeft: -400,
-            marginTop: -200
-          }}
-        />
+        <Background className="xl:-mt-64" />
       </div>
-      <div className="relative container mx-auto min-h-screen">
-        <header className="flex flex-col">
-          <div className="flex flex-col items-center mt-20">
+      <div className="relative container mx-auto">
+        <header className="flex flex-col md:flex-row md:h-screen items-center justify-center">
+          <div className="flex flex-col items-center mt-20 md:mt-0 md:items-start max-w-md md:ml-10">
             <h1 className="text-5xl font-black">Booster</h1>
-            <p className="mt-2 text-sm px-12 text-center font-medium">
+            <p className="mt-2 text-sm px-12 text-center font-medium md:text-left md:pl-0">
               Intergrated scaffolding codes,UI components, integration and
               delivery pipeline for fast pro-typing{" "}
             </p>
@@ -39,7 +32,7 @@ const App: React.FC = () => {
           <img
             src={require("./assets/screenshot.png")}
             alt="Screenshot"
-            className="mt-12 object-contain"
+            className="mt-12 object-contain md:mt-0"
             style={{ height: 380 }}
           />
         </header>
@@ -68,25 +61,25 @@ const App: React.FC = () => {
             </li>
           </ul>
         </section>
-        <footer className="mt-20 pb-8 bg-gray-900 text-green-200">
-          <div className="flex justify-center items-center py-4 bg-gray-800 text-white font-medium">
-            <a href="#" className="px-8 border-r border-white">
-              Terms of Service
-            </a>
-            <a href="#" className="px-8">
-              Privacy Policy
-            </a>
-          </div>
-          <p className="mt-8 text-center leading-loose tracking-wide">
-            <span className="font-bold text-lg uppercase">Contact US</span>
-            <br />
-            <span className="font-semibold">general@tappollo.com</span>
-          </p>
-          <p className="mt-8 text-center px-2 text-xs text-gray-600 font-thin tracking-wider">
-            Copyright © 2020 Tappollo Media. All rights reserved.
-          </p>
-        </footer>
       </div>
+      <footer className="mt-20 pb-8 bg-gray-900 text-green-200 relative">
+        <div className="flex justify-center items-center py-4 bg-gray-800 text-white font-medium">
+          <a href="#" className="px-8 border-r border-white">
+            Terms of Service
+          </a>
+          <a href="#" className="px-8">
+            Privacy Policy
+          </a>
+        </div>
+        <p className="mt-8 text-center leading-loose tracking-wide">
+          <span className="font-bold text-lg uppercase">Contact US</span>
+          <br />
+          <span className="font-semibold">general@tappollo.com</span>
+        </p>
+        <p className="mt-8 text-center px-2 text-xs text-gray-600 font-thin tracking-wider">
+          Copyright © 2020 Tappollo Media. All rights reserved.
+        </p>
+      </footer>
     </div>
   );
 };
