@@ -13,10 +13,10 @@ const App: React.FC = () => {
         <Background className="xl:-mt-64" />
       </div>
       <div className="relative container mx-auto">
-        <header className="flex flex-col md:flex-row md:h-screen items-center justify-center">
+        <header className="flex flex-col md:flex-row md:h-screen md:pb-32 items-center justify-center">
           <div className="flex flex-col items-center mt-20 md:mt-0 md:items-start max-w-md md:ml-10">
-            <h1 className="text-5xl font-black">Booster</h1>
-            <p className="mt-2 text-sm px-12 text-center font-medium md:text-left md:pl-0">
+            <h1 className="text-5xl font-black md:text-6xl">Booster</h1>
+            <p className="mt-2 text-sm px-12 text-center font-medium md:text-left md:pl-0 md:text-lg">
               Intergrated scaffolding codes,UI components, integration and
               delivery pipeline for fast pro-typing{" "}
             </p>
@@ -36,11 +36,11 @@ const App: React.FC = () => {
             style={{ height: 380 }}
           />
         </header>
-        <section className="mt-12">
+        <section className="mt-12 md:-mt-32">
           <h2 className="font-bold text-3xl px-12 text-center">
             Your Digital Vault for Logins and More...
           </h2>
-          <ul className="mt-8 flex justify-around">
+          <ul className="mt-8 flex justify-around max-w-3xl mx-auto">
             <li>
               <Intro1 className="w-20 h-20" />
               <h4 className="mt-3 leading-tight text-sm font-medium text-center w-20">
@@ -62,7 +62,7 @@ const App: React.FC = () => {
           </ul>
         </section>
       </div>
-      <footer className="mt-20 pb-8 bg-gray-900 text-green-200 relative">
+      <footer className="relative mt-20 pb-8 bg-gray-900 text-green-200">
         <div className="flex justify-center items-center py-4 bg-gray-800 text-white font-medium">
           <a href="#" className="px-8 border-r border-white">
             Terms of Service
