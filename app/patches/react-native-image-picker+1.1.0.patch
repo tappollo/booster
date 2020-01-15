@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-image-picker/ios/ImagePickerManager.m b/node_modules/react-native-image-picker/ios/ImagePickerManager.m
+index 683dba5..41b0760 100644
+--- a/node_modules/react-native-image-picker/ios/ImagePickerManager.m
++++ b/node_modules/react-native-image-picker/ios/ImagePickerManager.m
+@@ -460,7 +460,7 @@ - (void)imagePickerController:(UIImagePickerController *)picker didFinishPicking
+ 
+                 if (videoURL) { // Protect against reported crash
+                   NSError *error = nil;
+-                  [fileManager moveItemAtURL:videoURL toURL:videoDestinationURL error:&error];
++                  [fileManager copyItemAtURL:videoURL toURL:videoDestinationURL error:&error];
+                   if (error) {
+                       self.callback(@[@{@"error": error.localizedFailureReason}]);
+                       return;
