@@ -1,0 +1,11 @@
+
+.screenshot {
+    height: 380px;
+}
+
+@screen lg {
+    .screenshot {
+        height: 626px;
+        margin-right: -200px;
+    }
+}
