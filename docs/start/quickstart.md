@@ -20,7 +20,8 @@ yarn install
 To customize our project with our own project name,
 
 ```bash
-./scripts/rename.ts goboost
+cd ./scripts
+./rename.ts goboost
 ```
 
 > It would be a good time to commit since there were a lot of changes.
