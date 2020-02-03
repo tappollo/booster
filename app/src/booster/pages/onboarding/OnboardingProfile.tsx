@@ -1,19 +1,16 @@
 import { PageContainer } from "../../components/Page";
 import { BigTitle } from "../../components/Title";
 import { BigButton } from "../../components/Button";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 import FastImage from "react-native-fast-image";
-import { selectImage, usePickAndUploadImage } from "../../functions/image";
-import { uploadFile } from "../../functions/firebase/storage";
+import { usePickAndUploadImage } from "../../functions/image";
 import { Alert } from "react-native";
-import {
-  useGetDocument,
-  useListenDocument
-} from "../../functions/firebase/firestore";
+import { useListenDocument } from "../../functions/firebase/firestore";
 import { currentUser, profileRef } from "../../functions/user";
 import { Profile } from "../../functions/types";
 import { ActivityIndicator, TextInput } from "react-native-paper";
+import { AppRouteContext } from "../Routes";
 
 const AvatarButton = styled.TouchableOpacity`
   margin-top: 20px;
@@ -42,6 +39,7 @@ const OnboardingProfile = () => {
   const { value, update } = useListenDocument<Profile>(profileRef());
   const { pick, isUploading, current } = usePickAndUploadImage();
   const avatar = current || value?.avatar || currentUser().photoURL;
+  const { resetRoute } = useContext(AppRouteContext);
   return (
     <PageContainer>
       <BigTitle>Choose your{"\n"}name and avatar</BigTitle>
@@ -64,6 +62,7 @@ const OnboardingProfile = () => {
             setSaving(true);
             await update({ avatar: avatar! });
             setSaving(false);
+            resetRoute?.();
           } catch (e) {
             Alert.alert(e.message);
             setSaving(false);

@@ -12,7 +12,7 @@
   },
   "scripts": {
     "postinstall": "yarn workspace @mercy/app postinstall && yarn updateVersion",
-    "updateVersion": "echo \"{\\\"current\\\":\\\"`git rev-parse HEAD`\\\",\\\"code\\\":`git rev-list --count HEAD`}\" > .version",
+    "updateVersion": "echo \"{\\\"hash\\\":\\\"`git rev-parse HEAD`\\\",\\\"code\\\":`git rev-list --count HEAD`}\" > .version",
     "ci": "yarn workspace @mercy/app ci && yarn workspace @mercy/web ci && yarn workspace @mercy/functions ci && yarn workspace @mercy/scripts ci",
     "start": "yarn workspace @mercy/app start",
     "xcode": "open app/ios/mercy.xcworkspace",
