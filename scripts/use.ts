@@ -1,4 +1,4 @@
-#!./node_modules/.bin/ts-node
+#!/usr/bin/env ts-node
 
 import chalk from "chalk";
 import * as meow from "meow";
