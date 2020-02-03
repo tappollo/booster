@@ -67,16 +67,33 @@ const HomeNavStack = createStackNavigator<HomeNavStackParams>();
 
 const HomeNav = () => {
   return (
-    <HomeNavStack.Navigator mode="card">
+    <HomeNavStack.Navigator
+      mode="card"
+      screenOptions={{
+        title: " ",
+        headerBackTitle: " ",
+        headerTintColor: "#585858",
+        headerStyle: {
+          borderBottomWidth: 0
+        }
+      }}
+    >
       <HomeNavStack.Screen
         name="homeTab"
         options={{ header: () => null }}
         component={HomeTabPage}
       />
-      <HomeNavStack.Screen name="chatDetail" component={ChatDetailPage} />
+      <HomeNavStack.Screen
+        name="chatDetail"
+        component={ChatDetailPage}
+        options={({ route }) => ({
+          title: route.params.target.doc.name
+        })}
+      />
       <HomeNavStack.Screen
         name="chatContactList"
         component={ChatContactListPage}
+        options={{ title: "Contacts" }}
       />
     </HomeNavStack.Navigator>
   );

@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import database from "@react-native-firebase/database";
 import { currentUserId } from "./user";
-import { AppState, AppStateStatus } from "react-native";
+import { Alert, AppState, AppStateStatus } from "react-native";
 import firestore from "@react-native-firebase/firestore";
 import { keyOf, useListenQuery } from "./firebase/firestore";
 import { Conversation, Doc, Message, Profile, UserStatus } from "./types";
 import { useListenDatabase } from "./firebase/database";
+import functions from "@react-native-firebase/functions";
 
 export const useConversations = () => {
   return useListenQuery<Conversation>(
@@ -44,44 +45,50 @@ export const useNewContacts = () => {
   };
 };
 
+const getMessagesRef = (chatId: string) => {
+  return firestore()
+    .collection("chats")
+    .doc(chatId)
+    .collection("messages");
+};
+
+export const startConversation = async (target: string): Promise<string> => {
+  const result = await functions().httpsCallable("chat-startConversation")({
+    target
+  });
+  return result.data.id;
+};
+
+export const useUpdateStatus = (chatId: string) => {
+  useEffect(() => {
+    updateUserStatus({ conversationId: chatId }).catch();
+    markConversationAsRead(chatId).catch();
+    return () => {
+      markConversationAsRead(chatId).catch();
+      removeCurrentConversationID().catch();
+    };
+  }, [chatId]);
+};
+
 export const useMessages = (
-  target: string,
-  existingChatId?: string
+  chatId: string
 ): {
   messages: Array<Doc<Message>>;
   send: (message: Message) => Promise<void>;
 } => {
+  const { value: messages = [] } = useListenQuery<Message>(
+    getMessagesRef(chatId).orderBy("createdAt", "desc")
+  );
+  const send = useCallback(
+    async (message: Message) => {
+      await getMessagesRef(chatId).add(message as any);
+    },
+    [chatId]
+  );
   return {
-    messages: [],
-    send: async () => {}
+    messages,
+    send
   };
-  // const [chatId, setChatId] = useState(existingChatId);
-  // useEffect(() => {
-  //   if (existingChatId) {
-  //     return;
-  //   }
-  //   functions()
-  //     .httpsCallable("chat-create")({
-  //       target
-  //     })
-  //     .then(result => {
-  //       setChatId(result.data.id);
-  //     })
-  //     .catch(error => {
-  //       Alert.alert(error.message);
-  //     });
-  // }, []);
-  // return {
-  //   messages: useListenQuery<Message>(
-  //     chatId ? getMessagesRef(chatId).orderBy("createdAt", "desc") : undefined,
-  //     [chatId]
-  //   ).items,
-  //   send: async (message: Message) => {
-  //     if (chatId) {
-  //       await getMessagesRef(chatId).add(message);
-  //     }
-  //   }
-  // };
 };
 
 export const useUpdatePing = () => {

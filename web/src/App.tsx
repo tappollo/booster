@@ -1,25 +1,27 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, useLocation } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ScrollToTop />
+      <Route exact={true} path="/" component={LandingPage} />
+      <Route path="/terms_of_service" component={TermsOfServicePage} />
+      <Route path="/privacy_policy" component={PrivacyPolicyPage} />
+    </Router>
   );
 };
 

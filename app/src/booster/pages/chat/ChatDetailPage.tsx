@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { GiftedChat } from "react-native-gifted-chat";
-import { getBottomSpace } from "react-native-iphone-x-helper";
-import {
-  ActivityIndicator,
-  Alert,
-  SafeAreaView,
-  Text,
-  TouchableOpacity
-} from "react-native";
-import firestore from "@react-native-firebase/firestore";
-import styled from "styled-components";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import { Doc, Message, Profile } from "../../functions/types";
+import { Composer, GiftedChat, Send } from "react-native-gifted-chat";
+import { ActivityIndicator, Alert, Text } from "react-native";
+import styled from "styled-components/native";
+import { Doc, Profile } from "../../functions/types";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
-import { RouteProp } from "@react-navigation/core";
+import { RouteProp, useIsFocused } from "@react-navigation/core";
+import {
+  startConversation,
+  updateUserStatus,
+  useMessages,
+  useUpdateStatus,
+  useUserStatus
+} from "../../functions/chat";
+import { currentUserId } from "../../functions/user";
+import { thumbnailImage } from "../../functions/image";
+import { Center } from "./components/Layout";
+import ChatInputBar from "./components/ChatInputBar";
+
+// @ts-ignore
+import KeyboardManager from "react-native-keyboard-manager";
 
 const IsTypingText = styled(Text)`
   margin: 10px;
@@ -27,128 +32,105 @@ export interface ChatDetailPageParams {
   target: Doc<Profile>;
 }
 
-const ImageAction = (props: { sendMessage: (message: Message) => void }) => {
-  const [uploading, setUploading] = useState(false);
+const Container = styled.View`
+  flex: 1;
+  background-color: white;
+`;
+
+const useDisableToolbarOnFocus = () => {
+  const isFocused = useIsFocused();
+  useEffect(() => {
+    KeyboardManager.setEnableAutoToolbar(!isFocused);
+  }, [isFocused]);
+};
+
+const Content = ({
+  chatId,
+  target
+}: {
+  target: Doc<Profile>;
+  chatId: string;
+}) => {
+  useUpdateStatus(chatId);
+  const { messages, send } = useMessages(chatId);
+  const [isTyping, setIsTyping] = useState(false);
+  useEffect(() => {
+    updateUserStatus({ isTyping }).catch();
+  }, [isTyping]);
+  const targetUserStatus = useUserStatus(target.id);
+  useDisableToolbarOnFocus();
   return (
-    <TouchableOpacity
-      style={{ alignSelf: "center", paddingLeft: 10 }}
-      onPress={async () => {
-        try {
-          // const picked = await checkPermissionAndPickImage();
-          // setUploading(true);
-          // const image = await resizeAndUpload(picked);
-          // await props.sendMessage({
-          //   content: image,
-          //   type: "image",
-          //   createdAt: firestore.FieldValue.serverTimestamp() as any,
-          //   createdBy: currentUserId(),
-          //   user: {
-          //     avatar: currentUser().photoURL || "",
-          //     name: currentUser().displayName || ""
-          //   }
-          // });
-        } catch (error) {
-          if (error) {
-            Alert.alert(error.message);
+    <Container>
+      <GiftedChat
+        minComposerHeight={46}
+        minInputToolbarHeight={78}
+        renderInputToolbar={(toolbar: Composer["props"]) => (
+          <ChatInputBar
+            send={send}
+            onContentSizeChange={toolbar.onInputSizeChanged}
+          />
+        )}
+        renderFooter={() => {
+          if (!targetUserStatus.value) {
+            return null;
           }
-        } finally {
-          setUploading(false);
-        }
-      }}
-      disabled={uploading}
-    >
-      {uploading ? (
-        <ActivityIndicator />
-      ) : (
-        <MaterialIcons name="camera-alt" size={25} color="black" />
-      )}
-    </TouchableOpacity>
+          if (targetUserStatus.value.conversationId !== chatId) {
+            return null;
+          }
+          if (targetUserStatus.value.isTyping) {
+            return (
+              <IsTypingText>{`${target.doc.name} is typing...`}</IsTypingText>
+            );
+          }
+          return null;
+        }}
+        onInputTextChanged={input => {
+          setIsTyping(input.length > 0);
+        }}
+        messages={messages.map(m => ({
+          _id: m.id,
+          text: m.doc.type !== "image" ? m.doc.content : "",
+          image: m.doc.type === "image" ? m.doc.content : "",
+          system: m.doc.type === "system",
+          user: {
+            _id: m.doc.createdBy,
+            name: m.doc.user.name,
+            avatar: thumbnailImage(m.doc.user.avatar, 200, 200)
+          },
+          createdAt: m.doc.createdAt?.toDate()
+        }))}
+        user={{
+          _id: currentUserId()
+        }}
+      />
+    </Container>
   );
 };
 
 const ChatDetailPage = ({
-  route,
-  navigation
+  route
 }: {
   route: RouteProp<HomeNavStackParams, "chatDetail">;
   navigation: StackNavigationProp<HomeNavStackParams>;
 }) => {
-  return null;
-  // const target = navigation.getParam("target");
-  // const conversationId = navigation.getParam("conversationId");
-  // const { messages, send } = useMessages(target.id, conversationId);
-  // useEffect(() => {
-  //   if (conversationId) {
-  //     updateUserStatus({ conversationId }).catch();
-  //     markConversationAsRead(conversationId).catch();
-  //     return () => {
-  //       markConversationAsRead(conversationId).catch();
-  //       removeCurrentConversationID().catch();
-  //     };
-  //   }
-  // }, [conversationId]);
-  // const [isTyping, setIsTyping] = useState(false);
-  // useEffect(() => {
-  //   updateUserStatus({ isTyping }).catch();
-  // }, [isTyping]);
-  // const targetUserStatus = useUserStatus(target.id);
-  // return (
-  //   <>
-  //     <FixIQKeyboardManager />
-  //     <SafeAreaView style={{ flex: 1 }}>
-  //       <GiftedChat
-  //         renderFooter={() => {
-  //           if (!targetUserStatus.value) {
-  //             return null;
-  //           }
-  //           if (targetUserStatus.value.conversationId !== conversationId) {
-  //             return null;
-  //           }
-  //           if (targetUserStatus.value.isTyping) {
-  //             return (
-  //               <IsTypingText>{`${target.doc.name} is typing...`}</IsTypingText>
-  //             );
-  //           }
-  //           return null;
-  //         }}
-  //         onInputTextChanged={input => {
-  //           setIsTyping(input.length > 0);
-  //         }}
-  //         messages={messages.map(m => ({
-  //           _id: m.id,
-  //           text: m.doc.type !== "image" ? m.doc.content : "",
-  //           image: m.doc.type === "image" ? m.doc.content : "",
-  //           system: m.doc.type === "system",
-  //           user: {
-  //             _id: m.doc.createdBy,
-  //             name: m.doc.user.name,
-  //             avatar: m.doc.user.avatar
-  //           },
-  //           createdAt: m.doc.createdAt
-  //         }))}
-  //         renderActions={() => <ImageAction sendMessage={send} />}
-  //         bottomOffset={getBottomSpace()}
-  //         onSend={newMessages =>
-  //           newMessages.forEach(async message => {
-  //             await send({
-  //               content: message.text,
-  //               createdAt: firestore.FieldValue.serverTimestamp() as any,
-  //               createdBy: currentUserId(),
-  //               type: "text",
-  //               user: {
-  //                 avatar: currentUser().photoURL || "",
-  //                 name: currentUser().displayName || ""
-  //               }
-  //             });
-  //           })
-  //         }
-  //         user={{
-  //           _id: currentUserId()
-  //         }}
-  //       />
-  //     </SafeAreaView>
-  //   </>
-  // );
+  const { target, conversationId } = route.params;
+  const [chatId, setChatId] = useState(conversationId);
+  useEffect(() => {
+    if (conversationId != null) {
+      return;
+    }
+    startConversation(target.id)
+      .then(setChatId)
+      .catch(e => Alert.alert(e.message));
+  }, [conversationId, target]);
+  if (chatId == null) {
+    return (
+      <Center>
+        <ActivityIndicator />
+      </Center>
+    );
+  }
+  return <Content target={target} chatId={chatId} />;
 };
 
 export default React.memo(ChatDetailPage);

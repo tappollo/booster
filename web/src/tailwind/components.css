@@ -1,0 +1,26 @@
+.screenshot {
+  height: 380px;
+}
+
+@screen lg {
+  .screenshot {
+    height: 626px;
+    margin-right: -200px;
+  }
+}
+
+
+.markdown {
+  h1 {
+    @apply text-3xl text-black font-bold py-12;
+  }
+  p {
+    @apply font-medium py-3;
+  }
+  h3 {
+    @apply font-black text-blue-700 py-4;
+  }
+  a {
+    @apply text-blue-600;
+  }
+}

@@ -83,10 +83,6 @@ export const onMessageCreate = firestore
       await conversationCountsRef.update({
         [chatId]: (existingCounts[chatId] ?? 0) + 1
       });
-      await admin
-        .database()
-        .ref(`conversationCounts/${targetUserId}/${chatId}`)
-        .transaction(count => (count || 0) + 1);
       await sendNotificationsTo(targetUserId, {
         title: message.user.name,
         body: message.content,
