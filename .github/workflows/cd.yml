@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
-      - uses: webfactory/ssh-agent@v0.1.1
+      - uses: webfactory/ssh-agent@v0.2.0
         with:
           ssh-private-key: ${{ secrets.MATCH_REPO_SSH_PRIVATE_KEY }}
       - name: Get yarn cache
