@@ -38,6 +38,8 @@ import * as process from "process";
       const fileMappings = {
         "GoogleService-Info.plist": "../app/ios/GoogleService-Info.plist",
         "google-services.json": "../app/android/app/google-services.json",
+        Appfile: "../app/fastlane/Appfile",
+        Matchfile: "../app/fastlane/Matchfile",
         "Info.plist": "../app/ios/mercy/Info.plist",
         "strings.xml": "../app/android/app/src/main/res/values/strings.xml",
         "release.keystore": "../app/android/keystores/release.keystore",

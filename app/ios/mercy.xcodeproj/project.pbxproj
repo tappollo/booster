@@ -364,7 +364,6 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mercy;
 				PRODUCT_NAME = mercy;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.mercy";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -389,7 +388,6 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mercy;
 				PRODUCT_NAME = mercy;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.mercy";
 				VERSIONING_SYSTEM = "apple-generic";
