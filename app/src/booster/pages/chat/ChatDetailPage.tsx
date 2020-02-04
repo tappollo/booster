@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Composer, GiftedChat, Send } from "react-native-gifted-chat";
+import { Composer, GiftedChat } from "react-native-gifted-chat";
 import { ActivityIndicator, Alert, Text } from "react-native";
 import styled from "styled-components/native";
 import { Doc, Profile } from "../../functions/types";
@@ -17,7 +17,6 @@ import { currentUserId } from "../../functions/user";
 import { thumbnailImage } from "../../functions/image";
 import { Center } from "./components/Layout";
 import ChatInputBar from "./components/ChatInputBar";
-
 // @ts-ignore
 import KeyboardManager from "react-native-keyboard-manager";
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { BigButton } from "../../components/Button";
 import { PageContainer } from "../../components/Page";
 import { BigTitle } from "../../components/Title";
@@ -6,7 +6,6 @@ import { Alert } from "react-native";
 import SMSCodeInput from "./components/SMSCodeInput";
 import { RouteProp } from "@react-navigation/core";
 import { OnboardingStackParams } from "./index";
-import { AppRouteContext } from "../Routes";
 import TOSAndPrivacyRow from "./components/TOSAndPrivacyRow";
 import { StackNavigationProp } from "@react-navigation/stack";
 

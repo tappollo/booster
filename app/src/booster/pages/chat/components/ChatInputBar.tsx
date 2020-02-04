@@ -4,7 +4,6 @@ import { currentUserId, profileRef } from "../../../functions/user";
 import firestore from "@react-native-firebase/firestore";
 import styled from "styled-components/native";
 import {
-  Alert,
   LayoutAnimation,
   StyleSheet,
   TextInput,

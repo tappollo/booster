@@ -13,8 +13,8 @@ export const assertPermission = async ({
   message: string;
 }) => {
   const permission = Platform.select({
-    ios,
-    android
+    android,
+    default: ios
   });
   if (
     (await check(permission)) === "denied" &&
