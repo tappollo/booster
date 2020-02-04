@@ -15,7 +15,7 @@ jobs:
       - name:
         run: |
           yarn install
-          yarn use dev
+          yarn use example
           yarn ci
         env:
           CI: true
