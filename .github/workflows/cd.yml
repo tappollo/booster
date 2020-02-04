@@ -4,7 +4,7 @@ on: [deployment]
 jobs:
   build:
     name: Building
-    runs-on: macOS-10.14
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -12,7 +12,7 @@ jobs:
           node-version: '10.x'
       - uses: webfactory/ssh-agent@v0.1.1
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.MATCH_REPO_SSH_PRIVATE_KEY }}
       - uses: deliverybot/deployment-status@master
         with:
           state: pending

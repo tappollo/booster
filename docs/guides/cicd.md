@@ -18,7 +18,7 @@ First, you need to [setup signing](internal-distribution.md#ios-signing),
 then create a ssh-key pair and add it to Deployment keys of your fastlane match repo
 (We need to download those certs and provisioning profiles for signing).
 
-After which, add the newly generated private key to your github repo's secrete under key `SSH_PRIVATE_KEY`.
+After which, add the newly generated private key to your github repo's secrete under key `MATCH_REPO_SSH_PRIVATE_KEY`.
 
 And `MATCH_PASSWORD` for repo decrypt password and `FASTLANE_PASSWORD` for apple id password.
 
