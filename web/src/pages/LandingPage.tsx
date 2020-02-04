@@ -24,10 +24,10 @@ const LandingPage = () => {
               delivery pipeline for fast pro-typing{" "}
             </p>
             <div className="flex mt-8 justify-center">
-              <a href="#">
+              <a href="https://www.apple.com">
                 <AppStore className="h-12" />
               </a>
-              <a href="#" className="ml-4">
+              <a href="https://www.google.com" className="ml-4">
                 <PlayStore className="h-12" />
               </a>
             </div>
