@@ -30,6 +30,7 @@ platform :ios do
       repo_update: true,
       silent: true
     )
+    bundle_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
     build_app(
       workspace: "ios/mercy.xcworkspace",
       clean: true,
@@ -40,7 +41,7 @@ platform :ios do
       export_options: {
         method: "development",
         provisioningProfiles: {
-          "com.mercy" => "match Development com.mercy"
+          bundle_id => "match Development " + bundle_id
         }
       },
       silent: true,
@@ -48,9 +49,6 @@ platform :ios do
       suppress_xcode_output: true
     )
     appcenter_upload(
-      api_token: "PHARAH_APPCENTER_API_TOKEN",
-      owner_name: "PHARAH_APPCENTER_OWN_NAME",
-      app_name: "PHARAH_APPCENTER_APP_NAME",
       ipa: "./build/mercy-appcenter.ipa",
       destination_type: 'group',
       destinations: 'Public',
@@ -105,10 +103,11 @@ platform :android do
     )
     gradle(gradle_path: "gradlew", project_dir: "android", task: "clean")
     gradle(gradle_path: "gradlew", project_dir: "android", build_type: "Release", task: "assemble")
+    buildConfig = load_json(json_path: "./build.json")['android']
     appcenter_upload(
-      api_token: "PHARAH_APPCENTER_API_TOKEN",
-      owner_name: "PHARAH_APPCENTER_OWN_NAME",
-      app_name: "PHARAH_APPCENTER_APP_NAME",
+      api_token: buildConfig["api_token"],
+      owner_name: buildConfig["owner_name"],
+      app_name: buildConfig["app_name"],
       apk: "./android/app/build/outputs/apk/release/app-release.apk",
       destination_type: 'group',
       destinations: 'Public',

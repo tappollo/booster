@@ -39,6 +39,9 @@ jobs:
           CI: true
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+          APPCENTER_API_TOKEN: ${{ secrets.APPCENTER_API_TOKEN }}
+          APPCENTER_OWNER_NAME: zhigang1992-4byv
+          APPCENTER_APP_NAME: Go-Boost-iOS
       - run: pushd app && bundle exec fastlane android appcenter && popd
         if: github.event.deployment.task != 'ios'
         env:
