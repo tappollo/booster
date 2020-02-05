@@ -15,8 +15,7 @@ export interface VerifySMSCodePageParams {
 }
 
 const VerifySMSCodePage = ({
-  route,
-  navigation
+  route
 }: {
   route: RouteProp<OnboardingStackParams, "verifySMS">;
   navigation: StackNavigationProp<OnboardingStackParams>;
