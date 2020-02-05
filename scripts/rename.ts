@@ -28,6 +28,7 @@ const replaceInFiles = async (to: string) => {
       relative("../node_modules/**"),
       relative("../*/node_modules/**"),
       relative("../app/ios/Pods/**"),
+      relative("../app/ios/build/**"),
       relative("./rename.ts")
     ]
   });
