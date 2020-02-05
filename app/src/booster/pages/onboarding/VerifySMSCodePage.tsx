@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BigButton } from "../../components/Button";
 import { PageContainer } from "../../components/Page";
 import { BigTitle } from "../../components/Title";
@@ -8,6 +8,7 @@ import { RouteProp } from "@react-navigation/core";
 import { OnboardingStackParams } from "./index";
 import TOSAndPrivacyRow from "./components/TOSAndPrivacyRow";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { AppRouteContext } from "../Routes";
 
 export interface VerifySMSCodePageParams {
   confirmation: (code: string) => Promise<any>;
@@ -23,6 +24,7 @@ const VerifySMSCodePage = ({
   const confirmation = route.params.confirmation;
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
+  const { resetRoute } = useContext(AppRouteContext);
   return (
     <PageContainer>
       <BigTitle>Enter verification code</BigTitle>
@@ -34,7 +36,7 @@ const VerifySMSCodePage = ({
           try {
             setLoading(true);
             await confirmation(code);
-            navigation.push("profile");
+            resetRoute?.();
           } catch (e) {
             setLoading(false);
             Alert.alert("Error", e.message);
