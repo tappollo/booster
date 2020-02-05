@@ -56,15 +56,16 @@ export const thumbnailImage = (uri: string, width: number, height: number) => {
 };
 
 export const usePickAndUploadImage = () => {
-  const [current, setCurrent] = useState<string>();
+  const [localImage, setLocalImage] = useState<string>();
+  const [serverImage, setServerImage] = useState<string>();
   const [isUploading, setIsUploading] = useState(false);
   const pick = useCallback(async () => {
     try {
       const selectedImage = await selectImage();
-      setCurrent(selectedImage);
+      setLocalImage(selectedImage);
       setIsUploading(true);
       const remoteUri = await uploadFile(selectedImage);
-      setCurrent(remoteUri);
+      setServerImage(remoteUri);
       setIsUploading(false);
       return remoteUri;
     } catch (e) {
@@ -76,8 +77,9 @@ export const usePickAndUploadImage = () => {
     }
   }, []);
   return {
-    current,
-    setCurrent,
+    localImage,
+    serverImage,
+    setCurrent: setLocalImage,
     pick,
     isUploading
   };

@@ -39,8 +39,13 @@ const OnboardingProfile = () => {
   const [nameInput, setNameInput] = useState("");
   const [saving, setSaving] = useState(false);
   const { value, update } = useListenDocument<Profile>(profileRef());
-  const { pick, isUploading, current } = usePickAndUploadImage();
-  const avatar = current || value?.avatar || currentUser().photoURL;
+  const {
+    pick,
+    isUploading,
+    localImage,
+    serverImage
+  } = usePickAndUploadImage();
+  const avatar = serverImage || value?.avatar || currentUser().photoURL;
   const name = nameInput || value?.name || currentUser().displayName;
   return (
     <PageContainer>
@@ -49,7 +54,7 @@ const OnboardingProfile = () => {
         {avatar && (
           <Avatar
             source={{
-              uri: avatar
+              uri: localImage || avatar
             }}
           />
         )}
