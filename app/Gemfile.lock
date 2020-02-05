@@ -109,7 +109,7 @@ GEM
       xcodeproj (>= 1.13.0, < 2.0.0)
       xcpretty (~> 0.3.0)
       xcpretty-travis-formatter (>= 0.0.3)
-    fastlane-plugin-appcenter (1.7.1)
+    fastlane-plugin-appcenter (1.8.0)
     fastlane-plugin-load_json (0.0.1)
     fastlane-plugin-versioning_android (0.1.0)
     fourflusher (2.3.1)
