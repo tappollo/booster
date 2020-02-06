@@ -48,7 +48,11 @@ platform :ios do
       buildlog_path: "build",
       suppress_xcode_output: true
     )
+    buildConfig = load_json(json_path: "./build.json")['appcenter']['ios']
     appcenter_upload(
+      api_token: buildConfig["api_token"],
+      owner_name: buildConfig["owner_name"],
+      app_name: buildConfig["app_name"],
       ipa: "./build/mercy-appcenter.ipa",
       destination_type: 'group',
       destinations: 'Public',
@@ -103,7 +107,7 @@ platform :android do
     )
     gradle(gradle_path: "gradlew", project_dir: "android", task: "clean")
     gradle(gradle_path: "gradlew", project_dir: "android", build_type: "Release", task: "assemble")
-    buildConfig = load_json(json_path: "./build.json")['android']
+    buildConfig = load_json(json_path: "./build.json")['appcenter']['android']
     appcenter_upload(
       api_token: buildConfig["api_token"],
       owner_name: buildConfig["owner_name"],
