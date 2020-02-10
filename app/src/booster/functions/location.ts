@@ -3,11 +3,11 @@ import Geolocation from "react-native-geolocation-service";
 
 export const getLocation = async () => {
   await assertLocationPermission();
-  return await new Promise<{ lat: string; lng: string }>((ful, rej) => {
+  return await new Promise<{ lat: number; lng: number }>((ful, rej) => {
     Geolocation.getCurrentPosition(
       async location => {
         const { latitude: lat, longitude: lng } = location.coords;
-        ful({ lat: String(lat), lng: String(lng) });
+        ful({ lat, lng });
       },
       error => {
         rej(error);
