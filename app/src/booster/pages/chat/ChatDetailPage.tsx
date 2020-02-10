@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 import { Doc, Profile } from "../../functions/types";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
-import { RouteProp, useIsFocused } from "@react-navigation/core";
+import { RouteProp } from "@react-navigation/core";
 import {
   startConversation,
   updateUserStatus,
@@ -17,8 +17,7 @@ import { currentUserId } from "../../functions/user";
 import { thumbnailImage } from "../../functions/image";
 import { Center } from "./components/Layout";
 import ChatInputBar from "./components/ChatInputBar";
-// @ts-ignore
-import KeyboardManager from "react-native-keyboard-manager";
+import { useDisableToolbarOnFocus } from "../../functions/utils";
 
 const IsTypingText = styled(Text)`
   margin: 10px;
@@ -35,13 +34,6 @@ const Container = styled.View`
   flex: 1;
   background-color: white;
 `;
-
-const useDisableToolbarOnFocus = () => {
-  const isFocused = useIsFocused();
-  useEffect(() => {
-    KeyboardManager.setEnableAutoToolbar(!isFocused);
-  }, [isFocused]);
-};
 
 const Content = ({
   chatId,
