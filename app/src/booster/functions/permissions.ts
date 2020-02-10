@@ -37,3 +37,11 @@ export const assertImagePermissions = async () => {
     message: "Need your photo library access"
   });
 };
+
+export const assertLocationPermission = async () => {
+  await assertPermission({
+    ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+    android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+    message: "Need your location access"
+  });
+};

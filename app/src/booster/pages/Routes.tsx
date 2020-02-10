@@ -1,4 +1,4 @@
-import { NavigationNativeContainer } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import React, { createContext, useCallback, useEffect, useState } from "react";
 import OnBoarding from "./onboarding";
 import Home from "./home";
@@ -42,12 +42,12 @@ const Routes = () => {
   }
   return (
     <AppRouteContext.Provider value={{ resetRoute, isLoggedIn }}>
-      <NavigationNativeContainer
+      <NavigationContainer
         key={isLoggedIn}
         onStateChange={trackScreenNavigation}
       >
         {isLoggedIn === "home" ? <Home /> : <OnBoarding />}
-      </NavigationNativeContainer>
+      </NavigationContainer>
     </AppRouteContext.Provider>
   );
 };
