@@ -4,6 +4,7 @@ import firestore, {
 } from "@react-native-firebase/firestore";
 import { keyOf } from "./firebase/firestore";
 import { Profile } from "./types";
+import crashlytics from "@react-native-firebase/crashlytics";
 type DocumentSnapshot = FirebaseFirestoreTypes.DocumentSnapshot;
 
 export const currentUser = () => {
@@ -40,10 +41,15 @@ export const userFinishedSignUp = async () => {
       snapshot.get(keyOf<Profile>("avatar"))
     );
   };
-  const cached = await profileRef().get({ source: "cache" });
-  if (valid(cached)) {
+  try {
+    const cached = await profileRef().get({ source: "cache" });
+    if (valid(cached)) {
+      return true;
+    }
+    const server = await profileRef().get({ source: "server" });
+    return valid(server);
+  } catch (e) {
+    crashlytics().recordError(e);
     return true;
   }
-  const server = await profileRef().get({ source: "server" });
-  return valid(server);
 };
