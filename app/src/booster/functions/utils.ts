@@ -24,6 +24,6 @@ export const useDisableToolbarOnFocus = () => {
 export const useEnableKeyboardManagerOnFocus = () => {
   const isFocused = useIsFocused();
   useEffect(() => {
-    KeyboardManager.setEnabled(isFocused);
+    KeyboardManager.setEnable(isFocused);
   }, [isFocused]);
 };
