@@ -13,9 +13,17 @@ export const openURL = async (url: string) => {
     await Linking.openURL(url);
   }
 };
+
 export const useDisableToolbarOnFocus = () => {
   const isFocused = useIsFocused();
   useEffect(() => {
     KeyboardManager.setEnableAutoToolbar(!isFocused);
+  }, [isFocused]);
+};
+
+export const useEnableKeyboardManagerOnFocus = () => {
+  const isFocused = useIsFocused();
+  useEffect(() => {
+    KeyboardManager.setEnabled(isFocused);
   }, [isFocused]);
 };
