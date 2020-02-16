@@ -6,8 +6,8 @@ import styled from "styled-components/native";
 import FastImage from "react-native-fast-image";
 import { usePickAndUploadImage } from "../../functions/image";
 import { Alert } from "react-native";
-import { useListenDocument } from "../../functions/firebase/firestore";
-import { currentUser, profileRef } from "../../functions/user";
+import { useListenDocument } from "../../functions/firebase/firestoreHooks";
+import { currentUser, typedProfile } from "../../functions/user";
 import { Profile } from "../../functions/types";
 import { ActivityIndicator, TextInput } from "react-native-paper";
 import { AppRouteContext } from "../Routes";
@@ -38,7 +38,7 @@ const OnboardingProfile = () => {
   const { resetRoute } = useContext(AppRouteContext);
   const [nameInput, setNameInput] = useState("");
   const [saving, setSaving] = useState(false);
-  const { value, update } = useListenDocument<Profile>(profileRef());
+  const { value, update } = useListenDocument<Profile>(typedProfile.ref());
   const {
     pick,
     isUploading,

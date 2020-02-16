@@ -27,3 +27,7 @@ export const useEnableKeyboardManagerOnFocus = () => {
     KeyboardManager.setEnable(isFocused);
   }, [isFocused]);
 };
+
+export function compose<A, B, C>(l: (a: A) => B, r: (b: B) => C): (a: A) => C {
+  return a => r(l(a));
+}

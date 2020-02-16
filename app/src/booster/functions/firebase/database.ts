@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { LoadingErrorState, useEqual } from "./firestore";
+import { LoadingErrorState, useEqual } from "./firestoreHooks";
 import { FirebaseDatabaseTypes } from "@react-native-firebase/database";
 
 type Reference = FirebaseDatabaseTypes.Reference;

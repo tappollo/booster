@@ -1,4 +1,4 @@
-import { LoadingErrorState } from "../functions/firebase/firestore";
+import { LoadingErrorState } from "../functions/firebase/firestoreHooks";
 import { default as React, ReactElement } from "react";
 import { Center } from "../pages/chat/components/Layout";
 import { ActivityIndicator, Text } from "react-native";

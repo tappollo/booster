@@ -18,12 +18,19 @@ export function useDocAsType<T>() {
     async function update(newValue: Partial<T>) {
       return await doc.set(newValue, { merge: true });
     }
+    async function listen(callback: (value: T) => void) {
+      return doc.onSnapshot(snapshot => {
+        callback(snapshot.data() as any);
+      });
+    }
     async function deleteDoc() {
       await doc.delete();
     }
     return {
+      ref: doc,
       read,
       update,
+      listen,
       delete: deleteDoc
     };
   };

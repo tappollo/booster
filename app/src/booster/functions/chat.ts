@@ -3,7 +3,7 @@ import database from "@react-native-firebase/database";
 import { currentUserId } from "./user";
 import { AppState, AppStateStatus } from "react-native";
 import firestore from "@react-native-firebase/firestore";
-import { keyOf, useListenQuery } from "./firebase/firestore";
+import { keyOf, useListenQuery } from "./firebase/firestoreHooks";
 import { Conversation, Doc, Message, Profile, UserStatus } from "./types";
 import { useListenDatabase } from "./firebase/database";
 import functions from "@react-native-firebase/functions";

@@ -1,10 +1,9 @@
 import auth from "@react-native-firebase/auth";
-import firestore, {
-  FirebaseFirestoreTypes
-} from "@react-native-firebase/firestore";
-import { keyOf } from "./firebase/firestore";
-import { Profile } from "./types";
+import { FirebaseFirestoreTypes } from "@react-native-firebase/firestore";
+import { PrivateProfile, Profile, ReadonlyProfile } from "./types";
 import crashlytics from "@react-native-firebase/crashlytics";
+import { collection, makeDocAsType } from "./firebase/firestore";
+
 type DocumentSnapshot = FirebaseFirestoreTypes.DocumentSnapshot;
 
 export const currentUser = () => {
@@ -19,34 +18,28 @@ export const currentUserId = () => {
   return currentUser().uid;
 };
 
-const generateCurrentUserRef = <T>(key: string) => () => {
-  return firestore()
-    .collection(key)
-    .doc(currentUser().uid);
-};
+export const typedProfile = makeDocAsType<Profile>(() =>
+  collection("userProfiles").doc(currentUserId())
+);
 
-export const profileRef = generateCurrentUserRef("userProfiles");
+export const typedPrivateProfile = makeDocAsType<PrivateProfile>(() =>
+  collection("userPrivateProfiles").doc(currentUserId())
+);
 
-export const privateProfileRef = generateCurrentUserRef("userPrivateProfiles");
-
-export const readonlyProfileRef = generateCurrentUserRef(
-  "userReadonlyProfiles"
+export const typedReadonlyProfile = makeDocAsType<ReadonlyProfile>(() =>
+  collection("userReadonlyProfiles").doc(currentUserId())
 );
 
 export const userFinishedSignUp = async () => {
-  const valid = (snapshot: DocumentSnapshot) => {
-    return (
-      snapshot.exists &&
-      snapshot.get(keyOf<Profile>("name")) &&
-      snapshot.get(keyOf<Profile>("avatar"))
-    );
+  const valid = (snapshot: Profile) => {
+    return snapshot.name && snapshot.avatar;
   };
   try {
-    const cached = await profileRef().get({ source: "cache" });
+    const cached = await typedProfile.read({ source: "cache" });
     if (valid(cached)) {
       return true;
     }
-    const server = await profileRef().get({ source: "server" });
+    const server = await typedProfile.read({ source: "server" });
     return valid(server);
   } catch (e) {
     crashlytics().recordError(e);
