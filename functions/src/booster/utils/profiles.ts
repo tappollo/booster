@@ -1,4 +1,4 @@
-import { collection, getDocAsType } from "./firestore";
+import { collection, useDocAsType } from "./firestore";
 import { compose } from "./utils";
 import { PrivateProfile, Profile, ReadonlyProfile } from "../../types";
 
@@ -11,17 +11,17 @@ export const getPrivateProfileRef = (uid: string) =>
 export const getReadonlyProfileRef = (uid: string) =>
   collection("userReadonlyProfiles").doc(uid);
 
-export const getUserProfile = compose(
+export const useUserProfile = compose(
   getUserProfileRef,
-  getDocAsType<Profile>()
+  useDocAsType<Profile>()
 );
 
-export const getPrivateProfile = compose(
+export const usePrivateProfile = compose(
   getPrivateProfileRef,
-  getDocAsType<PrivateProfile>()
+  useDocAsType<PrivateProfile>()
 );
 
-export const getReadonlyProfile = compose(
+export const useReadonlyProfile = compose(
   getReadonlyProfileRef,
-  getDocAsType<ReadonlyProfile>()
+  useDocAsType<ReadonlyProfile>()
 );

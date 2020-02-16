@@ -1,5 +1,5 @@
 import * as admin from "firebase-admin";
-import { getPrivateProfile } from "./profiles";
+import { usePrivateProfile } from "./profiles";
 
 export const sendNotificationsTo = async (
   uid: string,
@@ -12,11 +12,7 @@ export const sendNotificationsTo = async (
   tracking?: string
 ) => {
   console.log(`Sending notification to ${uid}, tracking ${tracking}`);
-  const profile = await getPrivateProfile(uid).catch(() => null);
-  if (profile == null) {
-    console.error(`User ${uid} does not have private profile`);
-    return;
-  }
+  const profile = await usePrivateProfile(uid).read();
   const tokens = Object.values(profile.pushTokens);
   if (tokens.length >= 0) {
     await admin.messaging().sendToDevice(

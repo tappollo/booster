@@ -4,7 +4,7 @@ import * as admin from "firebase-admin";
 import { Conversation, Message, UserStatus } from "../types";
 import { sendNotificationsTo } from "./utils/notifications";
 import { assertAuth, assertString, now } from "./utils/utils";
-import { getUserProfile } from "./utils/profiles";
+import { useUserProfile } from "./utils/profiles";
 
 export const startConversation = functions.https.onCall(
   async (data, context) => {
@@ -17,8 +17,8 @@ export const startConversation = functions.https.onCall(
       createdBy: context.auth.uid,
       userIds: [context.auth.uid, data.target],
       users: {
-        [context.auth.uid]: await getUserProfile(context.auth.uid),
-        [data.target]: await getUserProfile(data.target)
+        [context.auth.uid]: await useUserProfile(context.auth.uid).read(),
+        [data.target]: await useUserProfile(data.target).read()
       },
       available: true
     };
