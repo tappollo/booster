@@ -11,6 +11,7 @@ export const collection = (collectionId: string): CollectionReference => {
 type DocTypedWrapper<T> = {
   read: (options?: GetOptions) => Promise<T>;
   update: (value: Partial<T>) => Promise<void>;
+  listen: (callback: (value: T) => void) => () => void;
   ref: () => DocumentReference;
 };
 
@@ -30,9 +31,15 @@ export function makeDocAsType<T>(
   async function update(newValue: Partial<T>) {
     return await doc().set(newValue, { merge: true });
   }
+  function listen(callback: (value: T) => void) {
+    return doc().onSnapshot(snapshot => {
+      callback(snapshot.data() as any);
+    });
+  }
   return {
     ref: doc,
     read,
-    update
+    update,
+    listen
   };
 }
