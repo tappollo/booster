@@ -19,7 +19,7 @@ export interface Profile {
 
 // Private profile only you can see or update
 export interface PrivateProfile {
-  address: string;
+  address?: string;
   phone?: string;
   createdAt?: AppDate;
   deviceInfo: {

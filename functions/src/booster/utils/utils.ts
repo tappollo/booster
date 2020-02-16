@@ -14,3 +14,7 @@ export function assertString(val: any): asserts val is string {
     throw new HttpsError("invalid-argument", `${val} is not a string`);
   }
 }
+
+export function compose<A, B, C>(l: (a: A) => B, r: (b: B) => C): (a: A) => C {
+  return a => r(l(a));
+}

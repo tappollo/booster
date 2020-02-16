@@ -2,9 +2,9 @@ import * as functions from "firebase-functions";
 import { firestore } from "firebase-functions";
 import * as admin from "firebase-admin";
 import { Conversation, Message, UserStatus } from "../types";
-import { sendNotificationsTo } from "./notifications";
-import { assertAuth, assertString, now } from "./utils";
-import { getUserProfile } from "./profiles";
+import { sendNotificationsTo } from "./utils/notifications";
+import { assertAuth, assertString, now } from "./utils/utils";
+import { getUserProfile } from "./utils/profiles";
 
 export const startConversation = functions.https.onCall(
   async (data, context) => {
