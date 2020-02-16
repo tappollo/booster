@@ -43,6 +43,8 @@
     "date-fns": "^2.5.0",
     "fuse.js": "^3.4.5",
     "lodash": "^4.17.15",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.1.7",
     "react": "16.9.0",
     "react-native": "^0.61.5",
     "react-native-code-push": "^6.0.0",
