@@ -3,10 +3,13 @@ import codePush from "react-native-code-push";
 import { Provider as PaperProvider } from "react-native-paper";
 import Routes from "./booster/pages/Routes";
 import theme from "./booster/styles/theme";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
 const App = () => (
   <PaperProvider theme={theme}>
-    <Routes />
+    <ActionSheetProvider>
+      <Routes />
+    </ActionSheetProvider>
   </PaperProvider>
 );
 
