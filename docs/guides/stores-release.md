@@ -1,6 +1,6 @@
 ## AppStore Release
 
-To build for release, you need to setup [iOS signing](internal-distribution.md#ios-signing) first.
+To build for release, you need to setup [iOS signing](guides/internal-distribution.md#ios-signing) first.
 
 ```bash
 cd app/ios
@@ -13,7 +13,7 @@ After which it will be available for TestFlight testing, or AppStore releases di
 
 ## PlayStore Release
 
-To build for release, you need to setup [android Signing](internal-distribution.md#android-signing) first.
+To build for release, you need to setup [android Signing](guides/internal-distribution.md#android-signing) first.
 
 ```bash
 cd app/android

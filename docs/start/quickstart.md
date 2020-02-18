@@ -27,4 +27,4 @@ yarn rename goboost
 
 ## Next
 
-Go to [Create new firebase project](../firebase-configure.md).
+Go to [Create new firebase project](start/firebase-configure.md).

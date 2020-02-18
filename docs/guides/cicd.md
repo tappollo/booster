@@ -14,7 +14,7 @@ This will run:
 
 ### Push development build to App center
 
-First, you need to [setup signing](internal-distribution.md#ios-signing),
+First, you need to [setup signing](guides/internal-distribution.md#ios-signing),
 then create a ssh-key pair and add it to Deployment keys of your fastlane match repo
 (We need to download those certs and provisioning profiles for signing).
 
