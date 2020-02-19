@@ -174,7 +174,7 @@ PODS:
   - BVLinearGradient (2.5.6):
     - React
   - CocoaAsyncSocket (7.6.3)
-  - CodePush (6.0.0):
+  - CodePush (6.1.0):
     - Base64 (~> 1.1)
     - JWT (~> 3.0.0-beta.7)
     - React
@@ -603,9 +603,11 @@ PODS:
     - React
   - react-native-image-picker (1.1.0):
     - React
-  - react-native-image-resizer (1.1.0):
+  - react-native-image-resizer (1.2.0):
     - React
   - react-native-safe-area-context (0.6.4):
+    - React
+  - react-native-segmented-control (1.1.1):
     - React
   - react-native-slider (2.0.8):
     - React
@@ -657,7 +659,7 @@ PODS:
     - React
     - React-RCTText
   - Reveal-SDK (24)
-  - RNCAsyncStorage (1.7.1):
+  - RNCAsyncStorage (1.8.0):
     - React
   - RNCMaskedView (0.1.6):
     - React
@@ -667,55 +669,55 @@ PODS:
     - React
     - SDWebImage (~> 5.0)
     - SDWebImageWebPCoder (~> 0.2.3)
-  - RNFBAnalytics (6.3.1):
+  - RNFBAnalytics (6.3.4):
     - Firebase/Core (~> 6.13.0)
     - React
     - RNFBApp
-  - RNFBApp (6.3.1):
+  - RNFBApp (6.3.4):
     - Firebase/Core (~> 6.13.0)
     - React
-  - RNFBAuth (6.3.1):
+  - RNFBAuth (6.3.4):
     - Firebase/Auth (~> 6.13.0)
     - Firebase/Core (~> 6.13.0)
     - React
     - RNFBApp
-  - RNFBCrashlytics (6.3.1):
+  - RNFBCrashlytics (6.3.4):
     - Crashlytics (~> 3.14.0)
     - Fabric (~> 1.10.2)
     - Firebase/Core (~> 6.13.0)
     - React
     - RNFBApp
-  - RNFBDatabase (6.3.1):
+  - RNFBDatabase (6.3.4):
     - Firebase/Core (~> 6.13.0)
     - Firebase/Database (~> 6.13.0)
     - React
     - RNFBApp
-  - RNFBFirestore (6.3.1):
+  - RNFBFirestore (6.3.4):
     - Firebase/Core (~> 6.13.0)
     - Firebase/Firestore (~> 6.13.0)
     - React
     - RNFBApp
-  - RNFBFunctions (6.3.1):
+  - RNFBFunctions (6.3.4):
     - Firebase/Functions (~> 6.13.0)
     - React
     - RNFBApp
-  - RNFBMessaging (6.3.1):
+  - RNFBMessaging (6.3.4):
     - Firebase/Messaging (~> 6.13.0)
     - React
     - RNFBApp
-  - RNFBPerf (6.3.1):
+  - RNFBPerf (6.3.4):
     - Firebase/Core (~> 6.13.0)
     - Firebase/Performance (~> 6.13.0)
     - React
     - RNFBApp
-  - RNFBStorage (6.3.1):
+  - RNFBStorage (6.3.4):
     - Firebase/Core (~> 6.13.0)
     - Firebase/Storage (~> 6.13.0)
     - React
     - RNFBApp
   - RNFS (2.16.4):
     - React
-  - RNGestureHandler (1.5.6):
+  - RNGestureHandler (1.6.0):
     - React
   - RNGoogleSignin (2.1.1):
     - GoogleSignIn (~> 5.0.0)
@@ -726,7 +728,7 @@ PODS:
     - React
   - RNReanimated (1.7.0):
     - React
-  - RNScreens (1.0.0-alpha.23):
+  - RNScreens (2.0.0-beta.6):
     - React
   - RNSVG (9.13.6):
     - React
@@ -772,6 +774,7 @@ DEPENDENCIES:
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-image-resizer (from `../node_modules/react-native-image-resizer`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - "react-native-segmented-control (from `../node_modules/@react-native-community/segmented-control`)"
   - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
   - react-native-video (from `../node_modules/react-native-video`)
   - react-native-video-cache (from `../node_modules/react-native-video-cache`)
@@ -917,6 +920,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-resizer"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-segmented-control:
+    :path: "../node_modules/@react-native-community/segmented-control"
   react-native-slider:
     :path: "../node_modules/@react-native-community/slider"
   react-native-video:
@@ -1004,7 +1009,7 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
-  CodePush: 58d8b6595f46057ca1f49c55fb6860ad7fd38ce3
+  CodePush: 4168faf8315b3629f047929b3c161f64c24861be
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
@@ -1065,8 +1070,9 @@ SPEC CHECKSUMS:
   react-native-fbsdk: c35d42169e64aaf66f01713c1e18d0674f7f6519
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
   react-native-image-picker: 7a85cf7b0a53845f03ae52fb4592a2748ded069b
-  react-native-image-resizer: 1ffe71ec5f2596c3a24d42548c03bfbfb06fe810
+  react-native-image-resizer: efae8dd718cbd47755df95aa45ad859e701ad7d8
   react-native-safe-area-context: 52342d2d80ea8faadd0ffa76d83b6051f20c5329
+  react-native-segmented-control: ce117efd6429051d42a17ddbafa3c7b4b2434aa2
   react-native-slider: 3a1cfd00c9c31068251b536822f7192e8d1d6b6f
   react-native-video: d01ed7ff1e38fa7dcc6c15c94cf505e661b7bfd0
   react-native-video-cache: 90b8857673151d2618fc61030f14d755d1e92d4e
@@ -1082,27 +1088,27 @@ SPEC CHECKSUMS:
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   ReactNativeKeyboardManager: 6c42da02c08b7eb16440f9fdc1c78f776a11cdca
   Reveal-SDK: 5d7e56b8f018c0a88b3a2c10bf68d598bbd3b071
-  RNCAsyncStorage: 44395cb9c7c1523104c2b499eb426ef7aff82bca
+  RNCAsyncStorage: 5d83b49070d41fd72906a116c5e7bdac4ea3a814
   RNCMaskedView: a88953beefbd347a29072d9eba90e42945fe291e
   RNDeviceInfo: 687c1b2ab6d86ff1ca1208783320cd144138c7f2
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
-  RNFBAnalytics: 48a97c6e4bd8a9ad173990e95ef1311c486630d8
-  RNFBApp: 279ec5c4bb43b8fc7b8031eed90ad7d2bea7a048
-  RNFBAuth: b631f0e98cebd098ddf8f6b7facda2a5ba1a6bef
-  RNFBCrashlytics: 90f2954f19196d8f45baa924adb49235d4ebc9db
-  RNFBDatabase: 97762664aba370337e51744f86a67698b4e6e757
-  RNFBFirestore: 1b5be285c76247a8c78aa85b53202647db7541fa
-  RNFBFunctions: 7d30b5ccab784f98f1a86a0c654d7f8133eca82c
-  RNFBMessaging: 29971efd7fd939ff2053f30f5c337d6ca78fd215
-  RNFBPerf: dd6075b1950744f271511616f339fca8f98e5302
-  RNFBStorage: 769570f387be656f7b0e5ae7ec0597615679b824
+  RNFBAnalytics: b8bad44e6653af73219b1a7af24bf3452cb02c1b
+  RNFBApp: 7d4006751de8bb5cafa2e8d2e7d94ee250df81db
+  RNFBAuth: ed8b865db45f7ded9dbf535e390cba2ba672aede
+  RNFBCrashlytics: 93e1cc09a93aa4bb1e9b5a07af0efb2702db5a39
+  RNFBDatabase: 1201eb94eff3ab457d3e898fb5c347ddc67e00db
+  RNFBFirestore: 04c1eb90463c208ee072988d463c74bec09d08c1
+  RNFBFunctions: 6975565f0abcc68d9731d05b78778f003db0eca5
+  RNFBMessaging: 51cc7f6beaf4c4feac6f18ea941bba5854e3d9c6
+  RNFBPerf: d5c9efa43b61bdcff5ac949932055b5e5a5c132f
+  RNFBStorage: 3628afb1f3dd0b3395fc15c95967b9f080897aec
   RNFS: 90d1a32d3bc8f75cc7fc3dd2f67506049664346b
-  RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
+  RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a
   RNGoogleSignin: 6baed9bb19c9c54614bef63bdc55c381b4e33c44
   RNInAppBrowser: 9936b2e23ab7ed9b6ac938eb1c4a656b95292e11
   RNPermissions: 2f74237e97b08beda01e914301e12524ddddf5b8
   RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
-  RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
+  RNScreens: c2c8bdde0146f16eb6bf092dd7485534851f2711
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
