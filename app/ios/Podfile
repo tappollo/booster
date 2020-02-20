@@ -42,7 +42,7 @@ end
 target 'mercy' do
   react_pods
 
-  pod 'Reveal-SDK', :configurations => ['Debug']
+  pod 'LookinServer', :configurations => ['Debug']
 
   use_native_modules!
 end

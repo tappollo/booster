@@ -410,6 +410,7 @@ PODS:
   - libwebp/mux (1.1.0):
     - libwebp/demux
   - libwebp/webp (1.1.0)
+  - LookinServer (1.0.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -658,7 +659,6 @@ PODS:
     - IQKeyboardManager (= 4.0.13)
     - React
     - React-RCTText
-  - Reveal-SDK (24)
   - RNCAsyncStorage (1.8.0):
     - React
   - RNCMaskedView (0.1.6):
@@ -755,6 +755,7 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - LookinServer
   - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera.podspec`)
   - Permission-PhotoLibrary (from `../node_modules/react-native-permissions/ios/PhotoLibrary.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -790,7 +791,6 @@ DEPENDENCIES:
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeKeyboardManager (from `../node_modules/react-native-keyboard-manager`)
-  - Reveal-SDK
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
@@ -863,9 +863,9 @@ SPEC REPOS:
     - KTVHTTPCache
     - leveldb-library
     - libwebp
+    - LookinServer
     - nanopb
     - Protobuf
-    - Reveal-SDK
     - SDWebImage
     - SDWebImageWebPCoder
     - SSZipArchive
@@ -1053,6 +1053,7 @@ SPEC CHECKSUMS:
   KTVHTTPCache: 588c3eb16f6bd1e6fde1e230dabfb7bd4e490a4d
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
+  LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Permission-Camera: 8fe4753b02396489b11c5089e4f57bab7fe1ef42
   Permission-PhotoLibrary: 42d41b53adefcfa94f42fb628f143d97136120bd
@@ -1087,7 +1088,6 @@ SPEC CHECKSUMS:
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   ReactNativeKeyboardManager: 6c42da02c08b7eb16440f9fdc1c78f776a11cdca
-  Reveal-SDK: 5d7e56b8f018c0a88b3a2c10bf68d598bbd3b071
   RNCAsyncStorage: 5d83b49070d41fd72906a116c5e7bdac4ea3a814
   RNCMaskedView: a88953beefbd347a29072d9eba90e42945fe291e
   RNDeviceInfo: 687c1b2ab6d86ff1ca1208783320cd144138c7f2
@@ -1118,6 +1118,6 @@ SPEC CHECKSUMS:
   tipsi-stripe: 61c247493a58d7e8e0bf6ee6b014271f473d2b11
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: f701c744c0cad4098ee95f1ec00f30f8586f8b2f
+PODFILE CHECKSUM: fb8250a59e3a150138cf63ea0bfe198e853df5af
 
 COCOAPODS: 1.8.4
