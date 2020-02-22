@@ -418,6 +418,8 @@ PODS:
   - nanopb/encode (0.3.9011)
   - Permission-Camera (2.0.9):
     - RNPermissions
+  - Permission-Notifications (2.0.9):
+    - RNPermissions
   - Permission-PhotoLibrary (2.0.9):
     - RNPermissions
   - Protobuf (3.11.3)
@@ -757,6 +759,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - LookinServer
   - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera.podspec`)
+  - Permission-Notifications (from `../node_modules/react-native-permissions/ios/Notifications.podspec`)
   - Permission-PhotoLibrary (from `../node_modules/react-native-permissions/ios/PhotoLibrary.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTSystemSetting (from `../node_modules/react-native-system-setting`)
@@ -888,6 +891,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   Permission-Camera:
     :path: "../node_modules/react-native-permissions/ios/Camera.podspec"
+  Permission-Notifications:
+    :path: "../node_modules/react-native-permissions/ios/Notifications.podspec"
   Permission-PhotoLibrary:
     :path: "../node_modules/react-native-permissions/ios/PhotoLibrary.podspec"
   RCTRequired:
@@ -1056,6 +1061,7 @@ SPEC CHECKSUMS:
   LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Permission-Camera: 8fe4753b02396489b11c5089e4f57bab7fe1ef42
+  Permission-Notifications: 1e03f5c43612ac4f9cdcaf6504695fc4e15f33d9
   Permission-PhotoLibrary: 42d41b53adefcfa94f42fb628f143d97136120bd
   Protobuf: 0e94afe3b47cb11876eb6aee296638711a24bf75
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
@@ -1118,6 +1124,6 @@ SPEC CHECKSUMS:
   tipsi-stripe: 61c247493a58d7e8e0bf6ee6b014271f473d2b11
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: fb8250a59e3a150138cf63ea0bfe198e853df5af
+PODFILE CHECKSUM: c3ac21ce1dcd70456f818ee208fa01b85c865e25
 
 COCOAPODS: 1.8.4
