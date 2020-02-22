@@ -17,7 +17,7 @@ import { currentUserId } from "../../functions/user";
 import { thumbnailImage } from "../../functions/image";
 import { Center } from "./components/Layout";
 import ChatInputBar from "./components/ChatInputBar";
-import { useDisableToolbar } from "../../functions/utils";
+import { useDisableToolbarOnFocus } from "../../functions/utils";
 
 const IsTypingText = styled(Text)`
   margin: 10px;
@@ -49,7 +49,7 @@ const Content = ({
     updateUserStatus({ isTyping }).catch();
   }, [isTyping]);
   const targetUserStatus = useUserStatus(target.id);
-  useDisableToolbar();
+  useDisableToolbarOnFocus();
   return (
     <Container>
       <GiftedChat
