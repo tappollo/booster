@@ -14,11 +14,10 @@ export const openURL = async (url: string) => {
   }
 };
 
-export const useDisableToolbarOnFocus = () => {
-  const isFocused = useIsFocused();
+export const useDisableToolbar = () => {
   useEffect(() => {
-    KeyboardManager.setEnableAutoToolbar(!isFocused);
-  }, [isFocused]);
+    KeyboardManager.setEnableAutoToolbar(false);
+  }, []);
 };
 
 export const useEnableKeyboardManagerOnFocus = () => {
