@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle
 } from "react-native";
-import React, { useEffect, useState, FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { formatDistanceStrict, isAfter, subSeconds } from "date-fns";
 import { useUnreadCount, useUserStatus } from "../../../functions/chat";
 import { Conversation, Doc, Message } from "../../../functions/types";

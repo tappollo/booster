@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TextInput, ScrollView, Dimensions } from "react-native";
+import { Dimensions, ScrollView, TextInput } from "react-native";
 import React from "react";
 
 const Container = styled(ScrollView)`

@@ -2,7 +2,6 @@ import Browser from "react-native-inappbrowser-reborn";
 import { Linking } from "react-native";
 import { useIsFocused } from "@react-navigation/core";
 import { useEffect } from "react";
-
 // @ts-ignore
 import KeyboardManager from "react-native-keyboard-manager";
 
