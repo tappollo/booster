@@ -8,5 +8,12 @@
       "owner_name": "zhigang1992-4byv",
       "app_name": "GoBoostAndroid"
     }
+  },
+  "android": {
+    "signingConfigs": {
+      "keyAlias": "key",
+      "storePassword": "storePassword",
+      "keyPassword": "keyPassword"
+    }
   }
 }
