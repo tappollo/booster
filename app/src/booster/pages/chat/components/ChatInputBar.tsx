@@ -70,6 +70,7 @@ const Input = styled.TextInput.attrs({
   font-size: 17px;
   flex: 1;
   padding: 12px 18px;
+  text-align-vertical: top;
 `;
 
 const SendButton = (props: { onPress: () => void }) => (

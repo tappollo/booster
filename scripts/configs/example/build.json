@@ -10,6 +10,7 @@
     }
   },
   "android": {
+    "applicationId": "com.mercy",
     "signingConfigs": {
       "keyAlias": "key",
       "storePassword": "storePassword",

@@ -7,14 +7,21 @@ import { PrivateProfile } from "../types";
 import DeviceInfo from "react-native-device-info";
 import { typedPrivateProfile } from "../user";
 import { keyOf } from "./firestoreHooks";
+import { NativeModules, Platform } from "react-native";
 
 export const updateToken = async () => {
-  const { status } = await checkNotifications();
-  if (status === "denied") {
-    await requestNotifications(["alert", "badge", "sound"]);
+  if (await DeviceInfo.isEmulator()) {
+    return;
   }
   try {
-    const token = await messaging().getToken();
+    const { status } = await checkNotifications();
+    if (status === "denied") {
+      await requestNotifications(["alert", "badge", "sound"]);
+    }
+    const token =
+      Platform.OS === "ios"
+        ? await NativeModules.Utils.getToken()
+        : await messaging().getToken();
     await typedPrivateProfile
       .ref()
       .update(

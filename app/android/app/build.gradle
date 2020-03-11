@@ -121,12 +121,15 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
+    def buildJSONPath = file("../../build.json").toString()
+    def buildJSON = new groovy.json.JsonSlurper().parseText(new File(buildJSONPath, "").getText('UTF-8'))
+
     signingConfigs {
         signing {
-            keyAlias 'key'
-            keyPassword 'PHARAH_ANDROID_KEY_PASSWORD'
+            keyAlias buildJSON.android.signingConfigs.keyAlias
+            keyPassword buildJSON.android.signingConfigs.keyPassword
             storeFile file('../keystores/release.keystore')
-            storePassword 'PHARAH_ANDROID_STORE_PASSWORD'
+            storePassword buildJSON.android.signingConfigs.storePassword
         }
     }
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -137,7 +140,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.mercy"
+        applicationId buildJSON.android.applicationId
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
