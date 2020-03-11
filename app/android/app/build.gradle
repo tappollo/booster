@@ -194,6 +194,7 @@ dependencies {
       implementation jscFlavor
     }
 
+    implementation project(':react-native-notifications')
     implementation 'com.facebook.android:facebook-android-sdk:5.0.3'
     implementation 'com.facebook.android:facebook-login:5.0.3'
 
