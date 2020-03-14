@@ -21,14 +21,14 @@
     "react-dom": "^16.12.0",
     "react-markdown": "^4.3.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0",
+    "react-scripts": "3.4.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "build:css:dev": "postcss -w src/tailwind/tailwind.css -o src/tailwind/tailwind.development.css",
-    "build:css:prod": "NODE_ENV=production postcss src/tailwind/tailwind.css -o src/tailwind/tailwind.production.css",
+    "dev:css": "postcss -w src/tailwind/tailwind.css -o src/tailwind/tailwind.development.css",
+    "build:css": "NODE_ENV=production postcss src/tailwind/tailwind.css -o src/tailwind/tailwind.production.css",
     "start": "react-app-rewired start",
-    "build": "yarn build:css:prod && react-app-rewired --max_old_space_size=4096 build",
+    "build": "yarn build:css && react-app-rewired --max_old_space_size=4096 build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "ci": "eslint --ext js,ts,tsx src"

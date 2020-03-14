@@ -7,7 +7,8 @@ import {
   LayoutAnimation,
   StyleSheet,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  View
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { usePickAndUploadImage } from "../../../functions/image";
@@ -22,7 +23,7 @@ const Container = styled.View`
   flex-direction: row;
 `;
 
-const Content = styled.View`
+const Content: typeof View = styled.View`
   flex: 1;
   flex-direction: row;
   align-items: center;
@@ -63,7 +64,7 @@ const ImageAction = (props: {
   );
 };
 
-const Input = styled.TextInput.attrs({
+const Input: typeof TextInput = styled.TextInput.attrs({
   placeholder: "Type a message...",
   multiline: true
 })`
@@ -71,6 +72,7 @@ const Input = styled.TextInput.attrs({
   flex: 1;
   padding: 12px 18px;
   text-align-vertical: top;
+  max-height: 180px;
 `;
 
 const SendButton = (props: { onPress: () => void }) => (
@@ -104,23 +106,24 @@ const ChatInputBar = (props: {
   });
   return (
     <Container>
-      <Content>
+      <Content
+        onLayout={event => {
+          const { height, width } = event.nativeEvent.layout;
+          if (height === 0 || width === 0) {
+            return;
+          }
+          if (
+            contentSize.current.width !== width ||
+            contentSize.current.height !== height
+          ) {
+            contentSize.current = { width, height };
+            props.onContentSizeChange?.({ width, height });
+          }
+        }}
+      >
         <Input
           ref={input}
           value={text}
-          onContentSizeChange={(e: any) => {
-            const { height, width } = e.nativeEvent.contentSize;
-            if (height === 0 || width === 0) {
-              return;
-            }
-            if (
-              contentSize.current.width !== width ||
-              contentSize.current.height !== height
-            ) {
-              contentSize.current = { width, height };
-              props.onContentSizeChange?.({ width, height });
-            }
-          }}
           onChangeText={(newText: string) => {
             if ((newText && !text) || (text && !newText)) {
               LayoutAnimation.configureNext({

@@ -21,6 +21,7 @@ import {
   useKeyboardManagerOnFocus,
   useToolbarOnFocus
 } from "../../functions/utils";
+import ChatImageCell from "./components/ChatImageCell";
 
 const IsTypingText = styled(Text)`
   margin: 10px;
@@ -59,6 +60,7 @@ const Content = ({
       <GiftedChat
         minComposerHeight={46}
         minInputToolbarHeight={78}
+        renderMessageImage={props => <ChatImageCell {...props} />}
         renderInputToolbar={(toolbar: Composer["props"]) => (
           <ChatInputBar
             send={send}
