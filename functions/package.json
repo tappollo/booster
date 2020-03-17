@@ -20,7 +20,8 @@
     "firebase-functions": "^3.3.0",
     "md5": "^2.2.1",
     "node-fetch": "^2.6.0",
-    "sharp": "^0.23.1"
+    "sharp": "^0.23.1",
+    "@slack/webhook": "latest"
   },
   "devDependencies": {
     "@types/jest": "^25.1.3",

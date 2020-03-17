@@ -2021,6 +2021,20 @@
   dependencies:
     type-detect "4.0.8"
 
+"@slack/types@^1.2.1":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@slack/types/-/types-1.4.0.tgz#24e0f0cd5b3c4578a7e023aba97969d89c667562"
+  integrity sha512-G5u2gCl7oci0k4E9KIX33nmA4YPp1pXYwS/It7ct9dOglCcj63Ee5GRCgtplzOBS+2++DMdp6l3ZCq+VeAMrfw==
+
+"@slack/webhook@latest":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@slack/webhook/-/webhook-5.0.3.tgz#2205cba9a8d49d2ae84ca93f11ab4a1dba2f963b"
+  integrity sha512-51vnejJ2zABNumPVukOLyerpHQT39/Lt0TYFtOEz/N2X77bPofOgfPj2atB3etaM07mxWHLT9IRJ4Zuqx38DkQ==
+  dependencies:
+    "@slack/types" "^1.2.1"
+    "@types/node" ">=8.9.0"
+    axios "^0.19.0"
+
 "@storybook/addon-actions@5.3.0-beta.25":
   version "5.3.0-beta.25"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.3.0-beta.25.tgz#a8212f879b4869b94afc9e83bb8fb76968227b49"
@@ -2825,6 +2839,11 @@
   version "13.7.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.7.1.tgz#238eb34a66431b71d2aaddeaa7db166f25971a0d"
   integrity sha512-Zq8gcQGmn4txQEJeiXo/KiLpon8TzAl0kmKH4zdWctPj05nWwp1ClMdAVEloqrQKfaC48PNLdgN/aVaLqUrluA==
+
+"@types/node@>=8.9.0":
+  version "13.9.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.9.1.tgz#96f606f8cd67fb018847d9b61e93997dabdefc72"
+  integrity sha512-E6M6N0blf/jiZx8Q3nb0vNaswQeEyn0XlupO+xN6DtJ6r6IT4nXrTry7zhIfYvFCl3/8Cu6WIysmUBKiqV0bqQ==
 
 "@types/node@^10.1.0":
   version "10.17.15"
@@ -3939,6 +3958,13 @@ axios@0.19.0:
   dependencies:
     follow-redirects "1.5.10"
     is-buffer "^2.0.2"
+
+axios@^0.19.0:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
+  dependencies:
+    follow-redirects "1.5.10"
 
 axobject-query@^2.0.2:
   version "2.1.2"
