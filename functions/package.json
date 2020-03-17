@@ -21,7 +21,7 @@
     "md5": "^2.2.1",
     "node-fetch": "^2.6.0",
     "sharp": "^0.23.1",
-    "@slack/webhook": "latest"
+    "@slack/webhook": "^5.0.3"
   },
   "devDependencies": {
     "@types/jest": "^25.1.3",
