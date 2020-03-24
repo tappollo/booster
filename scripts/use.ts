@@ -2,11 +2,11 @@
 
 import chalk from "chalk";
 import * as meow from "meow";
-import ora = require("ora");
 import * as path from "path";
 import { run } from "./utils/run";
 import * as fs from "fs-extra";
 import * as process from "process";
+import ora = require("ora");
 
 (async () => {
   process.chdir(__dirname);

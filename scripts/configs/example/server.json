@@ -1,6 +1,11 @@
 {
   "name": "Development",
   "stripeKey": "*",
-  "slackWebHook": "*",
-  "elasticSearchULR": "*"
+  "elasticSearchULR": "*",
+  "slack": {
+    "url": "https://slack.webhook.url",
+    "channel": "mercy-f16ad"
+  },
+  "functionsRoot": "https://us-central1-mercy-f16ad.cloudfunctions.net",
+  "projectId": "mercy-f16ad"
 }

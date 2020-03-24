@@ -1,0 +1,52 @@
+diff --git a/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseModule.m b/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseModule.m
+index eb74bf2..5d8269d 100644
+--- a/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseModule.m
++++ b/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseModule.m
+@@ -29,7 +29,7 @@ @implementation RNFBDatabaseModule
+ RCT_EXPORT_MODULE();
+ 
+ - (dispatch_queue_t)methodQueue {
+-  return dispatch_queue_create("io.invertase.firebase.database", DISPATCH_QUEUE_SERIAL);
++  return dispatch_get_main_queue();
+ }
+ 
+ #pragma mark -
+diff --git a/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseQueryModule.m b/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseQueryModule.m
+index 5a17dd2..f07de13 100644
+--- a/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseQueryModule.m
++++ b/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseQueryModule.m
+@@ -32,7 +32,7 @@ @implementation RNFBDatabaseQueryModule
+ RCT_EXPORT_MODULE();
+ 
+ - (dispatch_queue_t)methodQueue {
+-  return dispatch_queue_create("io.invertase.firebase.database", DISPATCH_QUEUE_SERIAL);
++  return dispatch_get_main_queue();
+ }
+ 
+ - (id)init {
+diff --git a/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseReferenceModule.m b/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseReferenceModule.m
+index 37c5cf8..d1313aa 100644
+--- a/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseReferenceModule.m
++++ b/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseReferenceModule.m
+@@ -29,7 +29,7 @@ @implementation RNFBDatabaseReferenceModule
+ RCT_EXPORT_MODULE();
+ 
+ - (dispatch_queue_t)methodQueue {
+-  return dispatch_queue_create("io.invertase.firebase.database", DISPATCH_QUEUE_SERIAL);
++    return dispatch_get_main_queue();
+ }
+ 
+ #pragma mark -
+diff --git a/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseTransactionModule.m b/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseTransactionModule.m
+index bac0385..ee713b3 100644
+--- a/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseTransactionModule.m
++++ b/node_modules/@react-native-firebase/database/ios/RNFBDatabase/RNFBDatabaseTransactionModule.m
+@@ -33,7 +33,7 @@ @implementation RNFBDatabaseTransactionModule
+ RCT_EXPORT_MODULE();
+ 
+ - (dispatch_queue_t)methodQueue {
+-  return dispatch_queue_create("io.invertase.firebase.database", DISPATCH_QUEUE_SERIAL);
++    return dispatch_get_main_queue();
+ }
+ 
+ - (id)init {

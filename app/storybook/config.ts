@@ -1,9 +1,5 @@
 import { withKnobs } from "@storybook/addon-knobs";
-import {
-  addDecorator,
-  addParameters,
-  configure
-} from "@storybook/react-native";
+import { addDecorator, addParameters } from "@storybook/react-native";
 
 addDecorator(withKnobs);
 

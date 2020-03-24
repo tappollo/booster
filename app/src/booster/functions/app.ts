@@ -2,22 +2,24 @@ import { useEffect } from "react";
 import { keyOf } from "./firebase/firestoreHooks";
 import { PrivateProfile } from "./types";
 import DeviceInfo from "react-native-device-info";
-import { typedPrivateProfile } from "./user";
+import { currentUserId, typedPrivateProfile } from "./user";
 import crashlytics from "@react-native-firebase/crashlytics";
 import { updateToken } from "./firebase/messaging";
 import { useUpdatePing } from "./chat";
+import analytics from "@react-native-firebase/analytics";
 
 const registerDeviceInfo = async () => {
+  crashlytics().setUserId(currentUserId());
+  analytics().setUserId(currentUserId());
   await typedPrivateProfile
     .ref()
     .update(
-      (keyOf<PrivateProfile>("deviceInfo") +
-        "." +
-        DeviceInfo.getDeviceId()) as any,
+      keyOf<PrivateProfile>("deviceInfo") + "." + DeviceInfo.getUniqueId(),
       {
-        deviceName: DeviceInfo.getDeviceNameSync(),
+        device: DeviceInfo.getDeviceId(),
+        deviceName: await DeviceInfo.getDeviceName(),
         binaryVersion: DeviceInfo.getVersion(),
-        os: DeviceInfo.getBaseOsSync(),
+        os: await DeviceInfo.getBaseOs(),
         lastOpen: new Date()
       }
     );
@@ -27,6 +29,7 @@ export const useAppLaunchAfterLogin = () => {
   useEffect(() => {
     console.log("App Launched after logged in");
     Promise.all([registerDeviceInfo(), updateToken()]).catch(e => {
+      console.error(e);
       crashlytics().recordError(e);
     });
   }, []);
