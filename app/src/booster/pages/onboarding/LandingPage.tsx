@@ -18,7 +18,7 @@ const LandingPage = ({
       <LoginWithGoogle />
       <BigButton
         onPress={() => {
-          navigation.push("ContinueWithPhonePage");
+          navigation.push("continueWithPhone");
         }}
       >
         Continue with Phone

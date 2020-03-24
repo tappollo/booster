@@ -1,10 +1,11 @@
 import auth from "@react-native-firebase/auth";
-import firestore from "@react-native-firebase/firestore";
-import messaging from "@react-native-firebase/messaging";
-import { PrivateProfile, Profile } from "./types";
-import DeviceInfo from "react-native-device-info";
+import { FirebaseFirestoreTypes } from "@react-native-firebase/firestore";
+import { PrivateProfile, Profile, ReadonlyProfile } from "./types";
+import { collection, makeDocAsType } from "./firebase/firestore";
 
-const currentUser = () => {
+type DocumentSnapshot = FirebaseFirestoreTypes.DocumentSnapshot;
+
+export const currentUser = () => {
   const user = auth().currentUser;
   if (user == null) {
     throw new Error("User is not logged in");
@@ -16,49 +17,28 @@ export const currentUserId = () => {
   return currentUser().uid;
 };
 
-const generateCurrentUserRef = <T>(key: string) => () => {
-  return firestore()
-    .collection(key)
-    .doc(currentUser().uid);
-};
-
-export const profileRef = generateCurrentUserRef<Profile>("profile");
-
-export const privateProfileRef = generateCurrentUserRef<PrivateProfile>(
-  "private"
+export const typedProfile = makeDocAsType<Profile>(() =>
+  collection("userProfiles").doc(currentUserId())
 );
 
-export const readonlyProfileRef = generateCurrentUserRef<PrivateProfile>(
-  "readonly"
+export const typedPrivateProfile = makeDocAsType<PrivateProfile>(() =>
+  collection("userPrivateProfiles").doc(currentUserId())
 );
 
-export const registerDeviceInfo = async () => {
-  await privateProfileRef().update(
-    "phone",
-    currentUser().phoneNumber || undefined
-  );
-  await privateProfileRef().update(
-    (("deviceInfo" as keyof PrivateProfile) +
-      "." +
-      DeviceInfo.getDeviceId()) as any,
-    {
-      deviceName: DeviceInfo.getDeviceNameSync(),
-      binaryVersion: DeviceInfo.getVersion(),
-      os: DeviceInfo.getBaseOsSync(),
-      lastOpen: new Date()
-    }
-  );
-};
+export const typedReadonlyProfile = makeDocAsType<ReadonlyProfile>(() =>
+  collection("userReadonlyProfiles").doc(currentUserId())
+);
 
-export const updateToken = async () => {
-  if (!(await messaging().hasPermission())) {
-    await messaging().requestPermission();
+export const userFinishedSignUp = async () => {
+  const valid = (snapshot: Profile) => {
+    return snapshot.name && snapshot.avatar;
+  };
+  const cached = await typedProfile.read({ source: "cache" }).catch(() => null);
+  if (cached != null && valid(cached)) {
+    return true;
   }
-  const token = await messaging().getToken();
-  await privateProfileRef().update(
-    (("pushTokens" as keyof PrivateProfile) +
-      "." +
-      DeviceInfo.getDeviceId()) as any,
-    token
-  );
+  const server = await typedProfile
+    .read({ source: "server" })
+    .catch(() => null);
+  return server != null && valid(server);
 };

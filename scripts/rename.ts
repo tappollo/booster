@@ -1,11 +1,11 @@
-#!./node_modules/.bin/ts-node
+#!/usr/bin/env ts-node
 
 import * as meow from "meow";
-import ora = require("ora");
 import * as fs from "fs-extra";
+import * as path from "path";
+import ora = require("ora");
 
 import replace = require("replace-in-file");
-import * as path from "path";
 
 const cli = meow(
   `
@@ -28,6 +28,7 @@ const replaceInFiles = async (to: string) => {
       relative("../node_modules/**"),
       relative("../*/node_modules/**"),
       relative("../app/ios/Pods/**"),
+      relative("../app/ios/build/**"),
       relative("./rename.ts")
     ]
   });

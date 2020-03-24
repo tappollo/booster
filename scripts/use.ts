@@ -1,12 +1,12 @@
-#!./node_modules/.bin/ts-node
+#!/usr/bin/env ts-node
 
 import chalk from "chalk";
 import * as meow from "meow";
-import ora = require("ora");
 import * as path from "path";
 import { run } from "./utils/run";
 import * as fs from "fs-extra";
 import * as process from "process";
+import ora = require("ora");
 
 (async () => {
   process.chdir(__dirname);
@@ -38,6 +38,9 @@ import * as process from "process";
       const fileMappings = {
         "GoogleService-Info.plist": "../app/ios/GoogleService-Info.plist",
         "google-services.json": "../app/android/app/google-services.json",
+        Appfile: "../app/fastlane/Appfile",
+        Matchfile: "../app/fastlane/Matchfile",
+        "build.json": "../app/build.json",
         "Info.plist": "../app/ios/mercy/Info.plist",
         "strings.xml": "../app/android/app/src/main/res/values/strings.xml",
         "release.keystore": "../app/android/keystores/release.keystore",

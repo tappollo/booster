@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Alert } from "react-native";
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import { AccessToken, LoginManager } from "react-native-fbsdk";
-import { profileRef } from "../../../functions/user";
+import { typedProfile } from "../../../functions/user";
 import { GoogleSignin } from "react-native-google-signin";
 import { useNavigation } from "@react-navigation/core";
 
@@ -14,7 +14,7 @@ const signIn = async (cred: AuthCredential) => {
   if (additionalUserInfo && additionalUserInfo.isNewUser) {
     const name = user.displayName || "";
     const email = user.email || "unknown@example.com";
-    await profileRef().update({
+    await typedProfile.update({
       name,
       email,
       avatar: user.photoURL || ""

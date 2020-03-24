@@ -1,9 +1,23 @@
 default_platform(:ios)
 
+lane :sync_package_version do
+  version = load_json(json_path: "./package.json")['version']
+
+  increment_version_number(
+    xcodeproj: "ios/mercy.xcodeproj",
+    version_number: version
+  )
+  android_set_version_name(
+    gradle_file:"android/app/build.gradle",
+    version_name: version
+  )
+end
+
 platform :ios do
   desc "Upload to app center"
   lane :appcenter do |options|
-    xcversion(version: "10.3")
+    sync_package_version
+    xcversion(version: "11.3.1")
     setup_ci(provider: "travis")
     sync_code_signing(type: "development", readonly: true)
     increment_build_number(
@@ -16,6 +30,7 @@ platform :ios do
       repo_update: true,
       silent: true
     )
+    bundle_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
     build_app(
       workspace: "ios/mercy.xcworkspace",
       clean: true,
@@ -26,17 +41,18 @@ platform :ios do
       export_options: {
         method: "development",
         provisioningProfiles: {
-          "com.mercy.ios" => "match Development com.mercy.ios"
+          bundle_id => "match Development " + bundle_id
         }
       },
       silent: true,
       buildlog_path: "build",
       suppress_xcode_output: true
     )
+    buildConfig = load_json(json_path: "./build.json")['appcenter']['ios']
     appcenter_upload(
-      api_token: "PHARAH_APPCENTER_API_TOKEN",
-      owner_name: "PHARAH_APPCENTER_OWN_NAME",
-      app_name: "PHARAH_APPCENTER_APP_NAME",
+      api_token: buildConfig["api_token"],
+      owner_name: buildConfig["owner_name"],
+      app_name: buildConfig["app_name"],
       ipa: "./build/mercy-appcenter.ipa",
       destination_type: 'group',
       destinations: 'Public',
@@ -51,7 +67,8 @@ platform :ios do
 
   desc "Upload to AppStore"
   lane :store do |options|
-    xcversion(version: "10.3")
+    sync_package_version
+    xcversion(version: "11.3.1")
     setup_ci(provider: "travis")
     sync_code_signing(type: "appstore", readonly: true)
     increment_build_number(
@@ -60,9 +77,9 @@ platform :ios do
     )
     build_app(
       workspace: "ios/mercy.xcworkspace",
-      clean: true, 
+      clean: true,
       scheme: "mercy",
-      output_directory: "build", 
+      output_directory: "build",
       output_name: "mercy-appstore.ipa",
       silent: true,
       buildlog_path: "build",
@@ -83,16 +100,18 @@ end
 platform :android do
   desc "Upload android to hockey app"
   lane :appcenter do |options|
+    sync_package_version
     android_set_version_code(
       version_code: number_of_commits,
       gradle_file:"android/app/build.gradle"
     )
     gradle(gradle_path: "gradlew", project_dir: "android", task: "clean")
     gradle(gradle_path: "gradlew", project_dir: "android", build_type: "Release", task: "assemble")
+    buildConfig = load_json(json_path: "./build.json")['appcenter']['android']
     appcenter_upload(
-      api_token: "PHARAH_APPCENTER_API_TOKEN",
-      owner_name: "PHARAH_APPCENTER_OWN_NAME",
-      app_name: "PHARAH_APPCENTER_APP_NAME",
+      api_token: buildConfig["api_token"],
+      owner_name: buildConfig["owner_name"],
+      app_name: buildConfig["app_name"],
       apk: "./android/app/build/outputs/apk/release/app-release.apk",
       destination_type: 'group',
       destinations: 'Public',
@@ -102,6 +121,7 @@ platform :android do
 
   desc "Upload to Playstore"
   lane :store do |options|
+    sync_package_version
     android_set_version_code(
       version_code: number_of_commits,
       gradle_file:"android/app/build.gradle"

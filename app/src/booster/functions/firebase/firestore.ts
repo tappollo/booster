@@ -1,123 +1,44 @@
-import { FirebaseFirestoreTypes } from "@react-native-firebase/firestore";
-import {
-  MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from "react";
-import { Doc } from "../types";
+import firestore, {
+  FirebaseFirestoreTypes
+} from "@react-native-firebase/firestore";
+import { CollectionReference, DocumentReference } from "./firestoreHooks";
 
-type DocumentReference = FirebaseFirestoreTypes.DocumentReference;
-type Query = FirebaseFirestoreTypes.Query;
+type GetOptions = FirebaseFirestoreTypes.GetOptions;
 
-export const useEqual = <T extends { isEqual: (another: T) => boolean }>(
-  value: T
-): MutableRefObject<T> => {
-  const ref = useRef(value);
-  if (!value.isEqual(ref.current)) {
-    ref.current = value;
+export const collection = (collectionId: string): CollectionReference => {
+  return firestore().collection(collectionId);
+};
+
+type DocTypedWrapper<T> = {
+  read: (options?: GetOptions) => Promise<T>;
+  update: (value: Partial<T>) => Promise<void>;
+  listen: (callback: (value: T) => void) => () => void;
+  ref: () => DocumentReference;
+};
+
+export function makeDocAsType<T>(
+  doc: () => DocumentReference
+): DocTypedWrapper<T> {
+  async function read(options?: GetOptions) {
+    const snapshot = await doc().get(options);
+    const value: T = snapshot.data() as any;
+    if (!snapshot.exists || value == null) {
+      throw new Error(`Doc ${doc().path} does not exist`);
+    }
+    return value;
   }
-  return ref;
-};
-
-type LoadingErrorState<T> = {
-  loading: boolean;
-  error?: Error;
-  value?: T;
-};
-
-export const useListenDocument = <T>(docRef: DocumentReference) => {
-  const [state, setState] = useState<LoadingErrorState<T>>({
-    loading: true
-  });
-  const ref = useEqual(docRef).current;
-  useEffect(() => {
-    const sub = ref.onSnapshot(
-      snapshot => {
-        setState({
-          loading: false,
-          value: snapshot.data() as any
-        });
-      },
-      error => {
-        setState({
-          loading: false,
-          error: error
-        });
-      }
-    );
-    return () => {
-      sub();
-      setState({ loading: true });
-    };
-  }, [ref]);
-  const update = useCallback(
-    (newValue: Partial<T>) => {
-      return ref.set(newValue, { merge: true });
-    },
-    [ref]
-  );
+  async function update(newValue: Partial<T>) {
+    return await doc().set(newValue, { merge: true });
+  }
+  function listen(callback: (value: T) => void) {
+    return doc().onSnapshot(snapshot => {
+      callback(snapshot.data() as any);
+    });
+  }
   return {
-    ...state,
-    update
+    ref: doc,
+    read,
+    update,
+    listen
   };
-};
-
-export const useGetDocument = <T>(docRef: DocumentReference) => {
-  const [state, setState] = useState<LoadingErrorState<T>>({
-    loading: true
-  });
-  const ref = useEqual(docRef).current;
-  useEffect(() => {
-    ref
-      .get()
-      .then(value => {
-        setState({
-          loading: false,
-          value: value.data() as any
-        });
-      })
-      .catch(error => {
-        setState({
-          loading: false,
-          error: error
-        });
-      });
-    return () => {
-      setState({ loading: true });
-    };
-  }, [ref]);
-  return state;
-};
-
-export const useListenQuery = <T>(query: Query) => {
-  const [state, setState] = useState<LoadingErrorState<Array<Doc<T>>>>({
-    loading: true
-  });
-  const queryRef = useEqual(query).current;
-  useEffect(() => {
-    queryRef.onSnapshot(
-      snapshot => {
-        const docs = snapshot.docs.map(doc => ({
-          id: doc.id,
-          doc: doc.data() as any
-        }));
-        setState({
-          loading: false,
-          value: docs
-        });
-      },
-      error => {
-        setState({
-          loading: false,
-          error
-        });
-      }
-    );
-    return () => {
-      setState({ loading: true });
-    };
-  }, [queryRef]);
-  return state;
-};
+}

@@ -20,11 +20,11 @@ yarn install
 To customize our project with our own project name,
 
 ```bash
-./scripts/rename.ts goboost
+yarn rename goboost
 ```
 
 > It would be a good time to commit since there were a lot of changes.
 
 ## Next
 
-Go to [Create new firebase project](../firebase-configure.md).
+Go to [Create new firebase project](start/firebase-configure.md).

@@ -8,9 +8,10 @@
     ]
   },
   "scripts": {
-    "lint": "tslint -p .",
+    "lint": "eslint --ext js,ts,tsx .",
     "build": "tsc",
     "use": "ts-node ./use.ts",
+    "rename": "ts-node ./rename.ts",
     "ci": "yarn lint && yarn build"
   },
   "dependencies": {
@@ -26,6 +27,8 @@
     "ts-node": "^8.4.1",
     "typescript": "^3.7.2",
     "eslint": "^6.5.1",
-    "eslint-config-typescript": "^3.0.0"
+    "eslint-config-typescript": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0"
   }
 }

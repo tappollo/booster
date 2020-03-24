@@ -1,12 +1,16 @@
 {
   "indexes": [
     {
-      "collectionGroup": "conversations",
+      "collectionGroup": "chats",
       "queryScope": "COLLECTION",
       "fields": [
         {
           "fieldPath": "userIds",
           "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "available",
+          "order": "ASCENDING"
         },
         {
           "fieldPath": "updatedAt",

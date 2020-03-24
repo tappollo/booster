@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>127334071631-lt3coqvcg7ejlvqbddn22ifpc94q4r03.apps.googleusercontent.com</string>
+	<string>127334071631-3pgjcjfnk84lvl6j09kb4v5afuitg4qo.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.127334071631-lt3coqvcg7ejlvqbddn22ifpc94q4r03</string>
+	<string>com.googleusercontent.apps.127334071631-3pgjcjfnk84lvl6j09kb4v5afuitg4qo</string>
 	<key>API_KEY</key>
 	<string>AIzaSyD8sPV36AgVC-T61p8eQCTi3R3izD-tW3U</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mercy</string>
+	<string>com.tappollo.mercy</string>
 	<key>PROJECT_ID</key>
 	<string>mercy-f16ad</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:127334071631:ios:e162e6166a81c6c5fad93a</string>
+	<string>1:127334071631:ios:f3dc10374cc7d8edfad93a</string>
 	<key>DATABASE_URL</key>
 	<string>https://mercy-f16ad.firebaseio.com</string>
 </dict>

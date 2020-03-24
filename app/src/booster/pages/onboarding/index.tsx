@@ -2,26 +2,31 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SelectCountryPage, {
   SelectCountryPageParams
 } from "./SelectCountryPage";
-import React from "react";
+import React, { useContext } from "react";
 import VerifySMSCodePage, {
   VerifySMSCodePageParams
 } from "./VerifySMSCodePage";
-import { Platform } from "react-native";
+import { Platform, YellowBox } from "react-native";
 import LandingPage from "./LandingPage";
 import ContinueWithPhonePage from "./ContinueWithPhonePage";
+import OnboardingProfile from "./OnboardingProfile";
+import { AppRouteContext } from "../Routes";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export type OnboardingStackParams = {
-  VerifySMSCodePage: VerifySMSCodePageParams;
-  LandingPage: undefined;
-  ContinueWithPhonePage: undefined;
+  landing: undefined;
+  continueWithPhone: undefined;
+  verifySMS: VerifySMSCodePageParams;
+  profile: undefined;
 };
 
 const OnboardingNavStack = createStackNavigator<OnboardingStackParams>();
 
 const OnboardingNav = () => {
+  const { isLoggedIn } = useContext(AppRouteContext);
   return (
     <OnboardingNavStack.Navigator
-      initialRouteName="LandingPage"
+      initialRouteName={isLoggedIn === "signUp" ? "profile" : "landing"}
       screenOptions={{
         title: " ",
         headerBackTitle: " ",
@@ -39,20 +44,21 @@ const OnboardingNav = () => {
       }}
     >
       <OnboardingNavStack.Screen
-        name="LandingPage"
+        name="landing"
         component={LandingPage}
         options={{
           header: () => null
         }}
       />
       <OnboardingNavStack.Screen
-        name="ContinueWithPhonePage"
+        name="continueWithPhone"
         component={ContinueWithPhonePage}
       />
       <OnboardingNavStack.Screen
-        name="VerifySMSCodePage"
+        name="verifySMS"
         component={VerifySMSCodePage}
       />
+      <OnboardingNavStack.Screen name="profile" component={OnboardingProfile} />
     </OnboardingNavStack.Navigator>
   );
 };
@@ -62,20 +68,25 @@ export type OnBoardingParams = {
   OnboardingNav: undefined;
 };
 
-const OnboardingStack = createStackNavigator<OnBoardingParams>();
+const OnboardingStack = createNativeStackNavigator<OnBoardingParams>();
+
+YellowBox.ignoreWarnings([
+  "We found non-serializable values in the navigation state"
+]);
 
 const OnBoarding = () => {
   return (
-    <OnboardingStack.Navigator
-      mode="modal"
-      initialRouteName="OnboardingNav"
-      headerMode="none"
-    >
+    <OnboardingStack.Navigator initialRouteName="OnboardingNav">
+      <OnboardingStack.Screen
+        name="OnboardingNav"
+        component={OnboardingNav}
+        options={{ headerShown: false }}
+      />
       <OnboardingStack.Screen
         name="SelectCountryPage"
         component={SelectCountryPage}
+        options={{ stackPresentation: "modal" }}
       />
-      <OnboardingStack.Screen name="OnboardingNav" component={OnboardingNav} />
     </OnboardingStack.Navigator>
   );
 };

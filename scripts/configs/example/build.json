@@ -1,0 +1,20 @@
+{
+  "appcenter": {
+    "ios": {
+      "owner_name": "zhigang1992-4byv",
+      "app_name": "GoBoostiOS"
+    },
+    "android": {
+      "owner_name": "zhigang1992-4byv",
+      "app_name": "GoBoostAndroid"
+    }
+  },
+  "android": {
+    "applicationId": "com.mercy",
+    "signingConfigs": {
+      "keyAlias": "key",
+      "storePassword": "storePassword",
+      "keyPassword": "keyPassword"
+    }
+  }
+}

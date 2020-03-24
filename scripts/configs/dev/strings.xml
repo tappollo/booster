@@ -1,7 +1,0 @@
-<resources>
-	<string moduleConfig="true" name="CodePushDeploymentKey">PHARAH_ANDROID_CODEPUSH_KEY</string>
-    <string name="app_name">mercy</string>
-    <string name="facebook_app_id">PHARAH_FACEBOOK_APP_ID</string>
-    <string name="fb_login_protocol_scheme">PHARAH_FACEBOOK_SCHEME</string>
-    <string name="CodePushPublicKey">PHARAH_CODE_PUSH_CERT_PEM</string>
-</resources>

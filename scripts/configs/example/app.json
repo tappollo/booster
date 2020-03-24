@@ -2,5 +2,7 @@
   "name": "mercy",
   "displayName": "mercy",
   "stripePublishKeys": "*",
-  "tos": "https://mercy"
+  "tos": "https://mercy-f16ad.web.app/",
+  "privacy": "https://mercy-f16ad.web.app/",
+  "imageAPI": "https://us-central1-mercy-f16ad.cloudfunctions.net/image-resize"
 }

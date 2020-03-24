@@ -1,1 +1,1 @@
-../../app/src/functions/types.ts
+../../app/src/booster/functions/types.ts
