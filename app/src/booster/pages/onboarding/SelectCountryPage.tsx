@@ -1,12 +1,17 @@
-import { FlatList, SafeAreaView, Text } from "react-native";
+import { FlatList, Text } from "react-native";
 import React, { useRef, useState } from "react";
 import { List, Searchbar } from "react-native-paper";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { Country } from "./components/PhoneNumberInput";
 import Fuse from "fuse.js";
 import { RouteProp } from "@react-navigation/core";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { OnBoardingParams } from "./index";
+
+const Container = styled.View`
+  flex: 1;
+  padding-top: 10px;
+`;
 
 const useFuse = () => {
   const fuseOptions = {
@@ -47,7 +52,7 @@ const SelectCountryPage = ({
   const dataSource = query ? fuse.search(query) : countries;
   const onSelect = route.params.onSelect;
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <Container>
       <SearchInput
         onChangeText={setQuery}
         value={query}
@@ -75,7 +80,7 @@ const SelectCountryPage = ({
           />
         )}
       />
-    </SafeAreaView>
+    </Container>
   );
 };
 

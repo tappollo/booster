@@ -148,3 +148,13 @@ export const useUnreadCount = (conversationId: string) => {
     database().ref(`conversationCounts/${currentUserId()}/${conversationId}`)
   );
 };
+
+export const targetIn = (conversation: Conversation) => {
+  const me = currentUserId();
+  return conversation.userIds.filter(id => id !== me)[0];
+};
+
+export const targetUserIn = (conversation: Conversation) => {
+  const targetId = targetIn(conversation);
+  return conversation.users[targetId];
+};

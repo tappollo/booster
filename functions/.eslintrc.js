@@ -7,6 +7,7 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "off",
     "comma-dangle": "off",
     "react-native/no-inline-styles": "off",
-    "@typescript-eslint/indent": "off"
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 };

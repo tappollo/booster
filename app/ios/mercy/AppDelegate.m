@@ -15,12 +15,14 @@
 #import <Firebase/Firebase.h>
 #import <UserNotifications/UserNotifications.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "RNNotifications.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FIRApp configure];
+  [RNNotifications startMonitorNotifications];
   [[IQKeyboardManager sharedManager] setEnable:NO];
   [[FBSDKApplicationDelegate sharedInstance] application:application
     didFinishLaunchingWithOptions:launchOptions];
@@ -60,6 +62,14 @@
   ];
   // Add any custom logic here.
   return handled;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  [RNNotifications didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  [RNNotifications didFailToRegisterForRemoteNotificationsWithError:error];
 }
 
 @end

@@ -16,6 +16,7 @@ import com.microsoft.codepush.react.CodePush;
 
 import java.util.Arrays;
 import java.util.List;
+import com.wix.reactnativenotifications.RNNotificationsPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -41,6 +42,8 @@ public class MainApplication extends Application implements ReactApplication {
       List<ReactPackage> packages = new PackageList(this).getPackages();
 
       packages.addAll(Arrays.<ReactPackage>asList());
+
+      packages.add(new RNNotificationsPackage(MainApplication.this));
 
       return packages;
     }

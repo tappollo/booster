@@ -1,8 +1,7 @@
 import Browser from "react-native-inappbrowser-reborn";
-import { Linking } from "react-native";
+import { Linking, Platform } from "react-native";
 import { useIsFocused } from "@react-navigation/core";
 import { useEffect } from "react";
-
 // @ts-ignore
 import KeyboardManager from "react-native-keyboard-manager";
 
@@ -14,18 +13,22 @@ export const openURL = async (url: string) => {
   }
 };
 
-export const useDisableToolbarOnFocus = () => {
+export const useToolbarOnFocus = (enable: boolean) => {
   const isFocused = useIsFocused();
   useEffect(() => {
-    KeyboardManager.setEnableAutoToolbar(!isFocused);
-  }, [isFocused]);
+    if (Platform.OS === "ios" && isFocused) {
+      KeyboardManager.setEnableAutoToolbar(enable);
+    }
+  }, [isFocused, enable]);
 };
 
-export const useEnableKeyboardManagerOnFocus = () => {
+export const useKeyboardManagerOnFocus = (enable: boolean) => {
   const isFocused = useIsFocused();
   useEffect(() => {
-    KeyboardManager.setEnable(isFocused);
-  }, [isFocused]);
+    if (Platform.OS === "ios" && isFocused) {
+      KeyboardManager.setEnable(enable);
+    }
+  }, [isFocused, enable]);
 };
 
 export function compose<A, B, C>(l: (a: A) => B, r: (b: B) => C): (a: A) => C {

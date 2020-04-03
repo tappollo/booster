@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BigButton } from "../../components/Button";
 import { PageContainer } from "../../components/Page";
 import { BigTitle } from "../../components/Title";
@@ -9,6 +9,7 @@ import { OnboardingStackParams } from "./index";
 import TOSAndPrivacyRow from "./components/TOSAndPrivacyRow";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { AppRouteContext } from "../Routes";
+import auth from "@react-native-firebase/auth";
 
 export interface VerifySMSCodePageParams {
   confirmation: (code: string) => Promise<any>;
@@ -24,6 +25,14 @@ const VerifySMSCodePage = ({
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const { resetRoute } = useContext(AppRouteContext);
+  useEffect(() => {
+    return auth().onAuthStateChanged(user => {
+      if (user == null) {
+        return;
+      }
+      resetRoute?.();
+    });
+  }, [resetRoute]);
   return (
     <PageContainer>
       <BigTitle>Enter verification code</BigTitle>
@@ -35,7 +44,6 @@ const VerifySMSCodePage = ({
           try {
             setLoading(true);
             await confirmation(code);
-            resetRoute?.();
           } catch (e) {
             setLoading(false);
             Alert.alert("Error", e.message);

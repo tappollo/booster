@@ -1,6 +1,5 @@
 import React from "react";
 import ContentPage from "./ContentPage";
-
 // @ts-ignore
 import raw from "raw.macro";
 
