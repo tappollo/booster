@@ -175,7 +175,7 @@ PODS:
     - React
   - CocoaAsyncSocket (7.6.3)
   - CocoaLibEvent (1.0.0)
-  - CodePush (6.1.1):
+  - CodePush (6.2.0):
     - Base64 (~> 1.1)
     - JWT (~> 3.0.0-beta.7)
     - React
@@ -1111,7 +1111,7 @@ SPEC CHECKSUMS:
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CocoaLibEvent: 2fab71b8bd46dd33ddb959f7928ec5909f838e3f
-  CodePush: bb7e03266a59b81c45d67f518dd5eb30aeb09b1e
+  CodePush: 3285d39e9865e0a37a415417402bf568ce49268a
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
