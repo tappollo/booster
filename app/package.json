@@ -20,7 +20,7 @@
     ]
   },
   "dependencies": {
-    "@expo/react-native-action-sheet": "^3.5.0",
+    "@expo/react-native-action-sheet": "^3.6.0",
     "@react-native-community/async-storage": "^1.6.2",
     "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "^0.1.5",
@@ -50,7 +50,7 @@
     "mobx-react": "^6.1.7",
     "react": "16.11.0",
     "react-native": "0.62.0",
-    "react-native-code-push": "^6.1.1",
+    "react-native-code-push": "^6.2.0",
     "react-native-device-info": "^4.0.1",
     "react-native-error-boundary": "^1.1.0",
     "react-native-fast-image": "^7.0.2",
