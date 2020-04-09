@@ -39,5 +39,8 @@
     "*.{js,json,md,ts,tsx}": [
       "prettier --write"
     ]
+  },
+  "resolutions": {
+    "@expo/react-native-action-sheet": "3.6.0"
   }
 }
