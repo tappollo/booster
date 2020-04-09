@@ -23,6 +23,7 @@ You need:
 
 - yarn
 - node 10 `v10.15.1`. (firebase cloud function only support up to v10)
+  > if you're using node version higher than 10, you need to do `yarn config set ignore-engines true` to prevent cloud function from complaining
 - ruby `2.6.5` for fastlane and CocoaPods (with bundler)
 
 ### Steps
