@@ -40,10 +40,5 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "resolutions": {
-    "prettier": "1.19.1",
-    "@typescript-eslint/parser": "2.16.0",
-    "@typescript-eslint/eslint-plugin": "2.16.0"
   }
 }
