@@ -1,7 +1,7 @@
 import analytics from "@react-native-firebase/analytics";
 import storage from "@react-native-firebase/storage";
 import { currentUserId } from "../user";
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 import crashlytics from "@react-native-firebase/crashlytics";
 
 export const uploadFile = async (
