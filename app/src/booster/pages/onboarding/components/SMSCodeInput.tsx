@@ -60,7 +60,7 @@ const SMSCodeInput = (props: DigitInputProps) => {
 
 const HiddenInput = styled(TextInput).attrs({
   keyboardType: "number-pad",
-  maxLength: 6
+  maxLength: 6,
 })`
   position: absolute;
   top: 0;

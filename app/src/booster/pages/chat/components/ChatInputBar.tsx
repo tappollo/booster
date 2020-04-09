@@ -8,7 +8,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import { usePickAndUploadImage } from "../../../functions/image";
@@ -66,7 +66,7 @@ const ImageAction = (props: {
 
 const Input: typeof TextInput = styled.TextInput.attrs({
   placeholder: "Type a message...",
-  multiline: true
+  multiline: true,
 })`
   font-size: 17px;
   flex: 1;
@@ -102,12 +102,12 @@ const ChatInputBar = (props: {
   const input = useRef<TextInput>(null);
   const contentSize = useRef<{ width: number; height: number }>({
     width: 0,
-    height: 0
+    height: 0,
   });
   return (
     <Container>
       <Content
-        onLayout={event => {
+        onLayout={(event) => {
           const { height, width } = event.nativeEvent.layout;
           if (height === 0 || width === 0) {
             return;
@@ -128,7 +128,7 @@ const ChatInputBar = (props: {
             if ((newText && !text) || (text && !newText)) {
               LayoutAnimation.configureNext({
                 ...LayoutAnimation.Presets.linear,
-                duration: 100
+                duration: 100,
               });
             }
             setText(newText);
@@ -145,8 +145,8 @@ const ChatInputBar = (props: {
                 type: "text",
                 user: {
                   avatar: profile!.avatar,
-                  name: profile!.name
-                }
+                  name: profile!.name,
+                },
               });
             }}
           />
@@ -157,7 +157,7 @@ const ChatInputBar = (props: {
           onPress={() => {
             input.current?.blur();
           }}
-          selectedImage={async image => {
+          selectedImage={async (image) => {
             await props.send({
               content: image,
               createdAt: firestore.FieldValue.serverTimestamp() as any,
@@ -165,8 +165,8 @@ const ChatInputBar = (props: {
               type: "image",
               user: {
                 avatar: profile!.avatar,
-                name: profile!.name
-              }
+                name: profile!.name,
+              },
             });
           }}
         />

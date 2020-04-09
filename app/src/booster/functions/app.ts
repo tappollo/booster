@@ -20,7 +20,7 @@ const registerDeviceInfo = async () => {
         deviceName: await DeviceInfo.getDeviceName(),
         binaryVersion: DeviceInfo.getVersion(),
         os: await DeviceInfo.getBaseOs(),
-        lastOpen: new Date()
+        lastOpen: new Date(),
       }
     );
 };
@@ -28,7 +28,7 @@ const registerDeviceInfo = async () => {
 export const useAppLaunchAfterLogin = () => {
   useEffect(() => {
     console.log("App Launched after logged in");
-    Promise.all([registerDeviceInfo(), updateToken()]).catch(e => {
+    Promise.all([registerDeviceInfo(), updateToken()]).catch((e) => {
       console.error(e);
       crashlytics().recordError(e);
     });

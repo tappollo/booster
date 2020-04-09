@@ -7,16 +7,16 @@ type DataSnapshot = FirebaseDatabaseTypes.DataSnapshot;
 
 export const useListenDatabase = <T>(ref: Reference) => {
   const [state, setState] = useState<LoadingErrorState<T>>({
-    loading: true
+    loading: true,
   });
   const stableRef = useEqual(ref).current;
   useEffect(() => {
-    setState(s => ({ ...s, loading: true, error: undefined }));
+    setState((s) => ({ ...s, loading: true, error: undefined }));
     const callback = (snapshot: DataSnapshot) => {
-      setState(s => ({ ...s, value: snapshot.val(), loading: false }));
+      setState((s) => ({ ...s, value: snapshot.val(), loading: false }));
     };
     stableRef.on("value", callback, (error: Error) => {
-      setState(s => ({ ...s, error }));
+      setState((s) => ({ ...s, error }));
     });
     return () => {
       stableRef.off("value", callback);
@@ -30,6 +30,6 @@ export const useListenDatabase = <T>(ref: Reference) => {
   );
   return {
     ...state,
-    update
+    update,
   };
 };

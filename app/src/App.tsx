@@ -27,5 +27,5 @@ const App = () => (
 export default codePush({
   checkFrequency: __DEV__
     ? codePush.CheckFrequency.MANUAL
-    : codePush.CheckFrequency.ON_APP_RESUME
+    : codePush.CheckFrequency.ON_APP_RESUME,
 })(App);

@@ -28,7 +28,7 @@ const Title = styled.Text`
 `;
 
 const ChatListPage = ({
-  navigation
+  navigation,
 }: {
   navigation: StackNavigationProp<HomeNavStackParams>;
 }) => {
@@ -47,20 +47,20 @@ const ChatListPage = ({
       </Header>
       <LoadingErrorStateView
         state={conversationsState}
-        isEmpty={value => value.length === 0}
+        isEmpty={(value) => value.length === 0}
         emptyText="No conversation available"
       >
-        {conversations => (
+        {(conversations) => (
           <FlatList
             data={conversations}
-            keyExtractor={item => item.id}
+            keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
               <ConversationCell
                 {...item}
                 onPress={() => {
                   const { users, userIds } = item.doc;
                   const otherUserId = userIds.filter(
-                    id => id !== currentUserId()
+                    (id) => id !== currentUserId()
                   )[0];
                   const user = users[otherUserId];
                   const params: ChatDetailPageParams = {
@@ -68,8 +68,8 @@ const ChatListPage = ({
                     conversationId: item.id,
                     target: {
                       id: otherUserId,
-                      doc: user
-                    }
+                      doc: user,
+                    },
                   };
                   navigation.push("chatDetail", params);
                 }}

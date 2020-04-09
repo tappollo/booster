@@ -29,7 +29,7 @@ const ChatImageCell = (props: MessageImageProps<any>) => {
         <ImageViewer
           onClick={() => setShow(false)}
           index={0}
-          renderImage={ip => <FastImage {...ip} />}
+          renderImage={(ip) => <FastImage {...ip} />}
           enableSwipeDown={true}
           onCancel={() => setShow(false)}
           imageUrls={[{ url: props.currentMessage.image }]}

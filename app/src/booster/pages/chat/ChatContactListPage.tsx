@@ -45,7 +45,7 @@ Cell.Container = styled(TouchableOpacity)`
 `;
 
 const ChatContactListPage = ({
-  navigation
+  navigation,
 }: {
   navigation: StackNavigationProp<HomeNavStackParams>;
 }) => {
@@ -53,13 +53,13 @@ const ChatContactListPage = ({
   return (
     <LoadingErrorStateView
       state={contactsState}
-      isEmpty={value => value.length === 0}
+      isEmpty={(value) => value.length === 0}
       emptyText="There is no new contacts"
     >
-      {contacts => (
+      {(contacts) => (
         <FlatList
           data={contacts}
-          keyExtractor={item => item.id}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <Cell
               {...item.doc}
@@ -67,7 +67,7 @@ const ChatContactListPage = ({
                 const params: ChatDetailPageParams = {
                   title: item.doc.name,
                   conversationId: item.conversationId,
-                  target: item
+                  target: item,
                 };
                 navigation.push("chatDetail", params);
               }}

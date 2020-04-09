@@ -1,10 +1,10 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import SelectCountryPage, {
-  SelectCountryPageParams
+  SelectCountryPageParams,
 } from "./SelectCountryPage";
 import React, { useContext } from "react";
 import VerifySMSCodePage, {
-  VerifySMSCodePageParams
+  VerifySMSCodePageParams,
 } from "./VerifySMSCodePage";
 import { Platform, YellowBox } from "react-native";
 import LandingPage from "./LandingPage";
@@ -33,21 +33,21 @@ const OnboardingNav = () => {
         headerTintColor: "#585858",
         headerStyle: {
           borderBottomWidth: 0,
-          backgroundColor: "transparent"
+          backgroundColor: "transparent",
         },
         headerLeftContainerStyle: {
           marginLeft: Platform.select({
             ios: 20,
-            default: 5
-          })
-        }
+            default: 5,
+          }),
+        },
       }}
     >
       <OnboardingNavStack.Screen
         name="landing"
         component={LandingPage}
         options={{
-          header: () => null
+          header: () => null,
         }}
       />
       <OnboardingNavStack.Screen
@@ -71,7 +71,7 @@ export type OnBoardingParams = {
 const OnboardingStack = createNativeStackNavigator<OnBoardingParams>();
 
 YellowBox.ignoreWarnings([
-  "We found non-serializable values in the navigation state"
+  "We found non-serializable values in the navigation state",
 ]);
 
 const OnBoarding = () => {

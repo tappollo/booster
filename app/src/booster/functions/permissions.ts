@@ -6,7 +6,7 @@ import analytics from "@react-native-firebase/analytics";
 export const assertPermission = async ({
   ios,
   android,
-  message
+  message,
 }: {
   ios: Permission;
   android: Permission;
@@ -14,7 +14,7 @@ export const assertPermission = async ({
 }) => {
   const permission = Platform.select({
     android,
-    default: ios
+    default: ios,
   });
   if (
     (await check(permission)) === "denied" &&
@@ -29,12 +29,12 @@ export const assertImagePermissions = async () => {
   await assertPermission({
     ios: PERMISSIONS.IOS.CAMERA,
     android: PERMISSIONS.ANDROID.CAMERA,
-    message: "Need your camera access"
+    message: "Need your camera access",
   });
   await assertPermission({
     ios: PERMISSIONS.IOS.PHOTO_LIBRARY,
     android: PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
-    message: "Need your photo library access"
+    message: "Need your photo library access",
   });
 };
 
@@ -42,6 +42,6 @@ export const assertLocationPermission = async () => {
   await assertPermission({
     ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
     android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-    message: "Need your location access"
+    message: "Need your location access",
   });
 };

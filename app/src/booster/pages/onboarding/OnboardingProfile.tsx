@@ -43,7 +43,7 @@ const OnboardingProfile = () => {
     pick,
     isUploading,
     localImage,
-    serverImage
+    serverImage,
   } = usePickAndUploadImage();
   const avatar = serverImage || value?.avatar || currentUser().photoURL;
   const name = nameInput || value?.name || currentUser().displayName;
@@ -54,7 +54,7 @@ const OnboardingProfile = () => {
         {avatar && (
           <Avatar
             source={{
-              uri: localImage || avatar
+              uri: localImage || avatar,
             }}
           />
         )}

@@ -12,19 +12,19 @@ export const uploadFile = async (
   const ref = storage().ref(`users/${currentUserId()}/${uuid()}`);
   const snapshot = await ref.putFile(filePath, {
     cacheControl: "max-age=31536000",
-    contentType
+    contentType,
   });
   if (snapshot.state !== "success" && snapshot.error != null) {
     analytics().logEvent("upload_file_failed", {
       path: filePath,
-      type: contentType
+      type: contentType,
     });
     crashlytics().recordError(snapshot.error as any);
     throw new Error("Unable to get download link");
   }
   analytics().logEvent("upload_file_succeed", {
     path: filePath,
-    type: contentType
+    type: contentType,
   });
   return await ref.getDownloadURL();
 };

@@ -19,16 +19,16 @@ const Routes = () => {
     if (isLoggedIn != null) {
       return;
     }
-    return auth().onAuthStateChanged(user => {
+    return auth().onAuthStateChanged((user) => {
       if (user == null) {
         setIsLoggedIn("landing");
         return;
       }
       userFinishedSignUp()
-        .then(finished => {
+        .then((finished) => {
           setIsLoggedIn(finished ? "home" : "signUp");
         })
-        .catch(e => {
+        .catch((e) => {
           console.error(e);
           setIsLoggedIn("home");
         });

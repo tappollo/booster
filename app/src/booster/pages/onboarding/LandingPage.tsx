@@ -7,7 +7,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { OnboardingStackParams } from "./index";
 
 const LandingPage = ({
-  navigation
+  navigation,
 }: {
   navigation: StackNavigationProp<OnboardingStackParams>;
 }) => {
@@ -28,7 +28,7 @@ const LandingPage = ({
 };
 
 LandingPage.navigationOptions = {
-  header: null
+  header: null,
 };
 
 export default LandingPage;

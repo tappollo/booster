@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-native-paper";
 import { StyleProp, StyleSheet, Text, ViewStyle } from "react-native";
 
-export const BigButton: typeof Button = props => {
+export const BigButton: typeof Button = (props) => {
   return (
     <Button
       dark={true}
@@ -20,13 +20,13 @@ export const BigButton: typeof Button = props => {
 
 const styles = StyleSheet.create({
   content: {
-    height: 58
+    height: 58,
   },
   container: {
-    marginVertical: 12
+    marginVertical: 12,
   },
   text: {
     fontSize: 17,
-    fontWeight: "bold"
-  }
+    fontWeight: "bold",
+  },
 });

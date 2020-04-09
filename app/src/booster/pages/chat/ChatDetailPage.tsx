@@ -11,7 +11,7 @@ import {
   updateUserStatus,
   useMessages,
   useUpdateStatus,
-  useUserStatus
+  useUserStatus,
 } from "../../functions/chat";
 import { currentUserId } from "../../functions/user";
 import { thumbnailImage } from "../../functions/image";
@@ -19,7 +19,7 @@ import { Center } from "./components/Layout";
 import ChatInputBar from "./components/ChatInputBar";
 import {
   useKeyboardManagerOnFocus,
-  useToolbarOnFocus
+  useToolbarOnFocus,
 } from "../../functions/utils";
 import ChatImageCell from "./components/ChatImageCell";
 
@@ -41,7 +41,7 @@ const Container = styled.View`
 
 const Content = ({
   chatId,
-  target
+  target,
 }: {
   target: Doc<Profile>;
   chatId: string;
@@ -60,7 +60,7 @@ const Content = ({
       <GiftedChat
         minComposerHeight={46}
         minInputToolbarHeight={78}
-        renderMessageImage={props => <ChatImageCell {...props} />}
+        renderMessageImage={(props) => <ChatImageCell {...props} />}
         renderInputToolbar={(toolbar: Composer["props"]) => (
           <ChatInputBar
             send={send}
@@ -81,10 +81,10 @@ const Content = ({
           }
           return null;
         }}
-        onInputTextChanged={input => {
+        onInputTextChanged={(input) => {
           setIsTyping(input.length > 0);
         }}
-        messages={messages.map(m => ({
+        messages={messages.map((m) => ({
           _id: m.id,
           text: m.doc.type !== "image" ? m.doc.content : "",
           image: m.doc.type === "image" ? m.doc.content : "",
@@ -92,12 +92,12 @@ const Content = ({
           user: {
             _id: m.doc.createdBy,
             name: m.doc.user.name,
-            avatar: thumbnailImage(m.doc.user.avatar, 200, 200)
+            avatar: thumbnailImage(m.doc.user.avatar, 200, 200),
           },
-          createdAt: m.doc.createdAt?.toDate()
+          createdAt: m.doc.createdAt?.toDate(),
         }))}
         user={{
-          _id: currentUserId()
+          _id: currentUserId(),
         }}
       />
     </Container>
@@ -105,7 +105,7 @@ const Content = ({
 };
 
 const ChatDetailPage = ({
-  route
+  route,
 }: {
   route: RouteProp<HomeNavStackParams, "chatDetail">;
   navigation: StackNavigationProp<HomeNavStackParams>;
@@ -118,7 +118,7 @@ const ChatDetailPage = ({
     }
     startConversation(target.id)
       .then(setChatId)
-      .catch(e => Alert.alert(e.message));
+      .catch((e) => Alert.alert(e.message));
   }, [conversationId, target]);
   if (chatId == null) {
     return (

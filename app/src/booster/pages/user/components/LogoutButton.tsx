@@ -20,9 +20,9 @@ const LogoutButton = () => {
             title: "Are you sure?",
             options: ["Logout", "Cancel"],
             destructiveButtonIndex: 0,
-            cancelButtonIndex: 1
+            cancelButtonIndex: 1,
           },
-          async i => {
+          async (i) => {
             if (i === 1) {
               return;
             }
