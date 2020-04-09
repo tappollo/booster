@@ -16,3 +16,23 @@ See the [Documentation](https://tappollo.github.io/booster/) guide for more deta
 - Prebuilt components
 - CI/CD integrations
 - Scalability, analytics, A/B testing, crash reporting from day one
+
+## Build process
+
+You need:
+
+- yarn
+- node 10 `v10.15.1`. (firebase cloud function only support up to v10)
+- ruby `2.6.5` for fastlane and CocoaPods (with bundler)
+
+### Steps
+
+```shell script
+yarn bootstrap
+yarn firebase login # if not already, you need to have access to the firebase project
+yarn use dev # or prod, example
+cd app
+yarn start
+npx react-native run-ios
+npx react-native run-android
+```
