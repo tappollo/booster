@@ -1,4 +1,4 @@
-import { Message } from "../../../functions/types";
+import { Message, Profile } from "../../../functions/types";
 import { useGetDocument } from "../../../functions/firebase/firestoreHooks";
 import { currentUserId, typedProfile } from "../../../functions/user";
 import firestore from "@react-native-firebase/firestore";
@@ -97,7 +97,7 @@ const ChatInputBar = (props: {
   onContentSizeChange?: (size: { width: number; height: number }) => void;
   send: (message: Message) => Promise<void>;
 }) => {
-  const { value: profile } = useGetDocument(typedProfile.ref());
+  const { value: profile } = useGetDocument<Profile>(typedProfile.ref());
   const [text, setText] = useState("");
   const input = useRef<TextInput>(null);
   const contentSize = useRef<{ width: number; height: number }>({

@@ -1,6 +1,6 @@
 #!/usr/bin/env ts-node
 
-import chalk from "chalk";
+import * as chalk from "chalk";
 import * as meow from "meow";
 import * as path from "path";
 import { run } from "./utils/run";
@@ -45,7 +45,7 @@ import ora = require("ora");
         "strings.xml": "../app/android/app/src/main/res/values/strings.xml",
         "release.keystore": "../app/android/keystores/release.keystore",
         "adminsdk.json": "../functions/src/adminsdk.json",
-        "server.json": "../functions/src/server.json"
+        "server.json": "../functions/src/server.json",
       };
 
       for (const key of Object.keys(fileMappings) as Array<

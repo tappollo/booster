@@ -49,7 +49,7 @@ const SelectCountryPage = ({
 }) => {
   const fuse = useFuse();
   const [query, setQuery] = useState("");
-  const dataSource = query ? fuse.search(query) : countries;
+  const dataSource = query ? fuse.search(query).map((i) => i.item) : countries;
   const onSelect = route.params.onSelect;
   return (
     <Container>
