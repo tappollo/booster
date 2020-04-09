@@ -81,10 +81,24 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
   [RNNotifications didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+#if DEBUG
+  [[FIRAuth auth] setAPNSToken:deviceToken type:FIRAuthAPNSTokenTypeSandbox];
+#else
+  [[FIRAuth auth] setAPNSToken:deviceToken type:FIRAuthAPNSTokenTypeProd];
+#endif
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
   [RNNotifications didFailToRegisterForRemoteNotificationsWithError:error];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)notification
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+  if ([[FIRAuth auth] canHandleNotification:notification]) {
+    completionHandler(UIBackgroundFetchResultNoData);
+    return;
+  }
 }
 
 @end
