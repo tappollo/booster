@@ -21,7 +21,7 @@ const useFuse = () => {
     distance: 100,
     maxPatternLength: 32,
     minMatchCharLength: 1,
-    keys: ["name", "dial_code"]
+    keys: ["name", "dial_code"],
   };
   return useRef(new Fuse(countries, fuseOptions)).current;
 };
@@ -31,7 +31,7 @@ const countries: Country[] = require("./assets/countries.json");
 const SearchInput = styled(Searchbar).attrs({
   autoFocus: true,
   placeholder: "Search",
-  icon: { source: "arrow-left", direction: "auto" }
+  icon: { source: "arrow-left", direction: "auto" },
 })`
   margin: 4px 15px;
 `;
@@ -42,14 +42,14 @@ export interface SelectCountryPageParams {
 
 const SelectCountryPage = ({
   route,
-  navigation
+  navigation,
 }: {
   route: RouteProp<OnBoardingParams, "SelectCountryPage">;
   navigation: StackNavigationProp<OnBoardingParams>;
 }) => {
   const fuse = useFuse();
   const [query, setQuery] = useState("");
-  const dataSource = query ? fuse.search(query) : countries;
+  const dataSource = query ? fuse.search(query).map((i) => i.item) : countries;
   const onSelect = route.params.onSelect;
   return (
     <Container>
@@ -61,12 +61,12 @@ const SelectCountryPage = ({
       />
       <FlatList
         keyboardShouldPersistTaps="always"
-        keyExtractor={country => country.code}
+        keyExtractor={(country) => country.code}
         data={dataSource}
         renderItem={({ item }) => (
           <List.Item
             description={item.dial_code}
-            left={props => (
+            left={(props) => (
               <List.Icon
                 {...props}
                 icon={() => <Text style={{ fontSize: 25 }}>{item.flag}</Text>}

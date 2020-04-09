@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-  ViewStyle
+  ViewStyle,
 } from "react-native";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import { formatDistanceStrict, isAfter, subSeconds } from "date-fns";
@@ -42,7 +42,7 @@ OnlineIndicator.Dot = styled.View<{ online?: boolean }>`
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: ${props => (props.online ? "green" : "#cccccc")};
+  background-color: ${(props) => (props.online ? "green" : "#cccccc")};
 `;
 
 const renderLastMessage = (message?: Message) => {
@@ -60,7 +60,7 @@ const ConversationCell = (
   props: Doc<Conversation> & { onPress: () => void }
 ) => {
   const { users, lastMessage, userIds, updatedAt } = props.doc;
-  const otherUserId = userIds.filter(id => id !== currentUserId())[0];
+  const otherUserId = userIds.filter((id) => id !== currentUserId())[0];
   const user = users[otherUserId];
   return (
     <ConversationCell.Container onPress={props.onPress}>
@@ -97,7 +97,7 @@ ConversationCell.UnreadContainer = styled(View)`
 
 const ConversationCellUnread: FunctionComponent<{
   conversationId: string;
-}> = props => {
+}> = (props) => {
   const { value, loading } = useUnreadCount(props.conversationId);
   if (loading || !value) {
     return null;
@@ -131,7 +131,7 @@ ConversationCell.DateText = styled(Text)`
 `;
 
 ConversationCell.LastMessage = styled(Text).attrs({
-  numberOfLines: 2
+  numberOfLines: 2,
 })`
   font-size: 14px;
   color: #898989;

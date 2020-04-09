@@ -24,11 +24,13 @@ export const useNewContacts = () => {
   >(firestore().collection("userProfiles"));
   const {
     value: conversations = [],
-    loading: conversationLoading
+    loading: conversationLoading,
   } = useConversations();
   const userIdsInConversation: { [userId: string]: string } = {};
-  conversations.forEach(conversation => {
-    const userId = conversation.doc.userIds.find(id => id !== currentUserId());
+  conversations.forEach((conversation) => {
+    const userId = conversation.doc.userIds.find(
+      (id) => id !== currentUserId()
+    );
     if (userId) {
       userIdsInConversation[userId] = conversation.id;
     }
@@ -36,25 +38,22 @@ export const useNewContacts = () => {
 
   return {
     value: contacts
-      .filter(contact => contact.id !== currentUserId())
-      .map(contact => ({
+      .filter((contact) => contact.id !== currentUserId())
+      .map((contact) => ({
         ...contact,
-        conversationId: userIdsInConversation[contact.id]
+        conversationId: userIdsInConversation[contact.id],
       })),
-    loading: contactLoading || conversationLoading
+    loading: contactLoading || conversationLoading,
   };
 };
 
 const getMessagesRef = (chatId: string) => {
-  return firestore()
-    .collection("chats")
-    .doc(chatId)
-    .collection("messages");
+  return firestore().collection("chats").doc(chatId).collection("messages");
 };
 
 export const startConversation = async (target: string): Promise<string> => {
   const result = await functions().httpsCallable("chat-startConversation")({
-    target
+    target,
   });
   return result.data.id;
 };
@@ -87,7 +86,7 @@ export const useMessages = (
   );
   return {
     messages,
-    send
+    send,
   };
 };
 
@@ -99,7 +98,7 @@ export const useUpdatePing = () => {
       .then(() => {
         return ref.onDisconnect().update({
           disconnectedAt: database.ServerValue.TIMESTAMP,
-          online: false
+          online: false,
         });
       })
       .catch();
@@ -112,10 +111,7 @@ export const useUpdatePing = () => {
     };
     AppState.addEventListener("change", onAppStateChange);
     return () => {
-      ref
-        .onDisconnect()
-        .cancel()
-        .catch();
+      ref.onDisconnect().cancel().catch();
       AppState.removeEventListener("change", onAppStateChange);
     };
   }, []);
@@ -126,9 +122,7 @@ export const useUserStatus = (userId: string) => {
 };
 
 export const updateUserStatus = async (userStatus: Partial<UserStatus>) => {
-  await database()
-    .ref(`userStatus/${currentUserId()}`)
-    .update(userStatus);
+  await database().ref(`userStatus/${currentUserId()}`).update(userStatus);
 };
 
 export const markConversationAsRead = async (conversationId: string) => {
@@ -138,9 +132,7 @@ export const markConversationAsRead = async (conversationId: string) => {
 };
 
 export const removeCurrentConversationID = async () => {
-  await database()
-    .ref(`userStatus/${currentUserId()}/conversationId`)
-    .remove();
+  await database().ref(`userStatus/${currentUserId()}/conversationId`).remove();
 };
 
 export const useUnreadCount = (conversationId: string) => {
@@ -151,7 +143,7 @@ export const useUnreadCount = (conversationId: string) => {
 
 export const targetIn = (conversation: Conversation) => {
   const me = currentUserId();
-  return conversation.userIds.filter(id => id !== me)[0];
+  return conversation.userIds.filter((id) => id !== me)[0];
 };
 
 export const targetUserIn = (conversation: Conversation) => {

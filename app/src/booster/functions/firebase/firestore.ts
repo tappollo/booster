@@ -1,5 +1,5 @@
 import firestore, {
-  FirebaseFirestoreTypes
+  FirebaseFirestoreTypes,
 } from "@react-native-firebase/firestore";
 import { CollectionReference, DocumentReference } from "./firestoreHooks";
 
@@ -31,7 +31,7 @@ export function makeDocAsType<T>(
     return await doc().set(newValue, { merge: true });
   }
   function listen(callback: (value: T) => void) {
-    return doc().onSnapshot(snapshot => {
+    return doc().onSnapshot((snapshot) => {
       callback(snapshot.data() as any);
     });
   }
@@ -39,6 +39,6 @@ export function makeDocAsType<T>(
     ref: doc,
     read,
     update,
-    listen
+    listen,
   };
 }

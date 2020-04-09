@@ -4,7 +4,7 @@ import {
   useCallback,
   useEffect,
   useRef,
-  useState
+  useState,
 } from "react";
 import { Doc } from "../types";
 
@@ -30,21 +30,21 @@ export type LoadingErrorState<T> = {
 
 export const useListenDocument = <T>(docRef: DocumentReference) => {
   const [state, setState] = useState<LoadingErrorState<T>>({
-    loading: true
+    loading: true,
   });
   const ref = useEqual(docRef).current;
   useEffect(() => {
     const sub = ref.onSnapshot(
-      snapshot => {
+      (snapshot) => {
         setState({
           loading: false,
-          value: snapshot.data() as any
+          value: snapshot.data() as any,
         });
       },
-      error => {
+      (error) => {
         setState({
           loading: false,
-          error: error
+          error: error,
         });
       }
     );
@@ -61,28 +61,28 @@ export const useListenDocument = <T>(docRef: DocumentReference) => {
   );
   return {
     ...state,
-    update
+    update,
   };
 };
 
 export const useGetDocument = <T>(docRef: DocumentReference) => {
   const [state, setState] = useState<LoadingErrorState<T>>({
-    loading: true
+    loading: true,
   });
   const ref = useEqual(docRef).current;
   useEffect(() => {
     ref
       .get()
-      .then(value => {
+      .then((value) => {
         setState({
           loading: false,
-          value: value.data() as any
+          value: value.data() as any,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         setState({
           loading: false,
-          error: error
+          error: error,
         });
       });
     return () => {
@@ -94,25 +94,25 @@ export const useGetDocument = <T>(docRef: DocumentReference) => {
 
 export const useListenQuery = <T>(query: Query) => {
   const [state, setState] = useState<LoadingErrorState<Array<Doc<T>>>>({
-    loading: true
+    loading: true,
   });
   const queryRef = useEqual(query).current;
   useEffect(() => {
     const subscription = queryRef.onSnapshot(
-      snapshot => {
-        const docs = snapshot.docs.map(doc => ({
+      (snapshot) => {
+        const docs = snapshot.docs.map((doc) => ({
           id: doc.id,
-          doc: doc.data() as any
+          doc: doc.data() as any,
         }));
         setState({
           loading: false,
-          value: docs
+          value: docs,
         });
       },
-      error => {
+      (error) => {
         setState({
           loading: false,
-          error
+          error,
         });
       }
     );

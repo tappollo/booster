@@ -13,8 +13,8 @@
     "applicationId": "com.mercy",
     "signingConfigs": {
       "keyAlias": "key",
-      "storePassword": "storePassword",
-      "keyPassword": "keyPassword"
+      "storePassword": "Aa123456",
+      "keyPassword": "Aa123456"
     }
   }
 }

@@ -74,8 +74,8 @@ const HomeNav = () => {
         headerBackTitle: " ",
         headerTintColor: "#585858",
         headerStyle: {
-          borderBottomWidth: 0
-        }
+          borderBottomWidth: 0,
+        },
       }}
     >
       <HomeNavStack.Screen
@@ -87,7 +87,7 @@ const HomeNav = () => {
         name="chatDetail"
         component={ChatDetailPage}
         options={({ route }) => ({
-          title: route.params.target.doc.name
+          title: route.params.target.doc.name,
         })}
       />
       <HomeNavStack.Screen

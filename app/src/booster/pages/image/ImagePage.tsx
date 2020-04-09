@@ -9,7 +9,7 @@ import { uploadFile } from "../../functions/firebase/storage";
 
 const Container = styled.ScrollView<{ marginTop: number }>`
   flex: 1;
-  margin-top: ${props => props.marginTop}px;
+  margin-top: ${(props) => props.marginTop}px;
 `;
 
 const Content = styled.View`

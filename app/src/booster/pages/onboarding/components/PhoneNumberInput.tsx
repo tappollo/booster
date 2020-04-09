@@ -4,7 +4,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ViewStyle
+  ViewStyle,
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import React, { useState } from "react";
@@ -15,7 +15,7 @@ export const defaultCountry: Country = {
   name: "United States",
   dial_code: "+1",
   code: "US",
-  flag: "🇺🇸"
+  flag: "🇺🇸",
 };
 
 export interface Country {
@@ -38,7 +38,7 @@ const Input: typeof TextInput = styled.TextInput.attrs({
   maxLength: 16,
   keyboardType: "phone-pad",
   placeholder: "(123) 456-7890",
-  placeholderTextColor: theme.colors.placeholder
+  placeholderTextColor: theme.colors.placeholder,
 })`
   flex: 1;
   color: ${theme.colors.text};
@@ -74,9 +74,7 @@ const PhoneNumberInputBox = (props: PhoneNumberInputBoxProps) => {
       style={{
         borderBottomColor: focus
           ? theme.colors.primary
-          : color(theme.colors.placeholder)
-              .alpha(0.3)
-              .string()
+          : color(theme.colors.placeholder).alpha(0.3).string(),
       }}
     >
       <TouchableOpacity
@@ -109,7 +107,7 @@ const PhoneNumberInputBox = (props: PhoneNumberInputBoxProps) => {
         }
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
-        onChangeText={value => {
+        onChangeText={(value) => {
           const phone = value.replace(/\D/g, "");
           if (props.onPhoneChange) {
             props.onPhoneChange(phone);

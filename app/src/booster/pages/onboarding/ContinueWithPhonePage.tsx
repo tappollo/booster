@@ -4,7 +4,7 @@ import { BigButton } from "../../components/Button";
 import { PageContainer } from "../../components/Page";
 import { Alert } from "react-native";
 import PhoneNumberInputBox, {
-  defaultCountry
+  defaultCountry,
 } from "./components/PhoneNumberInput";
 import auth from "@react-native-firebase/auth";
 import { VerifySMSCodePageParams } from "./VerifySMSCodePage";
@@ -14,7 +14,7 @@ import { OnBoardingParams, OnboardingStackParams } from "./index";
 import TOSAndPrivacyRow from "./components/TOSAndPrivacyRow";
 
 const ContinueWithPhonePage = ({
-  navigation
+  navigation,
 }: {
   navigation: CompositeNavigationProp<
     StackNavigationProp<OnBoardingParams>,
@@ -50,7 +50,7 @@ const ContinueWithPhonePage = ({
               country.dial_code + phone
             );
             navigation.push("verifySMS", {
-              confirmation: confirmation.confirm.bind(confirmation)
+              confirmation: confirmation.confirm.bind(confirmation),
             } as VerifySMSCodePageParams);
           } catch (e) {
             if (e.code !== "auth/popup-closed-by-user") {

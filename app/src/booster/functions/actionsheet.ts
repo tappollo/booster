@@ -21,11 +21,13 @@ export const useActionSheet = () => {
       showActionSheetWithOptions(
         {
           ...options,
-          options: items.map(i => i.title),
-          cancelButtonIndex: items.findIndex(i => i.type === "cancel"),
-          destructiveButtonIndex: items.findIndex(i => i.type === "destructive")
+          options: items.map((i) => i.title),
+          cancelButtonIndex: items.findIndex((i) => i.type === "cancel"),
+          destructiveButtonIndex: items.findIndex(
+            (i) => i.type === "destructive"
+          ),
         },
-        i => {
+        (i) => {
           items[i].onPress?.();
         }
       );

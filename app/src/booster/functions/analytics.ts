@@ -22,7 +22,7 @@ export const trackScreenNavigation = (state: NavigationState | undefined) => {
     analytics().setCurrentScreen(route.name);
     analytics().logEvent(
       `${route.name}_screenParams`,
-      _.pickBy(route.params, value => {
+      _.pickBy(route.params, (value) => {
         return _.isNumber(value) || _.isBoolean(value) || _.isString(value);
       }) as any
     );

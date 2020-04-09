@@ -5,17 +5,17 @@ export const getLocation = async () => {
   await assertLocationPermission();
   return await new Promise<{ lat: number; lng: number }>((ful, rej) => {
     Geolocation.getCurrentPosition(
-      async location => {
+      async (location) => {
         const { latitude: lat, longitude: lng } = location.coords;
         ful({ lat, lng });
       },
-      error => {
+      (error) => {
         rej(error);
       },
       {
         enableHighAccuracy: false,
         timeout: 15000,
-        maximumAge: 1000
+        maximumAge: 1000,
       }
     );
   });

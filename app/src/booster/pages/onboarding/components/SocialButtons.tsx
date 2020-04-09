@@ -17,7 +17,7 @@ const signIn = async (cred: AuthCredential) => {
     await typedProfile.update({
       name,
       email,
-      avatar: user.photoURL || ""
+      avatar: user.photoURL || "",
     });
   }
 };
@@ -75,10 +75,10 @@ export const generateSocialButton = (props: {
 
 export const LoginWithFacebook = generateSocialButton({
   title: "Continue with Facebook",
-  onAction: authFacebook
+  onAction: authFacebook,
 });
 
 export const LoginWithGoogle = generateSocialButton({
   title: "Continue with Google",
-  onAction: authGoogle
+  onAction: authGoogle,
 });

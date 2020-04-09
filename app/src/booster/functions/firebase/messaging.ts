@@ -1,7 +1,7 @@
 import messaging from "@react-native-firebase/messaging";
 import {
   checkNotifications,
-  requestNotifications
+  requestNotifications,
 } from "react-native-permissions";
 import { PrivateProfile } from "../types";
 import DeviceInfo from "react-native-device-info";

@@ -16,7 +16,7 @@ export interface VerifySMSCodePageParams {
 }
 
 const VerifySMSCodePage = ({
-  route
+  route,
 }: {
   route: RouteProp<OnboardingStackParams, "verifySMS">;
   navigation: StackNavigationProp<OnboardingStackParams>;
@@ -26,7 +26,7 @@ const VerifySMSCodePage = ({
   const [loading, setLoading] = useState(false);
   const { resetRoute } = useContext(AppRouteContext);
   useEffect(() => {
-    return auth().onAuthStateChanged(user => {
+    return auth().onAuthStateChanged((user) => {
       if (user == null) {
         return;
       }

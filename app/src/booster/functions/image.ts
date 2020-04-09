@@ -13,9 +13,9 @@ const pickImage = async () => {
     analytics().logEvent("start_select_image");
     ImagePicker.showImagePicker(
       {
-        noData: true
+        noData: true,
       },
-      res => {
+      (res) => {
         if (res.didCancel) {
           analytics().logEvent("cancel_select_image");
           reject(null);
@@ -81,6 +81,6 @@ export const usePickAndUploadImage = () => {
     serverImage,
     setCurrent: setLocalImage,
     pick,
-    isUploading
+    isUploading,
   };
 };
