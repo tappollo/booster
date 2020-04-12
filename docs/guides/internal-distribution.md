@@ -85,7 +85,7 @@ Replace the `PHARAH_ANDROID_STORE_PASSWORD` and `PHARAH_ANDROID_KEY_PASSWORD` wi
 To get SHA1 from this newly generated keystore, run
 
 ```bash
-keytool -list -v -keystore ./scripts/configs/dev/keystores/release.keystore
+keytool -list -v -keystore ./scripts/configs/dev/release.keystore
 ```
 
 And copy the value after SHA1, go to firestore console,
