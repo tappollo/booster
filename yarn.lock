@@ -1545,15 +1545,7 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@expo/react-native-action-sheet@3.4.1":
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/@expo/react-native-action-sheet/-/react-native-action-sheet-3.4.1.tgz#af1397d3b1c446f77b3ece531ce87aab5a8777d2"
-  integrity sha512-N2NXBYI8MZrmpi2G2cKDgE6K4F3MfwnUTpOJpo03BexLSlb7oNcXYpVReD2zxATlfjalTTjYdQ/7EYZdn/Z/sg==
-  dependencies:
-    "@types/hoist-non-react-statics" "^3.3.1"
-    hoist-non-react-statics "^3.3.0"
-
-"@expo/react-native-action-sheet@^3.6.0":
+"@expo/react-native-action-sheet@3.4.1", "@expo/react-native-action-sheet@3.6.0", "@expo/react-native-action-sheet@^3.6.0":
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/@expo/react-native-action-sheet/-/react-native-action-sheet-3.6.0.tgz#8207ff460c8795ca9040e6d85daed63db6b3ac58"
   integrity sha512-sAxQZ57iGkn/nKHvJoj51KIvnVx9RdMTpk2lKlo3FKPaezLWsdK0P9zLI/xG3NrD6CRr9tt3oK0silYi61VvZA==
