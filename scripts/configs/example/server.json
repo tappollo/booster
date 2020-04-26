@@ -7,5 +7,6 @@
     "channel": "mercy-f16ad"
   },
   "functionsRoot": "https://us-central1-mercy-f16ad.cloudfunctions.net",
-  "projectId": "mercy-f16ad"
+  "projectId": "mercy-f16ad",
+  "promoteToAdminPassword": "Aa123456"
 }

@@ -1,6 +1,7 @@
 import { _addPayments, _deletePayment, _pay, _requestRefund } from "./payment";
-import { testUser } from "../../order/order.test";
 import { collection } from "../utils/firestore";
+
+const testUser = "testUser";
 
 it("should payments", async function () {
   await _addPayments("tok_visa", testUser);
