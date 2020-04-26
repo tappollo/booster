@@ -1,46 +1,39 @@
 import React, { useContext } from "react";
 import { AppRouteContext } from "../../Routes";
 import { BigButton } from "../../../components/Button";
-import auth from "@react-native-firebase/auth";
-import { useActionSheet } from "@expo/react-native-action-sheet";
-import { typedPrivateProfile } from "../../../functions/user";
-import { keyOf } from "../../../functions/firebase/firestoreHooks";
-import { PrivateProfile } from "../../../functions/types";
-import DeviceInfo from "react-native-device-info";
-import firestore from "@react-native-firebase/firestore";
+import { logout } from "../../../functions/user";
+import { useActionSheet } from "../../../functions/actionsheet";
+import { StyleProp, ViewStyle } from "react-native";
 
-const LogoutButton = () => {
+const LogoutButton = (props: { style?: StyleProp<ViewStyle> }) => {
   const { resetRoute } = useContext(AppRouteContext);
-  const { showActionSheetWithOptions } = useActionSheet();
+  const showActionSheetWithOptions = useActionSheet();
   return (
     <BigButton
+      style={props.style}
       onPress={() => {
         showActionSheetWithOptions(
+          [
+            {
+              title: "Logout",
+              type: "destructive",
+              onPress: async () => {
+                await logout();
+                resetRoute?.();
+              },
+            },
+            {
+              type: "cancel",
+              title: "Cancel",
+            },
+          ],
           {
             title: "Are you sure?",
-            options: ["Logout", "Cancel"],
-            destructiveButtonIndex: 0,
-            cancelButtonIndex: 1,
-          },
-          async (i) => {
-            if (i === 1) {
-              return;
-            }
-            await typedPrivateProfile
-              .ref()
-              .update(
-                keyOf<PrivateProfile>("pushTokens") +
-                  "." +
-                  DeviceInfo.getUniqueId(),
-                firestore.FieldValue.delete()
-              );
-            await auth().signOut();
-            resetRoute?.();
           }
         );
       }}
     >
-      Logout
+      Sign Out
     </BigButton>
   );
 };

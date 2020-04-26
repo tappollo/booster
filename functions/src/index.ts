@@ -8,7 +8,8 @@ const lazyFunctions = {
   status: () => require("./booster/status").statusCheck,
   user: () => require("./booster/user"),
   image: () => require("./booster/image"),
-  chat: () => require("./booster/chat")
+  chat: () => require("./booster/chat"),
+  payments: () => require("./booster/payment/payment"),
   // profile: () => require("./profile"),
   // user: () => require("./user"),
   // exp: () => require("./exports"),
@@ -17,7 +18,7 @@ const lazyFunctions = {
 
 const functionName = process.env.FUNCTION_NAME;
 (Object.keys(lazyFunctions) as Array<keyof typeof lazyFunctions>).forEach(
-  name => {
+  (name) => {
     if (!functionName || functionName.startsWith(name)) {
       exports[name] = lazyFunctions[name]();
     }

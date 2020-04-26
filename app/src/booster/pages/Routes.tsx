@@ -5,6 +5,7 @@ import Home from "./home";
 import { trackScreenNavigation } from "../functions/analytics";
 import auth from "@react-native-firebase/auth";
 import { userFinishedSignUp } from "../functions/user";
+import { navigationTheme } from "../styles/theme";
 
 export const AppRouteContext = createContext<{
   resetRoute?: () => void;
@@ -45,6 +46,7 @@ const Routes = () => {
       <NavigationContainer
         key={isLoggedIn}
         onStateChange={trackScreenNavigation}
+        theme={navigationTheme}
       >
         {isLoggedIn === "home" ? <Home /> : <OnBoarding />}
       </NavigationContainer>

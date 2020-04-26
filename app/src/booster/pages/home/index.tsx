@@ -14,6 +14,7 @@ import { useAppLaunchAfterLogin } from "../../functions/app";
 import ChatDetailPage, { ChatDetailPageParams } from "../chat/ChatDetailPage";
 import ChatListPage from "../chat/ChatListPage";
 import ChatContactListPage from "../chat/ChatContactListPage";
+import OnboardingProfile from "../onboarding/OnboardingProfile";
 
 type BottomTabParams = {
   homePage: undefined;
@@ -61,6 +62,9 @@ export type HomeNavStackParams = {
   homeTab: undefined;
   chatDetail: ChatDetailPageParams;
   chatContactList: undefined;
+  editProfile: {
+    edit: true;
+  };
 };
 
 const HomeNavStack = createStackNavigator<HomeNavStackParams>();
@@ -95,6 +99,7 @@ const HomeNav = () => {
         component={ChatContactListPage}
         options={{ title: "Contacts" }}
       />
+      <HomeNavStack.Screen name="editProfile" component={OnboardingProfile} />
     </HomeNavStack.Navigator>
   );
 };

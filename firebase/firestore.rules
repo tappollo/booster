@@ -11,7 +11,7 @@ service cloud.firestore {
       return userLoggedIn() && request.auth.uid in userIds
     }
     function isAdmin() {
-      return false
+      return userLoggedIn() && request.auth.token.isAdmin == true;
     }
 
     // User profiles

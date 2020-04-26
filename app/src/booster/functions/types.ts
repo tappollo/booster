@@ -15,6 +15,7 @@ export interface Profile {
   name: string;
   avatar: string;
   email?: string;
+  onboardingCompleted?: number;
 }
 
 // Private profile only you can see or update

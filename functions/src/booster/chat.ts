@@ -3,12 +3,12 @@ import { firestore } from "firebase-functions";
 import * as admin from "firebase-admin";
 import { Conversation, Message, UserStatus } from "../types";
 import { sendNotificationsTo } from "./utils/notifications";
-import { assertAuth, assertString, now } from "./utils/utils";
+import { assertNotNull, assertString, now } from "./utils/utils";
 import { useUserProfile } from "./utils/profiles";
 
 export const startConversation = functions.https.onCall(
   async (data, context) => {
-    assertAuth(context.auth);
+    assertNotNull(context.auth);
     assertString(data.target);
 
     const conversation: Conversation = {
@@ -18,16 +18,13 @@ export const startConversation = functions.https.onCall(
       userIds: [context.auth.uid, data.target],
       users: {
         [context.auth.uid]: await useUserProfile(context.auth.uid).read(),
-        [data.target]: await useUserProfile(data.target).read()
+        [data.target]: await useUserProfile(data.target).read(),
       },
-      available: true
+      available: true,
     };
-    const added = await admin
-      .firestore()
-      .collection("chats")
-      .add(conversation);
+    const added = await admin.firestore().collection("chats").add(conversation);
     return {
-      id: added.id
+      id: added.id,
     };
   }
 );
@@ -40,26 +37,20 @@ export const onMessageCreate = firestore
 
     const update: Partial<Conversation> = {
       updatedAt: message.createdAt,
-      lastMessage: message
+      lastMessage: message,
     };
 
-    const chatRef = admin
-      .firestore()
-      .collection("chats")
-      .doc(chatId);
+    const chatRef = admin.firestore().collection("chats").doc(chatId);
 
     await chatRef.update(update);
 
     const chat: Conversation = (await chatRef.get()).data() as any;
 
     for (const targetUserId of chat.userIds.filter(
-      id => id !== message.createdBy
+      (id) => id !== message.createdBy
     )) {
       const userStatus: UserStatus = (
-        await admin
-          .database()
-          .ref(`userStatus/${targetUserId}`)
-          .once("value")
+        await admin.database().ref(`userStatus/${targetUserId}`).once("value")
       ).val();
       if (
         userStatus &&
@@ -81,12 +72,12 @@ export const onMessageCreate = firestore
         0
       );
       await conversationCountsRef.update({
-        [chatId]: (existingCounts[chatId] ?? 0) + 1
+        [chatId]: (existingCounts[chatId] ?? 0) + 1,
       });
       await sendNotificationsTo(targetUserId, {
         title: message.user.name,
         body: message.content,
-        badge: currentUnreadCount + 1
+        badge: currentUnreadCount + 1,
       });
     }
   });
