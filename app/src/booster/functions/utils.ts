@@ -34,3 +34,7 @@ export const useKeyboardManagerOnFocus = (enable: boolean) => {
 export function compose<A, B, C>(l: (a: A) => B, r: (b: B) => C): (a: A) => C {
   return (a) => r(l(a));
 }
+
+export function assertNever(x: never): never {
+  throw new Error("Unexpected object: " + x);
+}

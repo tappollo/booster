@@ -10,12 +10,16 @@ import { useListenDocument } from "../../functions/firebase/firestoreHooks";
 import { currentUser, typedProfile } from "../../functions/user";
 import { Profile } from "../../functions/types";
 import { ActivityIndicator, TextInput } from "react-native-paper";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { OnboardingStackParams } from "./index";
+import { RouteProp, useRoute } from "@react-navigation/core";
+import { HomeNavStackParams } from "../home";
 import { AppRouteContext } from "../Routes";
 
 const AvatarButton = styled.TouchableOpacity`
   margin-top: 10px;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 60px;
   align-self: center;
   background-color: #cccccc;
@@ -34,9 +38,15 @@ const Avatar = styled(FastImage)`
   border-radius: 60px;
 `;
 
-const OnboardingProfile = () => {
-  const { resetRoute } = useContext(AppRouteContext);
-  const [nameInput, setNameInput] = useState("");
+const OnboardingProfile = ({
+  navigation,
+}: {
+  navigation: StackNavigationProp<OnboardingStackParams>;
+}) => {
+  const route = useRoute<RouteProp<HomeNavStackParams, "editProfile">>();
+  const isEditing = route.params?.edit;
+  const [nameInput, setNameInput] = useState<string>();
+  const [emailInput, setEmailInput] = useState<string>();
   const [saving, setSaving] = useState(false);
   const { value, update } = useListenDocument<Profile>(typedProfile.ref());
   const {
@@ -46,35 +56,60 @@ const OnboardingProfile = () => {
     serverImage,
   } = usePickAndUploadImage();
   const avatar = serverImage || value?.avatar || currentUser().photoURL;
-  const name = nameInput || value?.name || currentUser().displayName;
+  const name = nameInput ?? value?.name ?? currentUser().displayName ?? "";
+  const email = emailInput ?? value?.email ?? currentUser().email ?? "";
+  const { resetRoute } = useContext(AppRouteContext);
   return (
     <PageContainer>
-      <BigTitle>Choose your{"\n"}name and avatar</BigTitle>
+      {!isEditing && <BigTitle>Choose your{"\n"}name and avatar</BigTitle>}
       <AvatarButton onPress={pick}>
-        {avatar && (
-          <Avatar
-            source={{
-              uri: localImage || avatar,
-            }}
-          />
-        )}
+        <Avatar
+          source={{
+            uri: localImage || avatar || "",
+          }}
+        />
         {isUploading && <ActivityIndicator />}
       </AvatarButton>
       <TextInput
+        autoCapitalize="words"
         mode="outlined"
         label="Name"
-        value={name || ""}
+        value={name}
         onChangeText={setNameInput}
+      />
+      <TextInput
+        css={`
+          margin: 10px 0;
+        `}
+        autoCapitalize="none"
+        keyboardType="email-address"
+        mode="outlined"
+        label="Email"
+        value={email}
+        onChangeText={setEmailInput}
       />
       <BigButton
         loading={saving}
-        disabled={isUploading || avatar == null || !name}
+        disabled={isUploading || !avatar || !name || !email}
         onPress={async () => {
           try {
+            if (!validateEmail(email)) {
+              Alert.alert("Please input a valid email address");
+              return;
+            }
             setSaving(true);
-            await update({ avatar: avatar!, name: name! });
+            await update({
+              avatar: avatar!,
+              name,
+              email,
+              onboardingCompleted: 1,
+            });
             setSaving(false);
-            resetRoute?.();
+            if (!isEditing) {
+              resetRoute?.();
+            } else {
+              navigation.goBack();
+            }
           } catch (e) {
             Alert.alert(e.message);
             setSaving(false);
@@ -86,5 +121,11 @@ const OnboardingProfile = () => {
     </PageContainer>
   );
 };
+
+function validateEmail(email: string) {
+  // eslint-disable-next-line no-useless-escape
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
 
 export default OnboardingProfile;

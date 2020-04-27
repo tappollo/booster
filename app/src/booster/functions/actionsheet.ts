@@ -12,6 +12,7 @@ export interface ActionSheetOptions {
   message?: string;
   tintColor?: string;
   anchor?: number;
+  defaultCancel?: boolean;
 }
 
 export const useActionSheet = () => {
@@ -21,14 +22,18 @@ export const useActionSheet = () => {
       showActionSheetWithOptions(
         {
           ...options,
-          options: items.map((i) => i.title),
-          cancelButtonIndex: items.findIndex((i) => i.type === "cancel"),
+          options: items
+            .map((i) => i.title)
+            .concat(options.defaultCancel ? ["Cancel"] : []),
+          cancelButtonIndex: options.defaultCancel
+            ? items.length
+            : items.findIndex((i) => i.type === "cancel"),
           destructiveButtonIndex: items.findIndex(
             (i) => i.type === "destructive"
           ),
         },
         (i) => {
-          items[i].onPress?.();
+          items[i]?.onPress?.();
         }
       );
     },
