@@ -24,8 +24,8 @@ export const sendNotificationsTo = async (
     notification: {
       title: notifications.title,
       body: notifications.body,
-      sound: "default"
-    }
+      sound: "default",
+    },
   };
   if (notifications.badge) {
     payload.notification!.badge = notifications.badge.toString();
@@ -34,6 +34,6 @@ export const sendNotificationsTo = async (
     payload.data = notifications.data;
   }
   await admin.messaging().sendToDevice(tokens, payload, {
-    priority: "high"
+    priority: "high",
   });
 };

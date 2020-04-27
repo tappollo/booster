@@ -10,7 +10,7 @@ const TestPanGesture = (props: { log: (input: any) => void }) => {
   return (
     <PanGestureHandler
       minDist={10}
-      onHandlerStateChange={e => {
+      onHandlerStateChange={(e) => {
         props.log(e.nativeEvent.state);
       }}
     >

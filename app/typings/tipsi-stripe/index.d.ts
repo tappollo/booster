@@ -323,7 +323,7 @@ declare module "tipsi-stripe" {
     stripe = "stripe",
     rateLimit = "rateLimit",
     authentication = "authentication",
-    permission = "permission"
+    permission = "permission",
   }
 
   export const errorCodes: {

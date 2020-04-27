@@ -5,7 +5,7 @@ import * as admin from "firebase-admin";
 const currentEnv = () => {
   return fs
     .readFileSync(path.resolve(__dirname, "../.current_project"), {
-      encoding: "utf-8"
+      encoding: "utf-8",
     })
     .trim();
 };
@@ -23,6 +23,6 @@ export const setupFirebase = () => {
   const env = currentEnv();
   console.log(`Current Env: \n- \x1b[1m${env}\x1b[0m`);
   admin.initializeApp({
-    credential: admin.credential.cert(configFor(env))
+    credential: admin.credential.cert(configFor(env)),
   });
 };

@@ -29,8 +29,8 @@ export const sendNewUserToSlack = async (user: Doc<Profile>) => {
       {
         author_name: user.doc.name,
         author_link: dbLink(`/userProfiles/${user.id}`),
-        image_url: resizedImage(user.doc.avatar, 800, 800)
-      }
-    ]
+        image_url: resizedImage(user.doc.avatar, 800, 800),
+      },
+    ],
   });
 };

@@ -6,6 +6,6 @@ export const statusCheck = functions.https.onRequest(async (req, resp) => {
   console.log(`Status page requested, version ${version.hash}`);
   resp.send({
     name: config.name,
-    version
+    version,
   });
 });

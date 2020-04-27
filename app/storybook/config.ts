@@ -5,6 +5,6 @@ addDecorator(withKnobs);
 
 addParameters({
   knobs: {
-    escapeHTML: false
-  }
+    escapeHTML: false,
+  },
 });

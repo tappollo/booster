@@ -5,7 +5,7 @@ declare module "react-native" {
     ViewProps,
     TextProps,
     TouchableOpacityProps,
-    ImageProps
+    ImageProps,
   } from "react-native";
 
   interface ViewProps {
