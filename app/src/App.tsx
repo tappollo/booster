@@ -7,6 +7,7 @@ import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 import { StatusBar } from "react-native";
 import ErrorBoundary from "react-native-error-boundary";
 import crashlytics from "@react-native-firebase/crashlytics";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const App = () => (
   <ErrorBoundary
@@ -18,7 +19,9 @@ const App = () => (
     <StatusBar barStyle="dark-content" backgroundColor="white" />
     <PaperProvider theme={theme}>
       <ActionSheetProvider>
-        <Routes />
+        <SafeAreaProvider>
+          <Routes />
+        </SafeAreaProvider>
       </ActionSheetProvider>
     </PaperProvider>
   </ErrorBoundary>

@@ -15,6 +15,7 @@ export interface Profile {
   name: string;
   avatar: string;
   email?: string;
+  onboardingCompleted?: number;
 }
 
 // Private profile only you can see or update
@@ -28,12 +29,14 @@ export interface PrivateProfile {
   pushTokens: {
     [deviceId: string]: string;
   };
+  defaultPayment?: PaymentMethod;
 }
 
 // System record only you can see, but not mutate
 export interface ReadonlyProfile {
   accountBalance: number;
   behaviorScore: number;
+  stripeCustomerId?: string;
 }
 
 // Chat Related
@@ -62,4 +65,16 @@ export interface UserStatus {
   disconnectedAt?: AppDate;
   conversationId?: string;
   isTyping?: boolean;
+}
+
+export interface AddPaymentMethodInput {
+  stripeToken: string;
+}
+
+export interface PaymentMethod {
+  id: string;
+  last4: string;
+  brand: string;
+  exp_year: number;
+  exp_month: number;
 }

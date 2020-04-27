@@ -1,27 +1,19 @@
 import { collection, useDocAsType } from "./firestore";
-import { compose } from "./utils";
 import { PrivateProfile, Profile, ReadonlyProfile } from "../../types";
 
-export const getUserProfileRef = (uid: string) =>
-  collection("userProfiles").doc(uid);
+export const useUserProfile = (uid: string) =>
+  useDocAsType<Profile>(collection("userProfiles").doc(uid));
 
-export const getPrivateProfileRef = (uid: string) =>
-  collection("userPrivateProfiles").doc(uid);
+export const usePrivateProfile = (uid: string) =>
+  useDocAsType<PrivateProfile>(collection("userPrivateProfiles").doc(uid));
 
-export const getReadonlyProfileRef = (uid: string) =>
-  collection("userReadonlyProfiles").doc(uid);
+export const useReadonlyProfile = (uid: string) =>
+  useDocAsType<ReadonlyProfile>(collection("userReadonlyProfiles").doc(uid));
 
-export const useUserProfile = compose(
-  getUserProfileRef,
-  useDocAsType<Profile>()
-);
-
-export const usePrivateProfile = compose(
-  getPrivateProfileRef,
-  useDocAsType<PrivateProfile>()
-);
-
-export const useReadonlyProfile = compose(
-  getReadonlyProfileRef,
-  useDocAsType<ReadonlyProfile>()
-);
+export const usePayments = (uid: string, paymentId: string) =>
+  useDocAsType<any>(
+    collection("userReadonlyProfiles")
+      .doc(uid)
+      .collection("payments")
+      .doc(paymentId)
+  );
