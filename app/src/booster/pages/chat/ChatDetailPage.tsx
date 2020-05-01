@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Composer, GiftedChat } from "react-native-gifted-chat";
-import { ActivityIndicator, Alert, Text } from "react-native";
+import { Text } from "react-native";
 import styled from "styled-components/native";
 import { Doc, Profile } from "../../functions/types";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
 import { RouteProp } from "@react-navigation/core";
 import {
-  startConversation,
+  targetIn,
   updateUserStatus,
   useMessages,
   useUpdateStatus,
@@ -15,7 +15,6 @@ import {
 } from "../../functions/chat";
 import { currentUserId } from "../../functions/user";
 import { thumbnailImage } from "../../functions/image";
-import { Center } from "./components/Layout";
 import ChatInputBar from "./components/ChatInputBar";
 import {
   useKeyboardManagerOnFocus,
@@ -27,12 +26,6 @@ const IsTypingText = styled(Text)`
   margin: 10px;
   color: #888888;
 `;
-
-export interface ChatDetailPageParams {
-  title: string;
-  conversationId?: string;
-  target: Doc<Profile>;
-}
 
 const Container = styled.View`
   flex: 1;
@@ -110,24 +103,13 @@ const ChatDetailPage = ({
   route: RouteProp<HomeNavStackParams, "chatDetail">;
   navigation: StackNavigationProp<HomeNavStackParams>;
 }) => {
-  const { target, conversationId } = route.params;
-  const [chatId, setChatId] = useState(conversationId);
-  useEffect(() => {
-    if (conversationId != null) {
-      return;
-    }
-    startConversation(target.id)
-      .then(setChatId)
-      .catch((e) => Alert.alert(e.message));
-  }, [conversationId, target]);
-  if (chatId == null) {
-    return (
-      <Center>
-        <ActivityIndicator />
-      </Center>
-    );
-  }
-  return <Content target={target} chatId={chatId} />;
+  const target = targetIn(route.params.doc);
+  return (
+    <Content
+      target={{ doc: route.params.doc.users[target], id: target }}
+      chatId={route.params.id}
+    />
+  );
 };
 
 export default React.memo(ChatDetailPage);

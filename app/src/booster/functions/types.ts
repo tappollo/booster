@@ -78,3 +78,5 @@ export interface PaymentMethod {
   exp_year: number;
   exp_month: number;
 }
+
+export type NotificationData = { type: "chat"; chatId: string };

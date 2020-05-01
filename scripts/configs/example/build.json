@@ -2,11 +2,13 @@
   "appcenter": {
     "ios": {
       "owner_name": "zhigang1992-4byv",
-      "app_name": "GoBoostiOS"
+      "app_name": "GoBoostiOS",
+      "code_push_env": "Staging"
     },
     "android": {
       "owner_name": "zhigang1992-4byv",
-      "app_name": "GoBoostAndroid"
+      "app_name": "GoBoostAndroid",
+      "code_push_env": "Staging"
     }
   },
   "android": {

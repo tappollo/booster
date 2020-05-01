@@ -1,12 +1,12 @@
 import { assertImagePermissions } from "./permissions";
 import ImagePicker from "react-native-image-picker";
 import analytics from "@react-native-firebase/analytics";
-import crashlytics from "@react-native-firebase/crashlytics";
 import ImageResizer from "react-native-image-resizer";
 import config from "../../app.json";
 import { useCallback, useState } from "react";
 import { uploadFile } from "./firebase/storage";
 import { Alert } from "react-native";
+import { logError } from "./utils";
 
 const pickImage = async () => {
   return await new Promise<string>((resolve, reject) => {
@@ -22,7 +22,7 @@ const pickImage = async () => {
         }
         if (res.error) {
           analytics().logEvent("selected_image_failed");
-          crashlytics().recordError(new Error(res.error));
+          logError(new Error(res.error));
           reject(new Error(res.error));
         } else {
           analytics().logEvent("selected_image");
@@ -50,6 +50,9 @@ export const selectImage = async (): Promise<string> => {
 };
 
 export const thumbnailImage = (uri: string, width: number, height: number) => {
+  if (!uri.startsWith("http")) {
+    return uri;
+  }
   return `${config.imageAPI}?url=${encodeURIComponent(
     uri
   )}&width=${width}&height=${height}`;

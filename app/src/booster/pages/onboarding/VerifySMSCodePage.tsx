@@ -10,10 +10,21 @@ import TOSAndPrivacyRow from "./components/TOSAndPrivacyRow";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { AppRouteContext } from "../Routes";
 import auth from "@react-native-firebase/auth";
+import { typedReadonlyProfile } from "../../functions/user";
+import { sleep } from "../../functions/utils";
 
 export interface VerifySMSCodePageParams {
   confirmation: (code: string) => Promise<any>;
 }
+
+const waitForUserProfileToExist = async () => {
+  try {
+    await typedReadonlyProfile.read({ source: "server" });
+  } catch (e) {
+    await sleep(1000);
+    await waitForUserProfileToExist();
+  }
+};
 
 const VerifySMSCodePage = ({
   route,
@@ -26,10 +37,11 @@ const VerifySMSCodePage = ({
   const [loading, setLoading] = useState(false);
   const { resetRoute } = useContext(AppRouteContext);
   useEffect(() => {
-    return auth().onAuthStateChanged((user) => {
+    return auth().onAuthStateChanged(async (user) => {
       if (user == null) {
         return;
       }
+      await waitForUserProfileToExist();
       resetRoute?.();
     });
   }, [resetRoute]);

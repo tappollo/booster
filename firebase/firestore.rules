@@ -1,3 +1,4 @@
+rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     // Util functions
@@ -24,6 +25,9 @@ service cloud.firestore {
     }
     match /userReadonlyProfiles/{userId} {
       allow read: if isMe(userId)
+      match /payments/{paymentId} {
+        allow read, delete: if isMe(userId)
+      }
     }
 
     // Chat functions

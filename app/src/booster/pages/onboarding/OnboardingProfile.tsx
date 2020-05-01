@@ -1,29 +1,30 @@
 import { PageContainer } from "../../components/Page";
 import { BigTitle } from "../../components/Title";
 import { BigButton } from "../../components/Button";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import FastImage from "react-native-fast-image";
 import { usePickAndUploadImage } from "../../functions/image";
-import { Alert } from "react-native";
+import { Alert, ScrollView, TextInput, View } from "react-native";
 import { useListenDocument } from "../../functions/firebase/firestoreHooks";
 import { currentUser, typedProfile } from "../../functions/user";
 import { Profile } from "../../functions/types";
-import { ActivityIndicator, TextInput } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { OnboardingStackParams } from "./index";
 import { RouteProp, useRoute } from "@react-navigation/core";
 import { HomeNavStackParams } from "../home";
-import { AppRouteContext } from "../Routes";
+import { useKeyboardManagerOnFocus } from "../../functions/utils";
+import dataUri from "data-uri.macro";
 
 const AvatarButton = styled.TouchableOpacity`
   margin-top: 10px;
-  width: 100px;
-  height: 100px;
+  width: 122px;
+  height: 122px;
   border-radius: 60px;
   align-self: center;
   background-color: #cccccc;
-  margin-bottom: 10px;
+  margin-bottom: 35px;
   box-shadow: 0 2px 4px rgba(211, 211, 211, 0.5);
   justify-content: center;
   align-items: center;
@@ -36,6 +37,26 @@ const Avatar = styled(FastImage)`
   left: 0;
   right: 0;
   border-radius: 60px;
+`;
+
+const defaultAvatar = dataUri("./assets/placeholder.png");
+
+const SectionTitle = styled.Text`
+  font-family: OpenSans-ExtraBold;
+  font-size: 13px;
+  color: #8e8e8e;
+  letter-spacing: 0.16px;
+`;
+
+const Input: typeof TextInput = styled.TextInput.attrs({
+  placeholderTextColor: "#d3d3d3",
+})`
+  color: black;
+  font-family: OpenSans-Bold;
+  font-size: 17px;
+  letter-spacing: 0.2px;
+  margin: 8px 0;
+  padding: 0;
 `;
 
 const OnboardingProfile = ({
@@ -55,12 +76,18 @@ const OnboardingProfile = ({
     localImage,
     serverImage,
   } = usePickAndUploadImage();
-  const avatar = serverImage || value?.avatar || currentUser().photoURL;
+  const avatar =
+    serverImage || value?.avatar || currentUser().photoURL || defaultAvatar;
   const name = nameInput ?? value?.name ?? currentUser().displayName ?? "";
   const email = emailInput ?? value?.email ?? currentUser().email ?? "";
-  const { resetRoute } = useContext(AppRouteContext);
+  useKeyboardManagerOnFocus(true);
   return (
-    <PageContainer>
+    <ScrollView
+      css={`
+        flex: 1;
+        padding: 24px;
+      `}
+    >
       {!isEditing && <BigTitle>Choose your{"\n"}name and avatar</BigTitle>}
       <AvatarButton onPress={pick}>
         <Avatar
@@ -70,25 +97,31 @@ const OnboardingProfile = ({
         />
         {isUploading && <ActivityIndicator />}
       </AvatarButton>
-      <TextInput
+      <SectionTitle>What’s your name?</SectionTitle>
+      <Input
         autoCapitalize="words"
-        mode="outlined"
-        label="Name"
         value={name}
         onChangeText={setNameInput}
+        placeholder="John Doe"
       />
-      <TextInput
+      <SectionTitle
         css={`
-          margin: 10px 0;
+          margin-top: 50px;
         `}
+      >
+        What’s your email?
+      </SectionTitle>
+      <Input
+        placeholder="John Doe@gmail.com"
         autoCapitalize="none"
         keyboardType="email-address"
-        mode="outlined"
-        label="Email"
         value={email}
         onChangeText={setEmailInput}
       />
       <BigButton
+        css={`
+          margin-top: 50px;
+        `}
         loading={saving}
         disabled={isUploading || !avatar || !name || !email}
         onPress={async () => {
@@ -98,12 +131,7 @@ const OnboardingProfile = ({
               return;
             }
             setSaving(true);
-            await update({
-              avatar: avatar!,
-              name,
-              email,
-              onboardingCompleted: 1,
-            });
+            await update({ avatar: avatar!, name, email });
             setSaving(false);
             if (!isEditing) {
               resetRoute?.();
@@ -118,7 +146,7 @@ const OnboardingProfile = ({
       >
         Save Profile
       </BigButton>
-    </PageContainer>
+    </ScrollView>
   );
 };
 

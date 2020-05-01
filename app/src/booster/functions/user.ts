@@ -8,6 +8,7 @@ import functions from "@react-native-firebase/functions";
 import { useEffect, useState } from "react";
 import { keyOf } from "./firebase/firestoreHooks";
 import DeviceInfo from "react-native-device-info";
+import { logError } from "./utils";
 
 type DocumentSnapshot = FirebaseFirestoreTypes.DocumentSnapshot;
 
@@ -72,7 +73,8 @@ export const logout = async () => {
         keyOf<PrivateProfile>("pushTokens") + "." + DeviceInfo.getUniqueId(),
         firestore.FieldValue.delete()
       );
-  } finally {
     await auth().signOut();
+  } catch (e) {
+    logError(e);
   }
 };

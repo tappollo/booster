@@ -2,7 +2,7 @@ import analytics from "@react-native-firebase/analytics";
 import storage from "@react-native-firebase/storage";
 import { currentUserId } from "../user";
 import { v4 as uuid } from "uuid";
-import crashlytics from "@react-native-firebase/crashlytics";
+import { logError } from "../utils";
 
 export const uploadFile = async (
   filePath: string,
@@ -19,7 +19,7 @@ export const uploadFile = async (
       path: filePath,
       type: contentType,
     });
-    crashlytics().recordError(snapshot.error as any);
+    logError(snapshot.error as any);
     throw new Error("Unable to get download link");
   }
   analytics().logEvent("upload_file_succeed", {

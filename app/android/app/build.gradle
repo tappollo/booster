@@ -1,5 +1,4 @@
 apply plugin: "com.android.application"
-apply plugin: "io.fabric"
 
 import com.android.build.OutputFile
 
@@ -83,6 +82,7 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
 apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 /**
@@ -220,7 +220,6 @@ dependencies {
       implementation jscFlavor
     }
 
-    implementation project(':react-native-notifications')
     implementation 'com.facebook.android:facebook-android-sdk:5.0.3'
     implementation 'com.facebook.android:facebook-login:5.0.3'
 

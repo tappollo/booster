@@ -42,6 +42,7 @@ export const useListenDocument = <T>(docRef: DocumentReference) => {
         });
       },
       (error) => {
+        console.log(error);
         setState({
           loading: false,
           error: error,
@@ -80,6 +81,8 @@ export const useGetDocument = <T>(docRef: DocumentReference) => {
         });
       })
       .catch((error) => {
+        console.log(ref);
+        console.error(error);
         setState({
           loading: false,
           error: error,
@@ -110,6 +113,8 @@ export const useListenQuery = <T>(query: Query) => {
         });
       },
       (error) => {
+        console.log(queryRef);
+        console.error(error);
         setState({
           loading: false,
           error,

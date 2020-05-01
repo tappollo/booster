@@ -7,6 +7,7 @@ import { keyOf, useListenQuery } from "./firebase/firestoreHooks";
 import { Conversation, Doc, Message, Profile, UserStatus } from "./types";
 import { useListenDatabase } from "./firebase/database";
 import functions from "@react-native-firebase/functions";
+import { collection, makeDocAsType } from "./firebase/firestore";
 
 export const useConversations = () => {
   return useListenQuery<Conversation>(
@@ -16,6 +17,10 @@ export const useConversations = () => {
       .where(keyOf<Conversation>("userIds"), "array-contains", currentUserId())
       .orderBy("updatedAt", "desc")
   );
+};
+
+export const typedConversation = (id: string) => {
+  return makeDocAsType<Conversation>(() => collection("chats").doc(id));
 };
 
 export const useNewContacts = () => {

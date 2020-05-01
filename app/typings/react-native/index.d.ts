@@ -1,26 +1,21 @@
 export * from "react-native";
 
 declare module "react-native" {
-  import {
-    ViewProps,
-    TextProps,
-    TouchableOpacityProps,
-    ImageProps,
-  } from "react-native";
+  import { CSSProp } from "styled-components";
 
   interface ViewProps {
-    css?: string;
+    css?: CSSProp;
   }
 
   interface TextProps {
-    css?: string;
+    css?: CSSProp;
   }
 
   interface TouchableOpacityProps {
-    css?: string;
+    css?: CSSProp;
   }
 
   interface ImageProps {
-    css?: string;
+    css?: CSSProp;
   }
 }

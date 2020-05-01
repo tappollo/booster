@@ -25,32 +25,28 @@ type DocTypedWrapper<T> = {
 export function makeDocAsType<T>(
   docGen: () => DocumentReference
 ): DocTypedWrapper<T> {
-  let doc: DocumentReference;
-  const lazyDoc = () => {
-    doc = doc ?? docGen();
-    return doc;
-  };
   async function read(options?: GetOptions) {
-    const snapshot = await lazyDoc().get(options);
-    const value: T = snapshot.data() as any;
-    if (!snapshot.exists || value == null) {
-      throw new Error(`Doc ${lazyDoc().path} does not exist`);
+    const snapshot = await docGen().get(options);
+    if (!snapshot?.exists) {
+      throw new Error(`Doc ${docGen().path} does not exist`);
     }
-    return value;
+    return snapshot.data() as T;
   }
   async function update(newValue: Partial<T>) {
-    return await lazyDoc().set(newValue, { merge: true });
+    return await docGen().set(newValue, { merge: true });
   }
   function listen(callback: (value: T) => void) {
-    return lazyDoc().onSnapshot((snapshot) => {
-      callback(snapshot.data() as any);
+    return docGen().onSnapshot((snapshot) => {
+      if (snapshot?.exists) {
+        callback(snapshot.data() as any);
+      }
     });
   }
   function useListen() {
-    return useListenDocument<T>(lazyDoc());
+    return useListenDocument<T>(docGen());
   }
   return {
-    ref: lazyDoc,
+    ref: docGen,
     useListen,
     read,
     update,

@@ -12,28 +12,35 @@ export const sendNotificationsTo = async (
   tracking?: string
 ) => {
   console.log(`Sending notification to ${uid}, tracking ${tracking}`);
-  const profile = await usePrivateProfile(uid).read();
-  if (profile.pushTokens == null) {
-    return;
+  try {
+    const profile = await usePrivateProfile(uid).read();
+    if (profile.pushTokens == null) {
+      return;
+    }
+    const tokens = Object.values(profile.pushTokens);
+    if (tokens.length === 0) {
+      return;
+    }
+    const payload: admin.messaging.MessagingPayload = {
+      notification: {
+        title: notifications.title,
+        body: notifications.body ?? notifications.title,
+        sound: "default",
+      },
+      data: {
+        title: notifications.title || "",
+        body: notifications.body || "",
+        ...notifications.data,
+      },
+    };
+    if (notifications.badge) {
+      payload.notification!.badge = notifications.badge.toString();
+    }
+    await admin.messaging().sendToDevice(tokens, payload, {
+      priority: "high",
+      contentAvailable: true,
+    });
+  } catch (e) {
+    console.error(e);
   }
-  const tokens = Object.values(profile.pushTokens);
-  if (tokens.length === 0) {
-    return;
-  }
-  const payload: admin.messaging.MessagingPayload = {
-    notification: {
-      title: notifications.title,
-      body: notifications.body,
-      sound: "default",
-    },
-  };
-  if (notifications.badge) {
-    payload.notification!.badge = notifications.badge.toString();
-  }
-  if (notifications.data) {
-    payload.data = notifications.data;
-  }
-  await admin.messaging().sendToDevice(tokens, payload, {
-    priority: "high",
-  });
 };

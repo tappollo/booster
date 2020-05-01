@@ -2,7 +2,6 @@ node_modules
 .firebase
 firebase-debug.log
 app/src/app.json
-app/src/version.json
 app/fastlane/Appfile
 app/fastlane/Matchfile
 app/build.json

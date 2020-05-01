@@ -33,7 +33,7 @@ const OnboardingNav = () => {
         headerTintColor: "#585858",
         headerStyle: {
           borderBottomWidth: 0,
-          backgroundColor: "transparent",
+          backgroundColor: "white",
         },
         headerLeftContainerStyle: {
           marginLeft: Platform.select({

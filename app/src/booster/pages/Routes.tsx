@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import React, { createContext, useCallback, useEffect, useState } from "react";
 import OnBoarding from "./onboarding";
 import Home from "./home";
-import { trackScreenNavigation } from "../functions/analytics";
+import { trackScreenNavigation } from "../functions/firebase/analytics";
 import auth from "@react-native-firebase/auth";
 import { userFinishedSignUp } from "../functions/user";
 import { navigationTheme } from "../styles/theme";

@@ -8,7 +8,6 @@
 #import <Firebase/Firebase.h>
 #import <UserNotifications/UserNotifications.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import "RNNotifications.h"
 
 #if DEBUG
 #import <FlipperKit/FlipperClient.h>
@@ -37,7 +36,15 @@ static void InitializeFlipper(UIApplication *application) {
 #endif
 
   [FIRApp configure];
-  [RNNotifications startMonitorNotifications];
+
+  // https://github.com/invertase/react-native-firebase/issues/694#issuecomment-352435164
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  if (![defaults boolForKey:@"notFirstRun"]) {
+    [defaults setBool:YES forKey:@"notFirstRun"];
+    [defaults synchronize];
+    [[FIRAuth auth] signOut:NULL];
+  }
+
   [[IQKeyboardManager sharedManager] setEnable:NO];
   [[FBSDKApplicationDelegate sharedInstance] application:application
     didFinishLaunchingWithOptions:launchOptions];
@@ -77,28 +84,6 @@ static void InitializeFlipper(UIApplication *application) {
   ];
   // Add any custom logic here.
   return handled;
-}
-
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  [RNNotifications didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
-#if DEBUG
-  [[FIRAuth auth] setAPNSToken:deviceToken type:FIRAuthAPNSTokenTypeSandbox];
-#else
-  [[FIRAuth auth] setAPNSToken:deviceToken type:FIRAuthAPNSTokenTypeProd];
-#endif
-}
-
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-  [RNNotifications didFailToRegisterForRemoteNotificationsWithError:error];
-}
-
-- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)notification
-fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-  if ([[FIRAuth auth] canHandleNotification:notification]) {
-    completionHandler(UIBackgroundFetchResultNoData);
-    return;
-  }
 }
 
 @end
