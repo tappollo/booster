@@ -35,7 +35,7 @@ import ora = require("ora");
     try {
       await run(`../node_modules/.bin/firebase use ${env}`);
 
-      const fileMappings = {
+      const fileMappings: { [key: string]: string | string[] } = {
         "GoogleService-Info.plist": "../app/ios/GoogleService-Info.plist",
         "google-services.json": "../app/android/app/google-services.json",
         Appfile: "../app/fastlane/Appfile",
@@ -46,13 +46,23 @@ import ora = require("ora");
         "release.keystore": "../app/android/keystores/release.keystore",
         "adminsdk.json": "../functions/src/adminsdk.json",
         "server.json": "../functions/src/server.json",
+        "sentry.properties": [
+          "../app/ios/sentry.properties",
+          "../app/android/sentry.properties",
+        ],
       };
 
       for (const key of Object.keys(fileMappings) as Array<
         keyof typeof fileMappings
       >) {
-        await fs.remove(fileMappings[key]);
-        await fs.ensureSymlink(`./configs/${env}/${key}`, fileMappings[key]);
+        const value = fileMappings[key];
+        const targetLocations: string[] = Array.isArray(value)
+          ? value
+          : [value];
+        for (const targetLocation of targetLocations) {
+          await fs.remove(targetLocation);
+          await fs.ensureSymlink(`./configs/${env}/${key}`, targetLocation);
+        }
       }
 
       // metro on react native doesn't support fs link
