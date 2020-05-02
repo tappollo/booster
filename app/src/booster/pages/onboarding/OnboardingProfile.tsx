@@ -1,7 +1,7 @@
 import { PageContainer } from "../../components/Page";
 import { BigTitle } from "../../components/Title";
 import { BigButton } from "../../components/Button";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 import FastImage from "react-native-fast-image";
 import { usePickAndUploadImage } from "../../functions/image";
@@ -16,6 +16,7 @@ import { RouteProp, useRoute } from "@react-navigation/core";
 import { HomeNavStackParams } from "../home";
 import { useKeyboardManagerOnFocus } from "../../functions/utils";
 import dataUri from "data-uri.macro";
+import { AppRouteContext } from "../Routes";
 
 const AvatarButton = styled.TouchableOpacity`
   margin-top: 10px;
@@ -65,6 +66,7 @@ const OnboardingProfile = ({
   navigation: StackNavigationProp<OnboardingStackParams>;
 }) => {
   const route = useRoute<RouteProp<HomeNavStackParams, "editProfile">>();
+  const { resetRoute } = useContext(AppRouteContext);
   const isEditing = route.params?.edit;
   const [nameInput, setNameInput] = useState<string>();
   const [emailInput, setEmailInput] = useState<string>();

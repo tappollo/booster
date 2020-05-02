@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { FlatList, Text, TouchableOpacity } from "react-native";
 import * as React from "react";
-import { ChatDetailPageParams } from "./ChatDetailPage";
 import { Profile } from "../../functions/types";
-import { useNewContacts } from "../../functions/chat";
+import {
+  startConversation,
+  typedConversation,
+  useNewContacts,
+} from "../../functions/chat";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
 import LoadingErrorStateView from "../../components/LoadingErrorStateView";
@@ -63,13 +66,14 @@ const ChatContactListPage = ({
           renderItem={({ item }) => (
             <Cell
               {...item.doc}
-              onPress={() => {
-                const params: ChatDetailPageParams = {
-                  title: item.doc.name,
-                  conversationId: item.conversationId,
-                  target: item,
-                };
-                navigation.push("chatDetail", params);
+              onPress={async () => {
+                const id =
+                  item.conversationId ?? (await startConversation(item.id));
+                const conversation = await typedConversation(id).read();
+                navigation.push("chatDetail", {
+                  id,
+                  doc: conversation,
+                });
               }}
             />
           )}

@@ -1,5 +1,5 @@
 import Browser from "react-native-inappbrowser-reborn";
-import { Linking, Platform } from "react-native";
+import { Alert, Linking, Platform } from "react-native";
 import { useIsFocused } from "@react-navigation/core";
 import { useEffect } from "react";
 // @ts-ignore

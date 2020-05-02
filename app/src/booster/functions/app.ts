@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { keyOf } from "./firebase/firestoreHooks";
 import { PrivateProfile } from "./types";
 import DeviceInfo from "react-native-device-info";

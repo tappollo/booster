@@ -10,9 +10,7 @@
     "xcode": "open ios/mercy.xcworkspace",
     "studio": "open -a /Applications/Android\\ Studio.app ./android/",
     "ci": "yarn lint && yarn build",
-    "postinstall": "patch-package && jetify",
-    "codepush:ios": "appcenter codepush release-react -a PHARAH_IOS_APPCENTER_PROJECT --plist-file ios/mercy/Info.plist -k codepushsign.pem",
-    "codepush:android": "appcenter codepush release-react -a PHARAH_ANDROID_APPCENTER_PROJECT -k codepushsign.pem"
+    "postinstall": "patch-package && jetify"
   },
   "workspaces": {
     "nohoist": [

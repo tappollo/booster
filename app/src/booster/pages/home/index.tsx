@@ -15,6 +15,9 @@ import ChatDetailPage from "../chat/ChatDetailPage";
 import ChatContactListPage from "../chat/ChatContactListPage";
 import OnboardingProfile from "../onboarding/OnboardingProfile";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Conversation, Doc } from "../../functions/types";
+import ChatListPage from "../chat/ChatListPage";
+import { targetUserIn } from "../../functions/chat";
 
 type BottomTabParams = {
   homePage: undefined;
@@ -90,7 +93,7 @@ const HomeNav = () => {
       <HomeNavStack.Screen
         name="chatDetail"
         component={ChatDetailPage}
-        options={({ route, navigation }) => {
+        options={({ route }) => {
           const { name: title } = targetUserIn(route.params.doc);
           return {
             title,
