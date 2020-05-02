@@ -4,5 +4,6 @@
   "stripePublishKeys": "*",
   "tos": "https://mercy-f16ad.web.app/",
   "privacy": "https://mercy-f16ad.web.app/",
-  "imageAPI": "https://us-central1-mercy-f16ad.cloudfunctions.net/image-resize"
+  "imageAPI": "https://us-central1-mercy-f16ad.cloudfunctions.net/image-resize",
+  "sentry": "sentry dsn"
 }

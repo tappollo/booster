@@ -5,10 +5,10 @@ import App from "./src/App";
 import { enableScreens } from "react-native-screens";
 import "@react-native-firebase/app";
 import * as Sentry from "@sentry/react-native";
-import { env } from "./src/app.json";
+import { env, sentry } from "./src/app.json";
 
 Sentry.init({
-  dsn: "TODO",
+  dsn: sentry,
   environment: env,
   enabled: !__DEV__,
   debug: __DEV__,
