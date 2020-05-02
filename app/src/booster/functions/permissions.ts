@@ -1,6 +1,10 @@
-import { Permission } from "react-native-permissions/src/types";
 import { Platform } from "react-native";
-import { check, PERMISSIONS, request } from "react-native-permissions";
+import {
+  check,
+  PERMISSIONS,
+  request,
+  Permission,
+} from "react-native-permissions";
 import analytics from "@react-native-firebase/analytics";
 
 export const assertPermission = async ({

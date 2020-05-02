@@ -1,11 +1,10 @@
-import { PageContainer } from "../../components/Page";
 import { BigTitle } from "../../components/Title";
 import { BigButton } from "../../components/Button";
 import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 import FastImage from "react-native-fast-image";
 import { usePickAndUploadImage } from "../../functions/image";
-import { Alert, ScrollView, TextInput, View } from "react-native";
+import { Alert, ScrollView, TextInput } from "react-native";
 import { useListenDocument } from "../../functions/firebase/firestoreHooks";
 import { currentUser, typedProfile } from "../../functions/user";
 import { Profile } from "../../functions/types";

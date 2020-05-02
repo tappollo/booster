@@ -23,6 +23,7 @@ const Version = () => {
   const [fakeCrash, setFakeCrash] = useState(false);
   if (fakeCrash) {
     // @ts-ignore
+    // eslint-disable-next-line no-undef
     fakeCrashMethod();
   }
   return (

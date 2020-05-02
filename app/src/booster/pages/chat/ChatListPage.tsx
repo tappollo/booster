@@ -4,7 +4,6 @@ import ConversationCell from "./components/ConversationCell";
 import { FlatList, TouchableOpacity } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeNavStackParams } from "../home";
-import { currentUserId } from "../../functions/user";
 import LoadingErrorStateView from "../../components/LoadingErrorStateView";
 import styled from "styled-components/native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
