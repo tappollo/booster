@@ -1,5 +1,3 @@
-import * as adminSDK from "../../adminsdk.json";
-import * as admin from "firebase-admin";
 import { sendNotificationsTo } from "./notifications";
 
 test(
