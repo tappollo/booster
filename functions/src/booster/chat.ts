@@ -32,7 +32,7 @@ export const startConversation = functions.https.onCall(
 export const onMessageCreate = firestore
   .document("/chats/{chatId}/messages/{messageId}")
   .onCreate(async (snapshot, context) => {
-    const { chatId } = context.params;
+    const { chatId, messageId } = context.params;
     const message: Message = snapshot.data() as any;
 
     const update: Partial<Conversation> = {
@@ -78,6 +78,11 @@ export const onMessageCreate = firestore
         title: message.user.name,
         body: message.content,
         badge: currentUnreadCount + 1,
+        data: {
+          type: "chat",
+          chatId,
+          messageId,
+        },
       });
     }
   });

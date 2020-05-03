@@ -79,4 +79,8 @@ export interface PaymentMethod {
   exp_month: number;
 }
 
-export type NotificationData = { type: "chat"; chatId: string };
+export type NotificationData = {
+  type: "chat";
+  chatId: string;
+  messageId: string;
+};

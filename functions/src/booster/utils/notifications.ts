@@ -1,5 +1,6 @@
 import * as admin from "firebase-admin";
 import { usePrivateProfile } from "./profiles";
+import { NotificationData } from "../../types";
 
 export const sendNotificationsTo = async (
   uid: string,
@@ -7,7 +8,7 @@ export const sendNotificationsTo = async (
     title: string;
     body?: string;
     badge?: number;
-    data?: { [key: string]: string };
+    data?: NotificationData;
   },
   tracking?: string
 ) => {
