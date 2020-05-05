@@ -11,6 +11,7 @@ import {
 } from "../../../functions/user";
 import { getVersionString } from "../../../functions/utils";
 import * as Sentry from "@sentry/react-native";
+import { env } from "../../../../app.json";
 
 const Version = () => {
   const showActionSheet = useActionSheet();
@@ -77,6 +78,8 @@ const Version = () => {
         }}
       >
         {getVersionString()}
+        {"\n"}
+        {env}
       </Text>
     </>
   );

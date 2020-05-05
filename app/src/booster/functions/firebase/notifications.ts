@@ -18,7 +18,7 @@ export const useHandlingNotifications = () => {
       if (data == null) {
         return;
       }
-      if (data?.type === "chat") {
+      if (data.type === "chat") {
         typedConversation(data.chatId)
           .read()
           .then((doc) => {
@@ -57,7 +57,9 @@ export const useHandlingNotifications = () => {
     return messages().onMessage((message) => {
       Alert.alert(
         "Alert",
-        message.notification?.title ?? message.notification?.body ?? "",
+        message.notification?.title ??
+          message.notification?.body ??
+          "New message",
         [
           {
             text: "Open",
