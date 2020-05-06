@@ -1,7 +1,7 @@
 import stripe from "tipsi-stripe";
-import * as config from "../app.json";
+import * as config from "../../app.json";
 import functions from "@react-native-firebase/functions";
-import { AddPaymentMethodInput } from "../booster/functions/types";
+import { AddPaymentMethodInput } from "./types";
 import { Alert } from "react-native";
 
 export const addPaymentFromStripe = async () => {
