@@ -28,6 +28,8 @@ jobs:
           token: ${{ github.token }}
       - run: |
           gem install bundler
+          yarn install --frozen-lockfile
+          yarn check --integrity
           yarn bootstrap
       - run: yarn use $TARGET_ENV
         env:

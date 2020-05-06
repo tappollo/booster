@@ -23,7 +23,8 @@ jobs:
             ${{ runner.os }}-yarn-
       - name:
         run: |
-          yarn install
+          yarn install --frozen-lockfile
+          yarn check --integrity
           yarn use example
           yarn ci
         env:
