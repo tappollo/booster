@@ -57,7 +57,7 @@ const Version = () => {
                 },
               },
               {
-                title: "Clear onboarding flat",
+                title: "Clear onboarding flag",
                 onPress: async () => {
                   await typedProfile.update({ onboardingCompleted: 0 });
                   await logout();
