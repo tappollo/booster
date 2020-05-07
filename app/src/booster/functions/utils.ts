@@ -15,7 +15,6 @@ import * as Sentry from "@sentry/react-native";
 export const getVersionString = () => {
   const { hash, count } = gitInfo("cacheBuster");
   return `${DeviceInfo.getVersion()}-${count}-${hash.slice(0, 5)}`;
-  // return "test";
 };
 
 export const openURL = async (url: string) => {
