@@ -41,7 +41,6 @@ export const useHandlingNotifications = () => {
   useEffect(() => {
     messaging().requestPermission();
     messaging().getToken().then(updateToken);
-    return messaging().onTokenRefresh(updateToken);
   }, [updateToken]);
 
   useEffect(() => {
