@@ -1,6 +1,7 @@
 import analytics from "@react-native-firebase/analytics";
-import _ from "lodash";
 import { NavigationState, Route } from "@react-navigation/core";
+import * as Sentry from "@sentry/react-native";
+import { Severity } from "@sentry/react-native";
 
 function getActiveRouteName(
   navigationState: NavigationState | undefined
@@ -20,11 +21,10 @@ export const trackScreenNavigation = (state: NavigationState | undefined) => {
   const route = getActiveRouteName(state);
   if (route) {
     analytics().setCurrentScreen(route.name);
-    analytics().logEvent(
-      `${route.name}_screenParams`,
-      _.pickBy(route.params, (value) => {
-        return _.isNumber(value) || _.isBoolean(value) || _.isString(value);
-      }) as any
-    );
+    Sentry.addBreadcrumb({
+      message: route.name,
+      data: route.params,
+      level: Severity.Log,
+    });
   }
 };
