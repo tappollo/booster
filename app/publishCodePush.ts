@@ -10,6 +10,7 @@ const extraArgs = process.argv.slice(3).join(" ");
 
 if (!["ios", "android"].includes(platform)) {
   console.log(`./publishCodePush.ts ios|android`);
+  process.exit(1);
 }
 
 const { app_name, code_push_env, owner_name } = config.appcenter[platform];
