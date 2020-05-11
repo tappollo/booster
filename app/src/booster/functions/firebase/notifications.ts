@@ -4,7 +4,6 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/core";
 import { NotificationData, PrivateProfile } from "../types";
 import { Alert, AppState } from "react-native";
-import messages from "@react-native-firebase/messaging";
 import messaging from "@react-native-firebase/messaging";
 import { typedConversation } from "../chat";
 import { typedPrivateProfile } from "../user";
@@ -44,16 +43,16 @@ export const useHandlingNotifications = () => {
   }, [updateToken]);
 
   useEffect(() => {
-    messages()
+    messaging()
       .getInitialNotification()
       .then((message) => handleNotification(message?.data as any));
-    messages().onNotificationOpenedApp((message) =>
+    messaging().onNotificationOpenedApp((message) =>
       handleNotification(message?.data as any)
     );
   }, [handleNotification]);
 
   useEffect(() => {
-    return messages().onMessage((message) => {
+    return messaging().onMessage((message) => {
       if (AppState.currentState !== "active") {
         return;
       }
