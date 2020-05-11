@@ -13,6 +13,8 @@ const pickImage = async () => {
     analytics().logEvent("start_select_image");
     ImagePicker.showImagePicker(
       {
+        // https://github.com/react-native-community/react-native-image-picker/issues/655
+        rotation: 360,
         noData: true,
       },
       (res) => {
