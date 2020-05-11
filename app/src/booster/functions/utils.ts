@@ -1,7 +1,7 @@
 import Browser from "react-native-inappbrowser-reborn";
-import { Alert, Linking, Platform } from "react-native";
+import { Alert, AppState, Linking, Platform } from "react-native";
 import { useIsFocused } from "@react-navigation/core";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // @ts-ignore
 import KeyboardManager from "react-native-keyboard-manager";
 // @ts-ignore
@@ -61,6 +61,15 @@ export const useKeyboardManagerOnFocus = (enable: boolean) => {
       KeyboardManager.setEnable(enable);
     }
   }, [isFocused, enable]);
+};
+
+export const useAppState = () => {
+  const [appState, setAppState] = useState(AppState.currentState);
+  useEffect(() => {
+    AppState.addEventListener("change", setAppState);
+    return () => AppState.removeEventListener("change", setAppState);
+  }, [setAppState]);
+  return appState;
 };
 
 export function compose<A, B, C>(l: (a: A) => B, r: (b: B) => C): (a: A) => C {

@@ -3,7 +3,7 @@ import { HomeNavStackParams } from "../../pages/home";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/core";
 import { NotificationData, PrivateProfile } from "../types";
-import { Alert } from "react-native";
+import { Alert, AppState } from "react-native";
 import messages from "@react-native-firebase/messaging";
 import messaging from "@react-native-firebase/messaging";
 import { typedConversation } from "../chat";
@@ -54,6 +54,9 @@ export const useHandlingNotifications = () => {
 
   useEffect(() => {
     return messages().onMessage((message) => {
+      if (AppState.currentState !== "active") {
+        return;
+      }
       Alert.alert(
         "Alert",
         message.notification?.title ??
