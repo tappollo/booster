@@ -15,7 +15,7 @@ function deployPlatform(target: "ios" | "android", extraArgs: string) {
   execSync("rm -rf ./build/CodePush");
 
   execSync(
-    `appcenter codepush release-react --sourcemap-output --output-dir ./build -a ${owner_name}/${app_name} -k codepushsign.pem -d ${code_push_env} -t ${version} ${extraArgs}`,
+    `appcenter codepush release-react --extra-bundler-option="--reset-cache" --sourcemap-output --output-dir ./build -a ${owner_name}/${app_name} -k codepushsign.pem -d ${code_push_env} -t ${version} ${extraArgs}`,
     { cwd: __dirname, stdio: "inherit" }
   );
 
