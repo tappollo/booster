@@ -4,7 +4,7 @@ import * as config from "./build.json";
 import { version } from "./package.json";
 import { execSync } from "child_process";
 
-function deployPlatform(target: "ios" | "android") {
+function deployPlatform(target: "ios" | "android", extraArgs: string) {
   const { app_name, code_push_env, owner_name } = config.appcenter[target];
 
   const hash = execSync("git rev-parse HEAD").toString().trim();
@@ -20,13 +20,13 @@ function deployPlatform(target: "ios" | "android") {
   );
 
   execSync(
-    `./node_modules/.bin/sentry-cli react-native appcenter ${owner_name}/${app_name} ${platform} ./build/CodePush --release-name '${release}' --deployment ${code_push_env}`,
+    `./node_modules/.bin/sentry-cli react-native appcenter ${owner_name}/${app_name} ${target} ./build/CodePush --release-name '${release}' --deployment ${code_push_env}`,
     {
       cwd: __dirname,
       stdio: "inherit",
       env: {
         ...process.env,
-        SENTRY_PROPERTIES: `./${platform}/sentry.properties`,
+        SENTRY_PROPERTIES: `./${target}/sentry.properties`,
       },
     }
   );
@@ -42,9 +42,9 @@ if (!["ios", "android", "all"].includes(platform)) {
 }
 
 if (platform !== "android") {
-  deployPlatform("ios");
+  deployPlatform("ios", extraArgs);
 }
 
 if (platform !== "ios") {
-  deployPlatform("android");
+  deployPlatform("android", extraArgs);
 }
