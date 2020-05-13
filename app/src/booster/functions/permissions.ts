@@ -1,9 +1,9 @@
 import { Platform } from "react-native";
 import {
   check,
+  Permission,
   PERMISSIONS,
   request,
-  Permission,
 } from "react-native-permissions";
 import analytics from "@react-native-firebase/analytics";
 
