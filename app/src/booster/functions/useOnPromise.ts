@@ -1,19 +1,17 @@
 import { Alert } from "react-native";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
-export const useOnPromise = (promise: () => Promise<any>) => {
+export function useOnPromise(action: () => Promise<void>) {
   const [loading, setLoading] = useState(false);
-  return {
-    loading,
-    onPress: async () => {
-      try {
-        setLoading(true);
-        await promise();
-        setLoading(false);
-      } catch (e) {
-        Alert.alert(e.message);
-        setLoading(false);
-      }
-    },
-  };
-};
+  const onPromise = useCallback(async () => {
+    try {
+      setLoading(true);
+      await action();
+    } catch (e) {
+      Alert.alert(e.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [action]);
+  return { loading, onPromise };
+}
