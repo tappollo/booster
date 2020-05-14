@@ -11,6 +11,9 @@ import {
 } from "../../../functions/user";
 import { getVersionString } from "../../../functions/utils";
 import * as Sentry from "@sentry/react-native";
+import { useNavigation } from "@react-navigation/core";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { HomeModelStackParams } from "../../home";
 import { env } from "../../../../app.json";
 
 const Version = () => {
@@ -22,6 +25,7 @@ const Version = () => {
     placeholder: "Aa123456",
   });
   const [fakeCrash, setFakeCrash] = useState(false);
+  const navigation = useNavigation<StackNavigationProp<HomeModelStackParams>>();
   if (fakeCrash) {
     // @ts-ignore
     // eslint-disable-next-line no-undef
@@ -38,6 +42,12 @@ const Version = () => {
         onLongPress={() => {
           showActionSheet(
             [
+              {
+                title: "Story book",
+                onPress: async () => {
+                  navigation.push("storybook");
+                },
+              },
               {
                 title: "Fake js crash",
                 onPress: async () => {
