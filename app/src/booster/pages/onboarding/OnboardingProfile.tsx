@@ -132,7 +132,12 @@ const OnboardingProfile = ({
               return;
             }
             setSaving(true);
-            await update({ avatar: avatar!, name, email });
+            await update({
+              avatar: avatar!,
+              name,
+              email,
+              onboardingCompleted: 1,
+            });
             setSaving(false);
             if (!isEditing) {
               resetRoute?.();
