@@ -1,16 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
-import React, { createContext, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import OnBoarding from "./onboarding";
 import Home from "./home";
 import { trackScreenNavigation } from "../functions/firebase/analytics";
 import auth from "@react-native-firebase/auth";
 import { userFinishedSignUp } from "../functions/user";
 import { navigationTheme } from "../styles/theme";
-
-export const AppRouteContext = createContext<{
-  resetRoute?: () => void;
-  isLoggedIn: "landing" | "signUp" | "home";
-}>({ isLoggedIn: "landing" });
+import { AppRouteContext } from "./AppRouteContext";
 
 const Routes = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<

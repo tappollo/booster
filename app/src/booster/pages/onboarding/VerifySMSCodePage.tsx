@@ -8,10 +8,10 @@ import { RouteProp } from "@react-navigation/core";
 import { OnboardingStackParams } from "./index";
 import TOSAndPrivacyRow from "./components/TOSAndPrivacyRow";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { AppRouteContext } from "../Routes";
 import auth from "@react-native-firebase/auth";
 import { typedReadonlyProfile } from "../../functions/user";
 import { sleep } from "../../functions/utils";
+import { AppRouteContext } from "../AppRouteContext";
 
 export interface VerifySMSCodePageParams {
   confirmation: (code: string) => Promise<any>;

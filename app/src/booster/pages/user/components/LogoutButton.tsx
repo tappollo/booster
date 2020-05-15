@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { AppRouteContext } from "../../Routes";
 import { BigButton } from "../../../components/Button";
 import { logout } from "../../../functions/user";
 import { useActionSheet } from "../../../functions/actionsheet";
 import { StyleProp, ViewStyle } from "react-native";
+import { AppRouteContext } from "../../AppRouteContext";
 
 const LogoutButton = (props: { style?: StyleProp<ViewStyle> }) => {
   const { resetRoute } = useContext(AppRouteContext);

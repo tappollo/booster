@@ -15,7 +15,7 @@ import { RouteProp, useRoute } from "@react-navigation/core";
 import { HomeNavStackParams } from "../home";
 import { useKeyboardManagerOnFocus } from "../../functions/utils";
 import dataUri from "data-uri.macro";
-import { AppRouteContext } from "../Routes";
+import { AppRouteContext } from "../AppRouteContext";
 
 const AvatarButton = styled.TouchableOpacity`
   margin-top: 10px;

@@ -10,8 +10,8 @@ import { Platform, YellowBox } from "react-native";
 import LandingPage from "./LandingPage";
 import ContinueWithPhonePage from "./ContinueWithPhonePage";
 import OnboardingProfile from "./OnboardingProfile";
-import { AppRouteContext } from "../Routes";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { AppRouteContext } from "../AppRouteContext";
 
 export type OnboardingStackParams = {
   landing: undefined;

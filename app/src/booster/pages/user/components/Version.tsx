@@ -1,6 +1,5 @@
 import { useActionSheet } from "../../../functions/actionsheet";
 import React, { useContext, useState } from "react";
-import { AppRouteContext } from "../../Routes";
 import useModalInput from "../../../components/useModalInput";
 import { Clipboard, Text } from "react-native";
 import {
@@ -15,6 +14,7 @@ import { useNavigation } from "@react-navigation/core";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { HomeModelStackParams } from "../../home";
 import { env } from "../../../../app.json";
+import { AppRouteContext } from "../../AppRouteContext";
 
 const Version = () => {
   const showActionSheet = useActionSheet();
