@@ -42,7 +42,7 @@ const Avatar = styled(FastImage)`
 const defaultAvatar = dataUri("./assets/placeholder.png");
 
 const SectionTitle = styled.Text`
-  font-family: OpenSans-ExtraBold;
+  font-weight: 900;
   font-size: 13px;
   color: #8e8e8e;
   letter-spacing: 0.16px;
@@ -52,7 +52,7 @@ const Input: typeof TextInput = styled.TextInput.attrs({
   placeholderTextColor: "#d3d3d3",
 })`
   color: black;
-  font-family: OpenSans-Bold;
+  font-weight: bold;
   font-size: 17px;
   letter-spacing: 0.2px;
   margin: 8px 0;
