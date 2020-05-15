@@ -7,13 +7,17 @@ import "@react-native-firebase/app";
 import * as Sentry from "@sentry/react-native";
 import { env, sentry } from "./src/app.json";
 
-Sentry.init({
-  dsn: sentry,
-  environment: env,
-  enabled: !__DEV__,
-  debug: __DEV__,
-});
-
 enableScreens();
+
+try {
+  Sentry.init({
+    dsn: sentry,
+    environment: env,
+    enabled: !__DEV__,
+    debug: __DEV__,
+  });
+} catch (e) {
+  console.error(e);
+}
 
 AppRegistry.registerComponent("booster", () => App);
