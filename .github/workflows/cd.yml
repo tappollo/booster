@@ -13,6 +13,7 @@ jobs:
       - uses: webfactory/ssh-agent@v0.2.0
         with:
           ssh-private-key: ${{ secrets.MATCH_REPO_SSH_PRIVATE_KEY }}
+          ssh-auth-sock: /tmp/ssh-auth.sock.${{ github.run_id }}.${{ github.run_number }}
       - name: Get yarn cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
