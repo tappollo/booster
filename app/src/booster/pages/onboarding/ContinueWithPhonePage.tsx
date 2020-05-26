@@ -47,7 +47,8 @@ const ContinueWithPhonePage = ({
           try {
             setLoading(true);
             const confirmation = await auth().signInWithPhoneNumber(
-              country.dial_code + phone
+              country.dial_code + phone,
+              true
             );
             navigation.push("verifySMS", {
               confirmation: confirmation.confirm.bind(confirmation),
