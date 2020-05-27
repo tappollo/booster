@@ -20,9 +20,15 @@ export const assertPermission = async ({
     android,
     default: ios,
   });
+  const current = await check(permission);
+  if (current === "granted") {
+    return;
+  }
+  const requested = await request(permission);
   if (
-    (await check(permission)) === "denied" &&
-    (await request(permission)) === "denied"
+    current === "blocked" ||
+    requested === "blocked" ||
+    requested === "denied"
   ) {
     analytics().logEvent("user_denied_permission", { permission });
     throw new Error(message);
