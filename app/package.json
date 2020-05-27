@@ -10,6 +10,7 @@
     "xcode": "open ios/mercy.xcworkspace",
     "studio": "open -a /Applications/Android\\ Studio.app ./android/",
     "ci": "yarn lint && yarn build",
+    "use": "yarn workspace @mercy/scripts use",
     "postinstall": "patch-package && jetify"
   },
   "workspaces": {
