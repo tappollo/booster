@@ -39,12 +39,12 @@ export const assertImagePermissions = async () => {
   await assertPermission({
     ios: PERMISSIONS.IOS.CAMERA,
     android: PERMISSIONS.ANDROID.CAMERA,
-    message: "Need your camera access",
+    message: "Need your camera access, please enable it in Settings.app",
   });
   await assertPermission({
     ios: PERMISSIONS.IOS.PHOTO_LIBRARY,
     android: PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
-    message: "Need your photo library access",
+    message: "Need your photo library access, please enable it in Settings.app",
   });
 };
 
