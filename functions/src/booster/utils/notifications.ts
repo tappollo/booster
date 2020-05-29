@@ -43,5 +43,6 @@ export const sendNotificationsTo = async (
     });
   } catch (e) {
     console.error(e);
+    return e;
   }
 };

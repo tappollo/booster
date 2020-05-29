@@ -78,3 +78,7 @@ export const logout = async () => {
     logError(e);
   }
 };
+
+export const sentTestNotification = async () => {
+  await functions().httpsCallable("user-sendTestNotification")();
+};

@@ -1,11 +1,12 @@
 import { useActionSheet } from "../../../functions/actionsheet";
 import React, { useContext, useState } from "react";
 import useModalInput from "../../../components/useModalInput";
-import { Clipboard, Text } from "react-native";
+import { Clipboard, Text, Alert } from "react-native";
 import {
   currentUserId,
   logout,
   promoteToAdmin,
+  sentTestNotification,
   typedProfile,
 } from "../../../functions/user";
 import { getVersionString } from "../../../functions/utils";
@@ -42,6 +43,17 @@ const Version = () => {
         onLongPress={() => {
           showActionSheet(
             [
+              {
+                title: "Test Notification",
+                onPress: async () => {
+                  Alert.alert("Notification will arrive in 5~10 seconds");
+                  try {
+                    await sentTestNotification();
+                  } catch (e) {
+                    Alert.alert(e.message);
+                  }
+                },
+              },
               {
                 title: "Story book",
                 onPress: async () => {

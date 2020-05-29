@@ -8,6 +8,7 @@ import { promoteToAdminPassword } from "../server.json";
 import { assertNotNull, assertString } from "./utils/utils";
 import { HttpsError } from "firebase-functions/lib/providers/https";
 import * as admin from "firebase-admin";
+import { sendNotificationsTo } from "./utils/notifications";
 
 export const onUserCreate = functions.auth.user().onCreate(async (user) => {
   console.log(
@@ -48,3 +49,18 @@ export const promoteToAdmin = functions.https.onCall(async (data, context) => {
     isAdmin: true,
   });
 });
+
+export const sendTestNotification = functions.https.onCall(
+  async (_, context) => {
+    assertNotNull(context.auth);
+    await new Promise((res) => setTimeout(res, 5 * 1000));
+    const error = await sendNotificationsTo(context.auth.uid, {
+      title: "Test is a test notification",
+      body:
+        "If you are getting this, it means your notification is working fine",
+    });
+    if (error != null) {
+      throw new HttpsError("internal", error.message);
+    }
+  }
+);
